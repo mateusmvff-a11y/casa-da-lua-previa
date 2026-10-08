@@ -82,3 +82,16 @@ CDL.ready(()=>{
   }
   $$('#homeExperienceDays button').forEach(b=>b.addEventListener('click',()=>setHomeExperienceDay(b.dataset.expDay)));
 });
+
+/* Atalhos da Home: destaca o capítulo visível (V16 linhas 2297-2304) */
+CDL.ready(()=>{
+  const root = document.getElementById('page-home'); if(!root || !('IntersectionObserver' in window)) return;
+  const buttons = [...root.querySelectorAll('[data-home-anchor]')];
+  if(!buttons.length) return;
+  const io = new IntersectionObserver(entries=>{
+    const v = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(!v) return;
+    buttons.forEach(b=>b.classList.toggle('active',b.dataset.homeAnchor===v.target.id));
+  },{rootMargin:'-38% 0px -48% 0px',threshold:[0,.15,.4]});
+  root.querySelectorAll('.home-chapter').forEach(s=>io.observe(s));
+});

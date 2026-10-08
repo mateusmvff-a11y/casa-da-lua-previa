@@ -74,7 +74,7 @@
   #page-chapada .chapada-return-frame{padding-bottom:0;aspect-ratio:579/430}
 }
 @media(max-width:760px){
-  #page-chapada .chapada-hero{min-height:560px;padding-top:110px;padding-bottom:70px}
+  #page-chapada .chapada-hero{min-height:600px;padding-top:110px;padding-bottom:130px}
   #page-chapada .chapada-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.5))}
   #page-chapada .chapada-filter{padding-top:24px}
   #page-chapada .chapada-card{grid-template-columns:1fr;min-height:0}
@@ -88,3 +88,22 @@
 #page-chapada .chapada-card.is-top .chapada-copy{justify-content:flex-start}
 #page-chapada .chapada-return .btn{color:var(--creme)}
 #page-chapada .chapada-copy p,#page-chapada .return-note{margin-right:-10px}
+
+/* elementos do V16 trazidos de volta (decisão 08/10) */
+#page-chapada .chapada-hero-note{position:absolute;left:clamp(20px,6vw,115px);right:clamp(20px,6vw,115px);bottom:clamp(24px,2.1vw,40px);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;z-index:1}
+#page-chapada .chapada-hero-note strong{font-family:var(--serif);font-size:28px;line-height:1.1;font-weight:400}
+#page-chapada .chapada-hero-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
+#page-chapada .section-head .small{flex:0 1 380px;max-width:380px}
+#page-chapada .chapada-before .section-head .small{color:rgba(255,255,255,.88)}
+#page-chapada .chapada-return .eyebrow{font-family:var(--inter);font-weight:600}
+#page-chapada .chapada-return-frame{position:relative}
+#page-chapada .chapada-return-photo{position:absolute;inset:0;aspect-ratio:auto}
+#page-chapada .chapada-return-photo img{width:100%;height:100%;object-fit:cover}
+@media(max-width:1180px){
+  #page-chapada .chapada-return-frame{position:relative}
+}
+@media(max-width:760px){
+  #page-chapada .section-head .small{max-width:none}
+  #page-chapada .chapada-hero-note{flex-direction:column;align-items:flex-start;gap:6px;bottom:20px}
+  #page-chapada .chapada-hero-note strong{font-size:22px}
+}

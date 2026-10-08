@@ -39,12 +39,14 @@ fs.writeFileSync(path.join(OUT,'index.html'), html);
 function mapeiaPesos(css){
   return css.replace(/([^{}]+)\{([^{}]*)\}/g,(all,sel,body)=>{
     const serif = /var\(--serif\)|font-family:\s*"?mortise/.test(body);
+    const inter = /var\(--inter\)|font-family:\s*"?inter/i.test(body);
+    if(inter){ return /font-weight/.test(body) ? all : sel+'{'+body+';font-weight:400}'; }   /* Inter: peso 400 de verdade (o 500 do corpo é só da Forma) */
     if(serif){ return /font-weight/.test(body) ? all : sel+'{'+body+';font-weight:400}'; }   /* Mortise: nunca herda o 500 do corpo */
     if(!/font-weight:\s*400/.test(body) || /\bh[1-6]\b/.test(sel)) return all;              /* títulos h1-h6 são Mortise */
     return sel+'{'+body.replace(/font-weight:\s*400/,'font-weight:500')+'}';
   });
 }
-const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n'));
+const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), rd('src/css/fixes.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n'));
 fs.mkdirSync(path.join(OUT,'css'),{recursive:true});
 fs.writeFileSync(path.join(OUT,'css/site.css'), css);
 

@@ -47,7 +47,7 @@ const PROGRAM_DATA = {
   domingo:{asset:'breakfast',eyebrow:'Despedida',title:'Café, check-out e volta para casa.',text:'A manhã encerra a experiência com café da manhã e organização do retorno.',schedule:[['manhã','Café da manhã.'],['saída','Check-out.'],['retorno','Deslocamento para Brasília.']]}
 };
 
-const state = {page:'home', ready:[], pageHooks:{}};
+const state = {page:'home', ready:[], pageHooks:{}, started:false, busy:false};
 
 function ready(fn){ state.ready.push(fn); }
 function onPage(page, fn){ (state.pageHooks[page] ||= []).push(fn); }
@@ -61,17 +61,24 @@ function showToast(message){
 }
 function openOverlay(id){
   const el = document.getElementById(id); if(!el) return;
+  el.classList.remove('closing');
   el.classList.add('open'); el.setAttribute('aria-hidden','false');
   document.body.classList.add('no-scroll');
+  document.dispatchEvent(new CustomEvent('cdl:overlay',{detail:{id,el,open:true}}));
 }
 function closeOverlays(){
-  $$('.overlay.open').forEach(el=>{el.classList.remove('open');el.setAttribute('aria-hidden','true')});
+  /* motion.js define CDL.overlayOut(el,done) para animar a saída; sem ele, fecha direto */
+  $$('.overlay.open').forEach(el=>{
+    if(el.classList.contains('closing')) return;
+    const done = ()=>{ el.classList.remove('open','closing'); el.setAttribute('aria-hidden','true'); };
+    if(CDL.overlayOut){ el.classList.add('closing'); CDL.overlayOut(el,done); } else done();
+  });
   document.body.classList.remove('no-scroll');
 }
 function headerH(){ return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 76; }
 function scrollToId(id){
   const el = document.getElementById(id); if(!el) return;
-  if(CDL.lenis) CDL.lenis.scrollTo(el,{offset:-headerH(),duration:1.4,easing:t=>1-Math.pow(1-t,4)});
+  if(CDL.lenis) CDL.lenis.scrollTo(el,{offset:-headerH(),duration:1.7,easing:t=>t===1?1:1-Math.pow(2,-10*t)});
   else window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-headerH(),behavior:'smooth'});
 }
 function scrollTop(instant){
@@ -89,7 +96,20 @@ function updateBookingDock(){
 }
 function goPage(page, opts={}){
   if(!document.querySelector(`.page[data-page="${page}"]`)) page = 'home';
+  if(state.busy) return;
+  /* mesma página: só volta ao topo (com suavidade) */
+  if(page === state.page && state.started && !opts.force){ closeOverlays(); scrollTop(false); return; }
+  /* motion.js define CDL.transition(page, executa): cortina entre páginas */
+  if(CDL.transition && state.started && !opts.instant){
+    state.busy = true;
+    CDL.transition(page, ()=>{ switchPage(page,opts); }, ()=>{ state.busy = false; });
+    return;
+  }
+  switchPage(page,opts);
+}
+function switchPage(page, opts={}){
   const prev = state.page;
+  state.started = true;
   state.page = page;
   $$('.page').forEach(p=>p.classList.toggle('active',p.dataset.page===page));
   $$('.nav-link').forEach(n=>n.classList.toggle('active',n.dataset.pageTarget===page));
@@ -98,7 +118,7 @@ function goPage(page, opts={}){
   updateBookingDock();
   (state.pageHooks[page]||[]).forEach(fn=>fn());
   document.dispatchEvent(new CustomEvent('cdl:page',{detail:{page,prev}}));
-  if(!opts.keepScroll) scrollTop(opts.instant);
+  if(!opts.keepScroll) scrollTop(opts.instant || !!CDL.transition);
 }
 
 /* API pública para os scripts das páginas e das sobreposições */
@@ -144,6 +164,7 @@ window.addEventListener('hashchange',()=>{
 document.addEventListener('DOMContentLoaded',()=>{
   state.ready.forEach(fn=>fn());
   const hash = location.hash.replace('#','');
-  if(hash) goPage(hash,{instant:true}); else updateBookingDock();
+  if(hash) goPage(hash,{instant:true}); else goPage('home',{instant:true,force:true});
+  state.started = true;
 });
 })();

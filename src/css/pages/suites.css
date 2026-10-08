@@ -77,15 +77,14 @@
 #page-suites .suite-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #page-suites .suite-card-media img.crop{inset:auto}
 #page-suites .suite-card-copy{display:flex;flex-direction:column;flex:1;padding:22px}
-#page-suites .suite-card-top{display:flex;justify-content:space-between;font-size:10px;line-height:16px;text-transform:uppercase;letter-spacing:.13em;color:#728079}
+#page-suites .suite-card-top{display:flex;justify-content:space-between;font-family:var(--inter);font-weight:normal;font-size:10px;line-height:16px;text-transform:uppercase;letter-spacing:.13em;color:#728079}
 #page-suites .suite-card h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:53px;color:var(--texto);margin:12px 0 8px}
-/* o Figma desenha os cartões em Inter (mais larga que a Forma): tracking maior para as larguras e quebras baterem */
-#page-suites .suite-card p{font-size:16px;line-height:25px;letter-spacing:.02em;color:#5d716a;margin:0 0 18px}
-#page-suites .suite-card .tag-row>span{padding:7px 11px;letter-spacing:.03em}
+#page-suites .suite-card p{font-family:var(--inter);font-weight:normal;font-size:16px;line-height:25px;letter-spacing:0;color:#5d716a;margin:0 0 18px}
+#page-suites .suite-card .tag-row>span{padding:7px 11px;font-family:var(--inter);font-weight:normal;font-size:11px;line-height:17px;letter-spacing:.33px}
 #page-suites .suite-actions{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:20px}
-#page-suites .suite-actions label{display:flex;align-items:center;gap:10px;padding-right:4px;font-size:12px;line-height:19px;letter-spacing:.02em;color:var(--texto);cursor:pointer}
+#page-suites .suite-actions label{display:flex;align-items:center;gap:10px;padding-right:4px;font-family:var(--inter);font-weight:normal;font-size:12px;line-height:19px;letter-spacing:0;color:var(--texto);cursor:pointer}
 #page-suites .compare-check{width:13px;height:13px;margin:0 0 0 4px;accent-color:var(--verde-escuro);cursor:pointer}
-#page-suites .suite-card .text-button{font-size:13px;line-height:20px}
+#page-suites .suite-card .text-button{font-family:var(--inter);font-weight:normal;font-size:13px;line-height:20px;letter-spacing:0}
 
 /* ---------- Barra de comparação (fixa, só com seleção) ---------- */
 #page-suites .compare-dock{
@@ -113,7 +112,7 @@
 @media(max-width:760px){
   #page-suites .suites-hero{min-height:640px;padding:40px var(--pad) 90px}
   #page-suites .suites-hero-lead{margin-top:18px}
-  #page-suites .suites-hero::after{background:rgba(52,19,6,.58)}
+  #page-suites .suites-hero::after{background:linear-gradient(180deg,transparent 58%,rgba(8,33,30,.55)),rgba(52,19,6,.58)}
   #page-suites .suite-grid{grid-template-columns:1fr}
   #page-suites .suite-card-media{height:235px}
   #page-suites .suite-card.featured .suite-card-media{height:235px}
@@ -121,3 +120,24 @@
   #page-suites .compare-dock{left:12px;right:12px;bottom:80px;transform:none;justify-content:space-between}
 }
 
+
+/* ---------- Nota lateral do hero (V16) ---------- */
+#page-suites .suites-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(8,33,30,.55))}
+#page-suites .suites-hero-note{
+  position:absolute;left:clamp(var(--pad),6vw,115px);right:clamp(var(--pad),6vw,115px);bottom:48px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--creme)
+}
+#page-suites .suites-hero-note strong{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.15}
+#page-suites .suites-hero-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
+
+/* ---------- 4. Compare o que importa (V16, no estilo do Figma) ---------- */
+#page-suites .suites-compare .lead{margin-top:24px;max-width:600px;font-size:clamp(17px,1.3vw,25px);line-height:1.2}
+#page-suites .suites-compare .hero-actions{margin-top:36px}
+#page-suites .suites-criteria{padding:26px;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto)}
+#page-suites .suites-criteria h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:32px;color:var(--texto);margin:0 0 12px}
+#page-suites .suites-criteria ul{list-style:none;margin:0;padding:0}
+#page-suites .suites-criteria li{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--linha);font-size:16px;line-height:24px;letter-spacing:.02em}
+#page-suites .suites-criteria li:last-child{border-bottom:0;padding-bottom:0}
+#page-suites .suites-criteria li span:last-child{color:var(--texto-2);text-align:right}
+#page-suites .suites-compare .title{font-size:clamp(34px,2.92vw,56px);line-height:1.06}
+#page-suites .suites-bg-dark.suites-bg-compare{background-position:0 28.7%}

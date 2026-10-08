@@ -1,124 +1,170 @@
 /* =========================================================
-   Casa da Lua — motion.js
-   Movimento calmo e editorial (GSAP + ScrollTrigger + SplitText + Lenis).
-   O HTML só marca o que anima:
-     data-anim="hero"    seção de abertura: imagem desce do zoom, texto entra em sequência
-     data-anim="title"   títulos entram por linhas (máscara)
+   Casa da Lua — motion.js  (v2)
+   Movimento calmo e editorial: GSAP + ScrollTrigger + SplitText + Lenis.
+   O HTML marca o que anima; o que não foi marcado recebe um padrão (autoMark).
+     data-anim="hero"    abertura: foto/vídeo assenta do zoom, texto entra em sequência, ao rolar o conteúdo se afasta
+     data-anim="title"   títulos entram por linhas (máscara + leve rotação)
      data-anim="reveal"  blocos sobem e aparecem; no pai, data-stagger escalona os filhos
-     data-anim="image"   moldura de imagem abre por máscara e a foto assenta (zoom leve)
-     data-parallax="-8"  imagem/fundo desliza com a rolagem (% da altura)
+     data-anim="image"   moldura abre por máscara e a foto assenta; data-parallax="-8" desliza com a rolagem
+   Além disso: cortina entre páginas, entrada/saída das sobreposições, troca de conteúdo das abas e filtros,
+   barra de progresso, cabeçalho que recolhe ao descer, vídeos que pausam fora da tela.
    Cada página cria os seus gatilhos ao abrir e os desfaz ao sair (gsap.context).
+   ?sem-movimento desliga tudo (testes, acessibilidade).
    ========================================================= */
 (function(){
 'use strict';
 const root = document.documentElement;
 const fail = () => { root.classList.remove('motion-on'); };
 if(!window.CDL) return;
-if(location.search.indexOf('sem-movimento') >= 0){ root.classList.remove('motion-on'); return; }   /* ?sem-movimento: desliga as animações (testes e acessibilidade) */
+if(location.search.indexOf('sem-movimento') >= 0){ fail(); return; }
 const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || reduz){ fail(); return; }
 const CDL = window.CDL;
 gsap.registerPlugin(ScrollTrigger);
-if(typeof SplitText !== 'undefined') gsap.registerPlugin(SplitText);
 const hasSplit = typeof SplitText !== 'undefined';
+if(hasSplit) gsap.registerPlugin(SplitText);
 gsap.defaults({ease:'power3.out'});
+const desktop = () => window.matchMedia('(min-width:1025px)').matches;
 
 /* ---------- Rolagem suave (Lenis) ---------- */
 let lenis = null;
 if(typeof Lenis !== 'undefined' && !window.matchMedia('(pointer:coarse)').matches){
-  lenis = new Lenis({lerp:.1,wheelMultiplier:.95});
+  lenis = new Lenis({lerp:.085,wheelMultiplier:.92,smoothWheel:true});
   CDL.lenis = lenis;
   lenis.on('scroll',ScrollTrigger.update);
   gsap.ticker.add(t=>lenis.raf(t*1000));
   gsap.ticker.lagSmoothing(0);
-  /* O Lenis guarda a altura da página: remede quando o ScrollTrigger recalcula,
-     quando o corpo muda de tamanho (troca de página, abas) e quando tudo carrega. */
+  /* o Lenis guarda a altura: remede quando o ScrollTrigger recalcula, o corpo muda e tudo carrega */
   ScrollTrigger.addEventListener('refresh',()=>lenis.resize());
   if('ResizeObserver' in window) new ResizeObserver(()=>lenis.resize()).observe(document.body);
   window.addEventListener('load',()=>{ lenis.resize(); ScrollTrigger.refresh(); });
-  /* sobreposições rolam por dentro: o Lenis não interfere */
   document.querySelectorAll('.overlay,.modal,.drawer').forEach(el=>el.setAttribute('data-lenis-prevent',''));
   new MutationObserver(()=>{ document.body.classList.contains('no-scroll') ? lenis.stop() : lenis.start(); })
     .observe(document.body,{attributes:true,attributeFilter:['class']});
 }
 
+/* ---------- Barra de progresso + cabeçalho que recolhe ---------- */
+const bar = document.createElement('div'); bar.className = 'scroll-progress'; bar.setAttribute('aria-hidden','true');
+document.body.appendChild(bar);
+const setBar = gsap.quickSetter(bar,'scaleX');
+const header = document.querySelector('.site-header');
+let lastY = window.scrollY, hidden = false;
+function onScroll(){
+  const y = window.scrollY, max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  setBar(Math.min(1, y / max));
+  if(header){
+    header.classList.toggle('is-scrolled', y > 80);
+    const d = y - lastY;
+    if(y > 320 && d > 8 && !hidden && !document.body.classList.contains('no-scroll')){ hidden = true; gsap.to(header,{yPercent:-105,duration:.6,ease:'power3.out',overwrite:true}); }
+    else if((d < -8 || y < 200) && hidden){ hidden = false; gsap.to(header,{yPercent:0,duration:.6,ease:'power3.out',overwrite:true}); }
+  }
+  lastY = y;
+}
+window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+function showHeader(){ if(header && hidden){ hidden = false; gsap.to(header,{yPercent:0,duration:.4,overwrite:true}); } }
+
 /* ---------- Animações por página ---------- */
 const contexts = {};     // page -> gsap.Context
 const splits = {};       // page -> [SplitText]
+const S = {delay:0};     // atraso extra (a cortina ainda está subindo)
+
+/* O que o HTML não marcou recebe o padrão da casa (sem aninhar: filho de algo já marcado fica quieto) */
+function autoMark(pageEl){
+  const mark = (el,t) => { if(!el.hasAttribute('data-anim') && !(el.parentElement && el.parentElement.closest('[data-anim]'))) el.setAttribute('data-anim',t); };
+  pageEl.querySelectorAll('.section h1,.section h2').forEach(el=>mark(el,'title'));
+  pageEl.querySelectorAll('.section .eyebrow,.section .lead,.section-head > .small,.section-head > p,.stat-row,.hero-actions,.practical-item,.year-stack article,.timeline article,.story-mini-list span').forEach(el=>mark(el,'reveal'));
+  pageEl.querySelectorAll('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.reserve-steps,.form-card,.event-diagram,.event-copy,.program-stage,.moment-hero,.atlas-teaser,.atlas-home-card,.profile-panel').forEach(el=>mark(el,'reveal'));
+  /* irmãos marcados viram uma fileira escalonada */
+  pageEl.querySelectorAll('[data-anim="reveal"]').forEach(el=>{
+    const p = el.parentElement; if(!p || p.hasAttribute('data-stagger')) return;
+    const n = [...p.children].filter(c=>c.getAttribute('data-anim') === 'reveal').length;
+    if(n >= 2) p.setAttribute('data-stagger','');
+  });
+}
 
 function build(pageEl){
   const page = pageEl.dataset.page;
   kill(page);
   const ctx = gsap.context(()=>{},pageEl);
   contexts[page] = ctx;
+  autoMark(pageEl);
+  const D = S.delay; S.delay = 0;
   ctx.add(()=>{
     const sp = splits[page] = [];
 
-    /* HERO: entra ao abrir a página (não espera rolagem) */
+    /* HERO: entra ao abrir; ao rolar, o conteúdo se afasta devagar */
     pageEl.querySelectorAll('[data-anim="hero"]').forEach(hero=>{
-      const bg = hero.querySelector('img, .section-bg, .hero-bg');
+      const bg = hero.querySelector('.hero-video, img, .section-bg, .hero-bg');
       if(bg){
-        gsap.fromTo(bg,{scale:1.14},{scale:1,duration:2.6,ease:'power2.out'});
-        gsap.to(bg,{yPercent:10,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
+        gsap.fromTo(bg,{scale:1.16},{scale:1.02,duration:3,delay:D,ease:'power2.out'});
+        if(desktop()) gsap.to(bg,{yPercent:9,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
       }
+      const copy = hero.querySelector('.hero-copy');
+      if(copy) gsap.to(copy,{yPercent:-9,autoAlpha:.15,ease:'none',scrollTrigger:{trigger:hero,start:'20% top',end:'bottom top',scrub:true}});
       const inner = [...hero.querySelectorAll('[data-anim="title"],[data-anim="reveal"]')];
       inner.forEach((el,i)=>{
-        if(el.dataset.anim === 'title') titleIn(el,{delay:.25,hero:true},sp,ctx);
-        else gsap.fromTo(el,{autoAlpha:0,y:26},{autoAlpha:1,y:0,duration:1.1,delay:.55+i*.1});
+        if(el.dataset.anim === 'title') titleIn(el,{delay:.3+D,hero:true},sp,ctx);
+        else gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:1.2,delay:.7+D+i*.11,clearProps:'transform'});
       });
     });
 
-    /* TÍTULOS (fora do hero) */
+    /* TÍTULOS */
     pageEl.querySelectorAll('[data-anim="title"]').forEach(el=>{
       if(el.closest('[data-anim="hero"]')) return;
       titleIn(el,{},sp,ctx);
     });
 
-    /* REVEAL (com escalonamento por pai) */
+    /* REVEAL com escalonamento por pai */
     const seen = new Set();
     pageEl.querySelectorAll('[data-anim="reveal"]').forEach(el=>{
       if(el.closest('[data-anim="hero"]') || seen.has(el)) return;
       const parent = el.parentElement;
-      let group = [el], delayStep = 0;
+      let group = [el], step = 0;
       if(parent && parent.hasAttribute('data-stagger')){
         group = [...parent.children].filter(c=>c.dataset.anim === 'reveal');
-        delayStep = .1;
+        step = .09;
       }
       group.forEach(g=>seen.add(g));
-      group.forEach((g,i)=>{
-        gsap.fromTo(g,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:1.05,delay:i*delayStep,
-          scrollTrigger:{trigger:parent && delayStep ? parent : g,start:'top 88%',toggleActions:'play none none none'}});
-      });
+      const card = el.matches('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.practical-item');
+      gsap.fromTo(group,{autoAlpha:0,y:card?46:32,scale:card?.985:1},{autoAlpha:1,y:0,scale:1,duration:1.15,stagger:step,clearProps:'transform',
+        scrollTrigger:{trigger:parent && step ? parent : group[0],start:'top 88%',toggleActions:'play none none none'}});
     });
 
     /* IMAGENS: máscara abre + foto assenta */
     pageEl.querySelectorAll('[data-anim="image"]').forEach(box=>{
       const img = box.querySelector('img');
       const tl = gsap.timeline({scrollTrigger:{trigger:box,start:'top 88%',toggleActions:'play none none none'}});
-      tl.fromTo(box,{autoAlpha:0,clipPath:'inset(9% 5% 9% 5% round 26px)'},{autoAlpha:1,clipPath:'inset(0% 0% 0% 0% round 0px)',duration:1.5,ease:'power3.inOut'});
-      if(img) tl.fromTo(img,{scale:1.2},{scale:1,duration:1.9,ease:'power2.out'},0);
+      tl.fromTo(box,{autoAlpha:0,clipPath:'inset(10% 6% 10% 6% round 28px)'},{autoAlpha:1,clipPath:'inset(0% 0% 0% 0% round 0px)',duration:1.6,ease:'expo.inOut',clearProps:'clipPath'});
+      if(img && !img.hasAttribute('data-parallax')) tl.fromTo(img,{scale:1.22},{scale:1,duration:2,ease:'power2.out',clearProps:'transform'},0);
     });
 
-    /* PARALLAX */
-    pageEl.querySelectorAll('[data-parallax]').forEach(el=>{
-      const v = parseFloat(el.dataset.parallax) || 0; if(!v) return;
-      const box = el.parentElement || el;
-      gsap.fromTo(el,{yPercent:-v,scale:1.14},{yPercent:v,scale:1.14,ease:'none',
-        scrollTrigger:{trigger:box,start:'top bottom',end:'bottom top',scrub:true}});
-    });
+    /* PARALLAX (só em tela grande: no celular economiza o aparelho) */
+    if(desktop()){
+      pageEl.querySelectorAll('[data-parallax],.section-bg').forEach(el=>{
+        const isBg = el.classList.contains('section-bg');
+        const v = el.hasAttribute('data-parallax') ? (parseFloat(el.dataset.parallax) || 0) : 5;
+        if(!v) return;
+        const box = isBg ? el.parentElement : (el.parentElement || el);
+        const sc = isBg ? 1.08 : 1.14;
+        gsap.fromTo(el,{yPercent:-v,scale:sc},{yPercent:v,scale:sc,ease:'none',
+          scrollTrigger:{trigger:box,start:'top bottom',end:'bottom top',scrub:true}});
+      });
+    }
   });
 }
 
 function titleIn(el,opts,sp,ctx){
-  const run = ()=>{ if(contexts[el.closest('.page').dataset.page] !== ctx) return; ctx.add(()=>{
-    el.style.visibility = 'visible';
-    if(!hasSplit){ gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:1.1,delay:opts.delay||0,
-      scrollTrigger:opts.hero?undefined:{trigger:el,start:'top 88%',toggleActions:'play none none none'}}); return; }
-    const s = SplitText.create(el,{type:'lines',linesClass:'split-line',mask:'lines'});
-    gsap.from(s.lines,{yPercent:115,duration:1.25,stagger:.09,ease:'power4.out',delay:opts.delay||0,
-      scrollTrigger:opts.hero?undefined:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
-    sp.push(s);
-  }); };
+  const run = ()=>{
+    if(contexts[el.closest('.page').dataset.page] !== ctx) return;
+    ctx.add(()=>{
+      el.style.visibility = 'visible';
+      const trig = opts.hero ? undefined : {trigger:el,start:'top 88%',toggleActions:'play none none none'};
+      if(!hasSplit){ gsap.fromTo(el,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:1.2,delay:opts.delay||0,scrollTrigger:trig}); return; }
+      const s = SplitText.create(el,{type:'lines',linesClass:'split-line',mask:'lines'});
+      gsap.fromTo(s.lines,{yPercent:118,rotate:3,transformOrigin:'0% 100%'},{yPercent:0,rotate:0,duration:1.4,stagger:.1,ease:'power4.out',delay:opts.delay||0,scrollTrigger:trig});
+      sp.push(s);
+    });
+  };
   (document.fonts && document.fonts.ready) ? document.fonts.ready.then(run) : run();
 }
 
@@ -131,27 +177,79 @@ function activate(page){
   Object.keys(contexts).forEach(p=>{ if(p !== page) kill(p); });
   const pageEl = document.querySelector(`.page[data-page="${page}"]`);
   if(!pageEl) return;
-  /* espera o frame em que a página já está visível para medir */
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    build(pageEl);
-    ScrollTrigger.refresh();
-  }));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ build(pageEl); ScrollTrigger.refresh(); }));
 }
-
 document.addEventListener('cdl:page',e=>activate(e.detail.page));
-/* ao mudar a LARGURA, as linhas dos títulos mudam: refaz a página atual (com atraso) */
+window.addEventListener('DOMContentLoaded',()=>{ setTimeout(()=>{ if(!contexts[CDL.currentPage]) activate(CDL.currentPage); },60); });
+/* ao mudar a LARGURA as linhas dos títulos mudam: refaz a página atual */
 let lastW = window.innerWidth, rz;
 window.addEventListener('resize',()=>{ clearTimeout(rz); rz = setTimeout(()=>{ if(window.innerWidth !== lastW){ lastW = window.innerWidth; activate(CDL.currentPage); } },450); });
-/* primeira carga: o core chama goPage (hash) ou updateBookingDock; garanta a página ativa */
-window.addEventListener('DOMContentLoaded',()=>{ setTimeout(()=>{ if(!contexts[CDL.currentPage]) activate(CDL.currentPage); },60); });
 
-/* Abas/filtros mudam a altura: remede depois que o navegador pintou */
+/* ---------- Cortina entre páginas ---------- */
+const curtain = document.createElement('div');
+curtain.className = 'curtain'; curtain.setAttribute('aria-hidden','true');
+curtain.innerHTML = '<img src="assets/img/3967b9.webp" alt="" width="290" height="103">';
+document.body.appendChild(curtain);
+const cLogo = curtain.querySelector('img');
+gsap.set(curtain,{yPercent:100,display:'none'});
+CDL.transition = (page, swap, end) => {
+  showHeader();
+  CDL.closeOverlays();
+  curtain.style.display = 'flex';
+  const tl = gsap.timeline({defaults:{ease:'expo.inOut'},onComplete:()=>{ curtain.style.display = 'none'; end(); }});
+  tl.fromTo(curtain,{yPercent:100},{yPercent:0,duration:.8})
+    .fromTo(cLogo,{autoAlpha:0,y:22},{autoAlpha:1,y:0,duration:.55,ease:'power3.out'},.3)
+    .add(()=>{ S.delay = .55; swap(); window.scrollTo(0,0); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); },'>')
+    .to(cLogo,{autoAlpha:0,y:-14,duration:.4,ease:'power2.in'},'>+.12')
+    .to(curtain,{yPercent:-100,duration:.95},'<+.05');
+};
+
+/* ---------- Sobreposições: entrada e saída ---------- */
+const panelOf = el => el.querySelector(':scope > .modal, :scope > .journey-shell, :scope > .atlas-overlay-shell') || el.firstElementChild;
+function overlayIn(el){
+  const panel = panelOf(el), items = [...el.querySelectorAll('.ov-anim')];
+  const imgs = [...el.querySelectorAll('.journey-media img,.suite-modal-media img,.atlas-canvas img,.atlas-stage img')];
+  gsap.killTweensOf([el,panel,...items,...imgs]);
+  const tl = gsap.timeline();
+  tl.fromTo(el,{autoAlpha:0},{autoAlpha:1,duration:.55,ease:'power2.out'},0)
+    .fromTo(panel,{y:64,scale:.955,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:1.1,ease:'expo.out',clearProps:'transform'},.05)
+    .fromTo(items,{y:28,autoAlpha:0},{y:0,autoAlpha:1,duration:.95,stagger:.055,ease:'power3.out',clearProps:'transform'},.28);
+  if(imgs.length) tl.fromTo(imgs,{scale:1.16},{scale:1,duration:1.8,ease:'power2.out',clearProps:'transform'},.05);
+  const pins = [...el.querySelectorAll('.map-pin')];
+  if(pins.length) tl.fromTo(pins,{scale:0,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,ease:'back.out(2.2)',stagger:.035,clearProps:'transform'},.75);
+}
+CDL.overlayOut = (el,done) => {
+  const panel = panelOf(el);
+  gsap.killTweensOf([el,panel]);
+  gsap.timeline({onComplete:()=>{ done(); gsap.set([el,panel,...el.querySelectorAll('.ov-anim,.map-pin')],{clearProps:'opacity,visibility,transform'}); }})
+    .to(panel,{y:28,scale:.985,autoAlpha:0,duration:.42,ease:'power2.in'},0)
+    .to(el,{autoAlpha:0,duration:.42,ease:'power1.inOut'},.06);
+};
+document.addEventListener('cdl:overlay',e=>{ if(e.detail.open){ showHeader(); overlayIn(e.detail.el); } });
+
+/* ---------- Troca de conteúdo (abas, perfis, filtros) ---------- */
+const q = (s,r=document) => [...r.querySelectorAll(s)];
+const textIn = els => { if(els.length) gsap.fromTo(els,{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.8,stagger:.06,ease:'power3.out',overwrite:true,clearProps:'transform'}); };
+const imageIn = el => { if(el) gsap.fromTo(el,{autoAlpha:0},{autoAlpha:1,duration:1.1,ease:'power2.out',overwrite:true}); };
+function textCards(cards){ if(cards.length) gsap.fromTo(cards,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:.9,stagger:.06,ease:'power3.out',overwrite:true,clearProps:'transform'}); }
 document.addEventListener('click',e=>{
-  if(e.target.closest('.suite-filter,.chip-button,[data-viver-moment],.program-day,[data-event-type],.time-tab,.profile-card,[data-chapada-filter]'))
-    setTimeout(()=>ScrollTrigger.refresh(),420);
+  const t = e.target; let f = null;
+  if(t.closest('.time-tab')) f = ()=>{ imageIn(document.getElementById('homeTimeImage')); textIn(q('.time-scene-copy > *')); };
+  else if(t.closest('.moment-tabs button')) f = ()=>{ imageIn(document.getElementById('viverMomentImage')); textIn(q('.moment-copy > *')); };
+  else if(t.closest('.program-day')) f = ()=>{ imageIn(document.getElementById('programImage')); textIn(q('.program-stage-copy > *')); };
+  else if(t.closest('#homeExperienceDays button')) f = ()=>{ imageIn(document.getElementById('homeProgramImage')); textIn(q('#page-home .experience-panel .feature-body > *:not(.chip-row):not(.hero-actions)')); };
+  else if(t.closest('.profile-card')) f = ()=>textIn(q('.profile-result > *'));
+  else if(t.closest('.event-selector button')) f = ()=>{ textIn(q('.event-copy > *')); const z = q('#eventObjects .floor-zone'); if(z.length) gsap.fromTo(z,{scale:.85,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,stagger:.05,ease:'back.out(1.8)',overwrite:true}); };
+  else if(t.closest('#journeyChoices button')) f = ()=>{ imageIn(document.getElementById('journeyImage')); textIn(q('#journeyOverlay .journey-copy .ov-anim, #journeyChoices button')); };
+  else if(t.closest('[data-atlas-place],.atlas-lenses button,#atlasOptions button')) f = ()=>{ imageIn(document.getElementById('atlasDetailImage')); textIn(q('.atlas-detail > *:not(.detail-image)')); };
+  else if(t.closest('.suite-filter[data-suite-filter]')) f = ()=>{ textCards(q('#page-suites .suite-card:not(.hidden-by-filter)')); };
+  else if(t.closest('[data-chapada-filter]')) f = ()=>{ textCards(q('#page-chapada .chapada-card:not(.hidden-by-filter)')); };
+  if(f) requestAnimationFrame(()=>{ f(); setTimeout(()=>ScrollTrigger.refresh(),450); });
 });
 
-/* Cabeçalho ganha sombra fina depois do topo */
-const header = document.querySelector('.site-header');
-if(header){ const marca=()=>header.classList.toggle('is-scrolled',window.scrollY>80); window.addEventListener('scroll',marca,{passive:true}); marca(); }
+/* ---------- Vídeos de fundo: só tocam quando aparecem ---------- */
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es=>es.forEach(en=>{ const v = en.target; if(en.isIntersecting){ const p = v.play(); if(p) p.catch(()=>{}); } else v.pause(); }),{threshold:.05});
+  q('video[autoplay]').forEach(v=>io.observe(v));
+}
 })();

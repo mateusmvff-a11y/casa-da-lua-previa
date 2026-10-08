@@ -9,7 +9,6 @@
 .motion-on [data-anim="image"]{opacity:0}
 .motion-on .page:not(.active) [data-anim]{opacity:1;visibility:visible}
 [data-anim="title"] .split-line{overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
-[data-anim="image"],[data-parallax]{will-change:transform}
 [data-anim="image"]{overflow:hidden}
 [data-anim="image"] img{transform-origin:50% 50%}
 /* Lenis */
@@ -22,3 +21,17 @@ html.lenis,html.lenis body{height:auto}
 }
 .site-header{transition:box-shadow .3s}
 .site-header.is-scrolled{box-shadow:0 8px 30px rgba(18,47,41,.08)}
+
+/* sem a animação de entrada da página inteira (era uma camada enorme; a cortina cuida da troca) */
+.motion-on .page.active{animation:none}
+/* barra de progresso de leitura */
+.scroll-progress{position:fixed;left:0;top:0;right:0;height:3px;z-index:70;background:var(--verde);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+/* cortina entre páginas */
+.curtain{position:fixed;inset:0;z-index:200;background:var(--verde-escuro);display:none;align-items:center;justify-content:center;pointer-events:all;will-change:transform}
+.curtain img{width:min(290px,56vw);height:auto;opacity:0}
+/* sobreposições: o JS controla opacidade e movimento */
+.overlay.closing{pointer-events:none}
+/* o cabeçalho sobe/desce por transform */
+.site-header{will-change:transform}
+/* texturas já pré-calculadas (preto com transparência): sem mistura de cores na rolagem */
+.section-bg.baked{mix-blend-mode:normal!important}

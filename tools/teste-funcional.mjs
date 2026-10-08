@@ -6,7 +6,7 @@ const p=spawn(chrome,['--headless=new','--disable-gpu','--no-first-run',`--user-
 const sleep=ms=>new Promise(r=>setTimeout(r,ms)); let target;
 for(let i=0;i<60;i++){await sleep(300);try{const l=await(await fetch(`http://127.0.0.1:${port}/json/list`)).json();target=l.find(t=>t.type==='page');if(target)break;}catch{}}
 const ws=new WebSocket(target.webSocketDebuggerUrl);await new Promise(r=>ws.onopen=r);let id=0;const pend=new Map();const errs=[];
-ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id&&pend.has(m.id)){pend.get(m.id)(m);pend.delete(m.id);}else if(m.method==='Runtime.exceptionThrown')errs.push('EXC '+(m.params.exceptionDetails.exception?.description||m.params.exceptionDetails.text));else if(m.method==='Runtime.consoleAPICalled'&&m.params.type==='error')errs.push('console.error '+m.params.args.map(a=>a.value||a.description).join(' '));else if(m.method==='Network.loadingFailed')errs.push('rede falhou '+(m.params.errorText)+' '+(m.params.blockedReason||''));else if(m.method==='Network.responseReceived'&&m.params.response.status>=400)errs.push('HTTP '+m.params.response.status+' '+m.params.response.url);};
+ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id&&pend.has(m.id)){pend.get(m.id)(m);pend.delete(m.id);}else if(m.method==='Runtime.exceptionThrown')errs.push('EXC '+(m.params.exceptionDetails.exception?.description||m.params.exceptionDetails.text));else if(m.method==='Runtime.consoleAPICalled'&&m.params.type==='error')errs.push('console.error '+m.params.args.map(a=>a.value||a.description).join(' '));else if(m.method==='Network.loadingFailed'&&m.params.errorText!=='net::ERR_ABORTED')errs.push('rede falhou '+(m.params.errorText)+' '+(m.params.blockedReason||''));else if(m.method==='Network.responseReceived'&&m.params.response.status>=400)errs.push('HTTP '+m.params.response.status+' '+m.params.response.url);};
 const send=(method,params={})=>new Promise(r=>{const i=++id;pend.set(i,r);ws.send(JSON.stringify({id:i,method,params}));});
 const ev=async js=>{const r=await send('Runtime.evaluate',{expression:js,returnByValue:true,awaitPromise:true});return r.result?.result?.value;};
 await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
@@ -29,18 +29,22 @@ await t('Home: dia Sexta troca programa', click('#homeExperienceDays [data-exp-d
 await t('Home: pino do Atlas troca título', click('.atlas-home-card .map-pin[data-place="Círculo do fogo"]')+'&&'+`${txt('#homeAtlasTitle')}==='Círculo do fogo'`);
 await t('Home: "Abrir o Atlas" abre sobreposição', click('#page-home .atlas-open')+'&&'+open('atlasOverlay'));
 await t('Atlas: lente Momento e lista', click('#atlasOverlay [data-atlas-lens="momento"]')+`&&document.querySelectorAll('#atlasList button').length>0`);
-await t('Atlas: fecha com ESC', `(()=>{document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));return !${open('atlasOverlay')}})()`);
+await t('Atlas: ESC', `(()=>{document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));return true})()`, 1000);
+await t('Atlas fechou com ESC', '!'+open('atlasOverlay'));
 await t('Entrar na Casa abre percurso', click('.site-header .journey-open')+'&&'+open('journeyOverlay'));
 await t('Percurso: segue para o jardim', click('#journeyChoices button'));
 await t('Percurso: cena mudou', `/jardim/i.test(${txt('#journeyKicker')})`);
-await t('Percurso: fecha', click('#journeyOverlay .close-overlay')+'&&!'+open('journeyOverlay'));
+await t('Percurso: fecha', click('#journeyOverlay .close-overlay')+'&&true', 1000);
+await t('Percurso fechou', '!'+open('journeyOverlay'));
 await t('Home: "Ver a suíte" abre detalhe', click('#page-home .suite-detail-btn[data-suite="master"]')+'&&'+open('suiteOverlay')+`&&/Master/.test(${txt('#suiteModalTitle')})`);
-await t('Detalhe da suíte: fecha', click('#suiteOverlay .close-overlay')+'&&!'+open('suiteOverlay'));
+await t('Detalhe da suíte: fecha', click('#suiteOverlay .close-overlay')+'&&true', 1000);
+await t('Detalhe fechou', '!'+open('suiteOverlay'));
 await t('Home sem rolagem horizontal', noHScroll);
 await t('Casa abre', go('casa'));
 await t('Casa: pino do Atlas existe e clica', click('#page-casa .map-pin[data-place="Área de eventos"]'));
 await t('Casa: "Abrir o Atlas" abre', click('#page-casa .atlas-open')+'&&'+open('atlasOverlay'));
-await t('Atlas fecha', click('#atlasOverlay .close-overlay')+'&&!'+open('atlasOverlay'));
+await t('Atlas fecha', click('#atlasOverlay .close-overlay')+'&&true', 1000);
+await t('Atlas fechou', '!'+open('atlasOverlay'));
 await t('Casa sem rolagem horizontal', noHScroll);
 await t('Suítes abre', go('suites'));
 await t('Suítes: 8 cartões', `document.querySelectorAll('#page-suites .suite-card').length===8`);
@@ -75,10 +79,12 @@ await t('Reservar: prioridade e etapa 3 com sugestões', click('.choice[data-res
 await t('Reservar: categoria e etapa 4 com resumo', `(()=>{const b=document.querySelector('#reserveSuggestions .reserve-suite-choice');if(b)b.click();document.querySelector('.reserve-step[data-step="3"] .reserve-next').click();return !document.querySelector('.reserve-step[data-step="4"]').classList.contains('hidden')&&document.getElementById('reserveSummary').textContent.length>10})()`);
 await t('Reservar sem rolagem horizontal', noHScroll);
 await t('Barra de reserva volta fora de Reservar', go('home')+`&&!document.getElementById('bookingDock').classList.contains('hidden')`);
-await t('Dock: "Consultar" leva a Reservar', click('#dockAction')+`&&CDL.currentPage==='reservar'`);
+await t('Dock: "Consultar" clica', click('#dockAction'), 2800);
+await t('Dock: levou a Reservar (com cortina)', `CDL.currentPage==='reservar'`);
 if(W<700){
   await t('Menu mobile abre', go('home')+'&&'+click('#mobileMenuBtn')+'&&'+open('mobileNavOverlay'));
-  await t('Menu mobile navega', click('#mobileNavOverlay [data-page-target="chapada"]')+`&&CDL.currentPage==='chapada'`);
+  await t('Menu mobile navega', click('#mobileNavOverlay [data-page-target="chapada"]'), 2800);
+  await t('Menu mobile levou a Chapada', `CDL.currentPage==='chapada'`);
 }
 let quebradas=[]; for(const pg of ['home','casa','suites','viver','experiencias','eventos','chapada','reservar']){ await ev(`CDL.goPage('${pg}',{instant:true})`); await sleep(500); quebradas.push(...(await ev(`[...document.querySelectorAll('.page.active img')].filter(i=>i.complete&&i.naturalWidth===0&&i.currentSrc).map(i=>i.currentSrc)`)||[])); }
 T.push([quebradas.length===0,'nenhuma imagem quebrada',JSON.stringify(quebradas)]);

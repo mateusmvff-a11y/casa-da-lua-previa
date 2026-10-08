@@ -3,7 +3,11 @@
   <!-- 1 · Hero (Figma: tela cheia, imagem c532c2 + película escura, texto centralizado) -->
   <section class="hero" id="home-hero" data-anim="hero" data-guide-id="home.hero">
     <div class="hero-media" aria-hidden="true">
-      <img src="assets/img/c532c2.webp" alt="" data-parallax="-8" fetchpriority="high" decoding="async">
+      <img src="assets/img/c532c2.webp" alt="" fetchpriority="high" decoding="async">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/home-hero-poster.webp" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+        <source src="assets/video/home-hero-m.mp4" type="video/mp4" media="(max-width:760px)">
+        <source src="assets/video/home-hero.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-copy">
       <div class="hero-badge" data-anim="reveal"><i></i><span>Alto Paraíso · Chapada dos Veadeiros</span></div>
@@ -15,17 +19,42 @@
         <button class="ghost-btn" data-page-target="reservar">Consultar datas</button>
       </div>
     </div>
+    <div class="hero-foot">
+      <div class="hero-side-note" data-anim="reveal">
+        <strong>Uma pousada com cara de casa.</strong>
+        <span>jardim · bem-estar · convivência</span>
+      </div>
+      <div class="stat-row" data-anim="reveal">
+        <div class="stat"><strong>15</strong><span>suítes</span></div>
+        <div class="stat"><strong>8</strong><span>categorias</span></div>
+        <div class="stat"><strong>7h30</strong><span>café começa</span></div>
+        <div class="stat"><strong>14h</strong><span>check-in</span></div>
+      </div>
+    </div>
   </section>
+
+  <!-- Atalhos da Home (V16): barra sticky logo abaixo do hero, sem ocupar altura -->
+  <nav class="home-chapter-nav" aria-label="Atalhos da página inicial">
+    <div class="chapter-bar" role="group">
+      <button class="active" data-home-anchor="home-viver" data-scroll-to="home-viver">O dia</button>
+      <button data-home-anchor="home-explorar" data-scroll-to="home-explorar">A propriedade</button>
+      <button data-home-anchor="home-ficar" data-scroll-to="home-ficar">Suítes</button>
+      <button data-home-anchor="home-encontrar" data-scroll-to="home-encontrar">Experiências</button>
+      <button data-home-anchor="home-historia" data-scroll-to="home-historia">A história</button>
+      <button data-home-anchor="home-voltar" data-scroll-to="home-voltar">A Chapada</button>
+    </div>
+  </nav>
 
   <!-- 2 · A casa muda com o dia -->
   <section class="section dark home-chapter" id="home-viver" data-guide-id="home.rhythm">
-    <div class="section-bg mul" style="--bg:url(../assets/img/79f7c0.webp);--op:0.51" aria-hidden="true"></div>
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/79f7c0-m.webp);--op:0.51" aria-hidden="true"></div>
     <div class="max">
       <div class="section-head">
         <div>
           <div class="eyebrow" data-anim="reveal">A casa muda com o dia</div>
           <h2 class="title" data-anim="title">Três horários, <strong>três momentos<br class="br-d"> para estar aqui</strong></h2>
         </div>
+        <p class="small" data-anim="reveal">A manhã prepara a saída. O fim de tarde recebe quem volta. A noite abre espaço para mesa, fogo, cinema e conversa.</p>
       </div>
       <div class="time-stage">
         <div class="time-tabs" role="tablist" aria-label="Horário do dia" data-stagger>
@@ -38,7 +67,7 @@
           <div class="time-shade" aria-hidden="true"></div>
           <div class="time-scene-copy" aria-live="polite">
             <div>
-              <div class="kicker sr-only" id="homeTimeKicker">Manhã</div>
+              <div class="kicker" id="homeTimeKicker">Manhã</div>
               <h3 id="homeTimeTitle">Café no jardim</h3>
             </div>
             <p id="homeTimeText">A mesa é parte da casa. O café da manhã está incluído e é servido das 7h30 às 10h30</p>
@@ -50,22 +79,23 @@
 
   <!-- 3 · A propriedade ganha outro desenho conforme a companhia (perfis + Atlas em miniatura) -->
   <section class="section cream home-chapter" id="home-explorar" data-guide-id="home.atlas">
-    <div class="section-bg mul" style="--bg:url(../assets/img/0a1586.webp);--op:0.2" aria-hidden="true"></div>
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/0a1586-m.webp);--op:0.2" aria-hidden="true"></div>
     <div class="max">
       <div class="section-head">
         <div>
           <div class="eyebrow" data-anim="reveal">Explore pelo que importa para você</div>
           <h2 class="title" data-anim="title">A propriedade ganha outro<br class="br-d"> desenho <strong>conforme a companhia</strong></h2>
         </div>
+        <p class="small" data-anim="reveal">Escolha uma companhia para destacar lugares e caminhos. A navegação continua livre.</p>
       </div>
       <div class="explore-grid">
         <div class="profile-panel" data-guide-id="home.profile" data-anim="reveal">
           <div class="eyebrow">Como você vem?</div>
           <div class="profile-compact-grid" role="tablist" aria-label="Perfil de viagem">
-            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><strong>Em família</strong></button>
-            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><strong>Com amigos</strong></button>
-            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><strong>Com pet</strong></button>
-            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><strong>Para um<br>encontro</strong></button>
+            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><span>principal</span><strong>Em família</strong></button>
+            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><span>convivência</span><strong>Com amigos</strong></button>
+            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><span>ao ar livre</span><strong>Com pet</strong></button>
+            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><span>grupo</span><strong>Para um<br>encontro</strong></button>
           </div>
           <div class="profile-result" aria-live="polite">
             <div class="kicker">nossa sugestão:</div>
@@ -76,14 +106,14 @@
         </div>
         <div class="atlas-home-card" data-anim="image">
           <img src="assets/img/350edc.webp" alt="Vista aérea da piscina e do jardim da Casa da Lua" loading="lazy" decoding="async" data-parallax="-6">
-          <!-- Pinos do V16: ficam no HTML (o Figma não os mostra). Para exibi-los: classe "show-pins" em .atlas-home-card -->
+          <!-- Pinos do V16 (x do V16; y comprimido para ficar acima do cartão, pois a foto 350edc não é a planta) -->
           <div class="atlas-pins">
-            <button class="map-pin active" style="left:31%;top:48%" data-place="Casa principal" aria-label="Casa principal">1</button>
-            <button class="map-pin" style="left:37%;top:26%" data-place="Piscina e área de descanso" aria-label="Piscina e área de descanso">2</button>
-            <button class="map-pin" style="left:31%;top:66%" data-place="Restaurante e café" aria-label="Restaurante e café">3</button>
-            <button class="map-pin" style="left:58%;top:38%" data-place="Área de eventos" aria-label="Área de eventos">4</button>
-            <button class="map-pin" style="left:52%;top:52%" data-place="Círculo do fogo" aria-label="Círculo do fogo">5</button>
-            <button class="map-pin" style="left:69%;top:55%" data-place="Chegada e estacionamento" aria-label="Chegada e estacionamento">6</button>
+            <button class="map-pin active" style="left:31%;top:26%" data-place="Casa principal" aria-label="Casa principal">1</button>
+            <button class="map-pin" style="left:37%;top:14%" data-place="Piscina e área de descanso" aria-label="Piscina e área de descanso">2</button>
+            <button class="map-pin" style="left:31%;top:36%" data-place="Restaurante e café" aria-label="Restaurante e café">3</button>
+            <button class="map-pin" style="left:58%;top:21%" data-place="Área de eventos" aria-label="Área de eventos">4</button>
+            <button class="map-pin" style="left:52%;top:29%" data-place="Círculo do fogo" aria-label="Círculo do fogo">5</button>
+            <button class="map-pin" style="left:69%;top:30%" data-place="Chegada e estacionamento" aria-label="Chegada e estacionamento">6</button>
           </div>
           <div class="atlas-home-copy" aria-live="polite">
             <div class="eyebrow">Atlas Vivo</div>
@@ -138,7 +168,7 @@
 
   <!-- 5 · Programas e encontros (Experiência Tidelli + Eventos) -->
   <section class="section cream home-chapter" id="home-encontrar">
-    <div class="section-bg mul" style="--bg:url(../assets/img/c514f2.webp);--op:0.78" aria-hidden="true"></div>
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/c514f2-m.webp);--op:0.78" aria-hidden="true"></div>
     <div class="max">
       <div class="section-head">
         <div>
@@ -161,10 +191,9 @@
               <button class="chip chip-button" data-exp-day="domingo">Domingo</button>
             </div>
             <div class="kicker" id="homeExpKicker">Chegada e boas-vindas</div>
+            <h4 id="homeExpTitle">Do universo Tidelli à Casa da Lua</h4>
             <p id="homeExpText">Chegada, deslocamento para Alto Paraíso, check-in e um jantar para abrir a experiência em grupo</p>
-            <!-- V16: título do dia e momentos. O Figma não os mostra; o JS continua preenchendo. -->
-            <h4 id="homeExpTitle" hidden>Do universo Tidelli à Casa da Lua.</h4>
-            <div class="tag-row" id="homeExpMoments" hidden><span>chegada</span><span>tarde</span><span>noite</span></div>
+            <div class="tag-row" id="homeExpMoments"><span>chegada</span><span>tarde</span><span>noite</span></div>
             <div class="feature-actions">
               <button class="btn dark" data-page-target="experiencias">Ver o programa</button>
               <button class="text-button interest-open">Receber datas</button>
@@ -192,7 +221,7 @@
 
   <!-- 6 · A Casa da Lua nasceu como casa -->
   <section class="section sand home-chapter story-teaser" id="home-historia" data-guide-id="home.stories">
-    <div class="section-bg mul" style="--bg:url(../assets/img/124ae6.webp);--op:0.26" aria-hidden="true"></div>
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/124ae6-m.webp);--op:0.26" aria-hidden="true"></div>
     <div class="story-grid">
       <div class="story-media" data-anim="image">
         <img src="assets/img/b0fa2f.webp" alt="Varanda com sofá, tapetes e vista para o jardim da Casa da Lua" loading="lazy" decoding="async" data-parallax="-6">
@@ -213,7 +242,7 @@
 
   <!-- 7 · A volta à casa faz parte da viagem -->
   <section class="section dark home-chapter chapada-return" id="home-voltar">
-    <div class="section-bg mul" style="--bg:url(../assets/img/a435c5.webp);--op:0.54" aria-hidden="true"></div>
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/a435c5-m.webp);--op:0.54" aria-hidden="true"></div>
     <div class="return-grid">
       <div class="return-copy" data-stagger>
         <div class="eyebrow" data-anim="reveal">A Chapada continua na volta</div>
@@ -221,6 +250,7 @@
         <p class="lead" data-anim="reveal">Depois da estrada, do sol e da água, o ritmo muda. Piscina, hidro, spa, mesa e fogo ajudam a alongar o dia e fazem a volta para casa ter o seu próprio prazer</p>
         <div class="hero-actions" data-anim="reveal">
           <button class="btn" data-page-target="chapada">Ver a curadoria</button>
+          <button class="ghost-btn" data-page-target="viver">Viver a casa</button>
         </div>
       </div>
       <div class="return-media" data-anim="image">

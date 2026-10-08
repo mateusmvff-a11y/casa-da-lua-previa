@@ -14,11 +14,12 @@
         <button class="ghost-btn vv-ghost" type="button" data-page-target="reservar">Planejar a estadia</button>
       </div>
     </div>
+    <div class="vv-side hero-side-note" data-anim="reveal"><strong>Manhã, retorno e noite.</strong><span>o ritmo organiza a página</span></div>
   </section>
 
   <!-- Momentos da casa (Figma: Section 1138, fundo verde-escuro + textura dc4f2a) -->
   <section class="section dark vv-moments" id="momentsSection" data-guide-id="viver.moments">
-    <div class="section-bg" style="--bg:url(../assets/img/dc4f2a.webp);--op:0.58" aria-hidden="true" data-parallax="-8"></div>
+    <div class="section-bg baked" style="--bg:url(../assets/img/dc4f2a-m.webp);--op:0.58" aria-hidden="true" data-parallax="-8"></div>
     <div class="max">
       <div class="vv-head" data-stagger>
         <div class="eyebrow" data-anim="reveal">Momentos da casa</div>
@@ -38,7 +39,7 @@
           <div class="vv-time time" id="viverMomentTime">7h30</div>
           <h3 class="vv-moment-title" id="viverMomentTitle">Café servido, jardim acordando</h3>
           <p class="vv-moment-text" id="viverMomentText">O café da manhã está incluído e é servido das 7h30 às 10h30. É quando o dia ganha direção sem precisar começar com pressa.</p>
-          <div class="chip-row" id="viverMomentTags"></div>
+          <div class="chip-row" id="viverMomentTags"><span class="chip">café</span><span class="chip">jardim</span><span class="chip">preparação</span></div>
         </div>
       </div>
     </div>
@@ -46,7 +47,7 @@
 
   <!-- Espaços (Figma: Section 1146, areia + textura 6b0fe2) -->
   <section class="section sand vv-spaces" data-guide-id="viver.spaces">
-    <div class="section-bg" style="--bg:url(../assets/img/6b0fe2.webp);--op:0.62" aria-hidden="true" data-parallax="-8"></div>
+    <div class="section-bg baked" style="--bg:url(../assets/img/6b0fe2-m.webp);--op:0.62" aria-hidden="true" data-parallax="-8"></div>
     <div class="max">
       <div class="vv-head" data-stagger>
         <div class="eyebrow" data-anim="reveal">A casa inteira participa</div>
@@ -62,8 +63,8 @@
           <div class="vv-space-copy"><h3>Spa, sauna e massagem</h3><p>Uma camada de cuidado para o corpo voltar ao próprio ritmo.</p></div>
         </article>
         <article class="vv-space space-card" data-anim="reveal">
-          <!-- Figma: este cartão não tem imagem. Usada a imagem de apoio do V16 (jardim). -->
-          <img src="assets/img/v16-outdoor.webp" alt="Jardim da Casa da Lua" loading="lazy" decoding="async">
+          <!-- Figma: este cartão não tem imagem. Imagem provisória gen-viver-jardim (será trocada pela gerada, mesmo nome). -->
+          <img src="assets/img/gen-viver-jardim.webp" alt="Jardim da Casa da Lua" loading="lazy" decoding="async">
           <div class="vv-space-copy"><h3>Jardim e recantos</h3><p>O lado de fora funciona como sala, caminho e lugar de permanência.</p></div>
         </article>
         <article class="vv-space space-card" data-anim="reveal">
@@ -75,10 +76,28 @@
           <div class="vv-space-copy"><h3>Cinema e bilhar</h3><p>Alternativas para continuar a noite sem precisar sair.</p></div>
         </article>
         <article class="vv-space space-card" data-anim="reveal">
-          <!-- Figma: este cartão não tem imagem. Usada a imagem de apoio do V16 (fogueira). -->
-          <img src="assets/img/v16-fire.webp" alt="Fogueira da Casa da Lua" loading="lazy" decoding="async">
+          <!-- Figma: este cartão não tem imagem. Imagem provisória gen-viver-fogo (será trocada pela gerada, mesmo nome). -->
+          <img src="assets/img/gen-viver-fogo.webp" alt="Fogueira da Casa da Lua" loading="lazy" decoding="async">
           <div class="vv-space-copy"><h3>Fogo e convivência</h3><p>Na seca, o círculo se abre para vinho, conversa e céu.</p></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- A manhã começa na mesa (só no V16 1213-1229; estilo do Figma) -->
+  <section class="section white vv-breakfast" data-guide-id="viver.breakfast">
+    <div class="max vv-split">
+      <div class="vv-breakfast-media media-frame wide" data-anim="image">
+        <img src="assets/img/v16-breakfast.webp" alt="Café da manhã da Casa da Lua" loading="lazy" decoding="async" data-parallax="-8">
+      </div>
+      <div class="vv-breakfast-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Café da manhã</div>
+        <h2 class="vv-h2 vv-h2-dark" data-anim="title">A manhã <strong>começa na mesa</strong></h2>
+        <p class="vv-breakfast-text" data-anim="reveal">Servido no restaurante das 7h30 às 10h30, o café da manhã está incluído na diária. É um dos momentos mais fortes da casa, porque reúne mesa, jardim e o começo do dia num mesmo clima.</p>
+        <div class="vv-stats stat-row" data-anim="reveal">
+          <div class="stat"><strong>7h30</strong><span>início</span></div>
+          <div class="stat"><strong>10h30</strong><span>encerramento</span></div>
+        </div>
       </div>
     </div>
   </section>

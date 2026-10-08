@@ -1,0 +1,11 @@
+/* Ajustes finais entre páginas (carregado por último) */
+/* As notas de rodapé dos heros ficam acima da barra de reserva flutuante (que ocupa ~80px no pé da janela) */
+@media(min-width:761px){
+  #page-home .hero-foot,
+  #page-casa .hero-side-note,
+  #page-eventos .hero-side-note,
+  #page-experiencias .hero-side-note,
+  #page-chapada .chapada-hero-note,
+  #page-suites .suites-hero-note,
+  #page-viver .vv-side{bottom:112px}
+}

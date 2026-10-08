@@ -75,10 +75,10 @@ for(const f of fT){
   if(!cands.length){ miss.push(f); continue; }
   cands.sort((a,b)=>Math.abs(a.x.y-f.y)-Math.abs(b.x.y-f.y)); const m=cands[0]; used.add(m.i); const x=m.x;
   const d=[];
-  const expFam = f.fam==='Mortise' ? 'mortise' : 'forma-djr-display';
+  const expFam = f.fam==='Mortise' ? 'mortise' : (f.fam==='Inter' ? 'inter' : 'forma-djr-display');
   if(!x.fam.toLowerCase().includes(expFam) && f.fam!=='Iowan Old Style') d.push(`fonte ${x.fam} (Figma ${f.fam})`);
   if(Math.abs(x.size-f.size)>0.6) d.push(`tamanho ${x.size} (Figma ${f.size})`);
-  const fw = f.fam==='Inter' ? null : (f.fam==='Mortise' ? f.w : (f.w===400 ? 500 : f.w)); if(fw && Math.abs(Number(x.w)-fw)>0) d.push(`peso ${x.w} (Figma ${fw})`);
+  const fw = (f.fam==='Mortise'||f.fam==='Inter') ? f.w : (f.w===400 ? 500 : f.w); if(fw && Math.abs(Number(x.w)-fw)>0) d.push(`peso ${x.w} (Figma ${fw})`);
   if(f.color){ const a=rgb(x.color), b=hex2(f.color); if(a.length===3 && Math.max(...a.map((v,i)=>Math.abs(v-b[i])))>30 && f.op>=.95) d.push(`cor ${x.color} (Figma ${f.color})`); }
   const dx=x.x-f.x, dy=x.y-f.y;
   if(Math.abs(dy)>10) d.push(`y ${dy>0?'+':''}${Math.round(dy)}`);

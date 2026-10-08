@@ -31,6 +31,7 @@
   /* tipografia */
   --serif:"mortise",Georgia,serif;
   --sans:"forma-djr-display","Helvetica Neue",Arial,sans-serif;
+  --inter:"Inter","Helvetica Neue",Arial,sans-serif;   /* o Figma usa Inter em botões, chips, cartões de suíte, barra de reserva etc. */
 
   /* medidas */
   --header-h:76px;
@@ -40,8 +41,8 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{overflow-x:clip;margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
 body.no-scroll{overflow:hidden}
 button,input,select,textarea{font:inherit;letter-spacing:inherit;color:inherit}
 button{cursor:pointer}
@@ -57,7 +58,7 @@ h1,h2,h3,h4,p,ul,ol{margin:0}
 .site-header{
   position:fixed;top:0;left:0;right:0;z-index:50;height:var(--header-h);
   display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:0 36px 0 28px;
-  background:rgba(226,220,208,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  background:rgba(226,220,208,.97);
   border-bottom:1px solid rgba(19,59,51,.09)
 }
 .brand{display:block;width:129px;height:46px;margin-left:7px}
@@ -156,7 +157,7 @@ main{padding-top:var(--header-h)}
 .booking-dock{
   position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:41;
   display:flex;align-items:center;gap:14px;min-width:min(864px,calc(100vw - 40px));padding:8px 8px 8px 18px;
-  background:rgba(226,220,208,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  background:rgba(226,220,208,.97);
   border:1px solid rgba(19,59,51,.15);box-shadow:var(--sombra-dock);border-radius:999px
 }
 .booking-dock.hidden{display:none}
@@ -168,7 +169,7 @@ main{padding-top:var(--header-h)}
 .booking-dock .btn{padding:11px 18px 12px}
 
 /* ---------- Sobreposições (base; conteúdo vem de partials/overlays.html) ---------- */
-.overlay{position:fixed;inset:0;z-index:90;background:rgba(6,28,26,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay{position:fixed;inset:0;z-index:90;background:rgba(6,28,26,.8);display:none;align-items:center;justify-content:center;padding:24px}
 .overlay.open{display:flex}
 .modal{width:min(1100px,100%);max-height:min(88vh,900px);overflow:auto;background:var(--branco);border-radius:28px;box-shadow:0 40px 120px rgba(0,0,0,.35);position:relative}
 .modal-close{position:sticky;top:14px;float:right;margin:14px;z-index:4}
@@ -229,3 +230,4 @@ main{padding-top:var(--header-h)}
   html{scroll-behavior:auto}
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+.section-bg.baked{mix-blend-mode:normal!important}

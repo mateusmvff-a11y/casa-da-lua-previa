@@ -33,6 +33,13 @@
 #page-eventos .hero .btn{color:var(--creme)}
 #page-eventos .hero .ghost-btn{color:var(--creme);border-color:var(--verde)}
 #page-eventos .hero .ghost-btn:hover{background:rgba(81,132,78,.28)}
+/* nota lateral do hero (V16), no estilo do Figma */
+#page-eventos .hero-side-note{
+  position:absolute;left:clamp(var(--pad),6vw,115px);right:var(--pad);bottom:44px;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--creme);text-shadow:0 1px 14px rgba(0,0,0,.45)
+}
+#page-eventos .hero-side-note strong{font-family:var(--serif);font-size:28px;line-height:32px;font-weight:400;letter-spacing:0}
+#page-eventos .hero-side-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
 #page-eventos .stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
 #page-eventos .stat{display:flex;flex-direction:column;gap:5px}
 #page-eventos .stat strong{font-family:var(--serif);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
@@ -61,7 +68,7 @@
 #page-eventos .floor-zone{
   position:absolute;display:grid;place-items:center;text-align:center;
   background:rgba(255,255,255,.42);border:1px solid rgba(19,59,51,.35);border-radius:14px;
-  font-size:11px;line-height:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--texto)
+  font-family:var(--inter);font-weight:normal;font-size:11px;line-height:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--texto)
 }
 
 #page-eventos #eventObjects.solid .floor-zone{background:#faf6ec}
@@ -83,6 +90,7 @@
 
 /* ---------- 3. Estrutura ---------- */
 #page-eventos .section.white .section-head{margin-bottom:48px}
+#page-eventos #eventFormats .section-head .small,
 #page-eventos .section.white .section-head .small{
   max-width:319px;padding:12px 10px 0 0;text-align:right;
   font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
@@ -145,11 +153,14 @@
   #page-eventos .section-head .small{margin-top:16px}
   #page-eventos .event-config{grid-template-columns:1fr;min-height:0}
   #page-eventos .event-diagram{min-height:520px}
+  #page-eventos #eventFormats .section-head .small,
   #page-eventos .section.white .section-head .small,
   #page-eventos #eventProposal .section-head .small{max-width:none;text-align:left;padding:0}
 }
 @media(max-width:760px){
   #page-eventos .dbr-s{display:none}
+  #page-eventos .hero-side-note{position:static;flex-direction:column;align-items:flex-start;gap:6px;margin-top:36px}
+  #page-eventos .hero-side-note strong{font-size:24px;line-height:28px}
   #page-eventos .hero{min-height:620px;padding:110px var(--pad) 60px}
   #page-eventos .hero-media::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.5))}
   #page-eventos .hero-actions .btn,#page-eventos .hero-actions .ghost-btn{white-space:nowrap}
@@ -160,6 +171,7 @@
   #page-eventos .event-copy h3{font-size:28px;line-height:30px}
   #page-eventos .feature-list li{flex-direction:column;gap:2px}
   #page-eventos .feature-list li span:last-child{text-align:left}
+  #page-eventos #eventFormats .section-head .small,
   #page-eventos .section.white .section-head .small,
   #page-eventos #eventProposal .section-head .small{text-align:left;padding:0;margin-top:16px}
   #page-eventos .rain .section-bg::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35))}
