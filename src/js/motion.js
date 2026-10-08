@@ -14,6 +14,7 @@
 const root = document.documentElement;
 const fail = () => { root.classList.remove('motion-on'); };
 if(!window.CDL) return;
+if(location.search.indexOf('sem-movimento') >= 0){ root.classList.remove('motion-on'); return; }   /* ?sem-movimento: desliga as animações (testes e acessibilidade) */
 const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || reduz){ fail(); return; }
 const CDL = window.CDL;

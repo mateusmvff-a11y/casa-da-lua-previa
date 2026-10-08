@@ -13,7 +13,7 @@ const MOTION = !ONLY || process.argv.includes('--motion');
 const REL = ONLY ? '_prev/'+ONLY.replace(/,/g,'+')+'/' : '';
 
 const CSS_LINK = '<link rel="stylesheet" href="css/site.css">';
-const MOTION_HEAD = '<script>document.documentElement.classList.add("motion-on");setTimeout(function(){document.documentElement.classList.remove("motion-on")},7000)</script>\n';
+const MOTION_HEAD = '<script>if(location.search.indexOf("sem-movimento")<0)document.documentElement.classList.add("motion-on");setTimeout(function(){document.documentElement.classList.remove("motion-on")},7000)</script>\n';
 const MOTION_LIBS = [
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js',
