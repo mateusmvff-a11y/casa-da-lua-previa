@@ -1,0 +1,231 @@
+/* =========================================================
+   Casa da Lua — base.css
+   Fundação do site: tokens do Figma (RZRD., página CASA DA LUA),
+   tipografia, cabeçalho, rodapé, barra de reserva, botões, chips,
+   cartões, formulários, sobreposições e responsivo.
+   Fonte: Mortise (títulos) + Forma DJR Display (todo o resto),
+   ambas pelo kit Adobe Fonts lqm1qwg.
+   Regra: CSS de página fica em src/css/pages/<pagina>.css e usa o
+   prefixo #page-<pagina>. Não editar este arquivo a partir das páginas.
+   ========================================================= */
+
+:root{
+  /* cores do Figma */
+  --verde-escuro:#0d4237;
+  --verde:#51844e;
+  --verde-claro:#497c4b;
+  --creme:#e2dcd0;
+  --papel:#fbf7ef;
+  --branco:#fffdf8;
+  --areia:#f5ead2;
+  --texto:#133b33;
+  --texto-2:#587069;
+  --texto-3:#5f736c;
+  --texto-4:#697b74;
+  --linha:rgba(19,59,51,.18);        /* #133b332e */
+  --linha-suave:rgba(19,59,51,.10);  /* #133b331a */
+  --vidro:rgba(255,255,255,.38);     /* #ffffff61 */
+  --sombra-cartao:0 10px 40px rgba(18,47,41,.05);
+  --sombra-dock:0 24px 70px rgba(18,47,41,.14);
+
+  /* tipografia */
+  --serif:"mortise",Georgia,serif;
+  --sans:"forma-djr-display","Helvetica Neue",Arial,sans-serif;
+
+  /* medidas */
+  --header-h:76px;
+  --pad:clamp(20px,5vw,80px);                 /* margem lateral abaixo de 1920 */
+  --gutter:max(var(--pad),calc((100% - 1280px)/2)); /* container de 1280 do Figma */
+  --raio:24px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+body.no-scroll{overflow:hidden}
+button,input,select,textarea{font:inherit;letter-spacing:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+::selection{background:#b9d3b4;color:var(--verde-escuro)}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+
+/* ---------- Cabeçalho (Figma: Header 1920x76) ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:var(--header-h);
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:0 36px 0 28px;
+  background:rgba(226,220,208,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(19,59,51,.09)
+}
+.brand{display:block;width:129px;height:46px;margin-left:7px}
+.brand img{width:100%;height:100%;object-fit:contain}
+.main-nav{display:flex;align-items:center;justify-content:center;gap:4px}
+.nav-link{border:0;background:transparent;color:var(--verde);padding:10px;border-radius:999px;font-size:13px;line-height:20px;letter-spacing:.02em;transition:background .2s,color .2s}
+.nav-link:hover{background:rgba(81,132,78,.12)}
+.nav-link.active{background:rgba(81,132,78,.7);color:var(--creme)}
+.header-actions{display:flex;align-items:center;gap:8px}
+
+/* ---------- Botões (Figma: pílula 46px) ---------- */
+.btn,.ghost-btn,.text-button,.icon-btn{border:0;cursor:pointer;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--verde);color:var(--branco);border-radius:999px;padding:12px 20px 13px;font-weight:700;font-size:13px;line-height:20px;letter-spacing:.02em}
+.btn:hover{background:var(--verde-escuro)}
+.btn.dark{background:var(--verde-escuro)}
+.btn.dark:hover{background:var(--verde)}
+.btn.light{background:var(--creme);color:var(--verde-escuro)}
+.btn.light:hover{background:var(--branco)}
+.ghost-btn{display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid currentColor;border-radius:999px;padding:11px 17px 12px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--verde)}
+.ghost-btn:hover{background:rgba(81,132,78,.1)}
+.text-button{background:transparent;padding:0;font-size:13px;line-height:20px;letter-spacing:.02em;text-decoration:underline;text-underline-offset:4px;color:var(--texto)}
+.text-button:hover{color:var(--verde)}
+.icon-btn{width:42px;height:42px;border-radius:50%;background:rgba(19,59,51,.08);display:grid;place-items:center;font-size:20px;line-height:1}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.mobile-menu-btn{display:none}
+
+/* ---------- Estrutura de página e seções ---------- */
+main{padding-top:var(--header-h)}
+.page{display:none}
+.page.active{display:block;animation:pageIn .5s ease backwards}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.section{position:relative;padding:110px var(--gutter);background:var(--creme);isolation:isolate}
+.section.compact{padding-top:72px;padding-bottom:72px}
+.section.dark{background:var(--verde-escuro);color:var(--creme)}
+.section.cream{background:var(--creme)}
+.section.paper{background:var(--papel)}
+.section.white{background:var(--branco)}
+.section.sand{background:var(--areia)}
+/* textura/foto de fundo da seção: <div class="section-bg" style="--bg:url(...);--op:.2"> */
+.section-bg{position:absolute;inset:0;z-index:-1;background:var(--bg) center/cover no-repeat;opacity:var(--op,1);pointer-events:none}
+.max{max-width:1280px;margin:0 auto;position:relative}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:48px}
+.section-head>div:first-child{max-width:760px}
+
+/* rótulo (Figma: Forma 11/700, espaçamento 2.42, caixa alta, verde) */
+.eyebrow{font-size:11px;line-height:17px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--verde);margin-bottom:16px}
+.kicker{font-size:13px;line-height:17px;letter-spacing:.186em;text-transform:uppercase;color:var(--verde)}
+.dark .eyebrow,.dark .kicker{color:var(--verde)}
+
+/* títulos (Mortise). <strong> dentro do título = trecho em negrito 700 */
+.display{font-family:var(--serif);font-weight:700;font-size:clamp(44px,4.17vw,80px);line-height:1.24;letter-spacing:0;color:var(--branco)}
+.title{font-family:var(--serif);font-weight:400;font-size:clamp(38px,3.54vw,68px);line-height:1;letter-spacing:0;color:var(--verde-escuro)}
+.title strong,.display strong,.subtitle strong{font-weight:700;line-height:0}
+.dark .title{color:var(--creme)}
+.subtitle{font-family:var(--serif);font-weight:400;font-size:clamp(26px,1.77vw,34px);line-height:1.06;letter-spacing:0;color:var(--verde-escuro)}
+.dark .subtitle{color:var(--creme)}
+.lead{font-size:clamp(17px,1.4vw,27px);line-height:1.33;letter-spacing:.02em;color:var(--texto-3)}
+.dark .lead{color:rgba(245,234,210,.7)}
+.small{font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto-4)}
+.dark .small{color:rgba(245,234,210,.62)}
+.rule{height:1px;background:var(--linha);margin:34px 0}
+
+/* grades */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:62px;align-items:center}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ---------- Cartões, chips e etiquetas ---------- */
+.card{background:var(--branco);border:1px solid var(--linha-suave);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra-cartao)}
+.card h3{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.1;color:var(--verde);margin:0 0 12px}
+.card p{color:var(--texto-2)}
+.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:var(--creme)}
+.dark .card p{color:rgba(245,234,210,.7)}
+.chip-row,.tag-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip,.tag-row>span{display:inline-flex;align-items:center;min-height:32px;padding:6px 11px 7px;border:1px solid var(--linha);border-radius:999px;background:var(--vidro);font-size:11px;line-height:17px;letter-spacing:.03em;color:var(--texto)}
+.dark .chip{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:var(--creme)}
+.chip-button{cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip-button:hover,.chip-button.active{background:var(--verde);color:var(--branco);border-color:rgba(255,255,255,.38)}
+.suite-filter{border:1px solid var(--linha);border-radius:999px;padding:8px 14px;background:var(--vidro);color:var(--verde-escuro);font-size:13px;line-height:20px;cursor:pointer;transition:background .2s,color .2s}
+.suite-filter:hover,.suite-filter.active{background:var(--verde);color:var(--branco);border-color:var(--verde)}
+.media-note{display:none}
+
+/* ---------- Formulários ---------- */
+.form-card{background:var(--branco);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:var(--sombra-cartao)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:10px;line-height:15px;text-transform:uppercase;letter-spacing:.12em;color:var(--texto-4)}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--linha);background:var(--branco);border-radius:14px;padding:13px 14px;color:var(--texto);font-size:14px}
+.field input::placeholder,.field textarea::placeholder{color:#8a9893}
+
+/* ---------- Barra de reserva (Figma: pílula flutuante) ---------- */
+.booking-dock{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:41;
+  display:flex;align-items:center;gap:14px;min-width:min(864px,calc(100vw - 40px));padding:8px 8px 8px 18px;
+  background:rgba(226,220,208,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(19,59,51,.15);box-shadow:var(--sombra-dock);border-radius:999px
+}
+.booking-dock.hidden{display:none}
+.dock-copy{display:flex;flex-direction:column;min-width:180px;line-height:1.2}
+.dock-copy strong{font-size:13px;line-height:15px;color:var(--verde-escuro)}
+.dock-copy span{font-size:13px;line-height:24px;color:var(--texto-4)}
+.dock-fields{display:flex;align-items:center;gap:6px;flex:1}
+.dock-field{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:9px 12px 10px;font-size:13px;line-height:20px;white-space:nowrap;color:var(--texto)}
+.booking-dock .btn{padding:11px 18px 12px}
+
+/* ---------- Sobreposições (base; conteúdo vem de partials/overlays.html) ---------- */
+.overlay{position:fixed;inset:0;z-index:90;background:rgba(6,28,26,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay.open{display:flex}
+.modal{width:min(1100px,100%);max-height:min(88vh,900px);overflow:auto;background:var(--branco);border-radius:28px;box-shadow:0 40px 120px rgba(0,0,0,.35);position:relative}
+.modal-close{position:sticky;top:14px;float:right;margin:14px;z-index:4}
+.toast{position:fixed;left:50%;bottom:95px;transform:translate(-50%,20px);background:var(--verde-escuro);color:var(--branco);padding:12px 16px;border-radius:999px;z-index:150;opacity:0;pointer-events:none;transition:.25s;font-size:12px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Rodapé (Figma: Footer 1920x371) ---------- */
+.site-footer{background:var(--verde-escuro);color:var(--creme);padding:72px var(--gutter) 120px}
+.footer-grid{display:flex;justify-content:flex-start;align-items:flex-start;width:min(994px,100%);margin:0 0 0 17%}
+.footer-brand{flex:none;width:403px}
+.footer-brand img{width:290px;height:103px;object-fit:contain;margin-bottom:17px}
+.footer-brand p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(226,220,208,.82);width:470px;max-width:calc(100vw - 2*var(--pad))}
+.footer-col{display:flex;flex-direction:column;flex:none}
+.footer-col:nth-child(2){width:113px}
+.footer-col:nth-child(3){width:130px}
+.footer-col:nth-child(2){margin-left:182px}
+.footer-col:nth-child(3){margin-left:27px}
+.footer-col h3{font-size:11px;line-height:17px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--verde);margin:0}
+.footer-col h3+button{padding-top:22px}
+.footer-col:nth-child(2) h3+button{line-height:21px}
+.footer-col:nth-child(3) h3{color:var(--verde-claro)}
+.footer-col button,.footer-col a{display:block;background:transparent;border:0;color:var(--creme);padding:6px 0;white-space:nowrap;text-align:left;text-decoration:none;font-size:16px;line-height:24px;letter-spacing:.02em}
+.footer-col button:hover,.footer-col a:hover{color:#fff}
+.footer-bottom{display:none}
+
+/* ---------- Responsivo (padrão do HTML de arquitetura: 1180 e 760) ---------- */
+@media(max-width:1180px){
+  .main-nav{display:none}
+  .mobile-menu-btn{display:grid}
+  .site-header{grid-template-columns:1fr auto}
+  .header-actions .ghost-btn{display:none}
+  .split{grid-template-columns:1fr;gap:40px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .footer-grid{flex-wrap:wrap;gap:40px 60px;justify-content:flex-start;margin:0;width:100%}
+  .footer-brand{width:100%}
+  .footer-col:nth-child(2),.footer-col:nth-child(3){margin-left:0}
+}
+@media(max-width:760px){
+  :root{--header-h:66px}
+  .site-header{padding:0 14px;gap:10px}
+  .brand{margin-left:0;width:112px;height:40px}
+  .section{padding:74px var(--pad)}
+  .section.compact{padding-top:56px;padding-bottom:56px}
+  .section-head{display:block;margin-bottom:34px}
+  .section-head .small{margin-top:16px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-card{padding:26px}
+  .booking-dock{left:12px;right:12px;transform:none;bottom:10px;min-width:0;display:grid;grid-template-columns:1fr auto;padding:8px 8px 8px 14px}
+  .dock-copy{min-width:0}
+  .dock-fields{display:none}
+  .footer-grid{flex-direction:column;gap:32px}
+  .footer-brand img{width:220px;height:auto}
+  .overlay{padding:12px}
+  .toast{bottom:80px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}

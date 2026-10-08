@@ -1,0 +1,263 @@
+/* =========================================================
+   Casa da Lua — Home (#page-home)
+   Visual do Figma (Home 1920) sobre a arquitetura do V16.
+   Medidas citadas nos comentários são as do Figma em 1920 px.
+   ========================================================= */
+#page-home{
+  --g:max(var(--pad),calc((100vw - 1280px)/2));   /* margem lateral do container de 1280 (vale também para filhos) */
+}
+#page-home [hidden]{display:none!important}
+#page-home .br-d{display:inline}
+#page-home .section-head>div:first-child{max-width:none}
+#page-home .section-head .eyebrow{margin-bottom:16px}
+
+/* ---------- 1 · Hero (1920x1124, imagem de fundo + película 30%) ---------- */
+#page-home .hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;background:var(--creme);
+  min-height:clamp(620px,58.5vw,1124px);padding:72px var(--pad);
+  display:flex;align-items:center;justify-content:center
+}
+#page-home .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+#page-home .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center}
+#page-home .hero-media::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.3)}
+#page-home .hero-copy{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:1342px}
+#page-home .hero-badge{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 12px 9px;margin-bottom:17px;
+  background:var(--creme);border:1px solid var(--linha);border-radius:999px;
+  font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-escuro)
+}
+#page-home .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
+#page-home .hero .display{color:#fff;margin:0 0 23px}
+#page-home .hero .lead{color:#fff;margin:0 0 37px}
+#page-home .hero .hero-actions{justify-content:center}
+#page-home .hero .btn,#page-home .hero .ghost-btn{font-weight:700}
+#page-home .hero .btn{border:1px solid rgba(255,255,255,.38)}
+#page-home .hero .btn:hover{background:var(--verde-escuro)}
+#page-home .hero .ghost-btn{color:#fffdf8;border-color:#fbf7ef}
+#page-home .hero .ghost-btn:hover{background:rgba(255,255,255,.14)}
+
+/* ---------- 2 · A casa muda com o dia ---------- */
+#page-home #home-viver{padding-top:172px;padding-bottom:148px}
+#page-home #home-viver .section-head{margin-bottom:0}
+#page-home .time-stage{display:grid;grid-template-columns:180px minmax(0,1fr);gap:36px;align-items:center;min-height:620px}
+#page-home .time-tabs{display:flex;flex-direction:column;gap:8px}
+#page-home .time-tab{
+  display:flex;flex-direction:column;align-items:flex-start;gap:6.65px;text-align:left;
+  background:transparent;border:0;border-left:2px solid rgba(245,234,210,.18);
+  padding:14.65px 16px 20.8px 16px;color:rgba(245,234,210,.56);transition:color .2s,border-color .2s
+}
+#page-home .time-tab strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:40px;letter-spacing:0;color:rgba(245,234,210,.56);transition:color .2s}
+#page-home .time-tab span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,234,210,.56);transition:color .2s}
+#page-home .time-tab:hover{border-left-color:rgba(245,234,210,.45)}
+#page-home .time-tab:hover strong,#page-home .time-tab:hover span{color:var(--creme)}
+#page-home .time-tab.active{border-left-color:var(--verde)}
+#page-home .time-tab.active strong{color:var(--creme)}
+#page-home .time-tab.active span{color:#fff}
+#page-home .time-scene{position:relative;height:558px;margin-top:62px;border-radius:24px;overflow:hidden;background:#061c1a}
+#page-home .time-scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-home .time-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,28,26,0) 45%,rgba(6,28,26,.78) 100%)}
+#page-home .time-scene-copy{position:absolute;left:34px;right:34px;bottom:30px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+#page-home .time-scene-copy h3{font-family:var(--serif);font-weight:400;font-size:48px;line-height:48px;letter-spacing:0;color:var(--creme)}
+#page-home .time-scene-copy p{max-width:300px;margin-right:13px;font-size:16px;line-height:23px;text-align:right;color:var(--creme);margin-bottom:-3px}
+
+/* ---------- 3 · Perfis + Atlas em miniatura ---------- */
+#page-home #home-explorar{padding-bottom:110px}
+#page-home .explore-grid{display:grid;grid-template-columns:452px minmax(0,1fr);gap:24px;min-height:650px}
+#page-home .profile-panel{display:flex;flex-direction:column;background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:34px}
+#page-home .profile-panel>.eyebrow{margin:0 0 17px}
+#page-home .profile-compact-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+#page-home .profile-card{
+  height:104px;display:grid;place-items:center;text-align:center;padding:0 16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:18px;color:var(--creme);
+  transition:background .2s,border-color .2s
+}
+#page-home .profile-card strong{font-family:var(--serif);font-weight:700;font-size:22px;line-height:23px;letter-spacing:0}
+#page-home .profile-card:hover{background:rgba(255,255,255,.1)}
+#page-home .profile-card.active{background:var(--verde);border-color:rgba(255,255,255,.14)}
+#page-home .profile-result{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding-top:64px;margin-top:1px}
+#page-home .profile-result .kicker{font-size:11px;line-height:17px;font-weight:700;letter-spacing:.22em;color:var(--creme)}
+#page-home .profile-result h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-home .profile-result p{font-size:16px;line-height:24px;color:rgba(245,234,210,.7);padding:5.5px 0 7.3px}
+#page-home .profile-result .btn{color:var(--creme);background:#072921;border:1px solid rgba(255,255,255,.14)}
+#page-home .profile-result .btn:hover{background:var(--verde)}
+
+#page-home .atlas-home-card{position:relative;overflow:hidden;border-radius:28px;min-height:650px;background:#0d4237}
+#page-home .atlas-home-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-home .atlas-pins{display:none;position:absolute;inset:0}
+#page-home .atlas-home-card.show-pins .atlas-pins{display:block}
+#page-home .map-pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;background:var(--creme);color:var(--verde-escuro);border:2px solid var(--verde);transition:background .2s,color .2s}
+#page-home .map-pin:hover,#page-home .map-pin.active{background:var(--verde);color:var(--branco)}
+#page-home .atlas-home-copy{
+  position:absolute;left:22px;right:22px;bottom:23px;display:flex;flex-direction:column;align-items:flex-start;gap:15px;
+  padding:23px 24px 24px;background:rgba(13,66,55,.7);border-radius:20px;color:var(--creme);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
+}
+#page-home .atlas-home-copy .eyebrow{margin:0}
+#page-home .atlas-home-copy h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-home .atlas-home-copy p{font-size:18px;line-height:24px;color:rgba(245,234,210,.72)}
+#page-home .atlas-home-copy .hero-actions{padding-top:21px}
+#page-home .atlas-home-copy .btn{color:var(--creme)}
+#page-home .atlas-home-copy .btn:hover{background:var(--verde-escuro)}
+#page-home .atlas-home-copy .ghost-btn{color:var(--creme);border-color:var(--creme)}
+#page-home .atlas-home-copy .ghost-btn:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- 4 · Escolha pelo estilo da viagem ---------- */
+#page-home .photo .eyebrow{color:var(--creme)}
+#page-home .photo .title{color:var(--creme)}
+#page-home .photo .section-head{align-items:flex-end}
+#page-home .photo .section-head .text-button{color:var(--creme);white-space:nowrap}
+#page-home .photo .section-head .text-button:hover{color:#fff}
+#page-home .suite-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+#page-home .suite-picks .card{display:flex;flex-direction:column;gap:19px;padding:25px 26px 27.66px;border-radius:24px}
+#page-home .suite-picks .card .eyebrow{margin:0;color:var(--verde-escuro)}
+#page-home .suite-picks .card h3{margin:0;padding-top:5px;font-size:30px;line-height:24px;color:var(--verde)}
+#page-home .suite-picks .card p{margin:0;padding-bottom:.69px;font-size:16px;line-height:24px;color:var(--texto-2)}
+#page-home .suite-picks .card .tag-row{padding-top:7px}
+#page-home .suite-picks .card .text-button{align-self:flex-start;padding:9px 0 1px;margin-top:0}
+
+/* ---------- 5 · Programas e encontros ---------- */
+#page-home .dual-feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+#page-home .feature-panel{display:flex;flex-direction:column;min-height:720px;background:var(--branco);border:1px solid var(--linha-suave);border-radius:28px;overflow:hidden}
+#page-home .feature-media{height:310px;flex:none;overflow:hidden;background:var(--areia)}
+#page-home .feature-media img{width:100%;height:100%;object-fit:cover}
+#page-home .feature-body{flex:1;display:flex;flex-direction:column;align-items:flex-start;padding:30px 30px 86px}
+#page-home .feature-body .eyebrow{margin:0 0 16px}
+#page-home .feature-body h3{font-family:var(--serif);font-weight:700;font-size:34px;line-height:36px;letter-spacing:0;color:var(--verde-escuro);padding:8px 0 14px}
+#page-home .experience-panel .feature-body h3{font-weight:400}
+#page-home .experience-panel .feature-body h3 strong{font-weight:700}
+#page-home .events-panel .feature-body h3{max-width:470px}
+#page-home .feature-body>p{font-size:16px;line-height:24px;color:var(--texto-3);max-width:480px}
+#page-home .experience-panel .chip-row{padding-top:4px;margin-bottom:20px}
+#page-home .experience-panel .kicker{margin-bottom:10px;line-height:17px}
+#page-home .events-panel .feature-body>p{margin-bottom:16px}
+#page-home .experience-panel #homeExpMoments,#page-home .experience-panel #homeExpTitle{margin-top:12px}
+#page-home .feature-actions{margin-top:auto;padding-top:20px;display:flex;align-items:center;gap:10px}
+#page-home .feature-actions .btn:hover{background:var(--verde)}
+#page-home .feature-actions .text-button{padding:12px 0 13px}
+
+/* ---------- 6 · A Casa da Lua nasceu como casa ---------- */
+#page-home #home-historia{padding:119px 0 142px;background:var(--areia)}
+#page-home .story-grid{display:grid;grid-template-columns:calc(50% + 6px) minmax(0,1fr);align-items:center}
+#page-home .story-media{height:745px;overflow:hidden;border-radius:0 30px 30px 0;background:var(--areia)}
+#page-home .story-media img{width:100%;height:100%;object-fit:cover}
+#page-home .story-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:0 var(--g) 0 55px}
+#page-home .story-copy .eyebrow{margin:0}
+#page-home .story-copy .title{margin:0}
+#page-home .story-text{font-size:16px;line-height:24px;color:#264f47;padding-top:8px}
+#page-home .story-mini-list{width:100%;display:flex;flex-direction:column}
+#page-home .story-mini-list span{display:block;border-top:1px solid var(--linha);padding:8px 0 7px;font-size:13px;font-weight:500;line-height:24px;color:#526b64}
+#page-home .story-mini-list span:last-child{padding-bottom:16px}
+
+/* ---------- 7 · A volta à casa faz parte da viagem ---------- */
+#page-home #home-voltar{padding:110px 0 110px var(--g)}
+#page-home .return-grid{display:grid;grid-template-columns:639px minmax(0,1fr);gap:63px;align-items:center}
+#page-home .return-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+#page-home .return-copy .eyebrow{margin:0}
+#page-home .return-copy .title{margin:0}
+#page-home .return-copy .lead{font-size:20px;line-height:27px;letter-spacing:.02em;color:rgba(245,234,210,.78);padding-top:7px}
+#page-home .return-copy .hero-actions{padding-top:20px}
+#page-home .return-copy .btn{color:var(--creme)}
+#page-home .return-copy .btn:hover{background:var(--verde-escuro)}
+#page-home .return-media{height:430px;overflow:hidden;border-radius:30px 0 0 30px;background:#0d4237}
+#page-home .return-media img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- 8 · Informações práticas ---------- */
+#page-home .home-practical{padding-top:72px;padding-bottom:72px}
+#page-home .practical-grid{
+  display:grid;grid-template-columns:205fr 229fr 310fr 261fr;gap:12px;
+  width:calc(1041/1280*100%);margin-left:calc(178/1280*100%)
+}
+#page-home .practical-item{display:flex;flex-direction:column;gap:3.5px;padding:17px 0 2.3px}
+#page-home .practical-item strong{font-family:var(--serif);font-weight:700;font-size:34px;line-height:36px;letter-spacing:0;color:var(--verde-escuro)}
+#page-home .practical-item span{font-size:16px;line-height:24px;color:var(--verde)}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-home #home-viver{padding-top:110px;padding-bottom:110px}
+  #page-home .time-stage{grid-template-columns:1fr;gap:28px;min-height:0}
+  #page-home .time-tabs{flex-direction:row;overflow-x:auto;gap:12px;padding-bottom:4px}
+  #page-home .time-tab{flex:none;min-width:170px}
+  #page-home .time-scene{margin-top:0;height:min(558px,62vw)}
+  #page-home .explore-grid{grid-template-columns:1fr;min-height:0}
+  #page-home .profile-panel{padding:30px}
+  #page-home .atlas-home-card{min-height:560px}
+  #page-home .practical-grid{width:100%;margin-left:0}
+  #page-home #home-historia{padding:0 0 100px}
+  #page-home .story-grid{grid-template-columns:1fr;gap:48px}
+  #page-home .story-media{height:min(620px,70vw);border-radius:0 0 30px 30px}
+  #page-home .story-copy{padding:0 var(--pad)}
+  #page-home #home-voltar{padding:100px 0 0}
+  #page-home .return-grid{grid-template-columns:1fr;gap:48px}
+  #page-home .return-copy{padding:0 var(--pad)}
+  #page-home .return-media{height:min(520px,62vw);border-radius:30px 30px 0 0}
+}
+@media(max-width:900px){
+  #page-home .br-d{display:none}
+  #page-home .suite-picks{grid-template-columns:1fr}
+  #page-home .dual-feature-grid{grid-template-columns:1fr}
+  #page-home .feature-panel{min-height:0}
+  #page-home .feature-body{padding-bottom:34px}
+  #page-home .practical-grid{grid-template-columns:1fr 1fr;gap:20px 24px}
+}
+@media(max-width:760px){
+  #page-home .hero{min-height:calc(100svh - var(--header-h));padding:56px var(--pad) 120px}
+  #page-home .hero .lead{font-size:18px;margin-bottom:30px}
+  #page-home .hero .hero-actions{gap:8px}
+  #page-home #home-viver,#page-home #home-explorar{padding-top:74px;padding-bottom:74px}
+  #page-home .title{font-size:clamp(32px,9vw,42px)}
+  #page-home .time-scene{height:420px}
+  #page-home .time-scene-copy{left:22px;right:22px;bottom:22px;flex-direction:column;align-items:flex-start;gap:10px}
+  #page-home .time-scene-copy h3{font-size:36px;line-height:38px}
+  #page-home .time-scene-copy p{text-align:left;max-width:none;margin:0}
+  #page-home .profile-panel{padding:24px}
+  #page-home .profile-result{padding-top:36px}
+  #page-home .profile-result h3,#page-home .atlas-home-copy h3,#page-home .feature-body h3{font-size:28px;line-height:32px}
+  #page-home .profile-card{height:88px}
+  #page-home .profile-card strong{font-size:19px;line-height:21px}
+  #page-home .atlas-home-card{min-height:520px}
+  #page-home .atlas-home-copy{left:12px;right:12px;bottom:12px;padding:20px}
+  #page-home .atlas-home-copy p{font-size:16px}
+  #page-home .atlas-home-copy .hero-actions{padding-top:8px}
+  #page-home .photo .section-head{display:block}
+  #page-home .photo .section-head .text-button{margin-top:20px}
+  #page-home .feature-body{padding:24px 22px 28px}
+  #page-home .feature-media{height:240px}
+  #page-home #home-historia{padding-bottom:74px}
+  #page-home .story-copy{padding:0 var(--pad)}
+  #page-home #home-voltar{padding-top:74px}
+  #page-home .return-copy .lead{font-size:17px;line-height:25px}
+  #page-home .home-practical{padding-top:56px;padding-bottom:110px}
+  #page-home .practical-item strong{font-size:28px;line-height:32px}
+}
+
+/* texturas de folhas/sombras: no Figma o preenchimento de imagem é MULTIPLY */
+#page-home .section-bg.mul{mix-blend-mode:multiply}
+
+/* ajustes de medida (conferidos contra o Figma) */
+#page-home .title strong{line-height:0}
+#page-home .time-tab strong{line-height:41px}
+#page-home .time-tab span{line-height:12px;padding-bottom:1px}
+#page-home .photo .section-bg{background-position:center top}      /* Figma: 8dd68a mostra os 52% de cima */
+#page-home .story-media img{object-position:17.5% 88.4%}            /* Figma: recorte de b0fa2f */
+#page-home .atlas-home-copy .hero-actions{padding-bottom:3px}
+@media(min-width:901px){#page-home .story-copy .title strong{white-space:nowrap}}
+
+
+/* no Figma a seção seguinte cobre 21 px do fim da seção de suítes (643 px visíveis) */
+#page-home #home-ficar{padding-bottom:89px}
+@media(min-width:1181px){#page-home .story-copy{padding-top:22px}}
+@media(max-width:900px){#page-home #home-ficar{padding-bottom:74px}}
+
+/* Figma: recorte de b0fa2f (visível x 4,9–76,7 % · y 15,0–98,0 % da foto) */
+#page-home .story-media{position:relative}
+#page-home .story-media img{position:absolute;width:139.27%;height:120.4%;max-width:none;left:-6.88%;top:-18.06%;object-fit:cover;object-position:center}
+#page-home .feature-actions .text-button{text-decoration:none}
+#page-home .feature-actions .text-button:hover{color:var(--verde);text-decoration:underline;text-underline-offset:4px}
+@media(max-width:760px){
+  #page-home .time-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;overflow:visible}
+  #page-home .time-tab{min-width:0;padding:10px 8px 14px 12px}
+  #page-home .time-tab strong{font-size:22px;line-height:30px}
+  #page-home .time-tab span{font-size:10px;letter-spacing:.12em;line-height:13px}
+}
+
+#page-home .return-copy .lead{max-width:555px}   /* caixa de texto de 555 px no Figma */

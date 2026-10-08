@@ -1,0 +1,123 @@
+/* =========================================================
+   Página Suítes — Figma "Suítes" 1920 px
+   Tudo prefixado por #page-suites
+   ========================================================= */
+
+/* ---------- 1. Hero (1920x1124, foto em tela cheia) ---------- */
+#page-suites .suites-hero{
+  position:relative;overflow:hidden;isolation:isolate;background:var(--areia);
+  min-height:clamp(620px,58.54vw,1124px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:60px var(--pad) calc(112px + 60px) clamp(var(--pad),6vw,115px);
+}
+/* recorte do Figma (STRETCH + imageTransform): mostra a faixa [ty, ty+d] da imagem esticada na moldura */
+#page-suites .crop{
+  position:absolute;max-width:none;z-index:0;
+  width:calc(100% / var(--a,1));height:calc(100% / var(--d,1));
+  left:calc(-100% * var(--tx,0) / var(--a,1));top:calc(-100% * var(--ty,0) / var(--d,1))
+}
+#page-suites .suites-hero-bg{z-index:-1;--a:1;--tx:0;--d:.3903254;--ty:.3804167}
+#page-suites .section-head>div:first-child{max-width:none}
+#page-suites .title{line-height:clamp(38px,3.54vw,68px)}
+#page-suites .section.sand .section-head{margin-bottom:38px}
+@media(min-width:761px){#page-suites .section.dark{padding-bottom:89px}}
+#page-suites .section-bg{mix-blend-mode:multiply}
+#page-suites .suites-bg-dark{background-size:100% calc(100% / .4916783);background-position:0 28.7%}
+#page-suites .suites-hero-copy{max-width:778px}
+#page-suites .suites-badge{
+  display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;
+  font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)
+}
+#page-suites .suites-badge i{display:block;width:8px;height:8px;border-radius:50%;background:var(--verde)}
+#page-suites .suites-hero-title{
+  margin-top:25px;max-width:760px;
+  font-family:var(--serif);font-weight:400;font-size:clamp(40px,3.54vw,68px);line-height:clamp(40px,3.54vw,68px);letter-spacing:0;color:var(--creme)
+}
+#page-suites .suites-hero-title strong,#page-suites .title strong{font-weight:700;line-height:0}
+#page-suites .suites-hero-lead{
+  margin-top:24px;max-width:640px;
+  font-size:clamp(17px,1.3vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)
+}
+#page-suites .suites-hero .hero-actions{margin-top:36px}
+#page-suites .suites-hero-ghost{color:var(--creme)}
+#page-suites .suites-hero-ghost:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- 2. Da escolha à disponibilidade ---------- */
+#page-suites .suites-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+#page-suites .suites-step{
+  display:flex;flex-direction:column;gap:9px;padding:26px;
+  background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto)
+}
+#page-suites .suites-step-n{font-family:var(--serif);font-weight:400;font-size:68px;line-height:68px;color:var(--verde)}
+#page-suites .suites-step h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:32px;color:var(--texto);margin:0}
+#page-suites .suites-step p{padding-top:12px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+#page-suites .suites-steps-cta{margin-top:36px}
+#page-suites .suites-steps-cta .btn{display:flex;width:100%}
+
+/* ---------- 3. Filtros e cartões ---------- */
+#page-suites .suites-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 38px;padding-top:10px}
+#page-suites .suite-filter{
+  padding:10px 14px;line-height:21px;font-weight:400;letter-spacing:.02em;
+  background:transparent;color:var(--verde-escuro);border-color:var(--linha)
+}
+#page-suites .suite-filter:hover{background:rgba(19,59,51,.06);color:var(--verde-escuro);border-color:var(--linha)}
+#page-suites .suite-filter.active,
+#page-suites .suite-filter.active:hover{background:var(--texto);color:#fff;border-color:var(--linha);font-weight:700}
+
+#page-suites .suite-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px 20px}
+#page-suites .suite-card{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  background:var(--branco);border:1px solid var(--linha-suave);border-radius:22px;
+  transition:box-shadow .24s,border-color .24s
+}
+#page-suites .suite-card:hover{box-shadow:var(--sombra-dock);border-color:var(--linha)}
+#page-suites .suite-card.hidden-by-filter{display:none}
+#page-suites .suite-card-media{position:relative;height:250px;overflow:hidden;background:#d6c8af;flex:none}
+#page-suites .suite-card.featured .suite-card-media{height:285px}
+#page-suites .suite-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-suites .suite-card-media img.crop{inset:auto}
+#page-suites .suite-card-copy{display:flex;flex-direction:column;flex:1;padding:22px}
+#page-suites .suite-card-top{display:flex;justify-content:space-between;font-size:10px;line-height:16px;text-transform:uppercase;letter-spacing:.13em;color:#728079}
+#page-suites .suite-card h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:53px;color:var(--texto);margin:12px 0 8px}
+/* o Figma desenha os cartões em Inter (mais larga que a Forma): tracking maior para as larguras e quebras baterem */
+#page-suites .suite-card p{font-size:16px;line-height:25px;letter-spacing:.02em;color:#5d716a;margin:0 0 18px}
+#page-suites .suite-card .tag-row>span{padding:7px 11px;letter-spacing:.03em}
+#page-suites .suite-actions{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:20px}
+#page-suites .suite-actions label{display:flex;align-items:center;gap:10px;padding-right:4px;font-size:12px;line-height:19px;letter-spacing:.02em;color:var(--texto);cursor:pointer}
+#page-suites .compare-check{width:13px;height:13px;margin:0 0 0 4px;accent-color:var(--verde-escuro);cursor:pointer}
+#page-suites .suite-card .text-button{font-size:13px;line-height:20px}
+
+/* ---------- Barra de comparação (fixa, só com seleção) ---------- */
+#page-suites .compare-dock{
+  position:fixed;left:50%;bottom:92px;transform:translateX(-50%);z-index:44;display:none;align-items:center;gap:16px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:var(--texto);color:var(--creme);
+  font-size:13px;line-height:20px;letter-spacing:.02em;box-shadow:var(--sombra-dock);white-space:nowrap
+}
+#page-suites .compare-dock.show{display:flex}
+#page-suites .compare-dock strong{font-weight:700}
+#page-suites .compare-dock .btn{background:var(--creme);color:var(--verde-escuro);padding:11px 18px 12px}
+#page-suites .compare-dock .btn:hover{background:var(--branco)}
+#page-suites .compare-dock .btn:disabled:hover{background:var(--creme)}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-suites .suite-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  #page-suites .suites-steps{grid-template-columns:1fr}
+  /* hero estreito: em vez de esticar, a foto cobre a moldura */
+  #page-suites .suites-hero-bg{left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:62% 57.6%}
+  /* leitura do texto sobre a foto quando o texto passa a cobrir a parte clara */
+  #page-suites .suites-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(52,19,6,.72) 0%,rgba(52,19,6,.5) 70%,rgba(52,19,6,.3) 100%);pointer-events:none}
+}
+@media(max-width:760px){
+  #page-suites .suites-hero{min-height:640px;padding:40px var(--pad) 90px}
+  #page-suites .suites-hero-lead{margin-top:18px}
+  #page-suites .suites-hero::after{background:rgba(52,19,6,.58)}
+  #page-suites .suite-grid{grid-template-columns:1fr}
+  #page-suites .suite-card-media{height:235px}
+  #page-suites .suite-card.featured .suite-card-media{height:235px}
+  #page-suites .suites-step-n{font-size:56px;line-height:56px}
+  #page-suites .compare-dock{left:12px;right:12px;bottom:80px;transform:none;justify-content:space-between}
+}
+

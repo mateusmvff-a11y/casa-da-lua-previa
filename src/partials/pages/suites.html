@@ -1,0 +1,199 @@
+<section class="page" id="page-suites" data-page="suites">
+
+  <!-- 1. Hero (Figma: Section 1920x1124, foto 439f36 em tela cheia) -->
+  <section class="suites-hero" data-anim="hero" data-guide-id="suites.intro">
+    <img class="crop suites-hero-bg" src="assets/img/439f36.webp" alt="Cama com almofadas douradas e abajur aceso em uma suíte da Casa da Lua" decoding="async">
+    <div class="suites-hero-copy">
+      <div class="suites-badge" data-anim="reveal"><i></i><span>15 suítes · 8 categorias</span></div>
+      <h1 class="suites-hero-title" data-anim="title">Encontre <strong>a suíte certa</strong> para a sua viagem</h1>
+      <p class="suites-hero-lead" data-anim="reveal">A escolha fica mais simples quando capacidade, acesso, vista e diferenciais aparecem juntos. Use os filtros, compare categorias e siga para a disponibilidade</p>
+      <div class="hero-actions" data-anim="reveal">
+        <button class="btn" data-scroll-to="suiteGridSection">Ver categorias</button>
+        <button class="ghost-btn suites-hero-ghost" data-page-target="reservar">Consultar datas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Da escolha à disponibilidade (Figma: seção verde com 3 passos) -->
+  <section class="section dark" data-guide-id="suites.booking">
+    <div class="section-bg suites-bg-dark" style="--bg:url(assets/img/247695.webp);--op:0.41" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Da escolha à disponibilidade</div>
+          <h2 class="title" data-anim="title">Sua <strong>escolha</strong> te acompanha</h2>
+        </div>
+      </div>
+      <div class="suites-steps" data-stagger>
+        <article class="suites-step" data-anim="reveal"><div class="suites-step-n">1</div><h3>Escolha</h3><p>Filtre por capacidade, acesso e diferencial</p></article>
+        <article class="suites-step" data-anim="reveal"><div class="suites-step-n">2</div><h3>Compare</h3><p>Veja até três categorias lado a lado</p></article>
+        <article class="suites-step" data-anim="reveal"><div class="suites-step-n">3</div><h3>Consulte</h3><p>Siga para o motor com datas, hóspedes e categoria preservados</p></article>
+      </div>
+      <div class="suites-steps-cta" data-anim="reveal">
+        <button class="btn" data-page-target="reservar">Consultar datas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Filtros e categorias (Figma: seção areia com 8 cartões) -->
+  <section class="section sand" id="suiteGridSection" data-guide-id="suites.filters">
+    <div class="section-bg" style="--bg:url(assets/img/a6844e.webp);--op:0.2" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Filtrar categorias</div>
+          <h2 class="title" data-anim="title">Conheça as <strong>nossas suítes</strong></h2>
+        </div>
+        <p class="small" aria-live="polite"><span id="suiteCount">8</span> <span id="suiteCountLabel">categorias visíveis</span></p>
+      </div>
+      <div class="suites-filters" role="group" aria-label="Filtros de suítes" data-anim="reveal">
+        <button class="suite-filter active" data-suite-filter="all">Todas</button>
+        <button class="suite-filter" data-suite-filter="2 hóspedes">Até 2 hóspedes</button>
+        <button class="suite-filter" data-suite-filter="3 hóspedes">Até 3 hóspedes</button>
+        <button class="suite-filter" data-suite-filter="4 hóspedes">Até 4 hóspedes</button>
+        <button class="suite-filter" data-suite-filter="térreo">Térreo</button>
+        <button class="suite-filter" data-suite-filter="varanda">Varanda</button>
+        <button class="suite-filter" data-suite-filter="vista">Vista</button>
+        <button class="suite-filter" data-suite-filter="hidro">Hidro</button>
+        <button class="suite-filter" data-suite-filter="ofurô">Ofurô</button>
+      </div>
+      <div class="suite-grid" data-guide-id="suites.cards">
+
+        <article class="suite-card" data-suite-id="standard" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:-.00113;--d:.72934;--ty:.18874" src="assets/img/9efed9.webp" alt="Categoria Standard (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>2 unidades</span><span>22 m²</span></div>
+            <h3>Standard</h3>
+            <p>1 cama queen size. Área externa, térreo.</p>
+            <div class="tag-row"><span>térreo</span><span>2 hóspedes</span><span>varanda</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="standard"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="standard">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="luxo" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.72932;--ty:.13534" src="assets/img/bef858.webp" alt="Categoria Luxo (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>3 unidades</span><span>30 m²</span></div>
+            <h3>Luxo</h3>
+            <p>1 cama queen size + 1 cama de solteiro. Casa principal, 1º andar.</p>
+            <div class="tag-row"><span>3 hóspedes</span><span>casa principal</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="luxo"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="luxo">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card featured" data-suite-id="luxo-superior" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.83143;--ty:.08429" src="assets/img/a58fed.webp" alt="Categoria Luxo Superior (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>5 unidades</span><span>22 m²</span></div>
+            <h3>Luxo Superior</h3>
+            <p>1 cama queen size. Área externa.</p>
+            <div class="tag-row"><span>2 hóspedes</span><span>vista</span><span>varanda</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="luxo-superior"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="luxo-superior">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="premium" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.72932;--ty:.13534" src="assets/img/bef858.webp" alt="Categoria Premium (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unidade</span><span>30 m²</span></div>
+            <h3>Premium</h3>
+            <p>1 cama queen size. Área externa, 1º andar.</p>
+            <div class="tag-row"><span>3 hóspedes</span><span>sala</span><span>varanda</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="premium"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="premium">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card featured" data-suite-id="premium-hidro" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.83143;--ty:.08429" src="assets/img/bef858.webp" alt="Categoria Premium Hidro (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unidade</span><span>28 m²</span></div>
+            <h3>Premium Hidro</h3>
+            <p>1 cama queen size. Área externa, térreo.</p>
+            <div class="tag-row"><span>3 hóspedes</span><span>térreo</span><span>hidro</span><span>sala</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="premium-hidro"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="premium-hidro">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="premium-ofuro" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.72932;--ty:.13534" src="assets/img/bef858.webp" alt="Categoria Premium Ofurô (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unidade</span><span>28 m²</span></div>
+            <h3>Premium Ofurô</h3>
+            <p>1 cama king size. Casa principal, cobertura.</p>
+            <div class="tag-row"><span>2 hóspedes</span><span>ofurô</span><span>vista</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="premium-ofuro"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="premium-ofuro">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card featured" data-suite-id="master" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.83143;--ty:.08429" src="assets/img/bef858.webp" alt="Categoria Master (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unidade</span><span>28 m²</span></div>
+            <h3>Master</h3>
+            <p>1 cama king size + 2 camas de solteiro. Área externa.</p>
+            <div class="tag-row"><span>4 hóspedes</span><span>hidro</span><span>jardim</span><span>família</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="master"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="master">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="presidencial" data-anim="reveal">
+          <div class="suite-card-media">
+            <img class="crop" style="--a:1;--tx:0;--d:.72932;--ty:.13534" src="assets/img/bef858.webp" alt="Categoria Presidencial (imagem provisória)" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unidade</span><span>63 m²</span></div>
+            <h3>Presidencial</h3>
+            <p>1 cama king size + 2 camas de solteiro, em dois quartos. Casa principal, 1º andar.</p>
+            <div class="tag-row"><span>4 hóspedes</span><span>2 quartos</span><span>hidro</span><span>sauna</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="presidencial"><span>comparar</span></label>
+              <button class="text-button suite-detail-btn" data-suite="presidencial">Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra de comparação (V16): fixa, visível só com seleção -->
+  <div class="compare-dock" id="compareDock" role="region" aria-label="Comparação de suítes">
+    <span><strong id="compareCount">0</strong> <span id="compareLabel">suítes selecionadas</span></span>
+    <button class="btn" id="openCompare" disabled>Comparar</button>
+  </div>
+</section>

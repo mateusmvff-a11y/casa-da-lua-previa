@@ -1,0 +1,111 @@
+<section class="page" id="page-reservar" data-page="reservar">
+  <section class="section cream rv-top">
+    <div class="section-bg" style="--bg:url(assets/img/444b9d.webp);--op:0.49" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Reservar</div>
+          <h1 class="title" data-anim="title">Escolha suas datas.<br><strong>A casa ajuda</strong> no resto.</h1>
+        </div>
+        <p class="rv-lead" data-anim="reveal">O fluxo começa pelo essencial: quando você vem e quantas pessoas viajam. Depois, a Casa da Lua sugere categorias compatíveis e abre o motor oficial.</p>
+      </div>
+
+      <div class="reserve-shell" data-anim="reveal">
+        <aside class="reserve-steps">
+          <div class="eyebrow">Sua viagem</div>
+          <h2 id="reserveSideTitle">Datas e hóspedes</h2>
+          <p id="reserveSideText">Informe o período e a ocupação. As preferências entram depois e são opcionais.</p>
+          <div class="step-list" aria-hidden="true">
+            <div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div>
+          </div>
+          <div class="card rv-info">
+            <div class="kicker">Informações confirmadas</div>
+            <ul class="feature-list">
+              <li><span>Check-in</span><span>14h</span></li>
+              <li><span>Check-out</span><span>11h</span></li>
+              <li><span>Café</span><span>7h30–10h30</span></li>
+              <li><span>Estacionamento</span><span>cortesia</span></li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="form-card">
+          <form id="reserveForm" novalidate>
+            <div class="reserve-step active" data-step="1">
+              <div class="eyebrow">Etapa 1 de 4</div>
+              <h2 class="subtitle">Quando e <strong>com quem?</strong></h2>
+              <div class="form-grid">
+                <div class="field"><label for="reserveArrival">Chegada</label><input id="reserveArrival" type="date"></div>
+                <div class="field"><label for="reserveDeparture">Saída</label><input id="reserveDeparture" type="date"></div>
+                <div class="field"><label for="reserveAdults">Adultos</label><select id="reserveAdults"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+                <div class="field"><label for="reserveChildren">Crianças</label><select id="reserveChildren"><option selected>0</option><option>1</option><option>2</option><option>3</option></select></div>
+                <div class="field full"><button class="btn reserve-next" type="button" data-next-step="2">Continuar</button></div>
+              </div>
+            </div>
+
+            <div class="reserve-step hidden" data-step="2">
+              <div class="eyebrow">Etapa 2 de 4</div>
+              <h2 class="subtitle">Alguma <strong>prioridade?</strong></h2>
+              <p class="small">Esta etapa é opcional e ajuda a ordenar as categorias.</p>
+              <div class="choice-grid">
+                <button class="choice" type="button" data-reserve-pref="térreo"><strong>Térreo ou poucos degraus</strong><span>Facilita o acesso.</span></button>
+                <button class="choice" type="button" data-reserve-pref="vista"><strong>Varanda ou vista</strong><span>Mais relação com o lado de fora.</span></button>
+                <button class="choice" type="button" data-reserve-pref="hidro"><strong>Hidro ou ofurô</strong><span>Bem-estar dentro da suíte.</span></button>
+                <button class="choice" type="button" data-reserve-pref="pet"><strong>Viajo com pet</strong><span>A equipe ajuda a confirmar a melhor opção.</span></button>
+              </div>
+              <div class="hero-actions">
+                <button class="ghost-btn reserve-prev" type="button" data-prev-step="1">Voltar</button>
+                <button class="btn reserve-next" type="button" data-next-step="3">Ver categorias</button>
+              </div>
+            </div>
+
+            <div class="reserve-step hidden" data-step="3">
+              <div class="eyebrow">Etapa 3 de 4</div>
+              <h2 class="subtitle">Categorias <strong>compatíveis</strong></h2>
+              <p class="small">A sugestão considera capacidade e preferências. A disponibilidade real vem do motor oficial.</p>
+              <div class="reserve-suggestions" id="reserveSuggestions"></div>
+              <div class="hero-actions">
+                <button class="ghost-btn reserve-prev" type="button" data-prev-step="2">Voltar</button>
+                <button class="btn reserve-next" type="button" data-next-step="4">Continuar</button>
+              </div>
+            </div>
+
+            <div class="reserve-step hidden" data-step="4">
+              <div class="eyebrow">Etapa 4 de 4</div>
+              <h2 class="subtitle">Seguir para a <strong>disponibilidade</strong></h2>
+              <p class="rv-p">O próximo passo abrirá o motor oficial com o máximo de contexto possível. Nesta versão do protótipo, o botão funciona como um placeholder de produto até a integração final.</p>
+              <div class="card" id="reserveSummary"></div>
+              <div class="hero-actions">
+                <button class="ghost-btn reserve-prev" type="button" data-prev-step="3">Voltar</button>
+                <button class="btn" type="button" id="openBookingEngine">Abrir motor oficial</button>
+                <button class="ghost-btn" type="button" id="openWhatsApp">Falar com a equipe</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section white" id="reserveBefore">
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Antes de reservar</div>
+          <h2 class="title" data-anim="title">O essencial já está <strong>claro.</strong> Algumas políticas ainda precisam ser consolidadas.</h2>
+        </div>
+      </div>
+      <div class="practical-grid" data-anim="reveal" data-stagger>
+        <div class="practical-item" data-anim="reveal"><strong>14h</strong><span>check-in</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>11h</strong><span>check-out</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>Incluído</strong><span>café da manhã</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>Cortesia</strong><span>Wi-Fi e estacionamento</span></div>
+      </div>
+      <div class="grid-3 rv-policies" data-stagger>
+        <article class="card" data-anim="reveal"><h3>Pets</h3><p>Fale com a equipe para confirmar acomodação e condições atuais.</p></article>
+        <article class="card" data-anim="reveal"><h3>Crianças</h3><p>A capacidade varia por categoria. A equipe ajuda a ajustar a configuração.</p></article>
+        <article class="card" data-anim="reveal"><h3>Cancelamento e pagamento</h3><p>As condições vigentes serão apresentadas no motor oficial.</p></article>
+      </div>
+    </div>
+  </section>
+</section>

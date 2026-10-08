@@ -1,0 +1,8 @@
+_figma/
+_v16/
+_prev/
+_shots/
+docs/
+node_modules/
+*.log
+tools/_*.txt

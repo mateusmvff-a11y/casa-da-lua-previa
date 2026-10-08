@@ -1,0 +1,170 @@
+/* =========================================================
+   Eventos e Imersões — Figma "Eventos" (1920 px)
+   Tudo prefixado por #page-eventos.
+   ========================================================= */
+
+/* ---------- 1. Hero: foto + gradiente, texto à esquerda ---------- */
+#page-eventos .hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(640px,58.55vw,1124px);
+  padding:clamp(130px,16.9vw,324px) var(--pad) 90px clamp(var(--pad),6vw,115px);
+  background:#f5ead2;color:var(--creme)
+}
+#page-eventos .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+#page-eventos .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+#page-eventos .hero-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.22) 40%,rgba(0,0,0,0) 70%),
+             linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,0) 30%)
+}
+#page-eventos .hero-copy{max-width:700px}
+#page-eventos .hero-badge{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:25px;
+  padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;
+  font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)
+}
+#page-eventos .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
+#page-eventos .hero .title{color:var(--creme);max-width:700px}
+#page-eventos .hero .lead{
+  max-width:640px;margin-top:24px;
+  font-size:clamp(17px,1.3vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)
+}
+#page-eventos .hero-actions{margin-top:36px;gap:10px}
+#page-eventos .hero .btn{color:var(--creme)}
+#page-eventos .hero .ghost-btn{color:var(--creme);border-color:var(--verde)}
+#page-eventos .hero .ghost-btn:hover{background:rgba(81,132,78,.28)}
+#page-eventos .stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+#page-eventos .stat{display:flex;flex-direction:column;gap:5px}
+#page-eventos .stat strong{font-family:var(--serif);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-eventos .stat span{font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--creme)}
+
+/* títulos: o Figma não quebra linha (o texto passa da coluna de 760) */
+@media(min-width:1181px){
+  #page-eventos .section-head>div:first-child{max-width:none}
+  #page-eventos .section-head .title{white-space:nowrap}
+}
+
+/* ---------- 2. Configurador de formato ---------- */
+#page-eventos #eventFormats .section-head{margin-bottom:28px}
+#page-eventos .event-selector{display:flex;gap:8px;flex-wrap:wrap;padding-top:20px;margin-bottom:28px}
+#page-eventos .event-selector button{
+  border:1px solid rgba(19,59,51,.18);background:transparent;color:var(--texto);
+  border-radius:999px;padding:11px 15px;font-size:13px;line-height:21px;letter-spacing:.02em;
+  transition:background .2s,color .2s,border-color .2s
+}
+#page-eventos .event-selector button:hover{background:rgba(81,132,78,.12)}
+#page-eventos .event-selector button.active{background:var(--verde);color:var(--creme);font-weight:700}
+#page-eventos .event-config{display:grid;grid-template-columns:534fr 722fr;gap:24px;align-items:stretch;min-height:570px}
+
+#page-eventos .event-diagram{position:relative;overflow:hidden;background:#ede2ca;border-radius:28px;min-height:570px}
+#page-eventos .event-diagram::before{content:"";position:absolute;inset:22px;border:1px solid rgba(19,59,51,.18);border-radius:22px;pointer-events:none}
+#page-eventos .floor-zone{
+  position:absolute;display:grid;place-items:center;text-align:center;
+  background:rgba(255,255,255,.42);border:1px solid rgba(19,59,51,.35);border-radius:14px;
+  font-size:11px;line-height:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--texto)
+}
+
+#page-eventos #eventObjects.solid .floor-zone{background:#faf6ec}
+
+#page-eventos .event-copy{
+  display:flex;flex-direction:column;align-items:flex-start;
+  background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:60px 44px 47px
+}
+#page-eventos .event-copy .eyebrow{margin:0 0 16px;color:var(--verde)}
+#page-eventos .event-copy h3{
+  font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme);margin:0
+}
+#page-eventos .event-copy h3 strong{font-weight:700}
+#page-eventos .event-copy p{max-width:402px;padding-top:2px;margin-top:16px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72)}
+#page-eventos .feature-list{list-style:none;padding:12px 0;margin:16px 0 0;width:100%}
+#page-eventos .feature-list li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:25px;letter-spacing:0;color:var(--creme)}
+#page-eventos .feature-list li span:last-child{color:var(--areia);opacity:.65;text-align:right}
+#page-eventos .event-copy .btn{margin-top:16px;color:var(--verde)}
+
+/* ---------- 3. Estrutura ---------- */
+#page-eventos .section.white .section-head{margin-bottom:48px}
+#page-eventos .section.white .section-head .small{
+  max-width:319px;padding:12px 10px 0 0;text-align:right;
+  font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
+}
+#page-eventos .grid-4{gap:18px}
+#page-eventos .grid-4 .card{padding:26px}
+#page-eventos .grid-4 .card h3{font-weight:400;font-size:30px;line-height:32px;margin:0 0 12px;color:var(--verde)}
+#page-eventos .grid-4 .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+
+/* ---------- 4. Se chover: foto de fundo da seção ---------- */
+#page-eventos .rain{background:#0b2725}
+#page-eventos .rain .section-bg{background-position:center 43%}
+#page-eventos .rain .section-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.52) 0%,rgba(0,0,0,.3) 38%,rgba(0,0,0,0) 70%)
+}
+#page-eventos .rain-copy{max-width:639px}
+#page-eventos .rain .eyebrow{color:var(--creme)}
+#page-eventos .rain .title{color:var(--areia)}
+#page-eventos .rain .lead{max-width:612px;padding-top:8px;margin-top:16px;font-size:clamp(17px,1.3vw,25px);line-height:1.2;color:var(--creme)}
+@media(min-width:1181px){#page-eventos .hero .lead,#page-eventos .rain .lead{line-height:30px}}
+#page-eventos .rain .chip-row{margin-top:16px;padding-top:8px}
+#page-eventos .rain .chip{min-height:37px;padding:7px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18);color:var(--creme)}
+
+/* ---------- 5. Solicitar proposta ---------- */
+#page-eventos #eventProposal .section-head .small{
+  max-width:364px;padding:12px 0 0;margin-bottom:-7px;text-align:right;
+  font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
+}
+#page-eventos .proposal-form{background:var(--creme);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:none}
+#page-eventos .proposal-form .form-grid{gap:10px 16px}
+#page-eventos .proposal-form .field:not(.full){min-height:83px}
+#page-eventos .proposal-form .field.full:nth-of-type(5){margin-top:1px}
+#page-eventos .proposal-form .field.full:last-child{margin-top:6px}
+#page-eventos .proposal-form .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-eventos .proposal-form .field input,
+#page-eventos .proposal-form .field select,
+#page-eventos .proposal-form .field textarea{
+  border:1px solid rgba(19,59,51,.18);background:var(--branco);border-radius:13px;
+  padding:15px 14px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)
+}
+#page-eventos .proposal-form .field input::placeholder,
+#page-eventos .proposal-form .field textarea::placeholder{color:#757575}
+#page-eventos .proposal-form .field select{
+  appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23133b33' stroke-opacity='.55' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 20px center
+}
+#page-eventos .proposal-form .field select:has(option[value=""]:checked){color:#757575}
+#page-eventos .proposal-form .field select option{color:var(--texto)}
+#page-eventos .proposal-form .field textarea{height:128px;resize:vertical;min-height:96px}
+#page-eventos .proposal-form .btn{width:100%;color:var(--creme)}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-eventos .hero{padding:150px var(--pad) 80px}
+  #page-eventos .hero-media::after{background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.12) 100%)}
+  #page-eventos .dbr{display:none}
+  #page-eventos .section-head{display:block;margin-bottom:34px}
+  #page-eventos .section-head .small{margin-top:16px}
+  #page-eventos .event-config{grid-template-columns:1fr;min-height:0}
+  #page-eventos .event-diagram{min-height:520px}
+  #page-eventos .section.white .section-head .small,
+  #page-eventos #eventProposal .section-head .small{max-width:none;text-align:left;padding:0}
+}
+@media(max-width:760px){
+  #page-eventos .dbr-s{display:none}
+  #page-eventos .hero{min-height:620px;padding:110px var(--pad) 60px}
+  #page-eventos .hero-media::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.5))}
+  #page-eventos .hero-actions .btn,#page-eventos .hero-actions .ghost-btn{white-space:nowrap}
+  #page-eventos .hero .title{font-size:clamp(36px,10.5vw,52px);line-height:1.04}
+  #page-eventos .stat strong{font-size:30px;line-height:32px}
+  #page-eventos .event-diagram{min-height:420px}
+  #page-eventos .event-copy{padding:36px 24px 32px}
+  #page-eventos .event-copy h3{font-size:28px;line-height:30px}
+  #page-eventos .feature-list li{flex-direction:column;gap:2px}
+  #page-eventos .feature-list li span:last-child{text-align:left}
+  #page-eventos .section.white .section-head .small,
+  #page-eventos #eventProposal .section-head .small{text-align:left;padding:0;margin-top:16px}
+  #page-eventos .rain .section-bg::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35))}
+  #page-eventos .proposal-form{padding:22px}
+}
+
+/* texturas de luz/sombra: no Figma o fundo escurece como "multiplicar" (mede igual ao print) */
+#page-eventos .section:not(.rain)>.section-bg{mix-blend-mode:multiply}

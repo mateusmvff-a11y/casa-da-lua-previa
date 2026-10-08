@@ -1,0 +1,133 @@
+/* =========================================================
+   Página A Casa  (#page-casa)
+   Figma: "A Casa" 1920 px. Fontes: Mortise (títulos) + Forma DJR Display.
+   ========================================================= */
+
+/* O 400 do kit Adobe (Forma DJR Display) sai ~6,5% mais estreito que o Regular do Figma; o peso 500 do kit tem as mesmas larguras do dump (conferido em botoes e rodape). */
+
+/* fundos de seção: <img> com recorte do Figma (object-view-box) */
+#page-casa .casa-bg{background:none}
+#page-casa .casa-multiply{mix-blend-mode:multiply}
+#page-casa .casa-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- 1. Hero ---------- */
+#page-casa .casa-hero{position:relative;isolation:isolate;overflow:hidden;background:#f5ead2;color:var(--creme);
+  min-height:clamp(640px,58.54vw,1124px);display:flex;flex-direction:column;justify-content:center;padding:26px 6vw 0}
+#page-casa .casa-hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden}
+#page-casa .casa-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-casa .casa-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:multiply;opacity:.53;background:linear-gradient(270deg,rgba(102,102,102,0) 45.55%,#000 79.33%)}
+#page-casa .casa-hero-copy{max-width:760px;display:flex;flex-direction:column;align-items:flex-start}
+#page-casa .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;
+  margin-bottom:25px;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)}
+#page-casa .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
+#page-casa .casa-hero .title{color:var(--creme);max-width:653px;font-size:clamp(40px,3.54vw,68px)}
+#page-casa .hero-lead{margin-top:24px;max-width:552px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
+#page-casa .casa-hero .hero-actions{margin-top:36px}
+#page-casa .casa-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
+#page-casa .casa-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- 2. Como tudo começou ---------- */
+#page-casa .casa-origem{padding-top:86px;padding-bottom:61px;min-height:560px}
+#page-casa .origin-editorial{display:grid;grid-template-columns:minmax(0,666fr) minmax(0,544fr);column-gap:70px;align-items:start}
+#page-casa .origem-copy .title{max-width:653px}
+#page-casa .origem-copy .lead{margin-top:24px;color:var(--verde-escuro);font-size:clamp(17px,1.302vw,25px);line-height:1.2}
+#page-casa .origem-texto{margin-top:16px;max-width:653px;font-size:16px;line-height:24px;color:#5a7069}
+#page-casa .year-stack{display:flex;flex-direction:column;border-left:1px solid var(--linha)}
+#page-casa .year-stack article{position:relative;padding:0 0 30px 32px;display:flex;flex-direction:column;gap:4.2px}
+#page-casa .year-stack article::before{content:"";position:absolute;left:-6px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--verde)}
+#page-casa .year-stack time{font-family:var(--serif);font-weight:400;letter-spacing:0;font-size:36px;line-height:56px;color:var(--texto)}
+#page-casa .year-stack article:first-child time{font-size:34px;line-height:36px}
+#page-casa .year-stack h3{margin:0;padding-top:.85px;font-family:var(--sans);font-weight:700;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto)}
+#page-casa .year-stack p{font-size:16px;line-height:24px;color:#60736d}
+
+/* ---------- 3. Atlas Vivo ---------- */
+#page-casa .casa-atlas::after,#page-casa .casa-historias::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.2);pointer-events:none}
+#page-casa .casa-atlas .section-head>div:first-child{max-width:none}
+#page-casa .casa-atlas .eyebrow{color:var(--creme)}
+#page-casa .casa-atlas .title{white-space:nowrap}
+#page-casa .atlas-teaser{display:grid;grid-template-columns:minmax(0,755fr) minmax(0,525fr);height:650px;background:#133b33;border-radius:30px;overflow:hidden;color:var(--creme)}
+#page-casa .atlas-map{position:relative;overflow:hidden}
+#page-casa .atlas-map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-casa .map-pin{position:absolute;z-index:3;width:34px;height:34px;padding:1px 6px;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;
+  display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:12px;line-height:19px;letter-spacing:0;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s,transform .2s}
+#page-casa .map-pin:hover{background:var(--areia);color:var(--verde)}
+#page-casa .map-pin.active{background:var(--areia);color:var(--verde);transform:scale(1.17)}
+#page-casa .atlas-copy{padding:48px 48px 28px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+#page-casa .atlas-copy .eyebrow{color:var(--verde);margin-bottom:16px}
+#page-casa .atlas-copy .chip{min-height:37px;padding:7px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);color:var(--creme)}
+#page-casa .atlas-place{padding-top:24.45px}
+#page-casa .atlas-place h3{font-family:var(--serif);font-weight:700;font-size:38px;line-height:47px;letter-spacing:0;color:var(--creme);margin:0 0 12px}
+#page-casa .atlas-place p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72);margin:0}
+#page-casa .atlas-actions{margin-top:28px}
+#page-casa .atlas-actions .btn.light{background:var(--branco);color:var(--verde-escuro)}
+#page-casa .atlas-actions .btn.light:hover{background:var(--creme)}
+
+/* ---------- 4. O que a torna única ---------- */
+#page-casa .casa-unica .section-head>div:first-child{max-width:900px}
+#page-casa .house-layers .card{height:250px;padding:66px 26px 0;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto-2)}
+#page-casa .house-layers .card h3{font-size:30px;line-height:32px;letter-spacing:0;margin:0 0 12px;color:var(--verde)}
+#page-casa .house-layers .card p{font-size:16px;line-height:24px;color:#587069}
+
+/* ---------- 5. Histórias da casa ---------- */
+#page-casa .casa-historias .eyebrow{color:#fff}
+#page-casa .casa-historias .title{color:#fff}
+/* Figma: caixa de 703 px; o negrito da Mortise no kit sai ~1% mais largo (709 px), entao a caixa ganha folga */
+#page-casa .casa-historias .section-head>div:first-child{max-width:735px}
+#page-casa .story-grid{display:grid;grid-template-columns:minmax(0,692fr) minmax(0,566fr);gap:22px;align-items:stretch;height:620px}
+#page-casa .story-main{position:relative;overflow:hidden;border-radius:24px;min-height:620px}
+#page-casa .story-main>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-casa .story-main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,27,25,0) 48%,rgba(0,0,0,.78) 100%)}
+#page-casa .story-main-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:31px;color:#fff}
+#page-casa .story-main-copy .kicker{font-size:11px;line-height:17px;letter-spacing:.22em;font-weight:700;color:#fff}
+#page-casa .story-main-copy h3{white-space:pre-line;font-family:var(--serif);font-weight:400;font-size:clamp(34px,2.71vw,52px);line-height:1;letter-spacing:0;color:#fff;max-width:624px}
+#page-casa .story-main-copy p{margin-top:16px;max-width:520px;font-size:16px;line-height:24px;color:rgba(255,255,255,.75)}
+#page-casa .story-list{display:flex;flex-direction:column;justify-content:flex-start;gap:13px}
+#page-casa .story-card{display:flex;align-items:center;padding:26px 26px 26px 28px;background:var(--branco);border:1px solid var(--linha-suave);border-radius:20px}
+#page-casa .story-card h4{font-family:var(--serif);font-weight:400;font-size:27px;line-height:42px;letter-spacing:0;color:var(--texto)}
+#page-casa .story-card p{margin-top:6.3px;font-size:16px;line-height:24px;color:#60746e}
+
+/* ---------- 6. O jeito de receber ---------- */
+#page-casa .casa-equipe .split{grid-template-columns:minmax(0,639fr) minmax(0,579fr)}
+#page-casa .casa-equipe .title{color:var(--texto);letter-spacing:-.038em}
+#page-casa .casa-equipe .lead{margin-top:24px;color:#264f47;font-size:clamp(17px,1.302vw,25px);line-height:1.2}
+#page-casa .casa-equipe .hero-actions{margin-top:36px}
+#page-casa .media-frame{position:relative;overflow:hidden;border-radius:24px;background:#d8ccb7;height:680px}
+#page-casa .media-frame>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-casa .casa-hero{min-height:min(760px,calc(100svh - var(--header-h)));padding-top:60px;padding-bottom:60px}
+  #page-casa .casa-hero::after{background:linear-gradient(90deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.16) 60%,rgba(0,0,0,.05) 100%)}
+  #page-casa .origin-editorial{grid-template-columns:1fr;row-gap:44px}
+  #page-casa .casa-origem{padding-top:80px;padding-bottom:70px}
+  #page-casa .atlas-teaser{grid-template-columns:1fr;height:auto}
+  #page-casa .atlas-map{aspect-ratio:755/650}
+  #page-casa .atlas-copy{gap:36px;padding:36px 36px 40px}
+  #page-casa .casa-atlas .title{white-space:normal}
+  #page-casa .casa-equipe .split{grid-template-columns:1fr}
+  #page-casa .media-frame{height:min(680px,110vw)}
+}
+@media(max-width:900px){
+  #page-casa .house-layers{grid-template-columns:1fr}
+  #page-casa .house-layers .card{height:auto;padding:30px 26px}
+  #page-casa .story-grid{grid-template-columns:1fr;height:auto;gap:16px}
+  #page-casa .story-main{min-height:560px}
+}
+@media(max-width:760px){
+  #page-casa .casa-hero{min-height:calc(100svh - var(--header-h));padding:70px 20px 56px;justify-content:flex-end}
+  #page-casa .casa-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.62) 100%)}
+  #page-casa .casa-hero .title{max-width:none}
+  #page-casa .casa-origem{padding-top:64px;padding-bottom:64px}
+  #page-casa .year-stack time,#page-casa .year-stack article:first-child time{font-size:32px;line-height:44px}
+  #page-casa .atlas-copy{padding:28px 22px 32px}
+  #page-casa .atlas-place h3{font-size:30px;line-height:38px}
+  #page-casa .house-layers .card{height:auto;min-height:0;padding:30px 24px}
+  #page-casa .story-grid{grid-template-columns:1fr;height:auto;gap:16px}
+  #page-casa .story-main{min-height:520px}
+  #page-casa .story-main-copy{left:22px;right:22px;bottom:22px;padding-bottom:0}
+  #page-casa .story-card{padding:22px}
+  #page-casa .story-card h4{font-size:24px;line-height:34px}
+  #page-casa .casa-equipe .title{letter-spacing:-.02em}
+  #page-casa .media-frame{height:420px}
+  #page-casa .map-pin{width:30px;height:30px;padding:0;font-size:11px}
+}

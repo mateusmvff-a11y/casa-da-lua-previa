@@ -1,0 +1,114 @@
+<section class="page" id="page-viver" data-page="viver">
+
+  <!-- Hero (Figma: Section 1920x1124, imagem b3af24) -->
+  <section class="vv-hero" data-anim="hero" data-guide-id="viver.hero">
+    <div class="vv-hero-bg" aria-hidden="true">
+      <img src="assets/img/b3af24.webp" alt="" decoding="async" data-parallax="-8">
+    </div>
+    <div class="vv-hero-copy">
+      <div class="vv-badge" data-anim="reveal"><i></i><span>Viver a Casa</span></div>
+      <h1 class="vv-h1" data-anim="title">O dia muda de ritmo <br>quando <strong>você volta</strong></h1>
+      <p class="vv-lead" data-anim="reveal">Na Casa da Lua, a estadia também tem vida própria. Café da manhã, água, spa, cinema, bilhar, mesa e fogo entram na viagem com o mesmo peso do que acontece fora da pousada</p>
+      <div class="hero-actions vv-actions" data-anim="reveal">
+        <button class="btn" type="button" id="jumpMoments" data-scroll-to="momentsSection">Ver os momentos</button>
+        <button class="ghost-btn vv-ghost" type="button" data-page-target="reservar">Planejar a estadia</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Momentos da casa (Figma: Section 1138, fundo verde-escuro + textura dc4f2a) -->
+  <section class="section dark vv-moments" id="momentsSection" data-guide-id="viver.moments">
+    <div class="section-bg" style="--bg:url(assets/img/dc4f2a.webp);--op:0.58" aria-hidden="true" data-parallax="-8"></div>
+    <div class="max">
+      <div class="vv-head" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Momentos da casa</div>
+        <h2 class="vv-h2" data-anim="title">O mesmo lugar <strong>assume outro papel</strong> conforme a hora do dia</h2>
+      </div>
+      <div class="vv-tabs moment-tabs" role="tablist" aria-label="Momentos do dia" data-anim="reveal">
+        <button type="button" class="active" role="tab" aria-selected="true" data-viver-moment="morning">7h30 · manhã</button>
+        <button type="button" role="tab" aria-selected="false" data-viver-moment="afternoon">17h40 · retorno</button>
+        <button type="button" role="tab" aria-selected="false" data-viver-moment="night">21h · noite</button>
+      </div>
+      <div class="vv-moment moment-hero" data-anim="reveal">
+        <div class="vv-moment-media moment-media" data-anim="image">
+          <img id="viverMomentImage" src="assets/img/3402e0.webp" alt="Mesa do café da manhã da Casa da Lua" loading="lazy" decoding="async">
+        </div>
+        <div class="vv-moment-copy moment-copy" aria-live="polite">
+          <div class="eyebrow" id="viverMomentEyebrow">O dia começa</div>
+          <div class="vv-time time" id="viverMomentTime">7h30</div>
+          <h3 class="vv-moment-title" id="viverMomentTitle">Café servido, jardim acordando</h3>
+          <p class="vv-moment-text" id="viverMomentText">O café da manhã está incluído e é servido das 7h30 às 10h30. É quando o dia ganha direção sem precisar começar com pressa.</p>
+          <div class="chip-row" id="viverMomentTags"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Espaços (Figma: Section 1146, areia + textura 6b0fe2) -->
+  <section class="section sand vv-spaces" data-guide-id="viver.spaces">
+    <div class="section-bg" style="--bg:url(assets/img/6b0fe2.webp);--op:0.62" aria-hidden="true" data-parallax="-8"></div>
+    <div class="max">
+      <div class="vv-head" data-stagger>
+        <div class="eyebrow" data-anim="reveal">A casa inteira participa</div>
+        <h2 class="vv-h2 vv-h2-dark" data-anim="title"><strong>Espaços</strong> para descansar, <br>brincar, cuidar e ficar</h2>
+      </div>
+      <div class="vv-space-grid space-grid" data-stagger>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="assets/img/2cc20b.webp" alt="Piscina da Casa da Lua" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Piscina e jacuzzi</h3><p>Água, escorregadeira e fim de tarde depois da Chapada.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="assets/img/ca5f75.webp" alt="Toalhas na sauna do spa" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Spa, sauna e massagem</h3><p>Uma camada de cuidado para o corpo voltar ao próprio ritmo.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <!-- Figma: este cartão não tem imagem. Usada a imagem de apoio do V16 (jardim). -->
+          <img src="assets/img/v16-outdoor.webp" alt="Jardim da Casa da Lua" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Jardim e recantos</h3><p>O lado de fora funciona como sala, caminho e lugar de permanência.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="assets/img/06c265.webp" alt="Mesa posta no restaurante" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Restaurante e bar</h3><p>Comida, drinks e petiscos dentro da experiência da casa.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="assets/img/f3a25d.webp" alt="Sala de cinema e bilhar" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Cinema e bilhar</h3><p>Alternativas para continuar a noite sem precisar sair.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <!-- Figma: este cartão não tem imagem. Usada a imagem de apoio do V16 (fogueira). -->
+          <img src="assets/img/v16-fire.webp" alt="Fogueira da Casa da Lua" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Fogo e convivência</h3><p>Na seca, o círculo se abre para vinho, conversa e céu.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Noite (Figma: Section 650, folhagem 8c273a + véu preto) -->
+  <section class="section vv-night" data-guide-id="viver.night">
+    <div class="section-bg" style="--bg:url(assets/img/8c273a.webp)" aria-hidden="true" data-parallax="-8"></div>
+    <div class="max vv-night-grid split reverse">
+      <div class="vv-night-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Quando a noite chega</div>
+        <h2 class="vv-h2" data-anim="title">À noite, a casa <strong>ganha outro clima</strong></h2>
+        <p class="vv-night-text" data-anim="reveal">Cinema, bilhar, mesa e fogo aparecem como possibilidades para quem prefere ficar. Em vez de impor um roteiro, a noite abre espaço para cada grupo ocupar a casa do seu jeito.</p>
+        <div class="chip-row vv-night-chips" data-anim="reveal"><span class="chip">cinema</span><span class="chip">bilhar</span><span class="chip">fogueira</span><span class="chip">mesa</span></div>
+      </div>
+      <div class="vv-night-media media-frame wide" data-anim="image">
+        <img src="assets/img/8dd68a.webp" alt="Casa da Lua à noite, com fogueiras no jardim" loading="lazy" decoding="async" data-parallax="-8">
+      </div>
+    </div>
+  </section>
+
+  <!-- Informações práticas (Figma: faixa 1920x233, creme) -->
+  <section class="section compact cream vv-practical" data-guide-id="viver.practical">
+    <div class="max">
+      <div class="vv-practical-grid practical-grid" data-stagger>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>Incluído</strong><span>Café da manhã</span></div>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>Disponível</strong><span>Wi-Fi em todas as áreas</span></div>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>Cortesia</strong><span>Estacionamento</span></div>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>A consultar</strong><span>Agendamentos e custos de bem-estar</span></div>
+      </div>
+    </div>
+  </section>
+
+</section>

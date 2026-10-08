@@ -1,0 +1,108 @@
+<!-- Sobreposições do site (HTML V16 1668-1775) — conteúdo preenchido por src/js/overlays.js -->
+
+<div class="overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Navegação" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Fechar">×</button>
+    <div class="eyebrow">Navegação</div>
+    <div class="stack">
+      <button class="card page-link" type="button" data-page-target="home"><h3>Home</h3></button>
+      <button class="card page-link" type="button" data-page-target="casa"><h3>A Casa</h3></button>
+      <button class="card page-link" type="button" data-page-target="suites"><h3>Suítes</h3></button>
+      <button class="card page-link" type="button" data-page-target="viver"><h3>Viver a Casa</h3></button>
+      <button class="card page-link" type="button" data-page-target="experiencias"><h3>Experiências</h3></button>
+      <button class="card page-link" type="button" data-page-target="eventos"><h3>Eventos e Imersões</h3></button>
+      <button class="card page-link" type="button" data-page-target="chapada"><h3>A Chapada</h3></button>
+      <button class="card page-link" type="button" data-page-target="reservar"><h3>Reservar</h3></button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="journeyOverlay" role="dialog" aria-modal="true" aria-label="Percurso pela Casa da Lua" aria-hidden="true">
+  <div class="journey-shell">
+    <div class="journey-media"><img id="journeyImage" src="assets/img/v16-hero.webp" alt="Percurso pela Casa da Lua"></div>
+    <div class="journey-copy">
+      <button class="icon-btn close-overlay" type="button" aria-label="Fechar">×</button>
+      <div class="eyebrow" id="journeyKicker">Chegada</div>
+      <h2 id="journeyTitle">A casa aparece entre jardim e luz.</h2>
+      <p id="journeyText">O percurso começa pela chegada e abre duas escolhas: seguir para o jardim ou ir direto às suítes.</p>
+      <div class="journey-choices" id="journeyChoices"></div>
+      <button class="text-button close-overlay" type="button">Sair do percurso</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="atlasOverlay" role="dialog" aria-modal="true" aria-label="Atlas Vivo" aria-hidden="true">
+  <div class="atlas-overlay-shell">
+    <button class="icon-btn close-overlay" type="button" aria-label="Fechar">×</button>
+    <aside class="atlas-sidebar">
+      <div class="eyebrow">Atlas Vivo</div>
+      <h2>Conheça a propriedade por quatro lentes.</h2>
+      <div class="atlas-lenses">
+        <button class="active" type="button" data-atlas-lens="lugar">Lugar</button>
+        <button type="button" data-atlas-lens="momento">Momento</button>
+        <button type="button" data-atlas-lens="companhia">Logística e companhia</button>
+        <button type="button" data-atlas-lens="programa">Programa</button>
+      </div>
+      <div class="atlas-options" id="atlasOptions"></div>
+      <div class="atlas-list" id="atlasList"></div>
+    </aside>
+    <div class="atlas-canvas" id="atlasCanvas">
+      <div class="atlas-stage">
+        <img src="assets/img/350edc.webp" alt="Planta esquemática da propriedade" loading="lazy" decoding="async">
+        <div id="atlasPins"></div>
+      </div>
+    </div>
+    <aside class="atlas-detail">
+      <div class="eyebrow">Ponto selecionado</div>
+      <h2 id="atlasDetailTitle">Casa principal</h2>
+      <div class="detail-image"><img id="atlasDetailImage" src="assets/img/v16-night.webp" alt=""></div>
+      <div class="tag-row" id="atlasDetailTags"></div>
+      <p id="atlasDetailText">Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.</p>
+      <div class="hero-actions">
+        <button class="btn page-link close-overlay" type="button" id="atlasDetailCTA" data-page-target="casa">Abrir A Casa</button>
+        <button class="ghost-btn page-link close-overlay" type="button" data-page-target="reservar">Planejar estadia</button>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="overlay" id="suiteOverlay" role="dialog" aria-modal="true" aria-label="Detalhe da suíte" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Fechar">×</button>
+    <div class="suite-modal-grid">
+      <div class="suite-modal-media"><img id="suiteModalImage" src="assets/img/bef858.webp" alt="Suíte"></div>
+      <div class="suite-modal-copy">
+        <div class="eyebrow" id="suiteModalUnits">Categoria</div>
+        <h2 id="suiteModalTitle">Suíte</h2>
+        <p id="suiteModalIntro"></p>
+        <div class="meta-grid" id="suiteModalMeta"></div>
+        <h3 class="subtitle">O que aparece nesta categoria</h3>
+        <ul class="amenity-list" id="suiteModalFeatures"></ul>
+        <div class="hero-actions"><button class="btn page-link close-overlay" type="button" data-page-target="reservar">Consultar datas</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="compareOverlay" role="dialog" aria-modal="true" aria-label="Comparar suítes" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Fechar">×</button>
+    <div class="eyebrow">Comparar suítes</div>
+    <h2 class="title">Veja as diferenças <strong>lado a lado.</strong></h2>
+    <div class="compare-scroll"><table class="compare-table" id="compareTable"></table></div>
+  </div>
+</div>
+
+<div class="overlay" id="interestOverlay" role="dialog" aria-modal="true" aria-label="Próximas datas" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Fechar">×</button>
+    <div class="eyebrow">Próximas datas</div>
+    <h2 class="title">Receba as <strong>próximas edições.</strong></h2>
+    <p class="lead">Esta é uma demonstração do formulário. Datas e condições comerciais ainda precisam ser confirmadas.</p>
+    <form class="interest-form form-grid">
+      <div class="field"><label for="interestName">Nome</label><input id="interestName" type="text" placeholder="Seu nome"></div>
+      <div class="field"><label for="interestContact">WhatsApp ou e-mail</label><input id="interestContact" type="text" placeholder="Seu contato"></div>
+      <div class="field full"><button class="btn" type="submit">Quero receber</button></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+/* =========================================================
+   Casa da Lua — motion.css
+   Estado inicial das animações (só vale se o JS de movimento carregou:
+   a classe .motion-on é posta pelo <head> e retirada se a biblioteca falhar).
+   Vocabulário: data-anim = reveal | title | image | hero · data-parallax · data-stagger
+   ========================================================= */
+.motion-on [data-anim="reveal"]{opacity:0}
+.motion-on [data-anim="title"]{visibility:hidden}
+.motion-on [data-anim="image"]{opacity:0}
+.motion-on .page:not(.active) [data-anim]{opacity:1;visibility:visible}
+[data-anim="title"] .split-line{overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+[data-anim="image"],[data-parallax]{will-change:transform}
+[data-anim="image"]{overflow:hidden}
+[data-anim="image"] img{transform-origin:50% 50%}
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+  .motion-on [data-anim]{opacity:1!important;visibility:visible!important}
+}
+.site-header{transition:box-shadow .3s}
+.site-header.is-scrolled{box-shadow:0 8px 30px rgba(18,47,41,.08)}

@@ -1,0 +1,1557 @@
+/* =========================================================
+   Casa da Lua — base.css
+   Fundação do site: tokens do Figma (RZRD., página CASA DA LUA),
+   tipografia, cabeçalho, rodapé, barra de reserva, botões, chips,
+   cartões, formulários, sobreposições e responsivo.
+   Fonte: Mortise (títulos) + Forma DJR Display (todo o resto),
+   ambas pelo kit Adobe Fonts lqm1qwg.
+   Regra: CSS de página fica em src/css/pages/<pagina>.css e usa o
+   prefixo #page-<pagina>. Não editar este arquivo a partir das páginas.
+   ========================================================= */
+
+:root{
+  /* cores do Figma */
+  --verde-escuro:#0d4237;
+  --verde:#51844e;
+  --verde-claro:#497c4b;
+  --creme:#e2dcd0;
+  --papel:#fbf7ef;
+  --branco:#fffdf8;
+  --areia:#f5ead2;
+  --texto:#133b33;
+  --texto-2:#587069;
+  --texto-3:#5f736c;
+  --texto-4:#697b74;
+  --linha:rgba(19,59,51,.18);        /* #133b332e */
+  --linha-suave:rgba(19,59,51,.10);  /* #133b331a */
+  --vidro:rgba(255,255,255,.38);     /* #ffffff61 */
+  --sombra-cartao:0 10px 40px rgba(18,47,41,.05);
+  --sombra-dock:0 24px 70px rgba(18,47,41,.14);
+
+  /* tipografia */
+  --serif:"mortise",Georgia,serif;
+  --sans:"forma-djr-display","Helvetica Neue",Arial,sans-serif;
+
+  /* medidas */
+  --header-h:76px;
+  --pad:clamp(20px,5vw,80px);                 /* margem lateral abaixo de 1920 */
+  --gutter:max(var(--pad),calc((100% - 1280px)/2)); /* container de 1280 do Figma */
+  --raio:24px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+body.no-scroll{overflow:hidden}
+button,input,select,textarea{font:inherit;letter-spacing:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+::selection{background:#b9d3b4;color:var(--verde-escuro)}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+
+/* ---------- Cabeçalho (Figma: Header 1920x76) ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:var(--header-h);
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:0 36px 0 28px;
+  background:rgba(226,220,208,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(19,59,51,.09)
+}
+.brand{display:block;width:129px;height:46px;margin-left:7px}
+.brand img{width:100%;height:100%;object-fit:contain}
+.main-nav{display:flex;align-items:center;justify-content:center;gap:4px}
+.nav-link{border:0;background:transparent;color:var(--verde);padding:10px;border-radius:999px;font-size:13px;line-height:20px;letter-spacing:.02em;transition:background .2s,color .2s}
+.nav-link:hover{background:rgba(81,132,78,.12)}
+.nav-link.active{background:rgba(81,132,78,.7);color:var(--creme)}
+.header-actions{display:flex;align-items:center;gap:8px}
+
+/* ---------- Botões (Figma: pílula 46px) ---------- */
+.btn,.ghost-btn,.text-button,.icon-btn{border:0;cursor:pointer;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--verde);color:var(--branco);border-radius:999px;padding:12px 20px 13px;font-weight:700;font-size:13px;line-height:20px;letter-spacing:.02em}
+.btn:hover{background:var(--verde-escuro)}
+.btn.dark{background:var(--verde-escuro)}
+.btn.dark:hover{background:var(--verde)}
+.btn.light{background:var(--creme);color:var(--verde-escuro)}
+.btn.light:hover{background:var(--branco)}
+.ghost-btn{display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid currentColor;border-radius:999px;padding:11px 17px 12px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--verde)}
+.ghost-btn:hover{background:rgba(81,132,78,.1)}
+.text-button{background:transparent;padding:0;font-size:13px;line-height:20px;letter-spacing:.02em;text-decoration:underline;text-underline-offset:4px;color:var(--texto)}
+.text-button:hover{color:var(--verde)}
+.icon-btn{width:42px;height:42px;border-radius:50%;background:rgba(19,59,51,.08);display:grid;place-items:center;font-size:20px;line-height:1}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.mobile-menu-btn{display:none}
+
+/* ---------- Estrutura de página e seções ---------- */
+main{padding-top:var(--header-h)}
+.page{display:none}
+.page.active{display:block;animation:pageIn .5s ease backwards}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.section{position:relative;padding:110px var(--gutter);background:var(--creme);isolation:isolate}
+.section.compact{padding-top:72px;padding-bottom:72px}
+.section.dark{background:var(--verde-escuro);color:var(--creme)}
+.section.cream{background:var(--creme)}
+.section.paper{background:var(--papel)}
+.section.white{background:var(--branco)}
+.section.sand{background:var(--areia)}
+/* textura/foto de fundo da seção: <div class="section-bg" style="--bg:url(...);--op:.2"> */
+.section-bg{position:absolute;inset:0;z-index:-1;background:var(--bg) center/cover no-repeat;opacity:var(--op,1);pointer-events:none}
+.max{max-width:1280px;margin:0 auto;position:relative}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:48px}
+.section-head>div:first-child{max-width:760px}
+
+/* rótulo (Figma: Forma 11/700, espaçamento 2.42, caixa alta, verde) */
+.eyebrow{font-size:11px;line-height:17px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--verde);margin-bottom:16px}
+.kicker{font-size:13px;line-height:17px;letter-spacing:.186em;text-transform:uppercase;color:var(--verde)}
+.dark .eyebrow,.dark .kicker{color:var(--verde)}
+
+/* títulos (Mortise). <strong> dentro do título = trecho em negrito 700 */
+.display{font-family:var(--serif);font-weight:700;font-size:clamp(44px,4.17vw,80px);line-height:1.24;letter-spacing:0;color:var(--branco)}
+.title{font-family:var(--serif);font-weight:400;font-size:clamp(38px,3.54vw,68px);line-height:1;letter-spacing:0;color:var(--verde-escuro)}
+.title strong,.display strong,.subtitle strong{font-weight:700;line-height:0}
+.dark .title{color:var(--creme)}
+.subtitle{font-family:var(--serif);font-weight:400;font-size:clamp(26px,1.77vw,34px);line-height:1.06;letter-spacing:0;color:var(--verde-escuro)}
+.dark .subtitle{color:var(--creme)}
+.lead{font-size:clamp(17px,1.4vw,27px);line-height:1.33;letter-spacing:.02em;color:var(--texto-3)}
+.dark .lead{color:rgba(245,234,210,.7)}
+.small{font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto-4)}
+.dark .small{color:rgba(245,234,210,.62)}
+.rule{height:1px;background:var(--linha);margin:34px 0}
+
+/* grades */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:62px;align-items:center}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ---------- Cartões, chips e etiquetas ---------- */
+.card{background:var(--branco);border:1px solid var(--linha-suave);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra-cartao)}
+.card h3{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.1;color:var(--verde);margin:0 0 12px}
+.card p{color:var(--texto-2)}
+.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:var(--creme)}
+.dark .card p{color:rgba(245,234,210,.7)}
+.chip-row,.tag-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip,.tag-row>span{display:inline-flex;align-items:center;min-height:32px;padding:6px 11px 7px;border:1px solid var(--linha);border-radius:999px;background:var(--vidro);font-size:11px;line-height:17px;letter-spacing:.03em;color:var(--texto)}
+.dark .chip{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:var(--creme)}
+.chip-button{cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip-button:hover,.chip-button.active{background:var(--verde);color:var(--branco);border-color:rgba(255,255,255,.38)}
+.suite-filter{border:1px solid var(--linha);border-radius:999px;padding:8px 14px;background:var(--vidro);color:var(--verde-escuro);font-size:13px;line-height:20px;cursor:pointer;transition:background .2s,color .2s}
+.suite-filter:hover,.suite-filter.active{background:var(--verde);color:var(--branco);border-color:var(--verde)}
+.media-note{display:none}
+
+/* ---------- Formulários ---------- */
+.form-card{background:var(--branco);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:var(--sombra-cartao)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:10px;line-height:15px;text-transform:uppercase;letter-spacing:.12em;color:var(--texto-4)}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--linha);background:var(--branco);border-radius:14px;padding:13px 14px;color:var(--texto);font-size:14px}
+.field input::placeholder,.field textarea::placeholder{color:#8a9893}
+
+/* ---------- Barra de reserva (Figma: pílula flutuante) ---------- */
+.booking-dock{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:41;
+  display:flex;align-items:center;gap:14px;min-width:min(864px,calc(100vw - 40px));padding:8px 8px 8px 18px;
+  background:rgba(226,220,208,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(19,59,51,.15);box-shadow:var(--sombra-dock);border-radius:999px
+}
+.booking-dock.hidden{display:none}
+.dock-copy{display:flex;flex-direction:column;min-width:180px;line-height:1.2}
+.dock-copy strong{font-size:13px;line-height:15px;color:var(--verde-escuro)}
+.dock-copy span{font-size:13px;line-height:24px;color:var(--texto-4)}
+.dock-fields{display:flex;align-items:center;gap:6px;flex:1}
+.dock-field{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:9px 12px 10px;font-size:13px;line-height:20px;white-space:nowrap;color:var(--texto)}
+.booking-dock .btn{padding:11px 18px 12px}
+
+/* ---------- Sobreposições (base; conteúdo vem de partials/overlays.html) ---------- */
+.overlay{position:fixed;inset:0;z-index:90;background:rgba(6,28,26,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay.open{display:flex}
+.modal{width:min(1100px,100%);max-height:min(88vh,900px);overflow:auto;background:var(--branco);border-radius:28px;box-shadow:0 40px 120px rgba(0,0,0,.35);position:relative}
+.modal-close{position:sticky;top:14px;float:right;margin:14px;z-index:4}
+.toast{position:fixed;left:50%;bottom:95px;transform:translate(-50%,20px);background:var(--verde-escuro);color:var(--branco);padding:12px 16px;border-radius:999px;z-index:150;opacity:0;pointer-events:none;transition:.25s;font-size:12px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Rodapé (Figma: Footer 1920x371) ---------- */
+.site-footer{background:var(--verde-escuro);color:var(--creme);padding:72px var(--gutter) 120px}
+.footer-grid{display:flex;justify-content:flex-start;align-items:flex-start;width:min(994px,100%);margin:0 0 0 17%}
+.footer-brand{flex:none;width:403px}
+.footer-brand img{width:290px;height:103px;object-fit:contain;margin-bottom:17px}
+.footer-brand p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(226,220,208,.82);width:470px;max-width:calc(100vw - 2*var(--pad))}
+.footer-col{display:flex;flex-direction:column;flex:none}
+.footer-col:nth-child(2){width:113px}
+.footer-col:nth-child(3){width:130px}
+.footer-col:nth-child(2){margin-left:182px}
+.footer-col:nth-child(3){margin-left:27px}
+.footer-col h3{font-size:11px;line-height:17px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--verde);margin:0}
+.footer-col h3+button{padding-top:22px}
+.footer-col:nth-child(2) h3+button{line-height:21px}
+.footer-col:nth-child(3) h3{color:var(--verde-claro)}
+.footer-col button,.footer-col a{display:block;background:transparent;border:0;color:var(--creme);padding:6px 0;white-space:nowrap;text-align:left;text-decoration:none;font-size:16px;line-height:24px;letter-spacing:.02em}
+.footer-col button:hover,.footer-col a:hover{color:#fff}
+.footer-bottom{display:none}
+
+/* ---------- Responsivo (padrão do HTML de arquitetura: 1180 e 760) ---------- */
+@media(max-width:1180px){
+  .main-nav{display:none}
+  .mobile-menu-btn{display:grid}
+  .site-header{grid-template-columns:1fr auto}
+  .header-actions .ghost-btn{display:none}
+  .split{grid-template-columns:1fr;gap:40px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .footer-grid{flex-wrap:wrap;gap:40px 60px;justify-content:flex-start;margin:0;width:100%}
+  .footer-brand{width:100%}
+  .footer-col:nth-child(2),.footer-col:nth-child(3){margin-left:0}
+}
+@media(max-width:760px){
+  :root{--header-h:66px}
+  .site-header{padding:0 14px;gap:10px}
+  .brand{margin-left:0;width:112px;height:40px}
+  .section{padding:74px var(--pad)}
+  .section.compact{padding-top:56px;padding-bottom:56px}
+  .section-head{display:block;margin-bottom:34px}
+  .section-head .small{margin-top:16px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-card{padding:26px}
+  .booking-dock{left:12px;right:12px;transform:none;bottom:10px;min-width:0;display:grid;grid-template-columns:1fr auto;padding:8px 8px 8px 14px}
+  .dock-copy{min-width:0}
+  .dock-fields{display:none}
+  .footer-grid{flex-direction:column;gap:32px}
+  .footer-brand img{width:220px;height:auto}
+  .overlay{padding:12px}
+  .toast{bottom:80px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+
+/* =========================================================
+   Casa da Lua — Home (#page-home)
+   Visual do Figma (Home 1920) sobre a arquitetura do V16.
+   Medidas citadas nos comentários são as do Figma em 1920 px.
+   ========================================================= */
+#page-home{
+  --g:max(var(--pad),calc((100vw - 1280px)/2));   /* margem lateral do container de 1280 (vale também para filhos) */
+}
+#page-home [hidden]{display:none!important}
+#page-home .br-d{display:inline}
+#page-home .section-head>div:first-child{max-width:none}
+#page-home .section-head .eyebrow{margin-bottom:16px}
+
+/* ---------- 1 · Hero (1920x1124, imagem de fundo + película 30%) ---------- */
+#page-home .hero{
+  position:relative;isolation:isolate;overflow:hidden;color:#fff;background:var(--creme);
+  min-height:clamp(620px,58.5vw,1124px);padding:72px var(--pad);
+  display:flex;align-items:center;justify-content:center
+}
+#page-home .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+#page-home .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center}
+#page-home .hero-media::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.3)}
+#page-home .hero-copy{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:1342px}
+#page-home .hero-badge{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 12px 9px;margin-bottom:17px;
+  background:var(--creme);border:1px solid var(--linha);border-radius:999px;
+  font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-escuro)
+}
+#page-home .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
+#page-home .hero .display{color:#fff;margin:0 0 23px}
+#page-home .hero .lead{color:#fff;margin:0 0 37px}
+#page-home .hero .hero-actions{justify-content:center}
+#page-home .hero .btn,#page-home .hero .ghost-btn{font-weight:700}
+#page-home .hero .btn{border:1px solid rgba(255,255,255,.38)}
+#page-home .hero .btn:hover{background:var(--verde-escuro)}
+#page-home .hero .ghost-btn{color:#fffdf8;border-color:#fbf7ef}
+#page-home .hero .ghost-btn:hover{background:rgba(255,255,255,.14)}
+
+/* ---------- 2 · A casa muda com o dia ---------- */
+#page-home #home-viver{padding-top:172px;padding-bottom:148px}
+#page-home #home-viver .section-head{margin-bottom:0}
+#page-home .time-stage{display:grid;grid-template-columns:180px minmax(0,1fr);gap:36px;align-items:center;min-height:620px}
+#page-home .time-tabs{display:flex;flex-direction:column;gap:8px}
+#page-home .time-tab{
+  display:flex;flex-direction:column;align-items:flex-start;gap:6.65px;text-align:left;
+  background:transparent;border:0;border-left:2px solid rgba(245,234,210,.18);
+  padding:14.65px 16px 20.8px 16px;color:rgba(245,234,210,.56);transition:color .2s,border-color .2s
+}
+#page-home .time-tab strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:40px;letter-spacing:0;color:rgba(245,234,210,.56);transition:color .2s}
+#page-home .time-tab span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,234,210,.56);transition:color .2s}
+#page-home .time-tab:hover{border-left-color:rgba(245,234,210,.45)}
+#page-home .time-tab:hover strong,#page-home .time-tab:hover span{color:var(--creme)}
+#page-home .time-tab.active{border-left-color:var(--verde)}
+#page-home .time-tab.active strong{color:var(--creme)}
+#page-home .time-tab.active span{color:#fff}
+#page-home .time-scene{position:relative;height:558px;margin-top:62px;border-radius:24px;overflow:hidden;background:#061c1a}
+#page-home .time-scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-home .time-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,28,26,0) 45%,rgba(6,28,26,.78) 100%)}
+#page-home .time-scene-copy{position:absolute;left:34px;right:34px;bottom:30px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+#page-home .time-scene-copy h3{font-family:var(--serif);font-weight:400;font-size:48px;line-height:48px;letter-spacing:0;color:var(--creme)}
+#page-home .time-scene-copy p{max-width:300px;margin-right:13px;font-size:16px;line-height:23px;text-align:right;color:var(--creme);margin-bottom:-3px}
+
+/* ---------- 3 · Perfis + Atlas em miniatura ---------- */
+#page-home #home-explorar{padding-bottom:110px}
+#page-home .explore-grid{display:grid;grid-template-columns:452px minmax(0,1fr);gap:24px;min-height:650px}
+#page-home .profile-panel{display:flex;flex-direction:column;background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:34px}
+#page-home .profile-panel>.eyebrow{margin:0 0 17px}
+#page-home .profile-compact-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+#page-home .profile-card{
+  height:104px;display:grid;place-items:center;text-align:center;padding:0 16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:18px;color:var(--creme);
+  transition:background .2s,border-color .2s
+}
+#page-home .profile-card strong{font-family:var(--serif);font-weight:700;font-size:22px;line-height:23px;letter-spacing:0}
+#page-home .profile-card:hover{background:rgba(255,255,255,.1)}
+#page-home .profile-card.active{background:var(--verde);border-color:rgba(255,255,255,.14)}
+#page-home .profile-result{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding-top:64px;margin-top:1px}
+#page-home .profile-result .kicker{font-size:11px;line-height:17px;font-weight:700;letter-spacing:.22em;color:var(--creme)}
+#page-home .profile-result h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-home .profile-result p{font-size:16px;line-height:24px;color:rgba(245,234,210,.7);padding:5.5px 0 7.3px}
+#page-home .profile-result .btn{color:var(--creme);background:#072921;border:1px solid rgba(255,255,255,.14)}
+#page-home .profile-result .btn:hover{background:var(--verde)}
+
+#page-home .atlas-home-card{position:relative;overflow:hidden;border-radius:28px;min-height:650px;background:#0d4237}
+#page-home .atlas-home-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-home .atlas-pins{display:none;position:absolute;inset:0}
+#page-home .atlas-home-card.show-pins .atlas-pins{display:block}
+#page-home .map-pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;background:var(--creme);color:var(--verde-escuro);border:2px solid var(--verde);transition:background .2s,color .2s}
+#page-home .map-pin:hover,#page-home .map-pin.active{background:var(--verde);color:var(--branco)}
+#page-home .atlas-home-copy{
+  position:absolute;left:22px;right:22px;bottom:23px;display:flex;flex-direction:column;align-items:flex-start;gap:15px;
+  padding:23px 24px 24px;background:rgba(13,66,55,.7);border-radius:20px;color:var(--creme);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
+}
+#page-home .atlas-home-copy .eyebrow{margin:0}
+#page-home .atlas-home-copy h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-home .atlas-home-copy p{font-size:18px;line-height:24px;color:rgba(245,234,210,.72)}
+#page-home .atlas-home-copy .hero-actions{padding-top:21px}
+#page-home .atlas-home-copy .btn{color:var(--creme)}
+#page-home .atlas-home-copy .btn:hover{background:var(--verde-escuro)}
+#page-home .atlas-home-copy .ghost-btn{color:var(--creme);border-color:var(--creme)}
+#page-home .atlas-home-copy .ghost-btn:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- 4 · Escolha pelo estilo da viagem ---------- */
+#page-home .photo .eyebrow{color:var(--creme)}
+#page-home .photo .title{color:var(--creme)}
+#page-home .photo .section-head{align-items:flex-end}
+#page-home .photo .section-head .text-button{color:var(--creme);white-space:nowrap}
+#page-home .photo .section-head .text-button:hover{color:#fff}
+#page-home .suite-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+#page-home .suite-picks .card{display:flex;flex-direction:column;gap:19px;padding:25px 26px 27.66px;border-radius:24px}
+#page-home .suite-picks .card .eyebrow{margin:0;color:var(--verde-escuro)}
+#page-home .suite-picks .card h3{margin:0;padding-top:5px;font-size:30px;line-height:24px;color:var(--verde)}
+#page-home .suite-picks .card p{margin:0;padding-bottom:.69px;font-size:16px;line-height:24px;color:var(--texto-2)}
+#page-home .suite-picks .card .tag-row{padding-top:7px}
+#page-home .suite-picks .card .text-button{align-self:flex-start;padding:9px 0 1px;margin-top:0}
+
+/* ---------- 5 · Programas e encontros ---------- */
+#page-home .dual-feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+#page-home .feature-panel{display:flex;flex-direction:column;min-height:720px;background:var(--branco);border:1px solid var(--linha-suave);border-radius:28px;overflow:hidden}
+#page-home .feature-media{height:310px;flex:none;overflow:hidden;background:var(--areia)}
+#page-home .feature-media img{width:100%;height:100%;object-fit:cover}
+#page-home .feature-body{flex:1;display:flex;flex-direction:column;align-items:flex-start;padding:30px 30px 86px}
+#page-home .feature-body .eyebrow{margin:0 0 16px}
+#page-home .feature-body h3{font-family:var(--serif);font-weight:700;font-size:34px;line-height:36px;letter-spacing:0;color:var(--verde-escuro);padding:8px 0 14px}
+#page-home .experience-panel .feature-body h3{font-weight:400}
+#page-home .experience-panel .feature-body h3 strong{font-weight:700}
+#page-home .events-panel .feature-body h3{max-width:470px}
+#page-home .feature-body>p{font-size:16px;line-height:24px;color:var(--texto-3);max-width:480px}
+#page-home .experience-panel .chip-row{padding-top:4px;margin-bottom:20px}
+#page-home .experience-panel .kicker{margin-bottom:10px;line-height:17px}
+#page-home .events-panel .feature-body>p{margin-bottom:16px}
+#page-home .experience-panel #homeExpMoments,#page-home .experience-panel #homeExpTitle{margin-top:12px}
+#page-home .feature-actions{margin-top:auto;padding-top:20px;display:flex;align-items:center;gap:10px}
+#page-home .feature-actions .btn:hover{background:var(--verde)}
+#page-home .feature-actions .text-button{padding:12px 0 13px}
+
+/* ---------- 6 · A Casa da Lua nasceu como casa ---------- */
+#page-home #home-historia{padding:119px 0 142px;background:var(--areia)}
+#page-home .story-grid{display:grid;grid-template-columns:calc(50% + 6px) minmax(0,1fr);align-items:center}
+#page-home .story-media{height:745px;overflow:hidden;border-radius:0 30px 30px 0;background:var(--areia)}
+#page-home .story-media img{width:100%;height:100%;object-fit:cover}
+#page-home .story-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:0 var(--g) 0 55px}
+#page-home .story-copy .eyebrow{margin:0}
+#page-home .story-copy .title{margin:0}
+#page-home .story-text{font-size:16px;line-height:24px;color:#264f47;padding-top:8px}
+#page-home .story-mini-list{width:100%;display:flex;flex-direction:column}
+#page-home .story-mini-list span{display:block;border-top:1px solid var(--linha);padding:8px 0 7px;font-size:13px;font-weight:500;line-height:24px;color:#526b64}
+#page-home .story-mini-list span:last-child{padding-bottom:16px}
+
+/* ---------- 7 · A volta à casa faz parte da viagem ---------- */
+#page-home #home-voltar{padding:110px 0 110px var(--g)}
+#page-home .return-grid{display:grid;grid-template-columns:639px minmax(0,1fr);gap:63px;align-items:center}
+#page-home .return-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+#page-home .return-copy .eyebrow{margin:0}
+#page-home .return-copy .title{margin:0}
+#page-home .return-copy .lead{font-size:20px;line-height:27px;letter-spacing:.02em;color:rgba(245,234,210,.78);padding-top:7px}
+#page-home .return-copy .hero-actions{padding-top:20px}
+#page-home .return-copy .btn{color:var(--creme)}
+#page-home .return-copy .btn:hover{background:var(--verde-escuro)}
+#page-home .return-media{height:430px;overflow:hidden;border-radius:30px 0 0 30px;background:#0d4237}
+#page-home .return-media img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- 8 · Informações práticas ---------- */
+#page-home .home-practical{padding-top:72px;padding-bottom:72px}
+#page-home .practical-grid{
+  display:grid;grid-template-columns:205fr 229fr 310fr 261fr;gap:12px;
+  width:calc(1041/1280*100%);margin-left:calc(178/1280*100%)
+}
+#page-home .practical-item{display:flex;flex-direction:column;gap:3.5px;padding:17px 0 2.3px}
+#page-home .practical-item strong{font-family:var(--serif);font-weight:700;font-size:34px;line-height:36px;letter-spacing:0;color:var(--verde-escuro)}
+#page-home .practical-item span{font-size:16px;line-height:24px;color:var(--verde)}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-home #home-viver{padding-top:110px;padding-bottom:110px}
+  #page-home .time-stage{grid-template-columns:1fr;gap:28px;min-height:0}
+  #page-home .time-tabs{flex-direction:row;overflow-x:auto;gap:12px;padding-bottom:4px}
+  #page-home .time-tab{flex:none;min-width:170px}
+  #page-home .time-scene{margin-top:0;height:min(558px,62vw)}
+  #page-home .explore-grid{grid-template-columns:1fr;min-height:0}
+  #page-home .profile-panel{padding:30px}
+  #page-home .atlas-home-card{min-height:560px}
+  #page-home .practical-grid{width:100%;margin-left:0}
+  #page-home #home-historia{padding:0 0 100px}
+  #page-home .story-grid{grid-template-columns:1fr;gap:48px}
+  #page-home .story-media{height:min(620px,70vw);border-radius:0 0 30px 30px}
+  #page-home .story-copy{padding:0 var(--pad)}
+  #page-home #home-voltar{padding:100px 0 0}
+  #page-home .return-grid{grid-template-columns:1fr;gap:48px}
+  #page-home .return-copy{padding:0 var(--pad)}
+  #page-home .return-media{height:min(520px,62vw);border-radius:30px 30px 0 0}
+}
+@media(max-width:900px){
+  #page-home .br-d{display:none}
+  #page-home .suite-picks{grid-template-columns:1fr}
+  #page-home .dual-feature-grid{grid-template-columns:1fr}
+  #page-home .feature-panel{min-height:0}
+  #page-home .feature-body{padding-bottom:34px}
+  #page-home .practical-grid{grid-template-columns:1fr 1fr;gap:20px 24px}
+}
+@media(max-width:760px){
+  #page-home .hero{min-height:calc(100svh - var(--header-h));padding:56px var(--pad) 120px}
+  #page-home .hero .lead{font-size:18px;margin-bottom:30px}
+  #page-home .hero .hero-actions{gap:8px}
+  #page-home #home-viver,#page-home #home-explorar{padding-top:74px;padding-bottom:74px}
+  #page-home .title{font-size:clamp(32px,9vw,42px)}
+  #page-home .time-scene{height:420px}
+  #page-home .time-scene-copy{left:22px;right:22px;bottom:22px;flex-direction:column;align-items:flex-start;gap:10px}
+  #page-home .time-scene-copy h3{font-size:36px;line-height:38px}
+  #page-home .time-scene-copy p{text-align:left;max-width:none;margin:0}
+  #page-home .profile-panel{padding:24px}
+  #page-home .profile-result{padding-top:36px}
+  #page-home .profile-result h3,#page-home .atlas-home-copy h3,#page-home .feature-body h3{font-size:28px;line-height:32px}
+  #page-home .profile-card{height:88px}
+  #page-home .profile-card strong{font-size:19px;line-height:21px}
+  #page-home .atlas-home-card{min-height:520px}
+  #page-home .atlas-home-copy{left:12px;right:12px;bottom:12px;padding:20px}
+  #page-home .atlas-home-copy p{font-size:16px}
+  #page-home .atlas-home-copy .hero-actions{padding-top:8px}
+  #page-home .photo .section-head{display:block}
+  #page-home .photo .section-head .text-button{margin-top:20px}
+  #page-home .feature-body{padding:24px 22px 28px}
+  #page-home .feature-media{height:240px}
+  #page-home #home-historia{padding-bottom:74px}
+  #page-home .story-copy{padding:0 var(--pad)}
+  #page-home #home-voltar{padding-top:74px}
+  #page-home .return-copy .lead{font-size:17px;line-height:25px}
+  #page-home .home-practical{padding-top:56px;padding-bottom:110px}
+  #page-home .practical-item strong{font-size:28px;line-height:32px}
+}
+
+/* texturas de folhas/sombras: no Figma o preenchimento de imagem é MULTIPLY */
+#page-home .section-bg.mul{mix-blend-mode:multiply}
+
+/* ajustes de medida (conferidos contra o Figma) */
+#page-home .title strong{line-height:0}
+#page-home .time-tab strong{line-height:41px}
+#page-home .time-tab span{line-height:12px;padding-bottom:1px}
+#page-home .photo .section-bg{background-position:center top}      /* Figma: 8dd68a mostra os 52% de cima */
+#page-home .story-media img{object-position:17.5% 88.4%}            /* Figma: recorte de b0fa2f */
+#page-home .atlas-home-copy .hero-actions{padding-bottom:3px}
+@media(min-width:901px){#page-home .story-copy .title strong{white-space:nowrap}}
+
+
+/* no Figma a seção seguinte cobre 21 px do fim da seção de suítes (643 px visíveis) */
+#page-home #home-ficar{padding-bottom:89px}
+@media(min-width:1181px){#page-home .story-copy{padding-top:22px}}
+@media(max-width:900px){#page-home #home-ficar{padding-bottom:74px}}
+
+/* Figma: recorte de b0fa2f (visível x 4,9–76,7 % · y 15,0–98,0 % da foto) */
+#page-home .story-media{position:relative}
+#page-home .story-media img{position:absolute;width:139.27%;height:120.4%;max-width:none;left:-6.88%;top:-18.06%;object-fit:cover;object-position:center}
+#page-home .feature-actions .text-button{text-decoration:none}
+#page-home .feature-actions .text-button:hover{color:var(--verde);text-decoration:underline;text-underline-offset:4px}
+@media(max-width:760px){
+  #page-home .time-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;overflow:visible}
+  #page-home .time-tab{min-width:0;padding:10px 8px 14px 12px}
+  #page-home .time-tab strong{font-size:22px;line-height:30px}
+  #page-home .time-tab span{font-size:10px;letter-spacing:.12em;line-height:13px}
+}
+
+#page-home .return-copy .lead{max-width:555px}   /* caixa de texto de 555 px no Figma */
+
+
+/* =========================================================
+   Página A Casa  (#page-casa)
+   Figma: "A Casa" 1920 px. Fontes: Mortise (títulos) + Forma DJR Display.
+   ========================================================= */
+
+/* O 400 do kit Adobe (Forma DJR Display) sai ~6,5% mais estreito que o Regular do Figma; o peso 500 do kit tem as mesmas larguras do dump (conferido em botoes e rodape). */
+
+/* fundos de seção: <img> com recorte do Figma (object-view-box) */
+#page-casa .casa-bg{background:none}
+#page-casa .casa-multiply{mix-blend-mode:multiply}
+#page-casa .casa-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- 1. Hero ---------- */
+#page-casa .casa-hero{position:relative;isolation:isolate;overflow:hidden;background:#f5ead2;color:var(--creme);
+  min-height:clamp(640px,58.54vw,1124px);display:flex;flex-direction:column;justify-content:center;padding:26px 6vw 0}
+#page-casa .casa-hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden}
+#page-casa .casa-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-casa .casa-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:multiply;opacity:.53;background:linear-gradient(270deg,rgba(102,102,102,0) 45.55%,#000 79.33%)}
+#page-casa .casa-hero-copy{max-width:760px;display:flex;flex-direction:column;align-items:flex-start}
+#page-casa .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;
+  margin-bottom:25px;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)}
+#page-casa .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
+#page-casa .casa-hero .title{color:var(--creme);max-width:653px;font-size:clamp(40px,3.54vw,68px)}
+#page-casa .hero-lead{margin-top:24px;max-width:552px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
+#page-casa .casa-hero .hero-actions{margin-top:36px}
+#page-casa .casa-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
+#page-casa .casa-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- 2. Como tudo começou ---------- */
+#page-casa .casa-origem{padding-top:86px;padding-bottom:61px;min-height:560px}
+#page-casa .origin-editorial{display:grid;grid-template-columns:minmax(0,666fr) minmax(0,544fr);column-gap:70px;align-items:start}
+#page-casa .origem-copy .title{max-width:653px}
+#page-casa .origem-copy .lead{margin-top:24px;color:var(--verde-escuro);font-size:clamp(17px,1.302vw,25px);line-height:1.2}
+#page-casa .origem-texto{margin-top:16px;max-width:653px;font-size:16px;line-height:24px;color:#5a7069}
+#page-casa .year-stack{display:flex;flex-direction:column;border-left:1px solid var(--linha)}
+#page-casa .year-stack article{position:relative;padding:0 0 30px 32px;display:flex;flex-direction:column;gap:4.2px}
+#page-casa .year-stack article::before{content:"";position:absolute;left:-6px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--verde)}
+#page-casa .year-stack time{font-family:var(--serif);font-weight:400;letter-spacing:0;font-size:36px;line-height:56px;color:var(--texto)}
+#page-casa .year-stack article:first-child time{font-size:34px;line-height:36px}
+#page-casa .year-stack h3{margin:0;padding-top:.85px;font-family:var(--sans);font-weight:700;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto)}
+#page-casa .year-stack p{font-size:16px;line-height:24px;color:#60736d}
+
+/* ---------- 3. Atlas Vivo ---------- */
+#page-casa .casa-atlas::after,#page-casa .casa-historias::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.2);pointer-events:none}
+#page-casa .casa-atlas .section-head>div:first-child{max-width:none}
+#page-casa .casa-atlas .eyebrow{color:var(--creme)}
+#page-casa .casa-atlas .title{white-space:nowrap}
+#page-casa .atlas-teaser{display:grid;grid-template-columns:minmax(0,755fr) minmax(0,525fr);height:650px;background:#133b33;border-radius:30px;overflow:hidden;color:var(--creme)}
+#page-casa .atlas-map{position:relative;overflow:hidden}
+#page-casa .atlas-map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-casa .map-pin{position:absolute;z-index:3;width:34px;height:34px;padding:1px 6px;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;
+  display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:12px;line-height:19px;letter-spacing:0;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s,transform .2s}
+#page-casa .map-pin:hover{background:var(--areia);color:var(--verde)}
+#page-casa .map-pin.active{background:var(--areia);color:var(--verde);transform:scale(1.17)}
+#page-casa .atlas-copy{padding:48px 48px 28px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+#page-casa .atlas-copy .eyebrow{color:var(--verde);margin-bottom:16px}
+#page-casa .atlas-copy .chip{min-height:37px;padding:7px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);color:var(--creme)}
+#page-casa .atlas-place{padding-top:24.45px}
+#page-casa .atlas-place h3{font-family:var(--serif);font-weight:700;font-size:38px;line-height:47px;letter-spacing:0;color:var(--creme);margin:0 0 12px}
+#page-casa .atlas-place p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72);margin:0}
+#page-casa .atlas-actions{margin-top:28px}
+#page-casa .atlas-actions .btn.light{background:var(--branco);color:var(--verde-escuro)}
+#page-casa .atlas-actions .btn.light:hover{background:var(--creme)}
+
+/* ---------- 4. O que a torna única ---------- */
+#page-casa .casa-unica .section-head>div:first-child{max-width:900px}
+#page-casa .house-layers .card{height:250px;padding:66px 26px 0;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto-2)}
+#page-casa .house-layers .card h3{font-size:30px;line-height:32px;letter-spacing:0;margin:0 0 12px;color:var(--verde)}
+#page-casa .house-layers .card p{font-size:16px;line-height:24px;color:#587069}
+
+/* ---------- 5. Histórias da casa ---------- */
+#page-casa .casa-historias .eyebrow{color:#fff}
+#page-casa .casa-historias .title{color:#fff}
+/* Figma: caixa de 703 px; o negrito da Mortise no kit sai ~1% mais largo (709 px), entao a caixa ganha folga */
+#page-casa .casa-historias .section-head>div:first-child{max-width:735px}
+#page-casa .story-grid{display:grid;grid-template-columns:minmax(0,692fr) minmax(0,566fr);gap:22px;align-items:stretch;height:620px}
+#page-casa .story-main{position:relative;overflow:hidden;border-radius:24px;min-height:620px}
+#page-casa .story-main>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-casa .story-main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,27,25,0) 48%,rgba(0,0,0,.78) 100%)}
+#page-casa .story-main-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:31px;color:#fff}
+#page-casa .story-main-copy .kicker{font-size:11px;line-height:17px;letter-spacing:.22em;font-weight:700;color:#fff}
+#page-casa .story-main-copy h3{white-space:pre-line;font-family:var(--serif);font-weight:400;font-size:clamp(34px,2.71vw,52px);line-height:1;letter-spacing:0;color:#fff;max-width:624px}
+#page-casa .story-main-copy p{margin-top:16px;max-width:520px;font-size:16px;line-height:24px;color:rgba(255,255,255,.75)}
+#page-casa .story-list{display:flex;flex-direction:column;justify-content:flex-start;gap:13px}
+#page-casa .story-card{display:flex;align-items:center;padding:26px 26px 26px 28px;background:var(--branco);border:1px solid var(--linha-suave);border-radius:20px}
+#page-casa .story-card h4{font-family:var(--serif);font-weight:400;font-size:27px;line-height:42px;letter-spacing:0;color:var(--texto)}
+#page-casa .story-card p{margin-top:6.3px;font-size:16px;line-height:24px;color:#60746e}
+
+/* ---------- 6. O jeito de receber ---------- */
+#page-casa .casa-equipe .split{grid-template-columns:minmax(0,639fr) minmax(0,579fr)}
+#page-casa .casa-equipe .title{color:var(--texto);letter-spacing:-.038em}
+#page-casa .casa-equipe .lead{margin-top:24px;color:#264f47;font-size:clamp(17px,1.302vw,25px);line-height:1.2}
+#page-casa .casa-equipe .hero-actions{margin-top:36px}
+#page-casa .media-frame{position:relative;overflow:hidden;border-radius:24px;background:#d8ccb7;height:680px}
+#page-casa .media-frame>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-casa .casa-hero{min-height:min(760px,calc(100svh - var(--header-h)));padding-top:60px;padding-bottom:60px}
+  #page-casa .casa-hero::after{background:linear-gradient(90deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.16) 60%,rgba(0,0,0,.05) 100%)}
+  #page-casa .origin-editorial{grid-template-columns:1fr;row-gap:44px}
+  #page-casa .casa-origem{padding-top:80px;padding-bottom:70px}
+  #page-casa .atlas-teaser{grid-template-columns:1fr;height:auto}
+  #page-casa .atlas-map{aspect-ratio:755/650}
+  #page-casa .atlas-copy{gap:36px;padding:36px 36px 40px}
+  #page-casa .casa-atlas .title{white-space:normal}
+  #page-casa .casa-equipe .split{grid-template-columns:1fr}
+  #page-casa .media-frame{height:min(680px,110vw)}
+}
+@media(max-width:900px){
+  #page-casa .house-layers{grid-template-columns:1fr}
+  #page-casa .house-layers .card{height:auto;padding:30px 26px}
+  #page-casa .story-grid{grid-template-columns:1fr;height:auto;gap:16px}
+  #page-casa .story-main{min-height:560px}
+}
+@media(max-width:760px){
+  #page-casa .casa-hero{min-height:calc(100svh - var(--header-h));padding:70px 20px 56px;justify-content:flex-end}
+  #page-casa .casa-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.62) 100%)}
+  #page-casa .casa-hero .title{max-width:none}
+  #page-casa .casa-origem{padding-top:64px;padding-bottom:64px}
+  #page-casa .year-stack time,#page-casa .year-stack article:first-child time{font-size:32px;line-height:44px}
+  #page-casa .atlas-copy{padding:28px 22px 32px}
+  #page-casa .atlas-place h3{font-size:30px;line-height:38px}
+  #page-casa .house-layers .card{height:auto;min-height:0;padding:30px 24px}
+  #page-casa .story-grid{grid-template-columns:1fr;height:auto;gap:16px}
+  #page-casa .story-main{min-height:520px}
+  #page-casa .story-main-copy{left:22px;right:22px;bottom:22px;padding-bottom:0}
+  #page-casa .story-card{padding:22px}
+  #page-casa .story-card h4{font-size:24px;line-height:34px}
+  #page-casa .casa-equipe .title{letter-spacing:-.02em}
+  #page-casa .media-frame{height:420px}
+  #page-casa .map-pin{width:30px;height:30px;padding:0;font-size:11px}
+}
+
+
+/* =========================================================
+   Página Suítes — Figma "Suítes" 1920 px
+   Tudo prefixado por #page-suites
+   ========================================================= */
+
+/* ---------- 1. Hero (1920x1124, foto em tela cheia) ---------- */
+#page-suites .suites-hero{
+  position:relative;overflow:hidden;isolation:isolate;background:var(--areia);
+  min-height:clamp(620px,58.54vw,1124px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:60px var(--pad) calc(112px + 60px) clamp(var(--pad),6vw,115px);
+}
+/* recorte do Figma (STRETCH + imageTransform): mostra a faixa [ty, ty+d] da imagem esticada na moldura */
+#page-suites .crop{
+  position:absolute;max-width:none;z-index:0;
+  width:calc(100% / var(--a,1));height:calc(100% / var(--d,1));
+  left:calc(-100% * var(--tx,0) / var(--a,1));top:calc(-100% * var(--ty,0) / var(--d,1))
+}
+#page-suites .suites-hero-bg{z-index:-1;--a:1;--tx:0;--d:.3903254;--ty:.3804167}
+#page-suites .section-head>div:first-child{max-width:none}
+#page-suites .title{line-height:clamp(38px,3.54vw,68px)}
+#page-suites .section.sand .section-head{margin-bottom:38px}
+@media(min-width:761px){#page-suites .section.dark{padding-bottom:89px}}
+#page-suites .section-bg{mix-blend-mode:multiply}
+#page-suites .suites-bg-dark{background-size:100% calc(100% / .4916783);background-position:0 28.7%}
+#page-suites .suites-hero-copy{max-width:778px}
+#page-suites .suites-badge{
+  display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;
+  font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)
+}
+#page-suites .suites-badge i{display:block;width:8px;height:8px;border-radius:50%;background:var(--verde)}
+#page-suites .suites-hero-title{
+  margin-top:25px;max-width:760px;
+  font-family:var(--serif);font-weight:400;font-size:clamp(40px,3.54vw,68px);line-height:clamp(40px,3.54vw,68px);letter-spacing:0;color:var(--creme)
+}
+#page-suites .suites-hero-title strong,#page-suites .title strong{font-weight:700;line-height:0}
+#page-suites .suites-hero-lead{
+  margin-top:24px;max-width:640px;
+  font-size:clamp(17px,1.3vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)
+}
+#page-suites .suites-hero .hero-actions{margin-top:36px}
+#page-suites .suites-hero-ghost{color:var(--creme)}
+#page-suites .suites-hero-ghost:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- 2. Da escolha à disponibilidade ---------- */
+#page-suites .suites-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+#page-suites .suites-step{
+  display:flex;flex-direction:column;gap:9px;padding:26px;
+  background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto)
+}
+#page-suites .suites-step-n{font-family:var(--serif);font-weight:400;font-size:68px;line-height:68px;color:var(--verde)}
+#page-suites .suites-step h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:32px;color:var(--texto);margin:0}
+#page-suites .suites-step p{padding-top:12px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+#page-suites .suites-steps-cta{margin-top:36px}
+#page-suites .suites-steps-cta .btn{display:flex;width:100%}
+
+/* ---------- 3. Filtros e cartões ---------- */
+#page-suites .suites-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 38px;padding-top:10px}
+#page-suites .suite-filter{
+  padding:10px 14px;line-height:21px;font-weight:500;letter-spacing:.02em;
+  background:transparent;color:var(--verde-escuro);border-color:var(--linha)
+}
+#page-suites .suite-filter:hover{background:rgba(19,59,51,.06);color:var(--verde-escuro);border-color:var(--linha)}
+#page-suites .suite-filter.active,
+#page-suites .suite-filter.active:hover{background:var(--texto);color:#fff;border-color:var(--linha);font-weight:700}
+
+#page-suites .suite-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px 20px}
+#page-suites .suite-card{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  background:var(--branco);border:1px solid var(--linha-suave);border-radius:22px;
+  transition:box-shadow .24s,border-color .24s
+}
+#page-suites .suite-card:hover{box-shadow:var(--sombra-dock);border-color:var(--linha)}
+#page-suites .suite-card.hidden-by-filter{display:none}
+#page-suites .suite-card-media{position:relative;height:250px;overflow:hidden;background:#d6c8af;flex:none}
+#page-suites .suite-card.featured .suite-card-media{height:285px}
+#page-suites .suite-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-suites .suite-card-media img.crop{inset:auto}
+#page-suites .suite-card-copy{display:flex;flex-direction:column;flex:1;padding:22px}
+#page-suites .suite-card-top{display:flex;justify-content:space-between;font-size:10px;line-height:16px;text-transform:uppercase;letter-spacing:.13em;color:#728079}
+#page-suites .suite-card h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:53px;color:var(--texto);margin:12px 0 8px}
+/* o Figma desenha os cartões em Inter (mais larga que a Forma): tracking maior para as larguras e quebras baterem */
+#page-suites .suite-card p{font-size:16px;line-height:25px;letter-spacing:.02em;color:#5d716a;margin:0 0 18px}
+#page-suites .suite-card .tag-row>span{padding:7px 11px;letter-spacing:.03em}
+#page-suites .suite-actions{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:20px}
+#page-suites .suite-actions label{display:flex;align-items:center;gap:10px;padding-right:4px;font-size:12px;line-height:19px;letter-spacing:.02em;color:var(--texto);cursor:pointer}
+#page-suites .compare-check{width:13px;height:13px;margin:0 0 0 4px;accent-color:var(--verde-escuro);cursor:pointer}
+#page-suites .suite-card .text-button{font-size:13px;line-height:20px}
+
+/* ---------- Barra de comparação (fixa, só com seleção) ---------- */
+#page-suites .compare-dock{
+  position:fixed;left:50%;bottom:92px;transform:translateX(-50%);z-index:44;display:none;align-items:center;gap:16px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:var(--texto);color:var(--creme);
+  font-size:13px;line-height:20px;letter-spacing:.02em;box-shadow:var(--sombra-dock);white-space:nowrap
+}
+#page-suites .compare-dock.show{display:flex}
+#page-suites .compare-dock strong{font-weight:700}
+#page-suites .compare-dock .btn{background:var(--creme);color:var(--verde-escuro);padding:11px 18px 12px}
+#page-suites .compare-dock .btn:hover{background:var(--branco)}
+#page-suites .compare-dock .btn:disabled:hover{background:var(--creme)}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-suites .suite-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  #page-suites .suites-steps{grid-template-columns:1fr}
+  /* hero estreito: em vez de esticar, a foto cobre a moldura */
+  #page-suites .suites-hero-bg{left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:62% 57.6%}
+  /* leitura do texto sobre a foto quando o texto passa a cobrir a parte clara */
+  #page-suites .suites-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(52,19,6,.72) 0%,rgba(52,19,6,.5) 70%,rgba(52,19,6,.3) 100%);pointer-events:none}
+}
+@media(max-width:760px){
+  #page-suites .suites-hero{min-height:640px;padding:40px var(--pad) 90px}
+  #page-suites .suites-hero-lead{margin-top:18px}
+  #page-suites .suites-hero::after{background:rgba(52,19,6,.58)}
+  #page-suites .suite-grid{grid-template-columns:1fr}
+  #page-suites .suite-card-media{height:235px}
+  #page-suites .suite-card.featured .suite-card-media{height:235px}
+  #page-suites .suites-step-n{font-size:56px;line-height:56px}
+  #page-suites .compare-dock{left:12px;right:12px;bottom:80px;transform:none;justify-content:space-between}
+}
+
+
+
+/* =========================================================
+   Casa da Lua — Viver a Casa (#page-viver)
+   Visual do Figma (dump_Viver.txt) sobre a arquitetura do V16.
+   ========================================================= */
+
+/* ---------- partes comuns ---------- */
+/* No kit Adobe a "Regular" do Figma (Forma 400) corresponde ao peso 500: bate com a largura dos textos do Figma. */
+#page-viver .section{overflow:hidden}
+#page-viver .section-bg{inset:-8% 0}
+#page-viver .vv-head{margin-bottom:24px}
+#page-viver .vv-h1,
+#page-viver .vv-h2{font-family:var(--serif);font-weight:400;letter-spacing:0;margin:0}
+#page-viver .vv-h1 strong,
+#page-viver .vv-h2 strong{font-weight:700}
+#page-viver .vv-h1 strong,#page-viver .vv-h2 strong{line-height:0}
+#page-viver .vv-h2{font-size:clamp(38px,3.54vw,68px);line-height:1.103;color:var(--creme)}
+#page-viver .vv-h2-dark{color:var(--texto);line-height:1}
+#page-viver .vv-h2-dark strong{color:var(--verde-escuro)}
+
+/* ---------- hero (1920x1124) ---------- */
+#page-viver .vv-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;
+  min-height:clamp(640px,58.54vw,1124px);padding:80px var(--pad) 80px clamp(20px,5.99vw,115px);
+  background:#f5ead2;color:var(--creme)}
+#page-viver .vv-hero-bg{position:absolute;inset:0;z-index:-2;overflow:hidden}
+#page-viver .vv-hero-bg img{position:absolute;left:0;top:-5%;width:100%;height:110%;object-fit:cover;object-position:center}
+#page-viver .vv-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.12) 42%,rgba(0,0,0,0) 62%)}
+#page-viver .vv-hero-copy{width:100%;max-width:760px}
+#page-viver .vv-badge{display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;margin-bottom:25px}
+#page-viver .vv-badge i{display:block;width:8px;height:8px;border-radius:4px;background:var(--verde)}
+#page-viver .vv-badge span{font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)}
+#page-viver .vv-h1{font-size:clamp(40px,3.54vw,68px);line-height:1;color:var(--creme)}
+#page-viver .vv-lead{max-width:640px;margin-top:24px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
+#page-viver .vv-actions{margin-top:36px}
+#page-viver .vv-ghost{color:var(--creme);border-color:var(--creme)}
+#page-viver .vv-ghost:hover{background:rgba(226,220,208,.14);color:var(--branco)}
+
+/* ---------- momentos da casa (1138) ---------- */
+#page-viver .vv-moments{background:var(--verde-escuro)}
+#page-viver .vv-moments .vv-head{margin-bottom:0}
+#page-viver .vv-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:48px 0 24px}
+#page-viver .vv-tabs button{border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--creme);border-radius:999px;
+  padding:10px 15px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;font-weight:500;
+  transition:background .2s,color .2s,border-color .2s}
+#page-viver .vv-tabs button:hover{background:rgba(255,255,255,.1)}
+#page-viver .vv-tabs button.active{background:var(--creme);border-color:var(--areia);color:var(--verde);font-weight:700}
+#page-viver .vv-tabs button.active:hover{background:var(--creme)}
+#page-viver .vv-moment{display:grid;grid-template-columns:minmax(0,736fr) minmax(0,544fr);min-height:620px;background:var(--creme);
+  border-radius:30px;overflow:hidden;color:var(--texto)}
+#page-viver .vv-moment-media{position:relative;overflow:hidden;min-height:100%}
+#page-viver .vv-moment-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-viver .vv-moment-copy{display:flex;flex-direction:column;justify-content:center;padding:54px}
+#page-viver .vv-moment-copy .eyebrow{padding-top:10px;margin-bottom:6px;color:var(--verde)}
+#page-viver .vv-time{font-family:var(--serif);font-weight:700;font-size:clamp(48px,3.65vw,70px);line-height:1;color:var(--verde-escuro)}
+#page-viver .vv-moment-title{font-family:var(--serif);font-weight:400;font-size:clamp(26px,1.77vw,34px);line-height:1.06;color:var(--texto);margin:20px 0 0}
+#page-viver .vv-moment-text{max-width:336px;margin:16px 0;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
+/* chips dos momentos existem no JS (V16), mas o Figma não os mostra: tire esta regra para exibi-los */
+#page-viver #viverMomentTags{display:none}
+
+/* ---------- espaços (1146) ---------- */
+#page-viver .vv-spaces{background:var(--areia)}
+#page-viver .vv-spaces .vv-head{margin-bottom:48px}
+#page-viver .vv-space-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#page-viver .vv-space{position:relative;overflow:hidden;border-radius:22px;aspect-ratio:415/346;background:#2c4a43;color:#fff;isolation:isolate}
+#page-viver .vv-space img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+#page-viver .vv-space::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,31,28,0) 35%,rgba(7,31,28,.82) 100%)}
+#page-viver .vv-space-copy{position:absolute;left:22px;right:22px;bottom:23px;display:flex;flex-direction:column;gap:7px}
+#page-viver .vv-space-copy h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,1.615vw,31px);line-height:1.55;color:#fff}
+#page-viver .vv-space-copy p{font-size:13px;line-height:20px;letter-spacing:0;color:rgba(255,255,255,.72)}
+
+/* ---------- noite (650) ---------- */
+#page-viver .vv-night{background:#e7d4ae;color:var(--creme)}
+#page-viver .vv-night .section-bg{background-position:center 12%}
+#page-viver .vv-night::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.78);pointer-events:none}
+#page-viver .vv-night-grid{display:grid;grid-template-columns:minmax(0,579fr) minmax(0,639fr);gap:62px;align-items:center}
+#page-viver .vv-night-copy .eyebrow{color:var(--creme)}
+#page-viver .vv-night-copy .vv-h2{line-height:1}
+#page-viver .vv-night-text{max-width:450px;margin-top:17px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--creme)}
+#page-viver .vv-night-chips{margin-top:24px}
+#page-viver .vv-night .chip{background:var(--creme);border-color:var(--verde-escuro);color:var(--verde-escuro)}
+#page-viver .vv-night-media{position:relative;overflow:hidden;border-radius:24px;aspect-ratio:639/430;background:#d8ccb7}
+#page-viver .vv-night-media img{position:absolute;left:0;top:-5%;width:100%;height:110%;object-fit:cover}
+
+/* ---------- informações práticas (233) ---------- */
+#page-viver .vv-practical{background:var(--creme)}
+#page-viver .vv-practical-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#page-viver .vv-practical-item{display:flex;flex-direction:column;gap:4.25px;padding:17.25px 0 1.54px;border-top:1px solid var(--linha)}
+#page-viver .vv-practical-item strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:41px;color:var(--verde)}
+#page-viver .vv-practical-item span{font-size:16px;line-height:24px;letter-spacing:.02em;color:#667a72}
+
+/* ---------- responsivo ---------- */
+@media(max-width:1180px){
+  #page-viver .vv-moment{grid-template-columns:1fr;min-height:0}
+  #page-viver .vv-moment-media{min-height:0;aspect-ratio:736/520}
+  #page-viver .vv-moment-copy{padding:44px 40px 48px}
+  #page-viver .vv-moment-text{max-width:520px}
+  #page-viver .vv-space-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #page-viver .vv-night-grid{grid-template-columns:1fr;gap:40px}
+  #page-viver .vv-night-text{max-width:560px}
+  #page-viver .vv-practical-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px}
+}
+@media(max-width:760px){
+  #page-viver .vv-hero{min-height:620px;padding:70px var(--pad)}
+  #page-viver .vv-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.5))}
+  #page-viver .vv-h1 br,#page-viver .vv-h2 br{display:none}
+  #page-viver .vv-tabs{flex-wrap:nowrap;overflow-x:auto;margin-right:calc(var(--pad)*-1);padding-right:var(--pad);scrollbar-width:none}
+  #page-viver .vv-tabs::-webkit-scrollbar{display:none}
+  #page-viver .vv-tabs button{flex:none}
+  #page-viver .vv-moment{border-radius:24px}
+  #page-viver .vv-moment-media{aspect-ratio:4/3}
+  #page-viver .vv-moment-copy{padding:32px 24px 36px}
+  #page-viver .vv-spaces .vv-head{margin-bottom:32px}
+  #page-viver .vv-space-grid{grid-template-columns:1fr;gap:14px}
+  #page-viver .vv-space{aspect-ratio:4/3.1}
+  #page-viver .vv-practical-grid{grid-template-columns:1fr;gap:6px}
+  #page-viver .vv-practical-item strong{font-size:24px;line-height:34px}
+}
+
+/* texturas de luz/sombra do Figma: o preenchimento escurece o fundo (multiplicar) */
+#page-viver .vv-moments .section-bg,
+#page-viver .vv-spaces .section-bg{mix-blend-mode:multiply}
+@media(max-width:1180px){
+  #page-viver .vv-hero::after{background:linear-gradient(90deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.22) 70%,rgba(0,0,0,.1) 100%)}
+}
+
+
+/* =========================================================
+   Página Experiências — Figma "Experiências" (1920 px)
+   Tudo prefixado por #page-experiencias.
+   ========================================================= */
+
+/* ---------- Hero (Figma: Section 1920x1124, imagem 10384c + degradê) ---------- */
+#page-experiencias .exp-hero{position:relative;overflow:hidden;isolation:isolate;height:clamp(620px,58.54vw,1124px);background:#f5ead2;display:flex;align-items:center;padding:46px var(--pad) 0 clamp(var(--pad),6vw,115px)}
+#page-experiencias .exp-hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden}
+#page-experiencias .exp-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center top}
+#page-experiencias .exp-hero-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.50) 0%,rgba(0,0,0,.28) 45%,rgba(0,0,0,.05) 100%),
+             linear-gradient(0deg,rgba(0,0,0,.30) 0%,rgba(0,0,0,0) 40%)}
+#page-experiencias .exp-hero-copy{max-width:760px}
+#page-experiencias .exp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,3.54vw,68px);line-height:1;letter-spacing:0;color:var(--creme)}
+#page-experiencias .exp-hero h1 strong{font-weight:700}
+#page-experiencias .exp-hero-lead{max-width:640px;margin-top:24px;font-size:clamp(18px,1.3vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
+#page-experiencias .exp-hero-actions{margin-top:36px;gap:10px}
+#page-experiencias .exp-hero .btn{color:var(--creme)}
+#page-experiencias .exp-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
+#page-experiencias .exp-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- Programação por dia ---------- */
+#page-experiencias .exp-program .section-head>div:first-child{max-width:739px}
+#page-experiencias .exp-program .section-head .small{max-width:356px;text-align:right;font-size:16px;line-height:24px;color:#62766f}
+#page-experiencias .program-shell{min-height:582px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;align-items:start}
+#page-experiencias .program-days{display:flex;flex-direction:column;gap:8px}
+#page-experiencias .program-day{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;min-height:94px;padding:18px 18px 21px;text-align:left;background:transparent;border:1px solid rgba(19,59,51,.18);border-radius:18px;color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-experiencias .program-day small{font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;color:var(--texto)}
+#page-experiencias .program-day strong{font-family:var(--serif);font-weight:400;font-size:25px;line-height:34px;letter-spacing:0;color:var(--texto)}
+#page-experiencias .program-day:hover{background:rgba(81,132,78,.1)}
+#page-experiencias .program-day.active{background:var(--verde);border-color:rgba(19,59,51,.18)}
+#page-experiencias .program-day.active small{color:var(--areia)}
+#page-experiencias .program-day.active strong{font-weight:700;color:var(--creme)}
+#page-experiencias .program-day.active:hover{background:var(--verde)}
+
+#page-experiencias .program-stage{display:grid;grid-template-columns:44.9% minmax(0,1fr);min-height:570px;background:var(--branco);border:1px solid var(--linha-suave);border-radius:28px;overflow:hidden}
+#page-experiencias .program-stage-media{position:relative;overflow:hidden;min-height:100%}
+#page-experiencias .program-stage-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-experiencias .program-stage-copy{display:flex;flex-direction:column;justify-content:center;gap:16px;padding:18px 42px 0}
+#page-experiencias .program-stage-copy .eyebrow{margin:0}
+#page-experiencias .program-stage-copy h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--texto)}
+#page-experiencias .program-stage-copy h3 strong{font-weight:700}
+#page-experiencias .program-stage-copy>p{padding-top:2px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto);max-width:458px}
+#page-experiencias .schedule-list{border-top:1px solid rgba(19,59,51,.18);padding-top:10px;max-width:458px}
+#page-experiencias .schedule-item{display:grid;grid-template-columns:90px minmax(0,1fr);gap:18px;align-items:center;padding:15px 0;border-bottom:1px solid rgba(19,59,51,.18)}
+#page-experiencias .schedule-item span{font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--verde)}
+#page-experiencias .schedule-item p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
+
+/* ---------- O que atravessa os 4 dias ---------- */
+#page-experiencias .exp-thread{background:#0b2725}
+#page-experiencias .exp-thread .section-head>div:first-child{max-width:800px}
+#page-experiencias .exp-thread .eyebrow{color:#fff}
+#page-experiencias .exp-thread .title{color:var(--creme)}
+#page-experiencias .exp-thread .card{padding:26px;border-radius:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);box-shadow:var(--sombra-cartao)}
+#page-experiencias .exp-thread .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--areia);margin:0 0 12px}
+#page-experiencias .exp-thread .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:#fff}
+
+/* ---------- O que já vivemos ---------- */
+#page-experiencias .exp-memory-grid{display:grid;grid-template-columns:minmax(0,1fr) 579px;gap:62px;align-items:center}
+#page-experiencias .exp-memory-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+#page-experiencias .exp-memory-copy .eyebrow{margin:0}
+#page-experiencias .exp-memory-text{padding-top:7px;max-width:471px;font-size:16px;line-height:24px;letter-spacing:.02em;color:#264f47}
+#page-experiencias .exp-memory .chip-row{padding-top:8px}
+#page-experiencias .exp-memory .chip{min-height:34px;padding:7px 11px;line-height:18px;letter-spacing:.03em;background:rgba(255,255,255,.38);border:1px solid rgba(19,59,51,.18)}
+#page-experiencias .exp-memory-frame{position:relative;overflow:hidden;width:100%;height:680px;border-radius:24px;background:#d8ccb7}
+#page-experiencias .exp-memory-frame img{position:absolute;left:0;top:-7%;width:100%;height:114%;object-fit:cover}
+#page-experiencias .exp-dots{position:absolute;left:50%;bottom:19px;display:flex;gap:20px;transform:translateX(-50%);margin-left:10px}
+#page-experiencias .exp-dots i{display:block;width:23px;height:23px;border-radius:50%;background:var(--creme)}
+
+/* ---------- Próximas edições ---------- */
+#page-experiencias .exp-next{background:#e7d4ae}
+#page-experiencias .exp-next .section-bg{background-size:147% auto;background-position:22.5% 51.5%}
+#page-experiencias .exp-next .title{color:var(--creme)}
+#page-experiencias .exp-form{display:flex;align-items:flex-end;gap:12px;padding:26px;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao)}
+#page-experiencias .exp-form .field{flex:1 1 0;min-width:0}
+#page-experiencias .exp-form .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-experiencias .exp-form .field input{padding:16.5px 14px;border-radius:13px;border:1px solid rgba(19,59,51,.18);background:var(--branco);font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
+#page-experiencias .exp-form .field input::placeholder{color:#757575;opacity:1}
+#page-experiencias .exp-form .btn{flex:none}
+
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-experiencias .program-shell{grid-template-columns:1fr;gap:20px;min-height:0}
+  #page-experiencias .program-days{flex-direction:row;flex-wrap:wrap}
+  #page-experiencias .program-day{flex:1 1 calc(25% - 8px);width:auto;min-width:150px}
+  #page-experiencias .exp-memory-grid{grid-template-columns:1fr;gap:40px}
+  #page-experiencias .exp-memory-frame{height:min(680px,110vw)}
+  #page-experiencias .exp-program .section-head{display:block}
+  #page-experiencias .exp-program .section-head .small{margin-top:16px;text-align:left;max-width:520px}
+}
+@media(max-width:900px){
+  #page-experiencias .program-stage{grid-template-columns:1fr;min-height:0}
+  #page-experiencias .program-stage-media{min-height:0;aspect-ratio:4/3}
+  #page-experiencias .program-stage-copy{padding:32px 26px 36px}
+}
+@media(max-width:760px){
+  #page-experiencias .exp-hero{height:auto;min-height:640px;padding:96px var(--pad) 64px}
+  #page-experiencias .exp-hero-shade{background:linear-gradient(0deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.35) 100%)}
+  #page-experiencias .exp-hero-actions .btn,#page-experiencias .exp-hero-actions .ghost-btn{flex:1 1 auto}
+  #page-experiencias .program-day{flex:1 1 calc(50% - 8px);min-width:0}
+  #page-experiencias .br-d{display:none}
+  #page-experiencias .exp-form{flex-direction:column;align-items:stretch}
+  #page-experiencias .exp-form .btn{align-self:stretch}
+  #page-experiencias .exp-memory-frame{height:min(560px,120vw)}
+  #page-experiencias .exp-thread .card{padding:22px}
+}
+
+
+/* =========================================================
+   Eventos e Imersões — Figma "Eventos" (1920 px)
+   Tudo prefixado por #page-eventos.
+   ========================================================= */
+
+/* ---------- 1. Hero: foto + gradiente, texto à esquerda ---------- */
+#page-eventos .hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(640px,58.55vw,1124px);
+  padding:clamp(130px,16.9vw,324px) var(--pad) 90px clamp(var(--pad),6vw,115px);
+  background:#f5ead2;color:var(--creme)
+}
+#page-eventos .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+#page-eventos .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+#page-eventos .hero-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.22) 40%,rgba(0,0,0,0) 70%),
+             linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,0) 30%)
+}
+#page-eventos .hero-copy{max-width:700px}
+#page-eventos .hero-badge{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:25px;
+  padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;
+  font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)
+}
+#page-eventos .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
+#page-eventos .hero .title{color:var(--creme);max-width:700px}
+#page-eventos .hero .lead{
+  max-width:640px;margin-top:24px;
+  font-size:clamp(17px,1.3vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)
+}
+#page-eventos .hero-actions{margin-top:36px;gap:10px}
+#page-eventos .hero .btn{color:var(--creme)}
+#page-eventos .hero .ghost-btn{color:var(--creme);border-color:var(--verde)}
+#page-eventos .hero .ghost-btn:hover{background:rgba(81,132,78,.28)}
+#page-eventos .stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+#page-eventos .stat{display:flex;flex-direction:column;gap:5px}
+#page-eventos .stat strong{font-family:var(--serif);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-eventos .stat span{font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--creme)}
+
+/* títulos: o Figma não quebra linha (o texto passa da coluna de 760) */
+@media(min-width:1181px){
+  #page-eventos .section-head>div:first-child{max-width:none}
+  #page-eventos .section-head .title{white-space:nowrap}
+}
+
+/* ---------- 2. Configurador de formato ---------- */
+#page-eventos #eventFormats .section-head{margin-bottom:28px}
+#page-eventos .event-selector{display:flex;gap:8px;flex-wrap:wrap;padding-top:20px;margin-bottom:28px}
+#page-eventos .event-selector button{
+  border:1px solid rgba(19,59,51,.18);background:transparent;color:var(--texto);
+  border-radius:999px;padding:11px 15px;font-size:13px;line-height:21px;letter-spacing:.02em;
+  transition:background .2s,color .2s,border-color .2s
+}
+#page-eventos .event-selector button:hover{background:rgba(81,132,78,.12)}
+#page-eventos .event-selector button.active{background:var(--verde);color:var(--creme);font-weight:700}
+#page-eventos .event-config{display:grid;grid-template-columns:534fr 722fr;gap:24px;align-items:stretch;min-height:570px}
+
+#page-eventos .event-diagram{position:relative;overflow:hidden;background:#ede2ca;border-radius:28px;min-height:570px}
+#page-eventos .event-diagram::before{content:"";position:absolute;inset:22px;border:1px solid rgba(19,59,51,.18);border-radius:22px;pointer-events:none}
+#page-eventos .floor-zone{
+  position:absolute;display:grid;place-items:center;text-align:center;
+  background:rgba(255,255,255,.42);border:1px solid rgba(19,59,51,.35);border-radius:14px;
+  font-size:11px;line-height:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--texto)
+}
+
+#page-eventos #eventObjects.solid .floor-zone{background:#faf6ec}
+
+#page-eventos .event-copy{
+  display:flex;flex-direction:column;align-items:flex-start;
+  background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:60px 44px 47px
+}
+#page-eventos .event-copy .eyebrow{margin:0 0 16px;color:var(--verde)}
+#page-eventos .event-copy h3{
+  font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme);margin:0
+}
+#page-eventos .event-copy h3 strong{font-weight:700}
+#page-eventos .event-copy p{max-width:402px;padding-top:2px;margin-top:16px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72)}
+#page-eventos .feature-list{list-style:none;padding:12px 0;margin:16px 0 0;width:100%}
+#page-eventos .feature-list li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:25px;letter-spacing:0;color:var(--creme)}
+#page-eventos .feature-list li span:last-child{color:var(--areia);opacity:.65;text-align:right}
+#page-eventos .event-copy .btn{margin-top:16px;color:var(--verde)}
+
+/* ---------- 3. Estrutura ---------- */
+#page-eventos .section.white .section-head{margin-bottom:48px}
+#page-eventos .section.white .section-head .small{
+  max-width:319px;padding:12px 10px 0 0;text-align:right;
+  font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
+}
+#page-eventos .grid-4{gap:18px}
+#page-eventos .grid-4 .card{padding:26px}
+#page-eventos .grid-4 .card h3{font-weight:400;font-size:30px;line-height:32px;margin:0 0 12px;color:var(--verde)}
+#page-eventos .grid-4 .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+
+/* ---------- 4. Se chover: foto de fundo da seção ---------- */
+#page-eventos .rain{background:#0b2725}
+#page-eventos .rain .section-bg{background-position:center 43%}
+#page-eventos .rain .section-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.52) 0%,rgba(0,0,0,.3) 38%,rgba(0,0,0,0) 70%)
+}
+#page-eventos .rain-copy{max-width:639px}
+#page-eventos .rain .eyebrow{color:var(--creme)}
+#page-eventos .rain .title{color:var(--areia)}
+#page-eventos .rain .lead{max-width:612px;padding-top:8px;margin-top:16px;font-size:clamp(17px,1.3vw,25px);line-height:1.2;color:var(--creme)}
+@media(min-width:1181px){#page-eventos .hero .lead,#page-eventos .rain .lead{line-height:30px}}
+#page-eventos .rain .chip-row{margin-top:16px;padding-top:8px}
+#page-eventos .rain .chip{min-height:37px;padding:7px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18);color:var(--creme)}
+
+/* ---------- 5. Solicitar proposta ---------- */
+#page-eventos #eventProposal .section-head .small{
+  max-width:364px;padding:12px 0 0;margin-bottom:-7px;text-align:right;
+  font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
+}
+#page-eventos .proposal-form{background:var(--creme);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:none}
+#page-eventos .proposal-form .form-grid{gap:10px 16px}
+#page-eventos .proposal-form .field:not(.full){min-height:83px}
+#page-eventos .proposal-form .field.full:nth-of-type(5){margin-top:1px}
+#page-eventos .proposal-form .field.full:last-child{margin-top:6px}
+#page-eventos .proposal-form .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-eventos .proposal-form .field input,
+#page-eventos .proposal-form .field select,
+#page-eventos .proposal-form .field textarea{
+  border:1px solid rgba(19,59,51,.18);background:var(--branco);border-radius:13px;
+  padding:15px 14px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)
+}
+#page-eventos .proposal-form .field input::placeholder,
+#page-eventos .proposal-form .field textarea::placeholder{color:#757575}
+#page-eventos .proposal-form .field select{
+  appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23133b33' stroke-opacity='.55' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 20px center
+}
+#page-eventos .proposal-form .field select:has(option[value=""]:checked){color:#757575}
+#page-eventos .proposal-form .field select option{color:var(--texto)}
+#page-eventos .proposal-form .field textarea{height:128px;resize:vertical;min-height:96px}
+#page-eventos .proposal-form .btn{width:100%;color:var(--creme)}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-eventos .hero{padding:150px var(--pad) 80px}
+  #page-eventos .hero-media::after{background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.12) 100%)}
+  #page-eventos .dbr{display:none}
+  #page-eventos .section-head{display:block;margin-bottom:34px}
+  #page-eventos .section-head .small{margin-top:16px}
+  #page-eventos .event-config{grid-template-columns:1fr;min-height:0}
+  #page-eventos .event-diagram{min-height:520px}
+  #page-eventos .section.white .section-head .small,
+  #page-eventos #eventProposal .section-head .small{max-width:none;text-align:left;padding:0}
+}
+@media(max-width:760px){
+  #page-eventos .dbr-s{display:none}
+  #page-eventos .hero{min-height:620px;padding:110px var(--pad) 60px}
+  #page-eventos .hero-media::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.5))}
+  #page-eventos .hero-actions .btn,#page-eventos .hero-actions .ghost-btn{white-space:nowrap}
+  #page-eventos .hero .title{font-size:clamp(36px,10.5vw,52px);line-height:1.04}
+  #page-eventos .stat strong{font-size:30px;line-height:32px}
+  #page-eventos .event-diagram{min-height:420px}
+  #page-eventos .event-copy{padding:36px 24px 32px}
+  #page-eventos .event-copy h3{font-size:28px;line-height:30px}
+  #page-eventos .feature-list li{flex-direction:column;gap:2px}
+  #page-eventos .feature-list li span:last-child{text-align:left}
+  #page-eventos .section.white .section-head .small,
+  #page-eventos #eventProposal .section-head .small{text-align:left;padding:0;margin-top:16px}
+  #page-eventos .rain .section-bg::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35))}
+  #page-eventos .proposal-form{padding:22px}
+}
+
+/* texturas de luz/sombra: no Figma o fundo escurece como "multiplicar" (mede igual ao print) */
+#page-eventos .section:not(.rain)>.section-bg{mix-blend-mode:multiply}
+
+
+/* =========================================================
+   A Chapada — Figma "A Chapada" (1920) + arquitetura V16
+   Tudo prefixado por #page-chapada.
+   ========================================================= */
+
+/* ---------- Hero (1920x1124) ---------- */
+#page-chapada .chapada-hero{
+  position:relative;overflow:hidden;isolation:isolate;background:#f5ead2;
+  min-height:clamp(640px,58.54vw,1124px);
+  padding:clamp(120px,16.15vw,310px) clamp(20px,6vw,115px) clamp(80px,14.8vw,284px);
+}
+#page-chapada .chapada-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;z-index:-2}
+#page-chapada .chapada-hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.33) 40%,rgba(0,0,0,.18) 62%,rgba(0,0,0,.05) 90%)}
+#page-chapada .chapada-hero-copy{max-width:1008px}
+#page-chapada .chapada-badge{display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;color:var(--creme);font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:25px}
+#page-chapada .chapada-badge i{display:block;width:8px;height:8px;border-radius:4px;background:var(--verde)}
+#page-chapada .chapada-h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,3.54vw,68px);line-height:1;letter-spacing:0;color:var(--creme);max-width:760px}
+#page-chapada .chapada-h1 strong{display:block;font-weight:700}
+#page-chapada .chapada-hero-lead{margin-top:24px;max-width:640px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
+#page-chapada .chapada-hero .hero-actions{margin-top:36px}
+#page-chapada .chapada-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
+#page-chapada .chapada-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
+
+/* ---------- Curadoria ---------- */
+#page-chapada .section-head{margin-bottom:0}
+#page-chapada .section-head>div:first-child{max-width:820px}
+#page-chapada #chapadaCuradoria .section-head{margin-bottom:28px}
+#page-chapada .section-head .eyebrow{margin-bottom:16px}
+#page-chapada .chapada-filter{display:flex;flex-wrap:wrap;gap:8px;padding:20px 0 0;margin-bottom:28px}
+#page-chapada .chapada-filter .suite-filter{padding:10px 14px;line-height:21px;border-color:var(--linha);background:transparent;color:var(--verde-escuro)}
+#page-chapada .chapada-filter .suite-filter:hover{background:rgba(81,132,78,.12);border-color:var(--linha);color:var(--verde-escuro)}
+#page-chapada .chapada-filter .suite-filter.active{background:var(--verde);color:var(--creme);font-weight:700;border-color:var(--linha)}
+#page-chapada .chapada-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+#page-chapada .chapada-card{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);background:var(--branco);border:1px solid var(--linha-suave);border-radius:var(--raio);overflow:hidden;min-width:0}
+#page-chapada .chapada-card.hidden-by-filter{display:none}
+#page-chapada .chapada-photo{position:relative;overflow:hidden;min-height:100%}
+#page-chapada .chapada-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-chapada .chapada-copy{padding:34px 34px 55px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+#page-chapada .chapada-copy .eyebrow{margin-bottom:16px}
+#page-chapada .chapada-copy h3{font-family:var(--serif);font-weight:400;font-size:40px;line-height:40px;letter-spacing:0;color:var(--verde-escuro);margin-bottom:14px}
+#page-chapada .chapada-tags{display:flex;flex-wrap:wrap;gap:7px 2px;padding:10px 0 15px}
+#page-chapada .chapada-tags span{display:inline-flex;align-items:center;height:26px;padding:0 8px;border:1px solid var(--linha);border-radius:999px;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:#64756f;white-space:nowrap}
+#page-chapada .chapada-copy p{padding:16px 0;font-size:16px;line-height:24px;letter-spacing:.02em;color:#5e726b}
+#page-chapada .return-note{margin-top:22px;padding-top:17px;border-top:1px solid var(--linha);font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--verde-escuro)}
+#page-chapada .return-note strong{font-weight:700}
+
+/* ---------- Antes de sair (foto de fundo) ---------- */
+#page-chapada .chapada-before{overflow:hidden;background:var(--branco)}
+#page-chapada .chapada-before .section-bg{inset:-8% 0;background-position:55% 24%}
+#page-chapada .chapada-before-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.22) 31%,rgba(0,0,0,0) 100%)}
+#page-chapada .chapada-before .section-head{margin-bottom:48px}
+#page-chapada .chapada-before .eyebrow{color:#fff}
+#page-chapada .chapada-before .title{color:#fff}
+#page-chapada .chapada-before .grid-4{align-items:stretch}
+#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px}
+#page-chapada .chapada-before .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--verde);margin:0;letter-spacing:-.01em}
+#page-chapada .chapada-before .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+
+/* ---------- A Chapada continua quando você volta ---------- */
+#page-chapada .chapada-return .split{gap:62px;grid-template-columns:minmax(0,639fr) minmax(0,579fr)}
+#page-chapada .chapada-return .split>div:first-child{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+#page-chapada .chapada-return .eyebrow{margin:0}
+#page-chapada .chapada-return .title{font-size:clamp(38px,3.54vw,68px);line-height:1}
+#page-chapada .chapada-return-lead{padding-top:8px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:#65766f}
+#page-chapada .chapada-return .hero-actions{padding-top:20px}
+#page-chapada .chapada-return-frame{background:#d8ccb7;border-radius:var(--raio);overflow:hidden;padding-bottom:18.1%;min-width:0}
+#page-chapada .chapada-return-photo{aspect-ratio:579/325;width:100%}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:1180px){
+  #page-chapada .chapada-list{grid-template-columns:1fr}
+  #page-chapada .chapada-card{min-height:300px}
+  #page-chapada .chapada-return .split{grid-template-columns:minmax(0,1fr)}
+  #page-chapada .chapada-return-frame{padding-bottom:0;aspect-ratio:579/430}
+}
+@media(max-width:760px){
+  #page-chapada .chapada-hero{min-height:560px;padding-top:110px;padding-bottom:70px}
+  #page-chapada .chapada-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.5))}
+  #page-chapada .chapada-filter{padding-top:24px}
+  #page-chapada .chapada-card{grid-template-columns:1fr;min-height:0}
+  #page-chapada .chapada-photo{min-height:0;aspect-ratio:4/3}
+  #page-chapada .chapada-copy{padding:28px 24px}
+  #page-chapada .chapada-copy h3{font-size:34px;line-height:36px}
+  #page-chapada .chapada-before .card{padding:26px}
+}
+
+/* refinamento (verificador) */
+#page-chapada .chapada-card.is-top .chapada-copy{justify-content:flex-start}
+#page-chapada .chapada-return .btn{color:var(--creme)}
+#page-chapada .chapada-copy p,#page-chapada .return-note{margin-right:-10px}
+
+
+/* =========================================================
+   Reservar — página do HTML V16 (não existe no Figma),
+   vestida com a linguagem do Figma: creme + textura, painel
+   verde-escuro, formulário no padrão "Solicitar proposta".
+   ========================================================= */
+#page-reservar .rv-top{padding-top:96px;padding-bottom:110px}
+#page-reservar .section-head{align-items:flex-end}
+#page-reservar .rv-lead{max-width:421px;font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f;text-align:right;padding-bottom:6px}
+
+/* casca: painel escuro + formulário */
+#page-reservar .reserve-shell{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:22px;align-items:start}
+
+/* painel escuro lateral (mesma família do painel "Como você vem?" da Home) */
+#page-reservar .reserve-steps{background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:42px;position:sticky;top:calc(var(--header-h) + 24px)}
+#page-reservar .reserve-steps .eyebrow{margin-bottom:18px}
+#page-reservar .reserve-steps h2{font-family:var(--serif);font-weight:700;font-size:40px;line-height:1.18;letter-spacing:0;color:var(--creme);margin:0 0 16px}
+#page-reservar .reserve-steps>p{font-size:16px;line-height:24px;color:rgba(245,234,210,.72);min-height:72px}
+#page-reservar .step-list{display:flex;gap:7px;margin:28px 0}
+#page-reservar .step-dot{flex:1;height:4px;border-radius:10px;background:rgba(255,255,255,.16);transition:background .2s}
+#page-reservar .step-dot.active{background:var(--verde)}
+#page-reservar .rv-info{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);box-shadow:none;border-radius:24px;padding:26px}
+#page-reservar .rv-info .kicker{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--verde);margin-bottom:6px}
+#page-reservar .feature-list{list-style:none;margin:0;padding:0}
+#page-reservar .feature-list li{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:24px;color:var(--creme)}
+#page-reservar .feature-list li:last-child{border-bottom:0;padding-bottom:0}
+#page-reservar .feature-list li span:last-child{color:rgba(245,234,210,.65);text-align:right}
+
+/* formulário (Figma: Form creme r28, campos #fffdf8 r13) */
+#page-reservar .form-card{background:var(--creme);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:none}
+#page-reservar .reserve-step .eyebrow{margin-bottom:12px}
+#page-reservar .reserve-step .subtitle{font-size:clamp(30px,2.2vw,42px);line-height:1.1}
+#page-reservar .reserve-step .small{margin-top:12px}
+#page-reservar .reserve-step .form-grid{margin-top:28px}
+#page-reservar .rv-p{margin-top:14px;font-size:16px;line-height:24px;color:var(--texto-2)}
+#page-reservar .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-reservar .field input,#page-reservar .field select{border:1px solid rgba(19,59,51,.18);background-color:var(--branco);border-radius:13px;padding:16px 14px 15px 15px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto);color-scheme:light;min-height:58px}
+#page-reservar .field select{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%23587069' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center}
+#page-reservar .field input:focus,#page-reservar .field select:focus{outline:2px solid var(--verde);outline-offset:1px}
+#page-reservar .field.full .btn{width:100%;padding:12px 20px 13px}
+
+/* prioridades */
+#page-reservar .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+#page-reservar .choice{display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid rgba(19,59,51,.18);background:var(--branco);border-radius:18px;padding:18px 20px;color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-reservar .choice strong{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.15;color:var(--verde-escuro);transition:color .2s}
+#page-reservar .choice span{font-size:14px;line-height:20px;letter-spacing:.02em;color:var(--texto-2);transition:color .2s}
+#page-reservar .choice:hover{border-color:var(--verde)}
+#page-reservar .choice.active{background:var(--verde);border-color:var(--verde)}
+#page-reservar .choice.active strong,#page-reservar .choice.active span{color:var(--branco)}
+#page-reservar .reserve-step .hero-actions{margin-top:28px}
+
+/* categorias sugeridas */
+#page-reservar .reserve-suggestions{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:22px}
+#page-reservar .suggestion{display:block;width:100%;text-align:left;border:1px solid rgba(19,59,51,.18);border-radius:20px;padding:20px;background:var(--branco);color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-reservar .suggestion strong{display:block;font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.1;color:var(--verde);transition:color .2s}
+#page-reservar .suggestion p{margin-top:8px;font-size:14px;line-height:20px;color:var(--texto-2);transition:color .2s}
+#page-reservar .reserve-suite-choice{cursor:pointer}
+#page-reservar .reserve-suite-choice:hover{border-color:var(--verde)}
+#page-reservar .reserve-suite-choice.active{background:var(--verde-escuro);border-color:var(--verde-escuro)}
+#page-reservar .reserve-suite-choice.active strong{color:var(--creme)}
+#page-reservar .reserve-suite-choice.active p{color:rgba(245,234,210,.75)}
+
+/* resumo */
+#page-reservar #reserveSummary{margin:24px 0 0;background:var(--branco);border-radius:20px;box-shadow:none;padding:24px 26px}
+#page-reservar #reserveSummary h3{font-size:28px;margin-bottom:8px}
+#page-reservar #reserveSummary p{font-size:16px;line-height:26px;color:var(--texto-2)}
+#page-reservar #reserveSummary p strong{color:var(--texto);font-weight:700}
+
+/* antes de reservar */
+#page-reservar .practical-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+#page-reservar .practical-item{border-top:1px solid var(--linha);padding-top:20px}
+#page-reservar .practical-item strong{display:block;font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.2;color:var(--verde-escuro)}
+#page-reservar .practical-item span{display:block;margin-top:2px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto-4)}
+#page-reservar .rv-policies{margin-top:40px}
+#page-reservar .rv-policies .card{background:var(--creme);box-shadow:var(--sombra-cartao)}
+#page-reservar .rv-policies .card h3{font-weight:400;font-size:30px;line-height:1.07;color:var(--verde)}
+#page-reservar .rv-policies .card p{font-size:16px;line-height:24px;color:var(--texto-2)}
+
+@media(max-width:1180px){
+  #page-reservar .reserve-shell{grid-template-columns:1fr}
+  #page-reservar .reserve-steps{position:static}
+  #page-reservar .reserve-steps>p{min-height:0}
+  #page-reservar .rv-lead{text-align:left;max-width:560px;margin-top:20px}
+  #page-reservar .practical-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  #page-reservar .rv-top{padding-top:56px;padding-bottom:74px}
+  #page-reservar .reserve-steps{padding:30px 24px}
+  #page-reservar .reserve-steps h2{font-size:32px}
+  #page-reservar .form-card{padding:26px 20px}
+  #page-reservar .choice-grid{grid-template-columns:1fr}
+  #page-reservar .reserve-suggestions{grid-template-columns:1fr}
+  #page-reservar .practical-grid{gap:18px}
+  #page-reservar .practical-item strong{font-size:30px}
+  #page-reservar .reserve-step .hero-actions .btn,#page-reservar .reserve-step .hero-actions .ghost-btn{flex:1 1 auto}
+}
+
+
+/* =========================================================
+   Casa da Lua — overlays.css
+   Sobreposições (HTML V16 1668-1775) na linguagem visual do Figma:
+   painéis creme / verde-escuro, cantos 24-28, campos #fffdf8,
+   chips em pílula, Mortise nos títulos, Forma no resto.
+   A base (.overlay, .modal, .toast) está em base.css.
+   ========================================================= */
+
+/* ---------- comum ---------- */
+.overlay .modal{--mp:38px;padding:var(--mp);background:var(--branco);overscroll-behavior:contain}
+.overlay .modal>.modal-close{position:sticky;top:calc(14px - var(--mp));float:none;display:grid;width:42px;height:42px;margin:calc(14px - var(--mp)) calc(14px - var(--mp)) calc(var(--mp) - 56px) auto;z-index:6;background:rgba(19,59,51,.08);color:var(--verde-escuro)}
+.overlay .modal>.modal-close:hover{background:rgba(19,59,51,.16)}
+.overlay .modal .eyebrow{margin-bottom:16px}
+.overlay .modal .title{font-size:clamp(34px,3.2vw,52px);line-height:1.06}
+.overlay .modal .lead{margin-top:18px;font-size:18px;line-height:1.45;max-width:560px}
+.overlay .icon-btn{font-size:22px;color:var(--verde-escuro);transition:background .2s,color .2s}
+
+/* ---------- menu mobile ---------- */
+#mobileNavOverlay .modal{--mp:30px;width:min(520px,100%);background:var(--creme)}
+#mobileNavOverlay .stack{gap:10px;margin-top:22px}
+#mobileNavOverlay .card{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;padding:14px 22px 15px;border-radius:18px;background:var(--branco);box-shadow:none;transition:background .2s,color .2s}
+#mobileNavOverlay .card::after{content:"→";color:var(--verde);font-size:18px;transition:color .2s}
+#mobileNavOverlay .card h3{margin:0;font-weight:400;font-size:28px;line-height:1.15;color:var(--verde-escuro);transition:color .2s}
+#mobileNavOverlay .card:hover{background:rgba(255,253,248,.7)}
+#mobileNavOverlay .card.active{background:var(--verde)}
+#mobileNavOverlay .card.active h3,#mobileNavOverlay .card.active::after{color:var(--branco)}
+
+/* ---------- percurso "Entrar na Casa" ---------- */
+.journey-shell{position:relative;width:min(1320px,100%);height:min(88vh,860px);background:var(--verde-escuro);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);color:var(--creme);box-shadow:0 40px 120px rgba(0,0,0,.35)}
+.journey-media{position:relative;min-height:100%;overflow:hidden;background:#0a352c}
+.journey-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.journey-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,28,26,.55))}
+.journey-copy{position:relative;padding:64px 52px 48px;display:flex;flex-direction:column;justify-content:center;overflow:auto}
+.journey-copy .icon-btn{position:absolute;right:20px;top:20px;background:rgba(255,255,255,.1);color:var(--creme)}
+.journey-copy .icon-btn:hover{background:rgba(255,255,255,.2)}
+.journey-copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.4vw,56px);line-height:1.04;letter-spacing:0;color:var(--creme);margin:0 0 18px}
+.journey-copy>p{font-size:18px;line-height:1.5;color:rgba(245,234,210,.72);max-width:460px}
+.journey-choices{display:flex;flex-direction:column;gap:10px;margin-top:30px}
+.journey-choices button{display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px 20px 17px;color:var(--creme);font-size:16px;line-height:24px;transition:background .2s,border-color .2s}
+.journey-choices button i{font-style:normal;color:var(--verde)}
+.journey-choices button:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+.journey-copy>.text-button{align-self:flex-start;margin-top:26px;color:var(--creme)}
+.journey-copy>.text-button:hover{color:#fff}
+
+/* ---------- Atlas Vivo ---------- */
+.atlas-overlay-shell{position:relative;width:min(1400px,100%);height:min(90vh,900px);background:#133b33;color:var(--creme);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:320px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"side map" "side detail";box-shadow:0 40px 120px rgba(0,0,0,.35)}
+.atlas-overlay-shell>.close-overlay{position:absolute;right:16px;top:16px;z-index:8;background:rgba(19,59,51,.82);color:var(--creme);border:1px solid rgba(255,255,255,.18)}
+.atlas-overlay-shell>.close-overlay:hover{background:rgba(255,255,255,.2)}
+.atlas-sidebar,.atlas-detail{padding:34px 28px;overflow:auto;min-width:0}
+.atlas-sidebar{grid-area:side}
+.atlas-canvas{grid-area:map}
+.atlas-detail{grid-area:detail}
+.atlas-sidebar{border-right:1px solid rgba(255,255,255,.12)}
+.atlas-detail{border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.1);padding:26px 32px;display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:30px;align-content:start;overflow:visible}
+.atlas-detail>*{grid-column:2}
+.atlas-detail>.detail-image{grid-column:1;grid-row:1 / span 5;align-self:stretch}
+.atlas-sidebar .eyebrow,.atlas-detail .eyebrow{margin-bottom:14px}
+.atlas-sidebar h2,.atlas-detail h2{font-family:var(--serif);font-weight:700;letter-spacing:0;color:var(--creme);margin:0}
+.atlas-sidebar h2{font-size:30px;line-height:1.2}
+.atlas-detail h2{font-size:30px;line-height:1.2}
+.atlas-lenses{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.atlas-lenses button{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 12px 8px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--creme);transition:background .2s,color .2s,border-color .2s}
+.atlas-lenses button:hover{background:rgba(255,255,255,.12)}
+.atlas-lenses button.active{background:var(--verde);border-color:var(--verde);color:var(--branco)}
+.atlas-options{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 4px}
+.atlas-options button{background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 10px 5px;font-size:12px;line-height:18px;letter-spacing:.02em;color:rgba(245,234,210,.82);transition:background .2s,color .2s,border-color .2s}
+.atlas-options button:hover{background:rgba(255,255,255,.1)}
+.atlas-options button.active{background:var(--creme);border-color:var(--creme);color:var(--verde-escuro)}
+.atlas-list{display:flex;flex-direction:column;gap:2px;margin-top:18px}
+.atlas-list button{display:flex;align-items:center;gap:12px;text-align:left;background:transparent;border:0;border-radius:14px;padding:10px 12px;font-size:15px;line-height:22px;letter-spacing:.02em;color:var(--creme);transition:background .2s}
+.atlas-list button i{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);font-style:normal;font-size:12px;font-weight:700;transition:background .2s,color .2s}
+.atlas-list button:hover{background:rgba(255,255,255,.07)}
+.atlas-list button.active{background:rgba(255,255,255,.1)}
+.atlas-list button.active i{background:var(--creme);color:var(--verde-escuro)}
+
+.atlas-canvas{position:relative;overflow:hidden;background:#0d4237;container-type:size}
+.atlas-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * 1.832));aspect-ratio:2400/1310}
+.atlas-stage>img{display:block;width:100%;height:100%;object-fit:cover}
+#atlasPins{position:absolute;inset:0}
+#atlasOverlay .map-pin{position:absolute;transform:translate(-50%,-50%);z-index:3;display:grid;place-items:center;width:34px;height:34px;padding:0;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;font-size:12px;line-height:1;font-weight:700;letter-spacing:0;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s,width .2s,height .2s}
+#atlasOverlay .map-pin:hover{background:var(--verde-escuro)}
+#atlasOverlay .map-pin.active{z-index:4;width:40px;height:40px;background:#f5ead2;color:var(--verde);font-size:13px}
+
+.detail-image{min-height:190px;border-radius:18px;overflow:hidden;margin:0;background:#0d4237;position:relative}
+.detail-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#atlasOverlay .tag-row>span{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--creme)}
+.atlas-detail>p{margin-top:12px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72)}
+.atlas-detail .hero-actions{margin-top:18px}
+.atlas-detail .tag-row{margin-top:12px}
+.atlas-detail .btn{background:var(--branco);color:var(--verde-escuro)}
+.atlas-detail .btn:hover{background:var(--creme)}
+.atlas-detail .ghost-btn{color:var(--creme)}
+.atlas-detail .ghost-btn:hover{background:rgba(255,255,255,.1)}
+
+/* ---------- detalhe da suíte ---------- */
+#suiteOverlay .modal{--mp:0px;overflow:auto}
+.suite-modal-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.suite-modal-media{position:relative;min-height:600px;background:#d8ccb7}
+.suite-modal-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.suite-modal-copy{padding:60px 52px 48px}
+.suite-modal-copy h2{font-family:var(--serif);font-weight:700;font-size:clamp(40px,4vw,56px);line-height:1;letter-spacing:0;color:var(--verde-escuro);margin:0 0 16px}
+.suite-modal-copy>p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;margin:28px 0 34px}
+.meta-item{border-top:1px solid var(--linha);padding-top:12px}
+.meta-item small{display:block;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4)}
+.meta-item strong{display:block;margin-top:4px;font-weight:500;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
+.suite-modal-copy .subtitle{font-size:28px;line-height:1.1;margin-bottom:14px}
+.amenity-list{columns:2;column-gap:28px;margin:0;padding:0;list-style:none}
+.amenity-list li{position:relative;break-inside:avoid;padding:9px 0 9px 18px;border-bottom:1px solid var(--linha-suave);font-size:14px;line-height:22px;letter-spacing:.02em;color:var(--texto)}
+.amenity-list li::before{content:"";position:absolute;left:0;top:18px;width:6px;height:6px;border-radius:50%;background:var(--verde)}
+.suite-modal-copy .hero-actions{margin-top:30px}
+
+/* ---------- comparador ---------- */
+#compareOverlay .modal{--mp:40px;width:min(1100px,100%)}
+.compare-scroll{overflow:auto;margin-top:30px}
+.compare-table{width:100%;min-width:640px;border-collapse:collapse}
+.compare-table th,.compare-table td{padding:16px 16px 17px;border-bottom:1px solid var(--linha-suave);text-align:left;vertical-align:top;font-size:15px;line-height:22px;letter-spacing:.02em;color:var(--texto)}
+.compare-table th[scope=row]{width:150px;font-weight:500;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4);padding-left:0;position:sticky;left:0;background:var(--branco)}
+.compare-table th[scope=col]:first-child{font-family:var(--sans);font-weight:500;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4);padding-left:0;border-bottom:1px solid var(--linha)}
+.compare-table th[scope=col]{font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.15;color:var(--verde);border-bottom:1px solid var(--linha)}
+.compare-table tr:last-child th,.compare-table tr:last-child td{border-bottom:0}
+
+/* ---------- próximas datas ---------- */
+#interestOverlay .modal{--mp:40px;width:min(650px,100%);background:var(--creme)}
+#interestOverlay .form-grid{margin-top:28px}
+#interestOverlay .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#interestOverlay .field input{border:1px solid rgba(19,59,51,.18);border-radius:13px;background:var(--branco);padding:16px 14px 15px 15px;font-size:16px;line-height:24px;letter-spacing:.02em}
+#interestOverlay .field input:focus{outline:2px solid var(--verde);outline-offset:1px}
+#interestOverlay .field.full .btn{width:100%}
+
+/* ---------- responsivo (V16: 1180 e 760) ---------- */
+@media(max-width:1180px){
+  .atlas-overlay-shell{display:flex;flex-direction:column;height:min(92vh,900px);overflow:auto;overscroll-behavior:contain}
+  .atlas-overlay-shell>.close-overlay{position:fixed;right:28px;top:28px}
+  .atlas-sidebar,.atlas-detail{flex:none;overflow:visible}
+  .atlas-sidebar{border-right:0;border-bottom:1px solid rgba(255,255,255,.12);padding-right:76px}
+  .atlas-detail{display:block;padding:34px 28px;border-top:1px solid rgba(255,255,255,.12)}
+  .atlas-detail h2{padding-right:0}
+  .atlas-detail .tag-row{margin-top:0}
+  .atlas-detail .hero-actions{margin-top:24px}
+  .atlas-list{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:6px}
+  .atlas-list button{flex:none;white-space:nowrap;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 14px 6px 8px}
+  .atlas-canvas{flex:none;height:clamp(300px,50vw,460px)}
+  .atlas-stage{width:max(100cqw,calc(100cqh * 1.832))}
+  .detail-image{height:260px;min-height:0;margin:20px 0}
+  .suite-modal-media{min-height:480px}
+}
+@media(max-width:760px){
+  .overlay .modal{max-height:94vh;border-radius:22px;--mp:26px}
+  #mobileNavOverlay .modal{--mp:22px}
+  #interestOverlay .modal{--mp:26px}
+  #compareOverlay .modal{--mp:22px}
+  .journey-shell{grid-template-columns:1fr;grid-template-rows:38% 1fr;height:94vh;border-radius:22px}
+  .journey-copy{padding:26px 24px 28px;justify-content:flex-start}
+  .journey-copy .icon-btn{position:fixed;right:24px;top:24px;z-index:6;background:rgba(6,28,26,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .atlas-overlay-shell>.close-overlay{right:24px;top:24px}
+  .journey-copy h2{font-size:34px}
+  .journey-copy>p{font-size:16px}
+  .journey-choices{margin-top:22px}
+  .atlas-overlay-shell{height:94vh;border-radius:22px}
+  .atlas-sidebar,.atlas-detail{padding:26px 22px}
+  .atlas-sidebar{padding-right:22px;padding-top:70px}
+  .atlas-sidebar h2{font-size:26px}
+  .atlas-canvas{overflow-x:auto;overflow-y:hidden;height:349px;container-type:normal}
+  .atlas-stage{position:relative;left:0;top:0;transform:none;width:640px;height:349px}
+  .suite-modal-grid{grid-template-columns:1fr}
+  .suite-modal-media{min-height:300px;height:300px}
+  .suite-modal-copy{padding:28px 24px 30px}
+  .meta-grid{grid-template-columns:1fr}
+  .amenity-list{columns:1}
+  #compareOverlay .modal .title{font-size:34px}
+  .compare-table{min-width:520px}
+  .compare-table th,.compare-table td{padding:12px 10px 13px;font-size:14px;line-height:20px}
+  .compare-table th[scope=row]{width:92px;padding-left:0;font-size:10px;letter-spacing:.08em}
+  .compare-table th[scope=col]{font-size:22px}
+}
+
+
+/* =========================================================
+   Casa da Lua — motion.css
+   Estado inicial das animações (só vale se o JS de movimento carregou:
+   a classe .motion-on é posta pelo <head> e retirada se a biblioteca falhar).
+   Vocabulário: data-anim = reveal | title | image | hero · data-parallax · data-stagger
+   ========================================================= */
+.motion-on [data-anim="reveal"]{opacity:0}
+.motion-on [data-anim="title"]{visibility:hidden}
+.motion-on [data-anim="image"]{opacity:0}
+.motion-on .page:not(.active) [data-anim]{opacity:1;visibility:visible}
+[data-anim="title"] .split-line{overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+[data-anim="image"],[data-parallax]{will-change:transform}
+[data-anim="image"]{overflow:hidden}
+[data-anim="image"] img{transform-origin:50% 50%}
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+  .motion-on [data-anim]{opacity:1!important;visibility:visible!important}
+}
+.site-header{transition:box-shadow .3s}
+.site-header.is-scrolled{box-shadow:0 8px 30px rgba(18,47,41,.08)}

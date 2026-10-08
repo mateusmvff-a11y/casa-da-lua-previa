@@ -1,0 +1,95 @@
+/* =========================================================
+   Reservar — página do HTML V16 (não existe no Figma),
+   vestida com a linguagem do Figma: creme + textura, painel
+   verde-escuro, formulário no padrão "Solicitar proposta".
+   ========================================================= */
+#page-reservar .rv-top{padding-top:96px;padding-bottom:110px}
+#page-reservar .section-head{align-items:flex-end}
+#page-reservar .rv-lead{max-width:421px;font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f;text-align:right;padding-bottom:6px}
+
+/* casca: painel escuro + formulário */
+#page-reservar .reserve-shell{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:22px;align-items:start}
+
+/* painel escuro lateral (mesma família do painel "Como você vem?" da Home) */
+#page-reservar .reserve-steps{background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:42px;position:sticky;top:calc(var(--header-h) + 24px)}
+#page-reservar .reserve-steps .eyebrow{margin-bottom:18px}
+#page-reservar .reserve-steps h2{font-family:var(--serif);font-weight:700;font-size:40px;line-height:1.18;letter-spacing:0;color:var(--creme);margin:0 0 16px}
+#page-reservar .reserve-steps>p{font-size:16px;line-height:24px;color:rgba(245,234,210,.72);min-height:72px}
+#page-reservar .step-list{display:flex;gap:7px;margin:28px 0}
+#page-reservar .step-dot{flex:1;height:4px;border-radius:10px;background:rgba(255,255,255,.16);transition:background .2s}
+#page-reservar .step-dot.active{background:var(--verde)}
+#page-reservar .rv-info{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);box-shadow:none;border-radius:24px;padding:26px}
+#page-reservar .rv-info .kicker{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--verde);margin-bottom:6px}
+#page-reservar .feature-list{list-style:none;margin:0;padding:0}
+#page-reservar .feature-list li{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:24px;color:var(--creme)}
+#page-reservar .feature-list li:last-child{border-bottom:0;padding-bottom:0}
+#page-reservar .feature-list li span:last-child{color:rgba(245,234,210,.65);text-align:right}
+
+/* formulário (Figma: Form creme r28, campos #fffdf8 r13) */
+#page-reservar .form-card{background:var(--creme);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:none}
+#page-reservar .reserve-step .eyebrow{margin-bottom:12px}
+#page-reservar .reserve-step .subtitle{font-size:clamp(30px,2.2vw,42px);line-height:1.1}
+#page-reservar .reserve-step .small{margin-top:12px}
+#page-reservar .reserve-step .form-grid{margin-top:28px}
+#page-reservar .rv-p{margin-top:14px;font-size:16px;line-height:24px;color:var(--texto-2)}
+#page-reservar .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-reservar .field input,#page-reservar .field select{border:1px solid rgba(19,59,51,.18);background-color:var(--branco);border-radius:13px;padding:16px 14px 15px 15px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto);color-scheme:light;min-height:58px}
+#page-reservar .field select{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%23587069' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center}
+#page-reservar .field input:focus,#page-reservar .field select:focus{outline:2px solid var(--verde);outline-offset:1px}
+#page-reservar .field.full .btn{width:100%;padding:12px 20px 13px}
+
+/* prioridades */
+#page-reservar .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+#page-reservar .choice{display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid rgba(19,59,51,.18);background:var(--branco);border-radius:18px;padding:18px 20px;color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-reservar .choice strong{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.15;color:var(--verde-escuro);transition:color .2s}
+#page-reservar .choice span{font-size:14px;line-height:20px;letter-spacing:.02em;color:var(--texto-2);transition:color .2s}
+#page-reservar .choice:hover{border-color:var(--verde)}
+#page-reservar .choice.active{background:var(--verde);border-color:var(--verde)}
+#page-reservar .choice.active strong,#page-reservar .choice.active span{color:var(--branco)}
+#page-reservar .reserve-step .hero-actions{margin-top:28px}
+
+/* categorias sugeridas */
+#page-reservar .reserve-suggestions{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:22px}
+#page-reservar .suggestion{display:block;width:100%;text-align:left;border:1px solid rgba(19,59,51,.18);border-radius:20px;padding:20px;background:var(--branco);color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-reservar .suggestion strong{display:block;font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.1;color:var(--verde);transition:color .2s}
+#page-reservar .suggestion p{margin-top:8px;font-size:14px;line-height:20px;color:var(--texto-2);transition:color .2s}
+#page-reservar .reserve-suite-choice{cursor:pointer}
+#page-reservar .reserve-suite-choice:hover{border-color:var(--verde)}
+#page-reservar .reserve-suite-choice.active{background:var(--verde-escuro);border-color:var(--verde-escuro)}
+#page-reservar .reserve-suite-choice.active strong{color:var(--creme)}
+#page-reservar .reserve-suite-choice.active p{color:rgba(245,234,210,.75)}
+
+/* resumo */
+#page-reservar #reserveSummary{margin:24px 0 0;background:var(--branco);border-radius:20px;box-shadow:none;padding:24px 26px}
+#page-reservar #reserveSummary h3{font-size:28px;margin-bottom:8px}
+#page-reservar #reserveSummary p{font-size:16px;line-height:26px;color:var(--texto-2)}
+#page-reservar #reserveSummary p strong{color:var(--texto);font-weight:700}
+
+/* antes de reservar */
+#page-reservar .practical-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+#page-reservar .practical-item{border-top:1px solid var(--linha);padding-top:20px}
+#page-reservar .practical-item strong{display:block;font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.2;color:var(--verde-escuro)}
+#page-reservar .practical-item span{display:block;margin-top:2px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto-4)}
+#page-reservar .rv-policies{margin-top:40px}
+#page-reservar .rv-policies .card{background:var(--creme);box-shadow:var(--sombra-cartao)}
+#page-reservar .rv-policies .card h3{font-weight:400;font-size:30px;line-height:1.07;color:var(--verde)}
+#page-reservar .rv-policies .card p{font-size:16px;line-height:24px;color:var(--texto-2)}
+
+@media(max-width:1180px){
+  #page-reservar .reserve-shell{grid-template-columns:1fr}
+  #page-reservar .reserve-steps{position:static}
+  #page-reservar .reserve-steps>p{min-height:0}
+  #page-reservar .rv-lead{text-align:left;max-width:560px;margin-top:20px}
+  #page-reservar .practical-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  #page-reservar .rv-top{padding-top:56px;padding-bottom:74px}
+  #page-reservar .reserve-steps{padding:30px 24px}
+  #page-reservar .reserve-steps h2{font-size:32px}
+  #page-reservar .form-card{padding:26px 20px}
+  #page-reservar .choice-grid{grid-template-columns:1fr}
+  #page-reservar .reserve-suggestions{grid-template-columns:1fr}
+  #page-reservar .practical-grid{gap:18px}
+  #page-reservar .practical-item strong{font-size:30px}
+  #page-reservar .reserve-step .hero-actions .btn,#page-reservar .reserve-step .hero-actions .ghost-btn{flex:1 1 auto}
+}
