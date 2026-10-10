@@ -98,7 +98,7 @@ function goPage(page, opts={}){
   if(!document.querySelector(`.page[data-page="${page}"]`)) page = 'home';
   if(state.busy) return;
   /* mesma página: só volta ao topo (com suavidade) */
-  if(page === state.page && state.started && !opts.force){ closeOverlays(); scrollTop(false); return; }
+  if(page === state.page && state.started && !opts.force){ closeOverlays(); if(opts.anchor) scrollToId(opts.anchor); else scrollTop(false); return; }
   /* motion.js define CDL.transition(page, executa): cortina entre páginas */
   if(CDL.transition && state.started && !opts.instant){
     state.busy = true;

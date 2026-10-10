@@ -14,7 +14,7 @@
 /* ---------- 1 · Hero (1920x1124, imagem de fundo + película 30%) ---------- */
 #page-home .hero{
   position:relative;isolation:isolate;overflow:hidden;color:#fff;background:var(--creme);
-  min-height:clamp(620px,58.5vw,1124px);padding:72px var(--pad);
+  min-height:max(640px,calc(100svh - var(--header-h)));padding:60px var(--pad) 200px;   /* o texto fica na 1ª tela, acima das estatísticas e da barra de reserva */
   display:flex;align-items:center;justify-content:center
 }
 #page-home .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}

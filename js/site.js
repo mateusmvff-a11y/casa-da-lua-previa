@@ -98,7 +98,7 @@ function goPage(page, opts={}){
   if(!document.querySelector(`.page[data-page="${page}"]`)) page = 'home';
   if(state.busy) return;
   /* mesma página: só volta ao topo (com suavidade) */
-  if(page === state.page && state.started && !opts.force){ closeOverlays(); scrollTop(false); return; }
+  if(page === state.page && state.started && !opts.force){ closeOverlays(); if(opts.anchor) scrollToId(opts.anchor); else scrollTop(false); return; }
   /* motion.js define CDL.transition(page, executa): cortina entre páginas */
   if(CDL.transition && state.started && !opts.instant){
     state.busy = true;
@@ -988,7 +988,7 @@ const desktop = () => window.matchMedia('(min-width:1025px)').matches;
 /* ---------- Rolagem suave (Lenis) ---------- */
 let lenis = null;
 if(typeof Lenis !== 'undefined' && !window.matchMedia('(pointer:coarse)').matches){
-  lenis = new Lenis({lerp:.1,wheelMultiplier:.95,smoothWheel:true});
+  lenis = new Lenis({lerp:.09,wheelMultiplier:.95,smoothWheel:true});
   CDL.lenis = lenis;
   lenis.on('scroll',ScrollTrigger.update);
   gsap.ticker.add(t=>lenis.raf(t*1000));
@@ -1059,7 +1059,7 @@ function build(pageEl){
         if(desktop()) gsap.to(bg,{yPercent:9,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
       }
       const copy = hero.querySelector('.hero-copy');
-      if(copy) gsap.to(copy,{yPercent:-9,autoAlpha:.15,ease:'none',scrollTrigger:{trigger:hero,start:'20% top',end:'bottom top',scrub:true}});
+      if(copy) gsap.to(copy,{yPercent:-6,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});   // só desliza: a cor/opacidade do texto nunca muda
       const inner = [...hero.querySelectorAll('[data-anim="title"],[data-anim="reveal"]')];
       inner.forEach((el,i)=>{
         if(el.dataset.anim === 'title') titleIn(el,{delay:.2+D,hero:true},sp,ctx);

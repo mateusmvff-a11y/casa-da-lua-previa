@@ -46,7 +46,7 @@ function mapeiaPesos(css){
     return sel+'{'+body.replace(/font-weight:\s*400/,'font-weight:500')+'}';
   });
 }
-const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), rd('src/css/fixes.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n'));
+const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), rd('src/css/fixes.css'), rd('src/css/hover.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n'));
 fs.mkdirSync(path.join(OUT,'css'),{recursive:true});
 fs.writeFileSync(path.join(OUT,'css/site.css'), css);
 

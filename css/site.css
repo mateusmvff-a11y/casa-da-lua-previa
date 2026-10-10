@@ -249,7 +249,7 @@ main{padding-top:var(--header-h)}
 /* ---------- 1 · Hero (1920x1124, imagem de fundo + película 30%) ---------- */
 #page-home .hero{
   position:relative;isolation:isolate;overflow:hidden;color:#fff;background:var(--creme);
-  min-height:clamp(620px,58.5vw,1124px);padding:72px var(--pad);
+  min-height:max(640px,calc(100svh - var(--header-h)));padding:60px var(--pad) 200px;   /* o texto fica na 1ª tela, acima das estatísticas e da barra de reserva */
   display:flex;align-items:center;justify-content:center
 }
 #page-home .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
@@ -1629,6 +1629,80 @@ p,li,.lead{text-wrap:pretty}
 /* celular: quebras manuais de título saem (o equilíbrio automático faz melhor e evita palavra sozinha) */
 @media(max-width:760px){ h1 br,h2 br,.title br,.display br{display:none} }
 @media(max-width:480px){ .title-sm{font-size:31px} }
+
+
+/* =========================================================
+   Casa da Lua — hover.css
+   Microinterações de passar o mouse (só em tela com mouse): cartões sobem, fotos dão um zoom lento,
+   títulos e listas deslizam um pouco, links aprofundam o sublinhado, pinos pulsam.
+   Boas práticas: só transform/opacity/sombra (GPU, sem recalcular layout), 300–900 ms com curva de saída suave,
+   desligado em "reduzir movimento" e em telas de toque. Botões não se mexem (só cor e sombra).
+   ========================================================= */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  :root{--ease-out:cubic-bezier(.2,.7,.2,1)}
+
+  /* cartões: sobem e a sombra se aprofunda */
+  .card,.suite-card,.chapada-card,.space-card,.story-card,.story-main,.feature-panel,.profile-card,.reserve-steps,.moment-hero{
+    transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out),background-color .3s,border-color .3s,color .3s;
+  }
+  .card:hover,.suite-card:hover,.chapada-card:hover,.space-card:hover,.story-card:hover,.feature-panel:hover{
+    transform:translateY(-6px);box-shadow:0 26px 56px rgba(18,47,41,.17);
+  }
+  .dark .card:hover{box-shadow:0 26px 56px rgba(0,0,0,.35)}
+  .story-main:hover{transform:translateY(-4px);box-shadow:0 26px 56px rgba(18,47,41,.22)}
+  .profile-card:hover{transform:translateY(-3px)}
+
+  /* fotos dentro dos cartões: zoom lento (as com parallax ficam de fora, o GSAP já mexe nelas) */
+  .suite-card-media img,.space-card img,.chapada-card img,.feature-media img,.story-main img,.story-card .thumb img,.program-stage-media img,.moment-media img,.atlas-home-card .atlas-map img{
+    transition:transform 1s var(--ease-out);will-change:auto;
+  }
+  .suite-card:hover .suite-card-media img:not([data-parallax]),
+  .space-card:hover img:not([data-parallax]),
+  .chapada-card:hover img:not([data-parallax]),
+  .feature-panel:hover .feature-media img:not([data-parallax]),
+  .story-main:hover img:not([data-parallax]),
+  .story-card:hover .thumb img{transform:scale(1.06)}
+
+  /* títulos de cartão e itens de lista deslizam um pouco */
+  .card h3,.suite-card h3,.chapada-copy h3,.space-card h3,.feature-body h3,.story-card h4{transition:transform .5s var(--ease-out),color .3s}
+  .card:hover h3,.suite-card:hover h3,.chapada-card:hover .chapada-copy h3,.space-card:hover h3,.feature-panel:hover .feature-body h3,.story-card:hover h4{transform:translateX(5px)}
+  .feature-list li,.atlas-list button,.footer-col button,.footer-col a,.practical-item,.schedule-item,.year-stack article,.program-day,.time-tab,.moment-tabs button,.story-mini-list span{
+    transition:transform .4s var(--ease-out),background-color .3s,color .3s,border-color .3s;
+  }
+  .feature-list li:hover,.atlas-list button:hover,.footer-col button:hover,.footer-col a:hover,.schedule-item:hover,.story-mini-list span:hover{transform:translateX(6px)}
+  .program-day:hover,.time-tab:hover{transform:translateX(4px)}
+  .year-stack article:hover{transform:translateX(4px)}
+
+  /* chips e filtros: sobem um pouco */
+  .chip-button,.suite-filter{transition:transform .35s var(--ease-out),background-color .3s,color .3s,border-color .3s}
+  .chip-button:hover,.suite-filter:hover{transform:translateY(-2px)}
+
+  /* links de texto: o sublinhado se afasta e a cor muda */
+  .text-button{transition:text-underline-offset .35s var(--ease-out),color .3s,text-decoration-color .3s}
+  .text-button:hover{text-underline-offset:8px}
+
+  /* botões: não se mexem; ganham uma sombra suave */
+  .btn,.ghost-btn{transition:background-color .3s,color .3s,border-color .3s,box-shadow .4s var(--ease-out)}
+  .btn:hover{box-shadow:0 12px 26px rgba(13,66,55,.28)}
+  .ghost-btn:hover{box-shadow:0 8px 20px rgba(13,66,55,.14)}
+
+  /* menu: o item ativo/hover ganha um sublinhado que cresce do centro */
+  .nav-link{position:relative}
+  .nav-link::after{content:"";position:absolute;left:50%;bottom:6px;width:0;height:1px;background:currentColor;transform:translateX(-50%);transition:width .4s var(--ease-out);opacity:.7}
+  .nav-link:hover::after{width:calc(100% - 28px)}
+  .nav-link.active::after{display:none}
+
+  /* pinos dos mapas: crescem e pulsam um anel */
+  .map-pin{transition:scale .35s var(--ease-out),background-color .3s,color .3s}
+  .map-pin:hover{scale:1.22}   /* 'scale' soma com o translate que posiciona o pino */
+  .map-pin::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid currentColor;opacity:0;transform:scale(.7)}
+  .map-pin:hover::after{animation:pinRing 1.1s var(--ease-out) infinite}
+  @keyframes pinRing{0%{opacity:.7;transform:scale(.7)}100%{opacity:0;transform:scale(1.5)}}
+
+  /* setas do carrossel */
+  .carousel-btn,.exp-carousel button{transition:transform .35s var(--ease-out),background-color .3s}
+  .carousel-btn:hover,.exp-carousel button:hover{transform:scale(1.08)}
+}
 
 
 /* =========================================================
