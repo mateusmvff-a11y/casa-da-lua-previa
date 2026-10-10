@@ -5,9 +5,9 @@ CDL.ready(()=>{
   const MOMENTS = {
     morning:{img:'assets/img/3402e0.webp',alt:'Mesa do café da manhã da Casa da Lua',time:'7h30',eyebrow:'O dia começa',title:'Café servido, jardim acordando',
       text:'O café da manhã está incluído e é servido das 7h30 às 10h30. É quando o dia ganha direção sem precisar começar com pressa.',tags:['café','jardim','preparação']},
-    afternoon:{img:'assets/img/v16-pool.webp',alt:'Piscina da Casa da Lua no fim de tarde',time:'17h40',eyebrow:'A volta',title:'Água, spa e um ritmo mais lento',
+    afternoon:{img:'assets/img/rev-viver-17h40.webp',alt:'Casa da Lua no fim de tarde',time:'17h40',eyebrow:'A volta',title:'Água, spa e um ritmo mais lento',
       text:'Piscina, jacuzzi, sauna, massagem e jardim recebem quem volta da Chapada sem pedir outro deslocamento.',tags:['piscina','hidro','spa','descanso']},
-    night:{img:'assets/img/v16-night.webp',alt:'Casa da Lua à noite',time:'21h',eyebrow:'A casa acende',title:'Fogo, mesa, cinema e conversa',
+    night:{img:'assets/img/rev-viver-21h.webp',alt:'Casa da Lua às 21h',time:'21h',eyebrow:'A casa acende',title:'Fogo, mesa, cinema e conversa',
       text:'A noite abre possibilidades de convivência e também de silêncio. Nada precisa parecer uma programação obrigatória.',tags:['fogo','cinema','bilhar','mesa']}
   };
   const tabs = $$('#page-viver .moment-tabs button[data-viver-moment]');

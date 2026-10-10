@@ -13,9 +13,6 @@
 #page-experiencias .exp-hero-copy{position:relative;max-width:760px}
 #page-experiencias .hero-badge{position:absolute;left:0;bottom:calc(100% + 25px);display:inline-flex;align-items:center;gap:10px;width:max-content;padding:9px 12px;border:1px solid rgba(226,220,208,.55);border-radius:999px;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme)}
 #page-experiencias .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde)}
-#page-experiencias .hero-side-note{position:absolute;left:clamp(var(--pad),6vw,115px);right:var(--pad);bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--creme)}
-#page-experiencias .hero-side-note strong{font-family:var(--serif);font-size:28px;line-height:1.1;font-weight:400}
-#page-experiencias .hero-side-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
 #page-experiencias .exp-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,3.54vw,68px);line-height:1;letter-spacing:0;color:var(--creme)}
 #page-experiencias .exp-hero h1 strong{font-weight:700}
 #page-experiencias .exp-hero-lead{max-width:640px;margin-top:24px;font-size:clamp(18px,1.3vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
@@ -26,7 +23,6 @@
 
 /* ---------- Programação por dia ---------- */
 #page-experiencias .exp-program .section-head>div:first-child{max-width:739px}
-#page-experiencias .exp-program .section-head .small{max-width:356px;text-align:right;font-size:16px;line-height:24px;color:#62766f}
 #page-experiencias .program-shell{min-height:582px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;align-items:start}
 #page-experiencias .program-days{display:flex;flex-direction:column;gap:8px}
 #page-experiencias .program-day{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;min-height:94px;padding:18px 18px 21px;text-align:left;background:transparent;border:1px solid rgba(19,59,51,.18);border-radius:18px;color:var(--texto);transition:background .2s,color .2s,border-color .2s}
@@ -53,6 +49,7 @@
 
 /* ---------- O que atravessa os 4 dias ---------- */
 #page-experiencias .exp-thread{background:#0b2725}
+#page-experiencias .exp-thread .section-bg{inset:0;width:100%;height:100%;background-size:cover;background-position:50% 72%}
 #page-experiencias .exp-thread .section-head>div:first-child{max-width:800px}
 #page-experiencias .exp-thread .eyebrow{color:#fff;font-family:var(--inter);font-weight:600}
 #page-experiencias .exp-thread .title{color:var(--creme)}
@@ -68,9 +65,6 @@
 #page-experiencias .exp-memory .chip-row{padding-top:8px}
 #page-experiencias .exp-memory .chip{min-height:34px;padding:7px 11px;font-family:var(--inter);font-weight:normal;font-size:11px;line-height:18px;letter-spacing:.03em;background:rgba(255,255,255,.38);border:1px solid rgba(19,59,51,.18)}
 #page-experiencias .exp-memory-frame{position:relative;overflow:hidden;width:100%;height:680px;border-radius:24px;background:#d8ccb7}
-#page-experiencias .exp-memory-frame img{position:absolute;left:0;top:-7%;width:100%;height:114%;object-fit:cover}
-#page-experiencias .exp-dots{position:absolute;left:50%;bottom:19px;display:flex;gap:20px;transform:translateX(-50%);margin-left:10px}
-#page-experiencias .exp-dots i{display:block;width:23px;height:23px;border-radius:50%;background:var(--creme)}
 
 /* ---------- Próximas edições ---------- */
 #page-experiencias .exp-next{background:#e7d4ae}
@@ -78,11 +72,11 @@
 #page-experiencias .exp-next .title{color:var(--creme)}
 #page-experiencias .exp-form{display:flex;align-items:flex-end;gap:12px;padding:26px;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao)}
 #page-experiencias .exp-form .field{flex:1 1 0;min-width:0}
-#page-experiencias .exp-form .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-experiencias .exp-form .field label{padding-left:15px;font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
 #page-experiencias .exp-form .field input{padding:16.5px 14px;border-radius:13px;border:1px solid rgba(19,59,51,.18);background:var(--branco);font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
 #page-experiencias .exp-form .field input::placeholder{color:#757575;opacity:1}
 #page-experiencias .exp-form .btn{flex:none}
-#page-experiencias .exp-form #expContato{font-family:var(--inter);font-weight:normal;font-size:16px;line-height:19px;letter-spacing:0}
+#page-experiencias .exp-form #expContato{font-family:var(--inter);font-weight:normal;font-size:16px;line-height:24px;letter-spacing:0}
 
 
 /* ---------- Responsivo ---------- */
@@ -93,8 +87,7 @@
   #page-experiencias .exp-memory-grid{grid-template-columns:1fr;gap:40px}
   #page-experiencias .exp-memory-frame{height:min(680px,110vw)}
   #page-experiencias .exp-program .section-head{display:block}
-  #page-experiencias .exp-program .section-head .small{margin-top:16px;text-align:left;max-width:520px}
-}
+  }
 @media(max-width:900px){
   #page-experiencias .program-stage{grid-template-columns:1fr;min-height:0}
   #page-experiencias .program-stage-media{min-height:0;aspect-ratio:4/3}
@@ -103,9 +96,7 @@
 @media(max-width:760px){
   #page-experiencias .exp-hero{height:auto;min-height:640px;padding:96px var(--pad) 64px}
   #page-experiencias .exp-hero-shade{background:linear-gradient(0deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.35) 100%)}
-  #page-experiencias .hero-side-note{flex-direction:column;align-items:flex-start;gap:6px;bottom:20px}
-  #page-experiencias .hero-side-note strong{font-size:22px}
-  #page-experiencias .exp-hero-actions .btn,#page-experiencias .exp-hero-actions .ghost-btn{flex:1 1 auto}
+      #page-experiencias .exp-hero-actions .btn,#page-experiencias .exp-hero-actions .ghost-btn{flex:1 1 auto}
   #page-experiencias .program-day{flex:1 1 calc(50% - 8px);min-width:0}
   #page-experiencias .br-d{display:none}
   #page-experiencias .exp-form{flex-direction:column;align-items:stretch}
@@ -113,3 +104,12 @@
   #page-experiencias .exp-memory-frame{height:min(560px,120vw)}
   #page-experiencias .exp-thread .card{padding:22px}
 }
+
+/* ---------- Carrossel "Experiências anteriores" ---------- */
+#page-experiencias .exp-slides{position:absolute;inset:0}
+#page-experiencias .exp-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0s linear .9s}
+#page-experiencias .exp-slide.is-active{opacity:1;z-index:1;transition:opacity .9s ease}
+#page-experiencias .exp-car-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid rgba(19,59,51,.18);background:rgba(226,220,208,.92);color:var(--verde-escuro);display:grid;place-items:center;padding:0;transition:background .2s,color .2s}
+#page-experiencias .exp-car-btn:hover{background:var(--branco)}
+#page-experiencias .exp-car-btn.prev{left:16px}
+#page-experiencias .exp-car-btn.next{right:16px}

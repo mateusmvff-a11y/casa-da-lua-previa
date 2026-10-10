@@ -10,6 +10,8 @@
   padding:clamp(120px,16.15vw,310px) clamp(20px,6vw,115px) clamp(80px,14.8vw,284px);
 }
 #page-chapada .chapada-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;z-index:-2}
+#page-chapada .chapada-hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;z-index:-2;background:transparent}
+@media(prefers-reduced-motion:reduce){#page-chapada .chapada-hero-video{display:none}}
 #page-chapada .chapada-hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.33) 40%,rgba(0,0,0,.18) 62%,rgba(0,0,0,.05) 90%)}
 #page-chapada .chapada-hero-copy{max-width:1008px}
 #page-chapada .chapada-badge{display:inline-flex;align-items:center;gap:10px;padding:8.5px 12px;border:1px solid var(--creme);border-radius:999px;color:var(--creme);font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:25px}
@@ -35,7 +37,7 @@
 #page-chapada .chapada-card.hidden-by-filter{display:none}
 #page-chapada .chapada-photo{position:relative;overflow:hidden;min-height:100%}
 #page-chapada .chapada-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#page-chapada .chapada-copy{padding:34px 34px 55px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+#page-chapada .chapada-copy{padding:34px;display:flex;flex-direction:column;justify-content:flex-start;min-width:0}
 #page-chapada .chapada-copy .eyebrow{margin-bottom:16px}
 #page-chapada .chapada-copy h3{font-family:var(--serif);font-weight:400;font-size:40px;line-height:40px;letter-spacing:0;color:var(--verde-escuro);margin-bottom:14px}
 #page-chapada .chapada-tags{display:flex;flex-wrap:wrap;gap:7px 2px;padding:10px 0 15px}
@@ -43,6 +45,7 @@
 #page-chapada .chapada-copy p{padding:16px 0;font-size:16px;line-height:24px;letter-spacing:.02em;color:#5e726b}
 #page-chapada .return-note{margin-top:22px;padding-top:17px;border-top:1px solid var(--linha);font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--verde-escuro)}
 #page-chapada .return-note strong{font-weight:700}
+#page-chapada .chapada-copy p,#page-chapada .return-note{margin-right:-10px}
 
 /* ---------- Antes de sair (foto de fundo) ---------- */
 #page-chapada .chapada-before{overflow:hidden;background:var(--branco)}
@@ -53,28 +56,30 @@
 #page-chapada .chapada-before .title{color:#fff}
 #page-chapada .chapada-before .grid-4{align-items:stretch}
 #page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px}
-#page-chapada .chapada-before .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--verde);margin:0;letter-spacing:-.01em}
-#page-chapada .chapada-before .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
+#page-chapada .chapada-before .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--verde);margin:0;max-width:190px;text-wrap:balance}
+#page-chapada .chapada-before .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2);text-wrap:balance;min-height:72px}
 
 /* ---------- A Chapada continua quando você volta ---------- */
-#page-chapada .chapada-return .split{gap:62px;grid-template-columns:minmax(0,639fr) minmax(0,579fr)}
-#page-chapada .chapada-return .split>div:first-child{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
-#page-chapada .chapada-return .eyebrow{margin:0}
+#page-chapada .chapada-return .split{display:flex;align-items:stretch;justify-content:space-between;gap:62px}
+#page-chapada .chapada-return .split>div:first-child{display:flex;flex-direction:column;justify-content:center;gap:16px;align-items:flex-start;flex:0 1 639px;min-width:0}
+#page-chapada .chapada-return .eyebrow{margin:0;font-family:var(--inter);font-weight:600}
+#page-chapada .chapada-return .btn{color:var(--creme)}
 #page-chapada .chapada-return .title{font-size:clamp(38px,3.54vw,68px);line-height:1}
 #page-chapada .chapada-return-lead{padding-top:8px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:#65766f}
 #page-chapada .chapada-return .hero-actions{padding-top:20px}
-#page-chapada .chapada-return-frame{background:#d8ccb7;border-radius:var(--raio);overflow:hidden;padding-bottom:18.1%;min-width:0}
-#page-chapada .chapada-return-photo{aspect-ratio:579/325;width:100%}
+#page-chapada .chapada-return-frame{flex:none;align-self:stretch;width:346px;background:#d8ccb7;border-radius:var(--raio);overflow:hidden;position:relative}
+#page-chapada .chapada-return-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- Responsivo ---------- */
 @media(max-width:1180px){
   #page-chapada .chapada-list{grid-template-columns:1fr}
   #page-chapada .chapada-card{min-height:300px}
-  #page-chapada .chapada-return .split{grid-template-columns:minmax(0,1fr)}
-  #page-chapada .chapada-return-frame{padding-bottom:0;aspect-ratio:579/430}
+  #page-chapada .chapada-return .split{flex-direction:column;align-items:stretch;gap:40px}
+  #page-chapada .chapada-return .split>div:first-child{flex:none}
+  #page-chapada .chapada-return-frame{align-self:center;width:min(100%,520px);aspect-ratio:4/5;height:auto}
 }
 @media(max-width:760px){
-  #page-chapada .chapada-hero{min-height:600px;padding-top:110px;padding-bottom:130px}
+  #page-chapada .chapada-hero{min-height:600px;padding-top:110px;padding-bottom:70px}
   #page-chapada .chapada-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.5))}
   #page-chapada .chapada-filter{padding-top:24px}
   #page-chapada .chapada-card{grid-template-columns:1fr;min-height:0}
@@ -82,28 +87,13 @@
   #page-chapada .chapada-copy{padding:28px 24px}
   #page-chapada .chapada-copy h3{font-size:34px;line-height:36px}
   #page-chapada .chapada-before .card{padding:26px}
+  #page-chapada .chapada-return-frame{width:100%}
 }
 
-/* refinamento (verificador) */
-#page-chapada .chapada-card.is-top .chapada-copy{justify-content:flex-start}
-#page-chapada .chapada-return .btn{color:var(--creme)}
-#page-chapada .chapada-copy p,#page-chapada .return-note{margin-right:-10px}
 
-/* elementos do V16 trazidos de volta (decisão 08/10) */
-#page-chapada .chapada-hero-note{position:absolute;left:clamp(20px,6vw,115px);right:clamp(20px,6vw,115px);bottom:clamp(24px,2.1vw,40px);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;z-index:1}
-#page-chapada .chapada-hero-note strong{font-family:var(--serif);font-size:28px;line-height:1.1;font-weight:400}
-#page-chapada .chapada-hero-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
-#page-chapada .section-head .small{flex:0 1 380px;max-width:380px}
-#page-chapada .chapada-before .section-head .small{color:rgba(255,255,255,.88)}
-#page-chapada .chapada-return .eyebrow{font-family:var(--inter);font-weight:600}
-#page-chapada .chapada-return-frame{position:relative}
-#page-chapada .chapada-return-photo{position:absolute;inset:0;aspect-ratio:auto}
-#page-chapada .chapada-return-photo img{width:100%;height:100%;object-fit:cover}
-@media(max-width:1180px){
-  #page-chapada .chapada-return-frame{position:relative}
-}
-@media(max-width:760px){
-  #page-chapada .section-head .small{max-width:none}
-  #page-chapada .chapada-hero-note{flex-direction:column;align-items:flex-start;gap:6px;bottom:20px}
-  #page-chapada .chapada-hero-note strong{font-size:22px}
+/* revisão 09/10 (bloco 4): a imagem ocupa a coluna direita inteira e acompanha a altura do texto da esquerda (nada de faixa estreita) */
+@media(min-width:1181px){
+  #page-chapada .chapada-return .split{align-items:stretch;gap:clamp(40px,4.5vw,86px)}
+  #page-chapada .chapada-return .split>div:first-child{flex:0 1 52%;padding-block:24px}
+  #page-chapada .chapada-return-frame{flex:1 1 0;width:auto;min-height:clamp(440px,32vw,600px);aspect-ratio:auto}
 }

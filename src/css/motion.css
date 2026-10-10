@@ -28,7 +28,7 @@ html.lenis,html.lenis body{height:auto}
 .scroll-progress{position:fixed;left:0;top:0;right:0;height:3px;z-index:70;background:var(--verde);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
 /* cortina entre páginas */
 .curtain{position:fixed;inset:0;z-index:200;background:var(--verde-escuro);display:none;align-items:center;justify-content:center;pointer-events:all;will-change:transform}
-.curtain img{width:min(290px,56vw);height:auto;opacity:0}
+.curtain .curtain-sym{width:min(132px,30vw);height:auto;opacity:0;will-change:transform}
 /* sobreposições: o JS controla opacidade e movimento */
 .overlay.closing{pointer-events:none}
 /* o cabeçalho sobe/desce por transform */

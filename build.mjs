@@ -50,7 +50,7 @@ const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/p
 fs.mkdirSync(path.join(OUT,'css'),{recursive:true});
 fs.writeFileSync(path.join(OUT,'css/site.css'), css);
 
-const js = [rd('src/js/core.js'), ...PAGES.map(p => rd(`src/js/pages/${p}.js`)), rd('src/js/overlays.js'), MOTION ? rd('src/js/motion.js') : ''].join('\n\n');
+const js = [rd('src/js/core.js'), rd('src/js/typo.js'), ...PAGES.map(p => rd(`src/js/pages/${p}.js`)), rd('src/js/overlays.js'), MOTION ? rd('src/js/shadows.js') : '', MOTION ? rd('src/js/motion.js') : ''].join('\n\n');
 fs.mkdirSync(path.join(OUT,'js'),{recursive:true});
 fs.writeFileSync(path.join(OUT,'js/site.js'), js);
 

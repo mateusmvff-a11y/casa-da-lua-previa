@@ -61,7 +61,6 @@ CDL.ready(()=>{
     $$('.reserve-suite-choice').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
   });
-  $('#openBookingEngine').addEventListener('click',()=>CDL.showToast('Em breve você poderá seguir direto para o motor oficial.'));
   $('#openWhatsApp').addEventListener('click',()=>CDL.showToast('Em breve você poderá falar com a equipe por aqui.'));
   $('#reserveForm').addEventListener('submit',e=>e.preventDefault()); /* Enter num campo não recarrega a página */
 

@@ -33,13 +33,6 @@
 #page-eventos .hero .btn{color:var(--creme)}
 #page-eventos .hero .ghost-btn{color:var(--creme);border-color:var(--verde)}
 #page-eventos .hero .ghost-btn:hover{background:rgba(81,132,78,.28)}
-/* nota lateral do hero (V16), no estilo do Figma */
-#page-eventos .hero-side-note{
-  position:absolute;left:clamp(var(--pad),6vw,115px);right:var(--pad);bottom:44px;z-index:2;
-  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--creme);text-shadow:0 1px 14px rgba(0,0,0,.45)
-}
-#page-eventos .hero-side-note strong{font-family:var(--serif);font-size:28px;line-height:32px;font-weight:400;letter-spacing:0}
-#page-eventos .hero-side-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
 #page-eventos .stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
 #page-eventos .stat{display:flex;flex-direction:column;gap:5px}
 #page-eventos .stat strong{font-family:var(--serif);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
@@ -90,11 +83,6 @@
 
 /* ---------- 3. Estrutura ---------- */
 #page-eventos .section.white .section-head{margin-bottom:48px}
-#page-eventos #eventFormats .section-head .small,
-#page-eventos .section.white .section-head .small{
-  max-width:319px;padding:12px 10px 0 0;text-align:right;
-  font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
-}
 #page-eventos .grid-4{gap:18px}
 #page-eventos .grid-4 .card{padding:26px}
 #page-eventos .grid-4 .card h3{font-weight:400;font-size:30px;line-height:32px;margin:0 0 12px;color:var(--verde)}
@@ -116,10 +104,6 @@
 #page-eventos .rain .chip{min-height:37px;padding:7px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18);color:var(--creme)}
 
 /* ---------- 5. Solicitar proposta ---------- */
-#page-eventos #eventProposal .section-head .small{
-  max-width:364px;padding:12px 0 0;margin-bottom:-7px;text-align:right;
-  font-size:16px;line-height:24px;letter-spacing:.02em;color:#62766f
-}
 #page-eventos .proposal-form{background:var(--creme);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:none}
 #page-eventos .proposal-form .form-grid{gap:10px 16px}
 #page-eventos .proposal-form .field:not(.full){min-height:83px}
@@ -150,17 +134,11 @@
   #page-eventos .hero-media::after{background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.12) 100%)}
   #page-eventos .dbr{display:none}
   #page-eventos .section-head{display:block;margin-bottom:34px}
-  #page-eventos .section-head .small{margin-top:16px}
   #page-eventos .event-config{grid-template-columns:1fr;min-height:0}
   #page-eventos .event-diagram{min-height:520px}
-  #page-eventos #eventFormats .section-head .small,
-  #page-eventos .section.white .section-head .small,
-  #page-eventos #eventProposal .section-head .small{max-width:none;text-align:left;padding:0}
 }
 @media(max-width:760px){
   #page-eventos .dbr-s{display:none}
-  #page-eventos .hero-side-note{position:static;flex-direction:column;align-items:flex-start;gap:6px;margin-top:36px}
-  #page-eventos .hero-side-note strong{font-size:24px;line-height:28px}
   #page-eventos .hero{min-height:620px;padding:110px var(--pad) 60px}
   #page-eventos .hero-media::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.5))}
   #page-eventos .hero-actions .btn,#page-eventos .hero-actions .ghost-btn{white-space:nowrap}
@@ -171,12 +149,12 @@
   #page-eventos .event-copy h3{font-size:28px;line-height:30px}
   #page-eventos .feature-list li{flex-direction:column;gap:2px}
   #page-eventos .feature-list li span:last-child{text-align:left}
-  #page-eventos #eventFormats .section-head .small,
-  #page-eventos .section.white .section-head .small,
-  #page-eventos #eventProposal .section-head .small{text-align:left;padding:0;margin-top:16px}
   #page-eventos .rain .section-bg::after{background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35))}
   #page-eventos .proposal-form{padding:22px}
 }
 
 /* texturas de luz/sombra: no Figma o fundo escurece como "multiplicar" (mede igual ao print) */
 #page-eventos .section:not(.rain)>.section-bg{mix-blend-mode:multiply}
+
+/* revisão 09/10: rótulos alinhados ao texto digitado dentro do campo, como em Experiências (recuo de 15 px) */
+#page-eventos .proposal-form .field label{padding-left:15px}

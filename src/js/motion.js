@@ -29,7 +29,7 @@ const desktop = () => window.matchMedia('(min-width:1025px)').matches;
 /* ---------- Rolagem suave (Lenis) ---------- */
 let lenis = null;
 if(typeof Lenis !== 'undefined' && !window.matchMedia('(pointer:coarse)').matches){
-  lenis = new Lenis({lerp:.085,wheelMultiplier:.92,smoothWheel:true});
+  lenis = new Lenis({lerp:.1,wheelMultiplier:.95,smoothWheel:true});
   CDL.lenis = lenis;
   lenis.on('scroll',ScrollTrigger.update);
   gsap.ticker.add(t=>lenis.raf(t*1000));
@@ -96,15 +96,15 @@ function build(pageEl){
     pageEl.querySelectorAll('[data-anim="hero"]').forEach(hero=>{
       const bg = hero.querySelector('.hero-video, img, .section-bg, .hero-bg');
       if(bg){
-        gsap.fromTo(bg,{scale:1.16},{scale:1.02,duration:3,delay:D,ease:'power2.out'});
+        gsap.fromTo(bg,{scale:1.12},{scale:1.02,duration:2.2,delay:D,ease:'power2.out'});
         if(desktop()) gsap.to(bg,{yPercent:9,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
       }
       const copy = hero.querySelector('.hero-copy');
       if(copy) gsap.to(copy,{yPercent:-9,autoAlpha:.15,ease:'none',scrollTrigger:{trigger:hero,start:'20% top',end:'bottom top',scrub:true}});
       const inner = [...hero.querySelectorAll('[data-anim="title"],[data-anim="reveal"]')];
       inner.forEach((el,i)=>{
-        if(el.dataset.anim === 'title') titleIn(el,{delay:.3+D,hero:true},sp,ctx);
-        else gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:1.2,delay:.7+D+i*.11,clearProps:'transform'});
+        if(el.dataset.anim === 'title') titleIn(el,{delay:.2+D,hero:true},sp,ctx);
+        else gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.95,delay:.55+D+i*.09,clearProps:'transform'});
       });
     });
 
@@ -126,7 +126,7 @@ function build(pageEl){
       }
       group.forEach(g=>seen.add(g));
       const card = el.matches('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.practical-item');
-      gsap.fromTo(group,{autoAlpha:0,y:card?46:32,scale:card?.985:1},{autoAlpha:1,y:0,scale:1,duration:1.15,stagger:step,clearProps:'transform',
+      gsap.fromTo(group,{autoAlpha:0,y:card?46:32,scale:card?.985:1},{autoAlpha:1,y:0,scale:1,duration:.9,stagger:step,clearProps:'transform',
         scrollTrigger:{trigger:parent && step ? parent : group[0],start:'top 88%',toggleActions:'play none none none'}});
     });
 
@@ -161,7 +161,7 @@ function titleIn(el,opts,sp,ctx){
       const trig = opts.hero ? undefined : {trigger:el,start:'top 88%',toggleActions:'play none none none'};
       if(!hasSplit){ gsap.fromTo(el,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:1.2,delay:opts.delay||0,scrollTrigger:trig}); return; }
       const s = SplitText.create(el,{type:'lines',linesClass:'split-line',mask:'lines'});
-      gsap.fromTo(s.lines,{yPercent:118,rotate:3,transformOrigin:'0% 100%'},{yPercent:0,rotate:0,duration:1.4,stagger:.1,ease:'power4.out',delay:opts.delay||0,scrollTrigger:trig});
+      gsap.fromTo(s.lines,{yPercent:118,rotate:3,transformOrigin:'0% 100%'},{yPercent:0,rotate:0,duration:1.05,stagger:.07,ease:'power4.out',delay:opts.delay||0,scrollTrigger:trig});
       sp.push(s);
     });
   };
@@ -185,23 +185,34 @@ window.addEventListener('DOMContentLoaded',()=>{ setTimeout(()=>{ if(!contexts[C
 let lastW = window.innerWidth, rz;
 window.addEventListener('resize',()=>{ clearTimeout(rz); rz = setTimeout(()=>{ if(window.innerWidth !== lastW){ lastW = window.innerWidth; activate(CDL.currentPage); } },450); });
 
-/* ---------- Cortina entre páginas ---------- */
+/* ---------- Cortina entre páginas (símbolo girando) ---------- */
 const curtain = document.createElement('div');
 curtain.className = 'curtain'; curtain.setAttribute('aria-hidden','true');
-curtain.innerHTML = '<img src="assets/img/3967b9.webp" alt="" width="290" height="103">';
+curtain.innerHTML = '<img class="curtain-sym" src="assets/img/simbolo.svg" alt="" width="132" height="132">';
 document.body.appendChild(curtain);
-const cLogo = curtain.querySelector('img');
+const cSym = curtain.querySelector('img');
 gsap.set(curtain,{yPercent:100,display:'none'});
+let spin = null;
+/* decodifica as primeiras imagens da página de destino enquanto a cortina cobre a tela (a troca não engasga) */
+function preDecode(page){
+  const el = document.querySelector('.page[data-page="'+page+'"]'); if(!el) return Promise.resolve();
+  const imgs = [...el.querySelectorAll('img')].filter(i=>!i.closest('.overlay')).slice(0,6);
+  return Promise.race([Promise.all(imgs.map(i=>i.decode ? i.decode().catch(()=>{}) : 0)), new Promise(r=>setTimeout(r,650))]);
+}
 CDL.transition = (page, swap, end) => {
   showHeader();
   CDL.closeOverlays();
   curtain.style.display = 'flex';
-  const tl = gsap.timeline({defaults:{ease:'expo.inOut'},onComplete:()=>{ curtain.style.display = 'none'; end(); }});
-  tl.fromTo(curtain,{yPercent:100},{yPercent:0,duration:.8})
-    .fromTo(cLogo,{autoAlpha:0,y:22},{autoAlpha:1,y:0,duration:.55,ease:'power3.out'},.3)
-    .add(()=>{ S.delay = .55; swap(); window.scrollTo(0,0); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); },'>')
-    .to(cLogo,{autoAlpha:0,y:-14,duration:.4,ease:'power2.in'},'>+.12')
-    .to(curtain,{yPercent:-100,duration:.95},'<+.05');
+  if(spin) spin.kill();
+  spin = gsap.fromTo(cSym,{rotation:0},{rotation:360,duration:1.3,ease:'none',repeat:-1});
+  const dec = preDecode(page);
+  const tl = gsap.timeline({defaults:{ease:'expo.inOut'},onComplete:()=>{ curtain.style.display = 'none'; if(spin){ spin.kill(); spin = null; } end(); }});
+  tl.fromTo(curtain,{yPercent:100},{yPercent:0,duration:.6})
+    .fromTo(cSym,{autoAlpha:0,scale:.7},{autoAlpha:1,scale:1,duration:.45,ease:'power3.out'},.2);
+  tl.addPause('>',()=>{ dec.then(()=>tl.resume()); });
+  tl.add(()=>{ S.delay = .3; swap(); window.scrollTo(0,0); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); })
+    .to(cSym,{autoAlpha:0,scale:.85,duration:.3,ease:'power2.in'},'>+.05')
+    .to(curtain,{yPercent:-100,duration:.7},'<+.05');
 };
 
 /* ---------- Sobreposições: entrada e saída ---------- */
@@ -212,8 +223,8 @@ function overlayIn(el){
   gsap.killTweensOf([el,panel,...items,...imgs]);
   const tl = gsap.timeline();
   tl.fromTo(el,{autoAlpha:0},{autoAlpha:1,duration:.55,ease:'power2.out'},0)
-    .fromTo(panel,{y:64,scale:.955,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:1.1,ease:'expo.out',clearProps:'transform'},.05)
-    .fromTo(items,{y:28,autoAlpha:0},{y:0,autoAlpha:1,duration:.95,stagger:.055,ease:'power3.out',clearProps:'transform'},.28);
+    .fromTo(panel,{y:64,scale:.955,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.85,ease:'expo.out',clearProps:'transform'},.05)
+    .fromTo(items,{y:28,autoAlpha:0},{y:0,autoAlpha:1,duration:.8,stagger:.045,ease:'power3.out',clearProps:'transform'},.22);
   if(imgs.length) tl.fromTo(imgs,{scale:1.16},{scale:1,duration:1.8,ease:'power2.out',clearProps:'transform'},.05);
   const pins = [...el.querySelectorAll('.map-pin')];
   if(pins.length) tl.fromTo(pins,{scale:0,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,ease:'back.out(2.2)',stagger:.035,clearProps:'transform'},.75);

@@ -31,7 +31,8 @@
 }
 #page-home .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
 #page-home .hero .display{color:#fff;margin:0 0 23px}
-#page-home .hero .lead{color:#fff;margin:0 0 37px}
+#page-home .hero .display{font-size:clamp(37.4px,3.545vw,68px)}   /* 85% do .display da base */
+#page-home .hero .lead{color:#fff;margin:0 0 37px;font-size:clamp(14.45px,1.19vw,22.95px)}   /* 85% do .lead da base */
 #page-home .hero .hero-actions{justify-content:center}
 #page-home .hero .btn,#page-home .hero .ghost-btn{font-family:var(--inter);font-weight:600;letter-spacing:.01em}
 #page-home .hero .btn{border:1px solid rgba(255,255,255,.38)}
@@ -84,22 +85,19 @@
 #page-home .profile-result .btn{color:var(--creme);background:#072921;border:1px solid rgba(255,255,255,.14)}
 #page-home .profile-result .btn:hover{background:var(--verde)}
 
-#page-home .atlas-home-card{position:relative;overflow:hidden;border-radius:28px;min-height:650px;background:#0d4237}
-#page-home .atlas-home-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#page-home .atlas-home-card{display:flex;flex-direction:column;overflow:hidden;border-radius:28px;background:var(--verde-escuro)}
+#page-home .atlas-map{position:relative;flex:none;aspect-ratio:2400/1310;background:#0d4237}
+#page-home .atlas-map>img{display:block;width:100%;height:100%;object-fit:cover}
 #page-home .atlas-pins{position:absolute;inset:0}
-#page-home .map-pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;background:var(--creme);color:var(--verde-escuro);border:2px solid var(--verde);transition:background .2s,color .2s}
+#page-home .map-pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;background:var(--creme);color:var(--verde-escuro);border:2px solid var(--verde);box-shadow:0 2px 10px rgba(6,28,26,.35);transition:background .2s,color .2s}
 #page-home .map-pin:hover,#page-home .map-pin.active{background:var(--verde);color:var(--branco)}
-#page-home .atlas-home-copy{
-  position:absolute;left:22px;right:22px;bottom:23px;display:flex;flex-direction:column;align-items:flex-start;gap:15px;
-  padding:23px 24px 24px;background:rgba(13,66,55,.86);border-radius:20px;color:var(--creme);
-  background-clip:padding-box
-}
+#page-home .atlas-home-copy{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:10px;padding:20px 28px;background:var(--verde-escuro);color:var(--creme)}
 #page-home .atlas-home-copy .eyebrow{margin:0}
 #page-home .atlas-home-copy h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
 #page-home .atlas-home-copy p{font-size:18px;line-height:24px;color:rgba(245,234,210,.72)}
-#page-home .atlas-home-copy .hero-actions{padding-top:21px}
+#page-home .atlas-home-copy .hero-actions{padding-top:6px}
 #page-home .atlas-home-copy .btn{color:var(--creme)}
-#page-home .atlas-home-copy .btn:hover{background:var(--verde-escuro)}
+#page-home .atlas-home-copy .btn:hover{background:var(--verde)}
 #page-home .atlas-home-copy .ghost-btn{color:var(--creme);border-color:var(--creme)}
 #page-home .atlas-home-copy .ghost-btn:hover{background:rgba(226,220,208,.14)}
 
@@ -132,7 +130,6 @@
 #page-home .experience-panel .chip-row{padding-top:4px;margin-bottom:20px}
 #page-home .experience-panel .kicker{margin-bottom:10px;line-height:17px}
 #page-home .events-panel .feature-body>p{margin-bottom:16px}
-#page-home .experience-panel #homeExpMoments,#page-home .experience-panel #homeExpTitle{margin-top:12px}
 #page-home .feature-actions{margin-top:auto;padding-top:20px;display:flex;align-items:center;gap:10px}
 #page-home .feature-actions .btn:hover{background:var(--verde)}
 #page-home .feature-actions .text-button{padding:12px 0 13px}
@@ -182,7 +179,6 @@
   #page-home .time-scene{margin-top:0;height:min(558px,62vw)}
   #page-home .explore-grid{grid-template-columns:1fr;min-height:0}
   #page-home .profile-panel{padding:30px}
-  #page-home .atlas-home-card{min-height:560px}
   #page-home .practical-grid{width:100%;margin-left:0}
   #page-home #home-historia{padding:0 0 100px}
   #page-home .story-grid{grid-template-columns:1fr;gap:48px}
@@ -203,7 +199,7 @@
 }
 @media(max-width:760px){
   #page-home .hero{min-height:calc(100svh - var(--header-h));padding:56px var(--pad) 120px}
-  #page-home .hero .lead{font-size:18px;margin-bottom:30px}
+  #page-home .hero .lead{font-size:15.3px;margin-bottom:30px}
   #page-home .hero .hero-actions{gap:8px}
   #page-home #home-viver,#page-home #home-explorar{padding-top:74px;padding-bottom:74px}
   #page-home .title{font-size:clamp(32px,9vw,42px)}
@@ -216,8 +212,6 @@
   #page-home .profile-result h3,#page-home .atlas-home-copy h3,#page-home .feature-body h3{font-size:28px;line-height:32px}
   #page-home .profile-card{height:88px}
   #page-home .profile-card strong{font-size:19px;line-height:21px}
-  #page-home .atlas-home-card{min-height:520px}
-  #page-home .atlas-home-copy{left:12px;right:12px;bottom:12px;padding:20px}
   #page-home .atlas-home-copy p{font-size:16px}
   #page-home .atlas-home-copy .hero-actions{padding-top:8px}
   #page-home .photo .section-head{display:block}
@@ -241,7 +235,6 @@
 #page-home .time-tab span{line-height:12px;padding-bottom:1px}
 #page-home .photo .section-bg{background-position:center top}      /* Figma: 8dd68a mostra os 52% de cima */
 #page-home .story-media img{object-position:17.5% 88.4%}            /* Figma: recorte de b0fa2f */
-#page-home .atlas-home-copy .hero-actions{padding-bottom:3px}
 @media(min-width:901px){#page-home .story-copy .title strong{white-space:nowrap}}
 
 
@@ -268,10 +261,7 @@
 #page-home .hero .ghost-btn{padding:11px 19px 12px}
 #page-home .hero .ghost-btn[data-page-target="reservar"]{letter-spacing:0;padding:11px 17px 12px}
 #page-home .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:240px;background:linear-gradient(0deg,rgba(6,28,26,.6),rgba(6,28,26,0));z-index:-1;pointer-events:none}
-#page-home .hero-foot{position:absolute;left:var(--g);right:var(--g);bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;text-align:left}
-#page-home .hero-side-note{display:flex;flex-direction:column;gap:4px;max-width:420px}
-#page-home .hero-side-note strong{font-family:var(--serif);font-weight:400;font-size:24px;line-height:28px;color:#fff;text-shadow:0 1px 14px rgba(6,28,26,.5)}
-#page-home .hero-side-note span{font-size:13px;line-height:20px;letter-spacing:.02em;color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(6,28,26,.5)}
+#page-home .hero-foot{position:absolute;left:var(--g);right:var(--g);bottom:44px;display:flex;justify-content:center;align-items:flex-end}
 #page-home .stat-row{display:flex;gap:0}
 #page-home .stat{display:flex;flex-direction:column;gap:2px;padding:0 28px;border-left:1px solid rgba(255,255,255,.34)}
 #page-home .stat:first-child{border-left:0}
@@ -281,7 +271,7 @@
 
 /* atalhos: sticky logo abaixo do hero, sem ocupar altura (cobre o respiro do topo da seção escura) */
 #page-home .home-chapter-nav{position:sticky;top:calc(var(--header-h) + 34px);z-index:40;height:0}
-#page-home .chapter-bar{display:flex;justify-content:center;gap:4px;width:max-content;max-width:calc(100% - 2*var(--pad));margin:0 auto;padding:8px;transform:translateY(-50%);
+#page-home .chapter-bar{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease;display:flex;justify-content:center;gap:4px;width:max-content;max-width:calc(100% - 2*var(--pad));margin:0 auto;padding:8px;transform:translateY(-50%);
   background:rgba(226,220,208,.97);border:1px solid rgba(19,59,51,.15);border-radius:999px;box-shadow:var(--sombra-dock);overflow-x:auto;scrollbar-width:none}
 #page-home .chapter-bar::-webkit-scrollbar{display:none}
 #page-home .chapter-bar button{flex:none;border:0;background:transparent;color:var(--verde);padding:10px 14px 11px;border-radius:999px;font-size:13px;line-height:20px;letter-spacing:.02em;transition:background .2s,color .2s}
@@ -289,21 +279,13 @@
 #page-home .chapter-bar button.active{background:rgba(81,132,78,.7);color:var(--creme)}
 #page-home .home-chapter{scroll-margin-top:calc(var(--header-h) + 36px)}
 
-/* parágrafos .small ao lado dos títulos */
-#page-home .section-head>.small{max-width:340px;flex:none;padding-bottom:10px}
 
 /* kicker do horário */
 #page-home .time-scene-copy .kicker{font-size:11px;line-height:17px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--creme);margin-bottom:8px}
 
-/* rótulos dos perfis */
 #page-home .profile-card{position:relative}
-#page-home .profile-card>span{position:absolute;top:15px;left:0;right:0;text-align:center;font-size:10px;line-height:15px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,234,210,.62)}
-#page-home .profile-card.active>span{color:rgba(255,255,255,.85)}
 
 /* Experiência Tidelli: título do dia e momentos (V16) */
-#page-home .experience-panel #homeExpTitle{font-family:var(--serif);font-weight:400;font-size:24px;line-height:28px;letter-spacing:0;color:var(--verde-escuro);margin:12px 0 8px}
-#page-home .experience-panel #homeExpMoments{margin-top:14px}
-#page-home .experience-panel #homeExpTitle,#page-home .experience-panel #homeExpMoments{margin-left:0}
 
 /* Atlas: pinos */
 #page-home .map-pin{box-shadow:0 2px 10px rgba(6,28,26,.35)}
@@ -315,8 +297,6 @@
 @media(max-width:900px){
   #page-home .hero{flex-direction:column;justify-content:center;gap:40px;padding-bottom:140px}
   #page-home .hero-foot{position:static;width:100%;flex-direction:column;align-items:center;text-align:center;gap:22px}
-  #page-home .hero-side-note{align-items:center}
-  #page-home .section-head>.small{max-width:none;padding-bottom:0;margin-top:16px}
 }
 @media(max-width:760px){
   #page-home .hero-foot{gap:18px}
@@ -324,25 +304,21 @@
   #page-home .stat{padding:0 12px}
   #page-home .stat:nth-child(odd){border-left:0}
   #page-home .stat strong{font-size:24px;line-height:28px}
-  #page-home .hero-side-note strong{font-size:20px;line-height:24px}
   #page-home .chapter-bar{max-width:calc(100% - 24px)}
   #page-home .chapter-bar button{padding:9px 12px 10px}
   #page-home .home-chapter{scroll-margin-top:calc(var(--header-h) + 28px)}
 }
-/* o parágrafo .small vai à direita do título sem tirar largura dele (o título do Figma tem 940–1032 px) */
 @media(min-width:1181px){
   #page-home .section-head{position:relative}
-  #page-home .section-head>.small{position:absolute;right:0;bottom:6px;width:240px;max-width:none;padding:0;margin:0}
-  #page-home #home-viver .section-head>.small{width:290px}
 }
 /* com título do dia e momentos (V16) o painel da Experiência usa a folga que o Figma deixava embaixo */
 #page-home .feature-body{padding-bottom:20px}
 #page-home .feature-actions{padding-top:16px}
 #page-home .experience-panel .chip-row{margin-bottom:16px}
 #page-home .experience-panel .kicker{margin-bottom:8px}
-#page-home .experience-panel #homeExpTitle{font-size:22px;line-height:26px;margin:6px 0 4px}
-#page-home .experience-panel #homeExpMoments{margin-top:10px}
 @media(max-width:900px){#page-home .feature-body{padding-bottom:30px}}
-#page-home .return-copy .ghost-btn{color:var(--creme);border-color:var(--creme)}
-#page-home .return-copy .ghost-btn:hover{background:rgba(226,220,208,.14)}
-@media(min-width:1181px){#page-home .section-head>.small{width:210px}#page-home #home-viver .section-head>.small{width:290px}}
+
+#page-home .home-chapter-nav.is-on .chapter-bar{opacity:1;visibility:visible;pointer-events:auto}
+/* Experiência Tidelli sem kicker/título/tags (revisão 09/10): volta à folga de 86 px do Figma */
+@media(min-width:901px){#page-home .feature-body{padding-bottom:86px}}
+#page-home .experience-panel .chip-row{margin-bottom:20px}

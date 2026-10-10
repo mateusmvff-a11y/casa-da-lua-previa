@@ -13,28 +13,21 @@ const $  = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
 const IMG = k => CDL.ASSETS[k];
 
-/* ---------- Atlas: dados (V16 1808). Posições x/y em % da planta (assets/img/350edc.webp),
-   reposicionadas sobre o que a foto mostra; seguem ilustrativas, a validar com a planta. ---------- */
+/* ---------- Atlas: dados. x/y em % do mapa (assets/img/rev-home-atlas.webp); asset = foto do ambiente.
+   Os mesmos números valem na Home e em A Casa. Revisão do cliente 09/10: 9 espaços, sem lentes/opções/etiquetas. ---------- */
 const ATLAS_PLACES = CDL.ATLAS_PLACES = {
-  'Chegada e estacionamento':{asset:'hero',text:'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',group:'chegada',moments:['manha','tarde','noite'],company:['familia','amigos','pet','grupo'],programs:['tidelli','eventos'],x:70,y:11,page:'casa',cta:'Entender a chegada',tags:['acesso','estacionamento']},
-  'Casa principal':{asset:'night',text:'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',group:'convivencia',moments:['manha','tarde','noite'],company:['familia','amigos','pet','grupo'],programs:['tidelli','eventos'],x:22,y:89,page:'casa',cta:'Conhecer A Casa',tags:['origem','convivência']},
-  'Restaurante e café':{asset:'breakfast',text:'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos.',group:'convivencia',moments:['manha','tarde','noite'],company:['familia','amigos','grupo'],programs:['tidelli','eventos'],x:40,y:74,page:'viver',cta:'Ver a vida da casa',tags:['café','mesa']},
-  'Piscina e área de descanso':{asset:'pool',text:'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',group:'bem-estar',moments:['tarde'],company:['familia','amigos'],programs:['tidelli'],x:24,y:30,page:'viver',cta:'Viver o fim de tarde',tags:['piscina','descanso']},
-  'Área de eventos':{asset:'events',text:'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',group:'eventos',moments:['manha','tarde','noite'],company:['grupo'],programs:['eventos'],x:86,y:24,page:'eventos',cta:'Ver eventos',tags:['salão','encontros']},
-  'Círculo do fogo':{asset:'fire',text:'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',group:'convivencia',moments:['noite'],company:['familia','amigos','grupo'],programs:['tidelli','eventos'],x:88,y:80,page:'viver',cta:'Viver a noite',tags:['fogo','convivência']},
-  'Suítes da ala lateral':{asset:'suite',text:'Conjunto lateral com quartos, uma suíte e o espaço da sinuca.',group:'hospedagem',moments:['manha','tarde','noite'],company:['familia','amigos'],programs:['tidelli','eventos'],x:6,y:66,page:'suites',cta:'Ver suítes',tags:['ala lateral','quartos']},
-  'Bloco de suítes 6 a 10':{asset:'suite',text:'Bloco que reúne as suítes 6 a 10.',group:'hospedagem',moments:['manha','tarde','noite'],company:['familia','amigos','grupo'],programs:['tidelli','eventos'],x:56,y:90,page:'suites',cta:'Ver suítes',tags:['suítes','bloco']},
-  'Faixa verde central':{asset:'outdoor',text:'Área aberta que costura pousada, restaurante, suítes, círculo e eventos.',group:'convivencia',moments:['manha','tarde','noite'],company:['familia','amigos','pet','grupo'],programs:['tidelli','eventos'],x:62,y:48,page:'casa',cta:'Explorar a propriedade',tags:['jardim','circulação']},
-  'Área complementar':{asset:'outdoor',text:'Trecho livre à direita da propriedade, que apoia o fluxo dos eventos.',group:'eventos',moments:['manha','tarde'],company:['grupo'],programs:['eventos'],x:80,y:58,page:'eventos',cta:'Entender usos',tags:['apoio','área livre']}
+  'Chegada e estacionamento':{asset:'assets/img/rev-atlas-chegada.webp',text:'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',x:70,y:6},
+  'Casa principal':{asset:'assets/img/rev-atlas-casa-principal.webp',text:'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',x:47,y:90},
+  'Restaurante e café':{asset:'assets/img/rev-atlas-restaurante.webp',text:'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos.',x:14,y:90},
+  'Piscina e área de descanso':{asset:'assets/img/rev-atlas-piscina.webp',text:'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',x:30,y:27},
+  'Área de eventos':{asset:'assets/img/rev-atlas-eventos.webp',text:'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',x:88,y:27},
+  'Círculo do fogo':{asset:'assets/img/v16-fire.webp',text:'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',x:91,y:80},
+  'Suítes da ala lateral':{asset:'assets/img/rev-atlas-ala-lateral.webp',text:'Conjunto lateral com quartos, uma suíte e o espaço da sinuca.',x:6,y:62},
+  'Bloco de suítes 6 a 10':{asset:'assets/img/rev-atlas-suites-6-10.webp',text:'Bloco que reúne as suítes 6 a 10.',x:62,y:88},
+  'Faixa verde central':{asset:'assets/img/rev-atlas-faixa-verde.webp',text:'Área aberta que costura pousada, restaurante, suítes, círculo e eventos.',x:64,y:45}
 };
-
-const LENS_OPTIONS = {
-  lugar:[['all','Todos'],['hospedagem','Hospedagem'],['bem-estar','Bem-estar'],['convivencia','Convivência'],['eventos','Eventos'],['chegada','Chegada']],
-  momento:[['manha','7h30'],['tarde','17h40'],['noite','21h']],
-  companhia:[['familia','Família'],['amigos','Amigos'],['pet','Pet'],['grupo','Grupo']],
-  programa:[['tidelli','Experiência Tidelli'],['eventos','Eventos e imersões']]
-};
-let atlasLens = 'lugar', atlasOption = 'all', atlasPlace = 'Casa principal';
+const imgOf = p => (p && p.indexOf('/')>-1) ? p : IMG(p);
+let atlasPlace = 'Casa principal';
 
 /* Home e A Casa: pino de miniatura -> título/texto (nulo-seguro) */
 CDL.selectHomeAtlas = function(place){
@@ -45,69 +38,39 @@ CDL.selectHomeAtlas = function(place){
   if(x) x.textContent = d.text;
 };
 
-function atlasMatches(d){
-  if(atlasLens==='lugar') return atlasOption==='all' || d.group===atlasOption;
-  if(atlasLens==='momento') return d.moments.includes(atlasOption);
-  if(atlasLens==='companhia') return d.company.includes(atlasOption);
-  if(atlasLens==='programa') return d.programs.includes(atlasOption);
-  return true;
-}
-function renderAtlasOptions(){
-  const wrap = $('#atlasOptions'); if(!wrap) return;
-  wrap.innerHTML = (LENS_OPTIONS[atlasLens]||[]).map(o=>`<button type="button" class="${o[0]===atlasOption?'active':''}" data-atlas-option="${o[0]}">${o[1]}</button>`).join('');
-}
 function renderAtlas(){
-  const visible = Object.entries(ATLAS_PLACES).filter(([,d])=>atlasMatches(d));
-  if(visible.length && !visible.some(([n])=>n===atlasPlace)) atlasPlace = visible[0][0];
+  const entries = Object.entries(ATLAS_PLACES);
   const list = $('#atlasList'), pins = $('#atlasPins');
-  if(list) list.innerHTML = visible.map(([n],i)=>`<button type="button" class="${n===atlasPlace?'active':''}" data-atlas-place="${n}"><i>${i+1}</i>${n}</button>`).join('');
-  if(pins) pins.innerHTML = visible.map(([n,d],i)=>`<button type="button" class="map-pin ${n===atlasPlace?'active':''}" data-atlas-place="${n}" style="left:${d.x}%;top:${d.y}%" aria-label="${n}">${i+1}</button>`).join('');
-  renderAtlasOptions();
-  if(visible.length) selectAtlas(atlasPlace,false);
-  else {
-    const t = $('#atlasDetailTitle'); if(t) t.textContent = 'Nenhum ponto nesta leitura';
-  }
+  if(list) list.innerHTML = entries.map(([n],i)=>`<button type="button" class="${n===atlasPlace?'active':''}" data-atlas-place="${n}"><i>${i+1}</i>${n}</button>`).join('');
+  if(pins) pins.innerHTML = entries.map(([n,d],i)=>`<button type="button" class="map-pin ${n===atlasPlace?'active':''}" data-atlas-place="${n}" style="left:${d.x}%;top:${d.y}%" aria-label="${n}">${i+1}</button>`).join('');
+  selectAtlas(atlasPlace);
 }
-function centerPin(){
-  const canvas = $('#atlasCanvas'), pin = $('#atlasPins .map-pin.active');
-  if(!canvas || !pin || canvas.scrollWidth<=canvas.clientWidth+2) return;
-  canvas.scrollTo({left:pin.offsetLeft-canvas.clientWidth/2,behavior:'smooth'});
-}
-function selectAtlas(place,rerender=true){
+function selectAtlas(place){
   const d = ATLAS_PLACES[place] || ATLAS_PLACES['Casa principal'];
-  atlasPlace = place;
-  $$('#atlasOverlay [data-atlas-place]').forEach(b=>b.classList.toggle('active',b.dataset.atlasPlace===place));
+  atlasPlace = ATLAS_PLACES[place] ? place : 'Casa principal';
+  $$('#atlasOverlay [data-atlas-place]').forEach(b=>b.classList.toggle('active',b.dataset.atlasPlace===atlasPlace));
   const set = (id,v)=>{ const e=document.getElementById(id); if(e) e.textContent=v; };
-  set('atlasDetailTitle',place); set('atlasDetailText',d.text);
-  const img = $('#atlasDetailImage'); if(img){ img.src = IMG(d.asset); img.alt = place; }
-  const tags = $('#atlasDetailTags'); if(tags) tags.innerHTML = d.tags.map(t=>`<span>${t}</span>`).join('');
-  const cta = $('#atlasDetailCTA'); if(cta){ cta.textContent = d.cta; cta.dataset.pageTarget = d.page; }
-  if(rerender) renderAtlas(); else centerPin();
+  set('atlasDetailTitle',atlasPlace); set('atlasDetailText',d.text);
+  const img = $('#atlasDetailImage'); if(img){ img.src = imgOf(d.asset); img.alt = atlasPlace; }
 }
-function setAtlasLens(lens){
-  atlasLens = lens;
-  atlasOption = (LENS_OPTIONS[lens]||[['all','Todos']])[0][0];
-  $$('#atlasOverlay [data-atlas-lens]').forEach(b=>b.classList.toggle('active',b.dataset.atlasLens===lens));
-  renderAtlas();
-}
-CDL.openAtlas = function(){
+CDL.openAtlas = function(place){
+  atlasPlace = (typeof place==='string' && ATLAS_PLACES[place]) ? place : 'Casa principal';
   renderAtlas();
   CDL.openOverlay('atlasOverlay');
   const c = $('#atlasOverlay .close-overlay'); if(c) c.focus({preventScroll:true});
-  requestAnimationFrame(centerPin);
 };
 
 /* ---------- Percurso "Entrar na Casa" (V16 1811 e 2096) ---------- */
 const JOURNEY_SCENES = [
-  {id:'arrival',asset:'hero',kicker:'Chegada',title:'A casa aparece entre jardim e luz.',text:'O percurso começa pela chegada e abre duas escolhas: seguir para o jardim ou ir direto às suítes.',choices:[['Seguir pelo jardim','garden'],['Conhecer as suítes','suites']]},
-  {id:'garden',asset:'outdoor',kicker:'Jardim',title:'O lado de fora funciona como sala.',text:'Caminhos, sombra e lugares de permanência conectam a casa, a piscina e os recantos.',choices:[['Ir para a piscina','pool'],['Abrir o Atlas','atlas']]},
-  {id:'pool',asset:'pool',kicker:'Fim de tarde',title:'A água recebe quem volta.',text:'Piscina e jacuzzi entram no momento em que o corpo muda de ritmo depois da Chapada.',choices:[['Seguir para o bem-estar','wellness'],['Ver suítes próximas','suites']]},
+  {id:'arrival',asset:'assets/img/rev-jornada-1-chegada.webp',kicker:'Chegada',title:'A casa aparece entre jardim e luz.',text:'O percurso começa pela chegada e abre duas escolhas: seguir para o jardim ou ir direto às suítes.',choices:[['Seguir pelo jardim','garden'],['Conhecer as suítes','suites']]},
+  {id:'garden',asset:'assets/img/rev-jornada-2-jardim.webp',kicker:'Jardim',title:'O lado de fora funciona como sala.',text:'Caminhos, sombra e lugares de permanência conectam a casa, a piscina e os recantos.',choices:[['Ir para a piscina','pool'],['Abrir o Atlas','atlas']]},
+  {id:'pool',asset:'assets/img/rev-jornada-3-piscina.webp',kicker:'Fim de tarde',title:'A água recebe quem volta.',text:'Piscina e jacuzzi entram no momento em que o corpo muda de ritmo depois da Chapada.',choices:[['Seguir para o bem-estar','wellness'],['Ver suítes próximas','suites']]},
   {id:'wellness',asset:'wellness',kicker:'Bem-estar',title:'Spa, sauna e massagem prolongam a volta.',text:'Spa, sauna e massagem prolongam a volta e ajudam o corpo a mudar de ritmo depois da Chapada.',choices:[['Chegar à noite','night'],['Planejar a estadia','reserve']]},
-  {id:'night',asset:'fire',kicker:'Noite',title:'Fogo, mesa e céu encerram o percurso.',text:'Daqui, a pessoa pode seguir para a reserva ou voltar a explorar a casa.',choices:[['Reservar','reserve'],['Voltar ao Atlas','atlas']]}
+  {id:'night',asset:'assets/img/rev-jornada-5-noite.webp',kicker:'Noite',title:'Fogo, mesa e céu encerram o percurso.',text:'Daqui, a pessoa pode seguir para a reserva ou voltar a explorar a casa.',choices:[['Reservar','reserve'],['Voltar ao Atlas','atlas']]}
 ];
 function renderJourney(id){
   const sc = JOURNEY_SCENES.find(s=>s.id===id) || JOURNEY_SCENES[0];
-  const img = $('#journeyImage'); if(img){ img.src = IMG(sc.asset); img.alt = sc.kicker; }
+  const img = $('#journeyImage'); if(img){ img.src = imgOf(sc.asset); img.alt = sc.kicker; }
   const set = (i,v)=>{ const e=document.getElementById(i); if(e) e.textContent=v; };
   set('journeyKicker',sc.kicker); set('journeyTitle',sc.title); set('journeyText',sc.text);
   const ch = $('#journeyChoices');
@@ -174,11 +137,9 @@ CDL.ready(()=>{
   });
 
   const onPlace = e=>{ const b = e.target.closest('[data-atlas-place]'); if(b) selectAtlas(b.dataset.atlasPlace); };
-  const list = $('#atlasList'), pins = $('#atlasPins'), opts = $('#atlasOptions');
+  const list = $('#atlasList'), pins = $('#atlasPins');
   if(list) list.addEventListener('click',onPlace);
   if(pins) pins.addEventListener('click',onPlace);
-  if(opts) opts.addEventListener('click',e=>{ const b=e.target.closest('[data-atlas-option]'); if(b){ atlasOption=b.dataset.atlasOption; renderAtlas(); } });
-  $$('#atlasOverlay [data-atlas-lens]').forEach(b=>b.addEventListener('click',()=>setAtlasLens(b.dataset.atlasLens)));
 
   /* menu mobile: marca a página atual (o clique que abre o menu é tratado pelo core.js) */
   const mb = document.getElementById('mobileMenuBtn');

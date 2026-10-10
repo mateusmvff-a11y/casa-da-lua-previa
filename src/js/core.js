@@ -118,6 +118,15 @@ function switchPage(page, opts={}){
   updateBookingDock();
   (state.pageHooks[page]||[]).forEach(fn=>fn());
   document.dispatchEvent(new CustomEvent('cdl:page',{detail:{page,prev}}));
+  if(opts.anchor){
+    /* abre a página já no bloco pedido (data-anchor="id"): salto imediato, com o mesmo recuo do cabeçalho */
+    const el = document.getElementById(opts.anchor);
+    if(el){
+      const y = el.getBoundingClientRect().top + window.scrollY - headerH();
+      if(CDL.lenis) CDL.lenis.scrollTo(Math.max(0,y),{immediate:true,force:true}); else window.scrollTo(0,Math.max(0,y));
+      return;
+    }
+  }
   if(!opts.keepScroll) scrollTop(opts.instant || !!CDL.transition);
 }
 
@@ -133,7 +142,7 @@ Object.defineProperty(CDL,'currentPage',{get:()=>state.page});
 document.addEventListener('click',e=>{
   const t = e.target;
   const pageLink = t.closest('[data-page-target]');
-  if(pageLink){ e.preventDefault(); goPage(pageLink.dataset.pageTarget); return; }
+  if(pageLink){ e.preventDefault(); goPage(pageLink.dataset.pageTarget,{anchor:pageLink.dataset.anchor}); return; }
   if(t.closest('.close-overlay')){ closeOverlays(); return; }
   const scroll = t.closest('[data-scroll-to]');
   if(scroll){ scrollToId(scroll.dataset.scrollTo); return; }

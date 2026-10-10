@@ -25,7 +25,7 @@ await t('Home abre e mostra hero', go('home')+'&&'+vis('#page-home'));
 await t('Home: aba 17h40', click('.time-tab[data-time="afternoon"]'));
 await t('Home: título da aba tarde mudou', `/água|volta/i.test(${txt('#homeTimeTitle')})`);
 await t('Home: perfil "Com pet" troca texto', click('.profile-card[data-profile="pet"]')+'&&'+`/lado de fora/i.test(${txt('#profileTitle')})`);
-await t('Home: dia Sexta troca programa', click('#homeExperienceDays [data-exp-day="sexta"]')+'&&'+`/fogo/i.test(${txt('#homeExpTitle')})`);
+await t('Home: dia Sexta fica ativo (a foto da esquerda não muda)', click('#homeExperienceDays [data-exp-day="sexta"]')+'&&'+`document.querySelector('#homeExperienceDays [data-exp-day="sexta"]').classList.contains('active')&&document.getElementById('homeProgramImage').src.includes('3c03d3')`);
 await t('Home: pino do Atlas troca título', click('.atlas-home-card .map-pin[data-place="Círculo do fogo"]')+'&&'+`${txt('#homeAtlasTitle')}==='Círculo do fogo'`);
 await t('Home: "Abrir o Atlas" abre sobreposição', click('#page-home .atlas-open')+'&&'+open('atlasOverlay'));
 await t('Atlas: lente Momento e lista', click('#atlasOverlay [data-atlas-lens="momento"]')+`&&document.querySelectorAll('#atlasList button').length>0`);

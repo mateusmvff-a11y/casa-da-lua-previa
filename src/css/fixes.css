@@ -9,3 +9,19 @@
   #page-suites .suites-hero-note,
   #page-viver .vv-side{bottom:112px}
 }
+
+/* Sombras/texturas de fundo nunca passam do próprio bloco (o parallax as deslocava para cima/baixo) */
+.section{overflow:clip}
+
+/* sombras em vídeo (shadows.js): por cima da textura estática, mesma opacidade da seção */
+.section-bg .sh-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;background:transparent}
+.section-bg.has-video{background-image:none!important}
+.section-bg.has-video > img:not(.sh-video){visibility:hidden}
+
+/* antiviúva: títulos equilibrados, textos sem última linha curta */
+h1,h2,h3,h4,.title,.display,.subtitle{text-wrap:balance}
+p,li,.lead{text-wrap:pretty}
+
+/* celular: quebras manuais de título saem (o equilíbrio automático faz melhor e evita palavra sozinha) */
+@media(max-width:760px){ h1 br,h2 br,.title br,.display br{display:none} }
+@media(max-width:480px){ .title-sm{font-size:31px} }

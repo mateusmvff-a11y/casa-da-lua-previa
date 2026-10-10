@@ -15,10 +15,6 @@
         <button class="ghost-btn interest-open" type="button">Receber próximas datas</button>
       </div>
     </div>
-    <div class="hero-side-note" data-anim="reveal">
-      <strong>Natureza, bem-estar, mesa e convivência.</strong>
-      <span>quinta a domingo</span>
-    </div>
   </section>
 
   <!-- Programação por dia -->
@@ -30,8 +26,6 @@
           <div class="eyebrow" data-anim="reveal">Estrutura recorrente</div>
           <h2 class="title" data-anim="title">A programação se distribui em&nbsp; <strong>4 dias</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">A estrutura é recorrente, mas cada edição pode
-ajustar horários, atividades e detalhes do percurso</p>
       </div>
       <div class="program-shell">
         <div class="program-days" data-anim="reveal" data-stagger>
@@ -93,9 +87,12 @@ despedida</p></article>
         <p class="exp-memory-text" data-anim="reveal">Chegada, natureza, yoga, mesa, massagem e fogo formam biblioteca de imagens que pode ser reorganizada conforme a programação</p>
         <div class="chip-row" data-anim="reveal"><span class="chip">chegada</span><span class="chip">natureza</span><span class="chip">yoga</span><span class="chip">mesa</span><span class="chip">fogo</span></div>
       </div>
-      <div class="exp-memory-frame" data-anim="image">
-        <img src="assets/img/3c880f.webp" alt="Salão coberto de palha com hóspedes reunidos, em uma edição anterior da experiência" loading="lazy" decoding="async" data-parallax="-6">
-        <span class="exp-dots" aria-hidden="true"><i></i><i></i></span>
+      <div class="exp-memory-frame exp-carousel" data-anim="image" role="group" aria-roledescription="carrossel" aria-label="Fotos de experiências anteriores">
+        <div class="exp-slides" id="expSlides">
+          <img class="exp-slide is-active" src="assets/img/3c880f.webp" alt="Salão coberto de palha com hóspedes reunidos, em uma edição anterior da experiência" loading="lazy" decoding="async">
+        </div>
+        <button class="exp-car-btn prev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="exp-car-btn next" type="button" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </section>
@@ -107,7 +104,7 @@ despedida</p></article>
       <div class="section-head">
         <div>
           <div class="eyebrow" data-anim="reveal">Próximas edições</div>
-          <h2 class="title" data-anim="title">Receba as datas da<br class="br-d"> <strong>próxima experiência</strong></h2>
+          <h2 class="title title-sm" data-anim="title">Receba as datas da<br class="br-d"> <strong>próxima experiência</strong></h2>
         </div>
       </div>
       <form class="interest-form exp-form" data-anim="reveal" novalidate>

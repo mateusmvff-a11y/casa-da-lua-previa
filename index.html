@@ -62,10 +62,6 @@
       </div>
     </div>
     <div class="hero-foot">
-      <div class="hero-side-note" data-anim="reveal">
-        <strong>Uma pousada com cara de casa.</strong>
-        <span>jardim · bem-estar · convivência</span>
-      </div>
       <div class="stat-row" data-anim="reveal">
         <div class="stat"><strong>15</strong><span>suítes</span></div>
         <div class="stat"><strong>8</strong><span>categorias</span></div>
@@ -96,7 +92,6 @@
           <div class="eyebrow" data-anim="reveal">A casa muda com o dia</div>
           <h2 class="title" data-anim="title">Três horários, <strong>três momentos<br class="br-d"> para estar aqui</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">A manhã prepara a saída. O fim de tarde recebe quem volta. A noite abre espaço para mesa, fogo, cinema e conversa.</p>
       </div>
       <div class="time-stage">
         <div class="time-tabs" role="tablist" aria-label="Horário do dia" data-stagger>
@@ -128,16 +123,15 @@
           <div class="eyebrow" data-anim="reveal">Explore pelo que importa para você</div>
           <h2 class="title" data-anim="title">A propriedade ganha outro<br class="br-d"> desenho <strong>conforme a companhia</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">Escolha uma companhia para destacar lugares e caminhos. A navegação continua livre.</p>
       </div>
       <div class="explore-grid">
         <div class="profile-panel" data-guide-id="home.profile" data-anim="reveal">
           <div class="eyebrow">Como você vem?</div>
           <div class="profile-compact-grid" role="tablist" aria-label="Perfil de viagem">
-            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><span>principal</span><strong>Em família</strong></button>
-            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><span>convivência</span><strong>Com amigos</strong></button>
-            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><span>ao ar livre</span><strong>Com pet</strong></button>
-            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><span>grupo</span><strong>Para um<br>encontro</strong></button>
+            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><strong>Em família</strong></button>
+            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><strong>Com amigos</strong></button>
+            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><strong>Com pet</strong></button>
+            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><strong>Para um<br>encontro</strong></button>
           </div>
           <div class="profile-result" aria-live="polite">
             <div class="kicker">nossa sugestão:</div>
@@ -146,16 +140,20 @@
             <button class="btn" id="profileCTA" data-page-target="suites">Ver opções</button>
           </div>
         </div>
-        <div class="atlas-home-card" data-anim="image">
-          <img src="assets/img/350edc.webp" alt="Vista aérea da piscina e do jardim da Casa da Lua" loading="lazy" decoding="async" data-parallax="-6">
-          <!-- Pinos do V16 (x do V16; y comprimido para ficar acima do cartão, pois a foto 350edc não é a planta) -->
-          <div class="atlas-pins">
-            <button class="map-pin active" style="left:31%;top:26%" data-place="Casa principal" aria-label="Casa principal">1</button>
-            <button class="map-pin" style="left:37%;top:14%" data-place="Piscina e área de descanso" aria-label="Piscina e área de descanso">2</button>
-            <button class="map-pin" style="left:31%;top:36%" data-place="Restaurante e café" aria-label="Restaurante e café">3</button>
-            <button class="map-pin" style="left:58%;top:21%" data-place="Área de eventos" aria-label="Área de eventos">4</button>
-            <button class="map-pin" style="left:52%;top:29%" data-place="Círculo do fogo" aria-label="Círculo do fogo">5</button>
-            <button class="map-pin" style="left:69%;top:30%" data-place="Chegada e estacionamento" aria-label="Chegada e estacionamento">6</button>
+        <div class="atlas-home-card" data-anim="reveal">
+          <div class="atlas-map">
+            <img src="assets/img/rev-home-atlas.webp" alt="Mapa da propriedade da Casa da Lua, com os ambientes numerados" width="2400" height="1310" loading="lazy" decoding="async">
+            <div class="atlas-pins">
+            <button class="map-pin" style="left:70%;top:6%" data-place="Chegada e estacionamento" aria-label="1. Chegada e estacionamento">1</button>
+            <button class="map-pin active" style="left:47%;top:90%" data-place="Casa principal" aria-label="2. Casa principal">2</button>
+            <button class="map-pin" style="left:14%;top:90%" data-place="Restaurante e café" aria-label="3. Restaurante e café">3</button>
+            <button class="map-pin" style="left:30%;top:27%" data-place="Piscina e área de descanso" aria-label="4. Piscina e área de descanso">4</button>
+            <button class="map-pin" style="left:88%;top:27%" data-place="Área de eventos" aria-label="5. Área de eventos">5</button>
+            <button class="map-pin" style="left:91%;top:80%" data-place="Círculo do fogo" aria-label="6. Círculo do fogo">6</button>
+            <button class="map-pin" style="left:6%;top:62%" data-place="Suítes da ala lateral" aria-label="7. Suítes da ala lateral">7</button>
+            <button class="map-pin" style="left:62%;top:88%" data-place="Bloco de suítes 6 a 10" aria-label="8. Bloco de suítes 6 a 10">8</button>
+            <button class="map-pin" style="left:64%;top:45%" data-place="Faixa verde central" aria-label="9. Faixa verde central">9</button>
+            </div>
           </div>
           <div class="atlas-home-copy" aria-live="polite">
             <div class="eyebrow">Atlas Vivo</div>
@@ -173,7 +171,7 @@
 
   <!-- 4 · Escolha pelo estilo da viagem -->
   <section class="section white photo home-chapter" id="home-ficar" data-guide-id="home.suites">
-    <div class="section-bg" style="--bg:url(../assets/img/8dd68a.webp);--op:1" aria-hidden="true"></div>
+    <div class="section-bg" style="--bg:url(../assets/img/rev-home-bloco4.webp);--op:1" aria-hidden="true"></div>
     <div class="max">
       <div class="section-head">
         <div>
@@ -232,10 +230,7 @@
               <button class="chip chip-button" data-exp-day="sabado">Sábado</button>
               <button class="chip chip-button" data-exp-day="domingo">Domingo</button>
             </div>
-            <div class="kicker" id="homeExpKicker">Chegada e boas-vindas</div>
-            <h4 id="homeExpTitle">Do universo Tidelli à Casa da Lua</h4>
             <p id="homeExpText">Chegada, deslocamento para Alto Paraíso, check-in e um jantar para abrir a experiência em grupo</p>
-            <div class="tag-row" id="homeExpMoments"><span>chegada</span><span>tarde</span><span>noite</span></div>
             <div class="feature-actions">
               <button class="btn dark" data-page-target="experiencias">Ver o programa</button>
               <button class="text-button interest-open">Receber datas</button>
@@ -244,7 +239,7 @@
         </article>
         <article class="feature-panel events-panel" data-guide-id="home.events" data-anim="reveal">
           <div class="feature-media" data-anim="image">
-            <img src="assets/img/6054aa.webp" alt="Área de eventos da Casa da Lua" loading="lazy" decoding="async">
+            <img src="assets/img/rev-home-bloco5.webp" alt="Área de eventos da Casa da Lua" loading="lazy" decoding="async">
           </div>
           <div class="feature-body">
             <div class="eyebrow">Eventos e imersões</div>
@@ -252,7 +247,7 @@
             <p>Casamentos, celebrações, retiros e imersões podem combinar salão, jardim, áreas cobertas e quinze suítes na mesma propriedade</p>
             <div class="tag-row"><span>até 200 pessoas</span><span>15 suítes</span><span>plano para chuva</span></div>
             <div class="feature-actions">
-              <button class="btn dark" data-page-target="eventos">Ver formatos</button>
+              <button class="btn dark" data-page-target="eventos" data-anchor="eventFormats">Ver formatos</button>
               <button class="text-button proposal-open">Solicitar proposta</button>
             </div>
           </div>
@@ -291,8 +286,7 @@
         <h2 class="title" data-anim="title">A <strong>volta à casa</strong> faz<br class="br-d"> parte da viagem</h2>
         <p class="lead" data-anim="reveal">Depois da estrada, do sol e da água, o ritmo muda. Piscina, hidro, spa, mesa e fogo ajudam a alongar o dia e fazem a volta para casa ter o seu próprio prazer</p>
         <div class="hero-actions" data-anim="reveal">
-          <button class="btn" data-page-target="chapada">Ver a curadoria</button>
-          <button class="ghost-btn" data-page-target="viver">Viver a casa</button>
+          <button class="btn" data-page-target="chapada" data-anchor="chapadaCuradoria">Ver a curadoria</button>
         </div>
       </div>
       <div class="return-media" data-anim="image">
@@ -322,7 +316,6 @@
     <div class="casa-hero-media">
       <img src="assets/img/15659d.webp" alt="Sala da Casa da Lua com sofá, tapete e obra de arte na parede" style="object-view-box:xywh(56px 209px 1992px 1166px)" data-parallax="-6">
     </div>
-    <div class="hero-side-note" data-anim="reveal"><strong>Uma pousada com cara de casa.</strong><span>2009 · 2011 · 2012 · hoje</span></div>
     <div class="casa-hero-copy" data-stagger>
       <div class="hero-badge" data-anim="reveal"><i></i><span>A história da Casa da Lua</span></div>
       <h1 class="title" data-anim="title">Antes de ser pousada, <strong>foi casa</strong></h1>
@@ -355,29 +348,28 @@
   <!-- 3. Atlas Vivo -->
   <section class="section dark casa-atlas" data-guide-id="casa.atlas" data-status="placeholder">
     <div class="section-bg casa-bg" style="--op:1" aria-hidden="true"><img src="assets/img/175273.webp" alt="" loading="lazy" decoding="async" style="object-view-box:xywh(0px 0px 1347px 715px)"></div>
+    <div class="casa-veil" aria-hidden="true"></div>
     <div class="max">
       <div class="section-head" data-stagger>
         <div>
           <div class="eyebrow" data-anim="reveal">Atlas Vivo</div>
           <h2 class="title" data-anim="title">Entenda como a casa <strong>se organiza</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">O mapa reúne chegada, hospedagem, convivência, áreas externas e eventos numa leitura mais concreta da propriedade.</p>
       </div>
       <div class="atlas-teaser" data-anim="reveal">
         <div class="atlas-map">
-          <img src="assets/img/350edc.webp" alt="Planta esquemática da propriedade" loading="lazy" decoding="async">
-          <button class="map-pin active" type="button" style="left:31%;top:48%" data-place="Casa principal" aria-label="1 · Casa principal">1</button>
-          <button class="map-pin" type="button" style="left:37%;top:26%" data-place="Piscina e área de descanso" aria-label="2 · Piscina e área de descanso">2</button>
-          <button class="map-pin" type="button" style="left:31%;top:66%" data-place="Restaurante e café" aria-label="3 · Restaurante e café">3</button>
-          <button class="map-pin" type="button" style="left:58%;top:38%" data-place="Área de eventos" aria-label="4 · Área de eventos">4</button>
-          <button class="map-pin" type="button" style="left:52%;top:52%" data-place="Círculo do fogo" aria-label="5 · Círculo do fogo">5</button>
-          <button class="map-pin" type="button" style="left:69%;top:55%" data-place="Chegada e estacionamento" aria-label="6 · Chegada e estacionamento">6</button>
+          <img src="assets/img/rev-home-atlas.webp" alt="Planta esquemática da propriedade" width="2400" height="1310" loading="lazy" decoding="async">
+          <button class="map-pin" type="button" style="left:70%;top:6%" data-place="Chegada e estacionamento" aria-label="1 · Chegada e estacionamento">1</button>
+          <button class="map-pin" type="button" style="left:47%;top:90%" data-place="Casa principal" aria-label="2 · Casa principal">2</button>
+          <button class="map-pin" type="button" style="left:14%;top:90%" data-place="Restaurante e café" aria-label="3 · Restaurante e café">3</button>
+          <button class="map-pin" type="button" style="left:30%;top:27%" data-place="Piscina e área de descanso" aria-label="4 · Piscina e área de descanso">4</button>
+          <button class="map-pin" type="button" style="left:88%;top:27%" data-place="Área de eventos" aria-label="5 · Área de eventos">5</button>
+          <button class="map-pin" type="button" style="left:91%;top:80%" data-place="Círculo do fogo" aria-label="6 · Círculo do fogo">6</button>
+          <button class="map-pin" type="button" style="left:6%;top:62%" data-place="Suítes da ala lateral" aria-label="7 · Suítes da ala lateral">7</button>
+          <button class="map-pin" type="button" style="left:62%;top:88%" data-place="Bloco de suítes 6 a 10" aria-label="8 · Bloco de suítes 6 a 10">8</button>
+          <button class="map-pin" type="button" style="left:64%;top:45%" data-place="Faixa verde central" aria-label="9 · Faixa verde central">9</button>
         </div>
         <div class="atlas-copy">
-          <div>
-            <div class="eyebrow">Leituras do mapa</div>
-            <div class="chip-row"><span class="chip">Lugar</span><span class="chip">Momento</span><span class="chip">Logística e companhia</span><span class="chip">Programa</span></div>
-          </div>
           <div class="atlas-place">
             <h3 id="casaAtlasTitle">Uma base simples para localizar a casa</h3>
             <p id="casaAtlasText">A planta ajuda a localizar os principais núcleos da propriedade e serve como base para o Atlas completo, que depois pode ser refinado com mais precisão</p>
@@ -397,7 +389,6 @@
           <div class="eyebrow" data-anim="reveal">O que a torna única</div>
           <h2 class="title" data-anim="title">A <strong>personalidade</strong> da casa foi se formando aos poucos</h2>
         </div>
-        <p class="small" data-anim="reveal">Livros, arte, móveis, plantas e modos de usar os espaços foram se acumulando até formar uma casa reconhecível.</p>
       </div>
       <div class="grid-3 house-layers" data-stagger>
         <article class="card" data-anim="reveal"><h3>Memória nos ambientes</h3><p>Uma referência vista em Portugal virou a alvenaria da sala; livros, obras e objetos foram encontrando lugar ao redor dela</p></article>
@@ -444,7 +435,7 @@ Alto Paraíso</h3>
         <div class="eyebrow" data-anim="reveal">O jeito de receber</div>
         <h2 class="title" data-anim="title">A casa também aparece nos <strong>cuidados</strong> do dia-a-dia</h2>
         <p class="lead" data-anim="reveal">Durante a estadia, a equipe ajuda a organizar passeios, horários, experiências e o uso dos espaços. É uma presença prática, próxima e sem a distância de um hotel formal</p>
-        <div class="hero-actions" data-anim="reveal"><button class="btn page-link" type="button" data-page-target="reservar">Planejar a estadia</button></div>
+        <div class="hero-actions" data-anim="reveal"><button class="btn page-link" type="button" data-page-target="reservar" data-anchor="reserveShell">Planejar a estadia</button></div>
       </div>
       <div class="media-frame tall" data-anim="image">
         <img src="assets/img/f6643a.webp" alt="Mesa de café da manhã da Casa da Lua" loading="lazy" decoding="async" data-parallax="-5">
@@ -467,10 +458,6 @@ Alto Paraíso</h3>
         <button class="btn" data-scroll-to="suiteGridSection">Ver categorias</button>
         <button class="ghost-btn suites-hero-ghost" data-page-target="reservar">Consultar datas</button>
       </div>
-    </div>
-    <div class="suites-hero-note" data-anim="reveal">
-      <strong>Escolha a suíte pelo jeito de viajar.</strong>
-      <span>capacidade · acesso · vista · bem-estar</span>
     </div>
   </section>
 
@@ -551,9 +538,9 @@ Alto Paraíso</h3>
           </div>
         </article>
 
-        <article class="suite-card featured" data-suite-id="luxo-superior" data-anim="reveal">
+        <article class="suite-card" data-suite-id="luxo-superior" data-anim="reveal">
           <div class="suite-card-media">
-            <img class="crop" style="--a:1;--tx:0;--d:.83143;--ty:.08429" src="assets/img/a58fed.webp" alt="Categoria Luxo Superior (imagem provisória)" loading="lazy" decoding="async">
+            <img class="crop" style="--a:1;--tx:0;--d:.9117;--ty:.0442" src="assets/img/a58fed.webp" alt="Categoria Luxo Superior (imagem provisória)" loading="lazy" decoding="async">
           </div>
           <div class="suite-card-copy">
             <div class="suite-card-top"><span>5 unidades</span><span>22 m²</span></div>
@@ -583,9 +570,9 @@ Alto Paraíso</h3>
           </div>
         </article>
 
-        <article class="suite-card featured" data-suite-id="premium-hidro" data-anim="reveal">
+        <article class="suite-card" data-suite-id="premium-hidro" data-anim="reveal">
           <div class="suite-card-media">
-            <img class="crop" style="--a:1;--tx:0;--d:.83143;--ty:.08429" src="assets/img/bef858.webp" alt="Categoria Premium Hidro (imagem provisória)" loading="lazy" decoding="async">
+            <img class="crop" style="--a:1;--tx:0;--d:.72932;--ty:.13534" src="assets/img/bef858.webp" alt="Categoria Premium Hidro (imagem provisória)" loading="lazy" decoding="async">
           </div>
           <div class="suite-card-copy">
             <div class="suite-card-top"><span>1 unidade</span><span>28 m²</span></div>
@@ -615,9 +602,9 @@ Alto Paraíso</h3>
           </div>
         </article>
 
-        <article class="suite-card featured" data-suite-id="master" data-anim="reveal">
+        <article class="suite-card" data-suite-id="master" data-anim="reveal">
           <div class="suite-card-media">
-            <img class="crop" style="--a:1;--tx:0;--d:.83143;--ty:.08429" src="assets/img/bef858.webp" alt="Categoria Master (imagem provisória)" loading="lazy" decoding="async">
+            <img class="crop" style="--a:1;--tx:0;--d:.72932;--ty:.13534" src="assets/img/bef858.webp" alt="Categoria Master (imagem provisória)" loading="lazy" decoding="async">
           </div>
           <div class="suite-card-copy">
             <div class="suite-card-top"><span>1 unidade</span><span>28 m²</span></div>
@@ -651,28 +638,6 @@ Alto Paraíso</h3>
     </div>
   </section>
 
-  <!-- 4. Compare o que importa (V16; fora do Figma, no estilo dele) -->
-  <section class="section dark suites-compare" data-guide-id="suites.compare">
-    <div class="section-bg baked suites-bg-dark suites-bg-compare" style="--bg:url(../assets/img/247695-m.webp);--op:0.41" aria-hidden="true"></div>
-    <div class="max split">
-      <div>
-        <div class="eyebrow" data-anim="reveal">Compare o que importa</div>
-        <h2 class="title" data-anim="title">Capacidade, camas, acesso e diferenciais lado a lado.</h2>
-        <p class="lead" data-anim="reveal">Selecione de duas a três categorias na listagem. A comparação evita que o hóspede precise abrir várias páginas e lembrar de cada detalhe.</p>
-        <div class="hero-actions" data-anim="reveal"><button class="btn light" id="openCompareFromSection">Abrir comparação</button></div>
-      </div>
-      <div class="suites-criteria" data-anim="reveal">
-        <h3>Critérios de decisão</h3>
-        <ul>
-          <li><span>Capacidade e camas</span><span>quem vai dormir onde</span></li>
-          <li><span>Localização e escadas</span><span>como se chega</span></li>
-          <li><span>Varanda e vista</span><span>relação com o lado de fora</span></li>
-          <li><span>Hidro, ofurô e sauna</span><span>diferenciais reais</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <!-- Barra de comparação (V16): fixa, visível só com seleção -->
   <div class="compare-dock" id="compareDock" role="region" aria-label="Comparação de suítes">
     <span><strong id="compareCount">0</strong> <span id="compareLabel">suítes selecionadas</span></span>
@@ -696,7 +661,6 @@ Alto Paraíso</h3>
         <button class="ghost-btn vv-ghost" type="button" data-page-target="reservar">Planejar a estadia</button>
       </div>
     </div>
-    <div class="vv-side hero-side-note" data-anim="reveal"><strong>Manhã, retorno e noite.</strong><span>o ritmo organiza a página</span></div>
   </section>
 
   <!-- Momentos da casa (Figma: Section 1138, fundo verde-escuro + textura dc4f2a) -->
@@ -831,10 +795,6 @@ Alto Paraíso</h3>
         <button class="ghost-btn interest-open" type="button">Receber próximas datas</button>
       </div>
     </div>
-    <div class="hero-side-note" data-anim="reveal">
-      <strong>Natureza, bem-estar, mesa e convivência.</strong>
-      <span>quinta a domingo</span>
-    </div>
   </section>
 
   <!-- Programação por dia -->
@@ -846,8 +806,6 @@ Alto Paraíso</h3>
           <div class="eyebrow" data-anim="reveal">Estrutura recorrente</div>
           <h2 class="title" data-anim="title">A programação se distribui em&nbsp; <strong>4 dias</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">A estrutura é recorrente, mas cada edição pode
-ajustar horários, atividades e detalhes do percurso</p>
       </div>
       <div class="program-shell">
         <div class="program-days" data-anim="reveal" data-stagger>
@@ -909,9 +867,12 @@ despedida</p></article>
         <p class="exp-memory-text" data-anim="reveal">Chegada, natureza, yoga, mesa, massagem e fogo formam biblioteca de imagens que pode ser reorganizada conforme a programação</p>
         <div class="chip-row" data-anim="reveal"><span class="chip">chegada</span><span class="chip">natureza</span><span class="chip">yoga</span><span class="chip">mesa</span><span class="chip">fogo</span></div>
       </div>
-      <div class="exp-memory-frame" data-anim="image">
-        <img src="assets/img/3c880f.webp" alt="Salão coberto de palha com hóspedes reunidos, em uma edição anterior da experiência" loading="lazy" decoding="async" data-parallax="-6">
-        <span class="exp-dots" aria-hidden="true"><i></i><i></i></span>
+      <div class="exp-memory-frame exp-carousel" data-anim="image" role="group" aria-roledescription="carrossel" aria-label="Fotos de experiências anteriores">
+        <div class="exp-slides" id="expSlides">
+          <img class="exp-slide is-active" src="assets/img/3c880f.webp" alt="Salão coberto de palha com hóspedes reunidos, em uma edição anterior da experiência" loading="lazy" decoding="async">
+        </div>
+        <button class="exp-car-btn prev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="exp-car-btn next" type="button" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </section>
@@ -923,7 +884,7 @@ despedida</p></article>
       <div class="section-head">
         <div>
           <div class="eyebrow" data-anim="reveal">Próximas edições</div>
-          <h2 class="title" data-anim="title">Receba as datas da<br class="br-d"> <strong>próxima experiência</strong></h2>
+          <h2 class="title title-sm" data-anim="title">Receba as datas da<br class="br-d"> <strong>próxima experiência</strong></h2>
         </div>
       </div>
       <form class="interest-form exp-form" data-anim="reveal" novalidate>
@@ -955,7 +916,6 @@ despedida</p></article>
         <div class="stat"><strong>15</strong><span>suítes na propriedade</span></div>
       </div>
     </div>
-    <div class="hero-side-note" data-anim="reveal"><strong>Chegar, reunir e ficar.</strong><span>salão · jardim · hospedagem</span></div>
   </section>
 
   <!-- 2. Escolha o formato (configurador) -->
@@ -967,7 +927,6 @@ despedida</p></article>
           <div class="eyebrow" data-anim="reveal">Escolha o formato</div>
           <h2 class="title" data-anim="title"><strong>4 maneiras</strong> de ocupar a casa</h2>
         </div>
-        <p class="small" data-anim="reveal">Selecione um encontro para visualizar uma possibilidade de organização.</p>
       </div>
       <div class="event-selector" data-anim="reveal">
         <button class="active" type="button" data-event-type="casamento">Casamento</button>
@@ -1008,7 +967,6 @@ despedida</p></article>
           <div class="eyebrow" data-anim="reveal">Estrutura</div>
           <h2 class="title" data-anim="title"><strong>A casa se adapta</strong> à escala <br class="dbr">e ao ritmo do encontro</h2>
         </div>
-        <p class="small" data-anim="reveal">A capacidade e a montagem são confirmadas na proposta, de acordo com o formato, a época do ano e a área coberta necessária.</p>
       </div>
       <div class="grid-4" data-stagger>
         <article class="card" data-anim="reveal"><h3>Salão</h3><p>Refeições, conteúdo, recepção ou a parte principal do plano para chuva</p></article>
@@ -1041,7 +999,6 @@ despedida</p></article>
           <div class="eyebrow" data-anim="reveal">Solicitar proposta</div>
           <h2 class="title" data-anim="title">O que você está <strong>planejando?</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">Com o formato, o período e o tamanho do grupo, a equipe organiza os próximos detalhes com você</p>
       </div>
       <form class="form-card proposal-form" data-anim="reveal">
         <div class="form-grid">
@@ -1062,8 +1019,11 @@ despedida</p></article>
   <!-- Hero -->
   <section class="chapada-hero" data-anim="hero" data-guide-id="chapada.curadoria" data-status="working">
     <img class="chapada-hero-img" src="assets/img/396b1c.webp" alt="" aria-hidden="true" decoding="async">
+    <video class="chapada-hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/chapada-hero-poster.webp" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+      <source src="assets/video/chapada-hero-m.mp4" type="video/mp4" media="(max-width:760px)">
+      <source src="assets/video/chapada-hero.mp4" type="video/mp4">
+    </video>
     <div class="chapada-hero-shade" aria-hidden="true"></div>
-    <div class="chapada-hero-note" data-anim="reveal"><strong>Natureza, bem-estar e mesa.</strong><span>uma seleção para ritmos diferentes</span></div>
     <div class="chapada-hero-copy">
       <div class="chapada-badge" data-anim="reveal"><i></i><span>A Chapada pela Casa da Lua</span></div>
       <h1 class="chapada-h1" data-anim="title">Nem todo dia precisa <strong>ter o mesmo ritmo</strong></h1>
@@ -1083,7 +1043,6 @@ despedida</p></article>
           <div class="eyebrow" data-anim="reveal">Curadoria inicial</div>
           <h2 class="title" data-anim="title"><strong>8 escolhas</strong> para começar</h2>
         </div>
-        <p class="small" data-anim="reveal">Antes de sair, a equipe ajuda a confirmar clima, acesso, reserva, guia e condições de banho.</p>
       </div>
       <div class="chapada-filter" data-anim="reveal">
         <button class="suite-filter active" type="button" data-chapada-filter="all">Tudo</button>
@@ -1097,7 +1056,7 @@ despedida</p></article>
           <div class="chapada-photo" data-anim="image"><img src="assets/img/0b6e40.webp" alt="Parque Nacional da Chapada dos Veadeiros" loading="lazy" decoding="async"></div>
           <div class="chapada-copy"><div class="eyebrow">Natureza</div><h3>Parque Nacional</h3><div class="chapada-tags"><span>São Jorge</span><span>trilhas variadas</span><span>dia inteiro</span></div><p>Saltos, Carrossel, Corredeiras, Cânions e Cariocas aparecem em percursos de diferentes intensidades. A escolha da trilha deve acompanhar o grupo e as condições do dia.</p><div class="return-note"><strong>Na volta:</strong> hidro, massagem ou um fim de tarde mais lento na casa</div></div>
         </article>
-        <article class="chapada-card is-top" data-anim="reveal" data-tags="natureza meio-periodo">
+        <article class="chapada-card" data-anim="reveal" data-tags="natureza meio-periodo">
           <div class="chapada-photo" data-anim="image"><img src="assets/img/cffe9e.webp" alt="Vale da Lua" loading="lazy" decoding="async"></div>
           <div class="chapada-copy"><div class="eyebrow">Natureza</div><h3>Vale da Lua</h3><div class="chapada-tags"><span>trilha curta</span><span>meio período</span><span>formações rochosas</span></div><p>Um percurso curto leva às rochas esculpidas pelo Rio São Miguel, com mirantes, piscinas naturais e uma paisagem singular na Chapada.</p><div class="return-note"><strong>Na volta:</strong> banho, jardim e uma mesa sem pressa</div></div>
         </article>
@@ -1139,7 +1098,6 @@ despedida</p></article>
           <div class="eyebrow" data-anim="reveal">Antes de sair</div>
           <h2 class="title" data-anim="title">Antes de escolher um passeio, <strong>vale confirmar:</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">Essas informações ajudam a escolher melhor e evitam surpresas no caminho.</p>
       </div>
       <div class="grid-4" data-stagger>
         <article class="card" data-anim="reveal"><h3>Tempo disponível</h3><p>Alguns passeios ocupam o dia inteiro. Outros cabem em uma manhã ou em uma tarde</p></article>
@@ -1159,7 +1117,7 @@ despedida</p></article>
         <p class="chapada-return-lead" data-anim="reveal">Um dia longo pode pedir água e massagem. Um meio período abre espaço para piscina, cinema ou fogo. A curadoria liga o lado de fora ao que acontece depois.</p>
         <div class="hero-actions" data-anim="reveal"><button class="btn" type="button" data-page-target="viver">Viver a casa</button></div>
       </div>
-      <div class="chapada-return-frame" data-anim="image"><div class="chapada-return-photo"><img src="assets/img/gen-chapada-retorno.webp" alt="Retorno à Casa da Lua" loading="lazy" decoding="async"></div></div>
+      <div class="chapada-return-frame" data-anim="image"><img src="assets/img/rev-chapada-bloco4.webp" alt="Hóspedes de volta à Casa da Lua depois de um passeio" loading="lazy" decoding="async"></div>
     </div>
   </section>
 
@@ -1172,12 +1130,11 @@ despedida</p></article>
       <div class="section-head">
         <div>
           <div class="eyebrow" data-anim="reveal">Reservar</div>
-          <h1 class="title" data-anim="title">Escolha suas datas.<br><strong>A casa ajuda</strong> no resto.</h1>
+          <h1 class="title" data-anim="title">Escolha suas datas,<br><strong>a casa ajuda</strong> no resto</h1>
         </div>
-        <p class="rv-lead" data-anim="reveal">O fluxo começa pelo essencial: quando você vem e quantas pessoas viajam. Depois, a Casa da Lua sugere categorias compatíveis e abre o motor oficial.</p>
       </div>
 
-      <div class="reserve-shell" data-anim="reveal">
+      <div class="reserve-shell" id="reserveShell" data-anim="reveal">
         <aside class="reserve-steps">
           <div class="eyebrow">Sua viagem</div>
           <h2 id="reserveSideTitle">Datas e hóspedes</h2>
@@ -1244,8 +1201,7 @@ despedida</p></article>
               <div class="card" id="reserveSummary"></div>
               <div class="hero-actions">
                 <button class="ghost-btn reserve-prev" type="button" data-prev-step="3">Voltar</button>
-                <button class="btn" type="button" id="openBookingEngine">Abrir motor oficial</button>
-                <button class="ghost-btn" type="button" id="openWhatsApp">Falar com a equipe</button>
+                <button class="btn" type="button" id="openWhatsApp">Falar com a equipe</button>
               </div>
             </div>
           </form>
@@ -1259,7 +1215,7 @@ despedida</p></article>
       <div class="section-head">
         <div>
           <div class="eyebrow" data-anim="reveal">Informações práticas</div>
-          <h2 class="title" data-anim="title">Antes de reservar, <strong>o essencial</strong></h2>
+          <h2 class="title" data-anim="title">Antes de reservar,<br><strong>o essencial</strong></h2>
         </div>
       </div>
       <div class="practical-grid" data-anim="reveal" data-stagger>
@@ -1330,7 +1286,7 @@ despedida</p></article>
 
 <div class="overlay" id="journeyOverlay" role="dialog" aria-modal="true" aria-label="Percurso pela Casa da Lua" aria-hidden="true">
   <div class="journey-shell">
-    <div class="journey-media ov-anim"><img id="journeyImage" src="assets/img/v16-hero.webp" alt="Percurso pela Casa da Lua"></div>
+    <div class="journey-media ov-anim"><img id="journeyImage" src="assets/img/rev-jornada-1-chegada.webp" alt="Percurso pela Casa da Lua"></div>
     <div class="journey-copy">
       <button class="icon-btn close-overlay" type="button" aria-label="Fechar">×</button>
       <div class="eyebrow ov-anim" id="journeyKicker">Chegada</div>
@@ -1347,32 +1303,19 @@ despedida</p></article>
     <button class="icon-btn close-overlay" type="button" aria-label="Fechar">×</button>
     <aside class="atlas-sidebar">
       <div class="eyebrow ov-anim">Atlas Vivo</div>
-      <h2 class="ov-anim">Conheça a propriedade por quatro lentes.</h2>
-      <div class="atlas-lenses ov-anim">
-        <button class="active" type="button" data-atlas-lens="lugar">Lugar</button>
-        <button type="button" data-atlas-lens="momento">Momento</button>
-        <button type="button" data-atlas-lens="companhia">Logística e companhia</button>
-        <button type="button" data-atlas-lens="programa">Programa</button>
-      </div>
-      <div class="atlas-options ov-anim" id="atlasOptions"></div>
+      <h2 class="ov-anim">Conheça os espaços da propriedade.</h2>
       <div class="atlas-list ov-anim" id="atlasList"></div>
     </aside>
     <div class="atlas-canvas ov-anim" id="atlasCanvas">
-      <div class="atlas-stage">
-        <img src="assets/img/350edc.webp" alt="Planta esquemática da propriedade" loading="lazy" decoding="async">
+      <div class="atlas-stage"><img id="atlasDetailImage" src="assets/img/rev-atlas-casa-principal.webp" alt="Casa principal"></div>
+      <div class="atlas-minimap">
+        <img src="assets/img/rev-home-atlas.webp" alt="Mapa da propriedade">
         <div id="atlasPins"></div>
       </div>
     </div>
     <aside class="atlas-detail">
-      <div class="eyebrow ov-anim">Ponto selecionado</div>
       <h2 class="ov-anim" id="atlasDetailTitle">Casa principal</h2>
-      <div class="detail-image ov-anim"><img id="atlasDetailImage" src="assets/img/v16-night.webp" alt=""></div>
-      <div class="tag-row ov-anim" id="atlasDetailTags"></div>
       <p class="ov-anim" id="atlasDetailText">Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.</p>
-      <div class="hero-actions ov-anim">
-        <button class="btn page-link close-overlay" type="button" id="atlasDetailCTA" data-page-target="casa">Abrir A Casa</button>
-        <button class="ghost-btn page-link close-overlay" type="button" data-page-target="reservar">Planejar estadia</button>
-      </div>
     </aside>
   </div>
 </div>

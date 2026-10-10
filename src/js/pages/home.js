@@ -40,7 +40,7 @@ CDL.ready(()=>{
   const TIME = {
     morning:{img:'assets/img/5f9ce3.webp',alt:'Café da manhã na Casa da Lua',kicker:'Manhã',title:'Café no jardim',text:'A mesa é parte da casa. O café da manhã está incluído e é servido das 7h30 às 10h30'},
     afternoon:{img:A.pool||'assets/img/v16-pool.webp',alt:'Piscina da Casa da Lua no fim da tarde',kicker:'Fim de tarde',title:'A volta da Chapada desacelera na água.',text:'Piscina, jacuzzi, spa e massagem prolongam o dia sem pedir outro deslocamento.'},
-    night:{img:A.night||'assets/img/v16-night.webp',alt:'Casa da Lua acesa à noite',kicker:'Noite',title:'A casa acende e ganha outro silêncio.',text:'Fogo, cinema, bilhar e mesa entram como possibilidades para ficar mais um pouco.'}
+    night:{img:'assets/img/rev-home-21h.webp',alt:'Casa da Lua acesa à noite',kicker:'Noite',title:'A casa acende e ganha outro silêncio.',text:'Fogo, cinema, bilhar e mesa entram como possibilidades para ficar mais um pouco.'}
   };
   function setHomeTime(key){
     const d = TIME[key]; if(!d) return;
@@ -56,29 +56,32 @@ CDL.ready(()=>{
   }
   $$('.time-tab').forEach(b=>b.addEventListener('click',()=>setHomeTime(b.dataset.time)));
 
-  /* ---- Atlas em miniatura: pinos chamam CDL.selectHomeAtlas (overlays.js) ---- */
+  /* ---- Atlas em miniatura: 9 pinos (posições no HTML, em % da imagem do mapa).
+     Textos locais (não dependem de CDL.ATLAS_PLACES); o pino ainda chama CDL.selectHomeAtlas para o destaque ---- */
+  const ATLAS_TXT = {
+    'Chegada e estacionamento':'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade',
+    'Casa principal':'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem',
+    'Restaurante e café':'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos',
+    'Piscina e área de descanso':'A piscina é um dos centros da propriedade, com a área de descanso ao redor',
+    'Área de eventos':'Salão e área de apoio para casamentos, imersões, retiros e celebrações',
+    'Círculo do fogo':'Na época de seca, o círculo reúne conversa, vinho e céu aberto',
+    'Suítes da ala lateral':'Conjunto lateral com quartos, uma suíte e o espaço da sinuca',
+    'Bloco de suítes 6 a 10':'Bloco que reúne as suítes 6 a 10',
+    'Faixa verde central':'Área aberta que costura pousada, restaurante, suítes, círculo e eventos'
+  };
   $$('.atlas-home-card .map-pin').forEach(b=>b.addEventListener('click',()=>{
     const place = b.dataset.place;
-    if(typeof CDL.selectHomeAtlas==='function'){ CDL.selectHomeAtlas(place); return; }
-    /* reserva: se overlays.js ainda não carregou, atualiza só o cartão */
+    if(typeof CDL.selectHomeAtlas==='function') CDL.selectHomeAtlas(place);
     $$('.atlas-home-card .map-pin').forEach(p=>p.classList.toggle('active',p===b));
     setText('homeAtlasTitle',place);
-    const d = CDL.ATLAS_PLACES && CDL.ATLAS_PLACES[place];
-    if(d && d.text) setText('homeAtlasText',d.text);
+    setText('homeAtlasText',ATLAS_TXT[place]||'');
   }));
 
-  /* ---- Experiência Tidelli: dias (CDL.PROGRAM_DATA); quinta = imagem do Figma ---- */
-  const EXP_IMG = {quinta:'assets/img/3c03d3.webp'};
+  /* ---- Experiência Tidelli: a foto fica fixa; os botões de dia trocam só o texto ---- */
   function setHomeExperienceDay(day){
     const P = CDL.PROGRAM_DATA||{}; const d = P[day]; if(!d) return;
     $$('#homeExperienceDays button').forEach(b=>b.classList.toggle('active',b.dataset.expDay===day));
-    setText('homeExpKicker',d.eyebrow);
-    setText('homeExpTitle',np(d.title));
     setText('homeExpText',np(d.text));
-    const mo = document.getElementById('homeExpMoments');
-    if(mo) mo.innerHTML = d.schedule.map(r=>`<span>${r[0]}</span>`).join('');
-    const img = document.getElementById('homeProgramImage');
-    if(img) img.src = EXP_IMG[day] || A[d.asset] || img.src;
   }
   $$('#homeExperienceDays button').forEach(b=>b.addEventListener('click',()=>setHomeExperienceDay(b.dataset.expDay)));
 });
@@ -94,4 +97,27 @@ CDL.ready(()=>{
     buttons.forEach(b=>b.classList.toggle('active',b.dataset.homeAnchor===v.target.id));
   },{rootMargin:'-38% 0px -48% 0px',threshold:[0,.15,.4]});
   root.querySelectorAll('.home-chapter').forEach(s=>io.observe(s));
+});
+
+/* Barra de atalhos: transparente no meio dos blocos; só aparece quando uma fronteira entre dois blocos
+   passa pela zona da barra (±90 px). Só opacity/visibility (sem custo de GPU), 1 leitura por quadro. */
+CDL.ready(()=>{
+  const root = document.getElementById('page-home'); if(!root) return;
+  const nav = root.querySelector('.home-chapter-nav'); if(!nav) return;
+  const heads = [...root.querySelectorAll('.home-chapter,.home-practical')];   /* topo de cada bloco = fronteira com o anterior */
+  const ZONE = 90;
+  let ticking = false;
+  function update(){
+    ticking = false;
+    if(!root.classList.contains('active')) return;
+    const barY = nav.getBoundingClientRect().top;          /* centro da barra (ela sobe 50% da altura) */
+    let on = false;
+    for(const s of heads){ if(Math.abs(s.getBoundingClientRect().top - barY) <= ZONE){ on = true; break; } }
+    nav.classList.toggle('is-on', on);
+  }
+  function req(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', req, {passive:true});
+  window.addEventListener('resize', req);
+  CDL.onPage('home', ()=>setTimeout(req,50));
+  req();
 });

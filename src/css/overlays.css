@@ -28,7 +28,7 @@
 /* ---------- percurso "Entrar na Casa" ---------- */
 .journey-shell{position:relative;width:min(1320px,100%);height:min(88vh,860px);background:var(--verde-escuro);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);color:var(--creme);box-shadow:0 40px 120px rgba(0,0,0,.35)}
 .journey-media{position:relative;min-height:100%;overflow:hidden;background:#0a352c}
-.journey-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.journey-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .journey-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,28,26,.55))}
 .journey-copy{position:relative;padding:64px 52px 48px;display:flex;flex-direction:column;justify-content:center;overflow:auto}
 .journey-copy .icon-btn{position:absolute;right:20px;top:20px;background:rgba(255,255,255,.1);color:var(--creme)}
@@ -42,55 +42,36 @@
 .journey-copy>.text-button{align-self:flex-start;margin-top:26px;color:var(--creme)}
 .journey-copy>.text-button:hover{color:#fff}
 
-/* ---------- Atlas Vivo ---------- */
+/* ---------- Atlas Vivo (simplificado, revisão 09/10): lista numerada + foto do espaço + mini-mapa ---------- */
 .atlas-overlay-shell{position:relative;width:min(1400px,100%);height:min(90vh,900px);background:#133b33;color:var(--creme);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:320px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"side map" "side detail";box-shadow:0 40px 120px rgba(0,0,0,.35)}
 .atlas-overlay-shell>.close-overlay{position:absolute;right:16px;top:16px;z-index:8;background:rgba(19,59,51,.82);color:var(--creme);border:1px solid rgba(255,255,255,.18)}
 .atlas-overlay-shell>.close-overlay:hover{background:rgba(255,255,255,.2)}
-.atlas-sidebar,.atlas-detail{padding:34px 28px;overflow:auto;min-width:0}
-.atlas-sidebar{grid-area:side}
-.atlas-canvas{grid-area:map}
-.atlas-detail{grid-area:detail}
-.atlas-sidebar{border-right:1px solid rgba(255,255,255,.12)}
-.atlas-detail{border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.1);padding:26px 32px;display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:30px;align-content:start;overflow:visible}
-.atlas-detail>*{grid-column:2}
-.atlas-detail>.detail-image{grid-column:1;grid-row:1 / span 5;align-self:stretch}
-.atlas-sidebar .eyebrow,.atlas-detail .eyebrow{margin-bottom:14px}
+.atlas-sidebar{grid-area:side;padding:36px 28px;overflow:auto;min-width:0;border-right:1px solid rgba(255,255,255,.12)}
+.atlas-canvas{grid-area:map;position:relative;overflow:hidden;background:#0d4237}
+.atlas-detail{grid-area:detail;padding:26px 32px 30px;min-width:0;border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.1)}
+.atlas-sidebar .eyebrow{margin-bottom:14px}
 .atlas-sidebar h2,.atlas-detail h2{font-family:var(--serif);font-weight:700;letter-spacing:0;color:var(--creme);margin:0}
 .atlas-sidebar h2{font-size:30px;line-height:1.2}
 .atlas-detail h2{font-size:30px;line-height:1.2}
-.atlas-lenses{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.atlas-lenses button{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 12px 8px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--creme);transition:background .2s,color .2s,border-color .2s}
-.atlas-lenses button:hover{background:rgba(255,255,255,.12)}
-.atlas-lenses button.active{background:var(--verde);border-color:var(--verde);color:var(--branco)}
-.atlas-options{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 4px}
-.atlas-options button{background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 10px 5px;font-size:12px;line-height:18px;letter-spacing:.02em;color:rgba(245,234,210,.82);transition:background .2s,color .2s,border-color .2s}
-.atlas-options button:hover{background:rgba(255,255,255,.1)}
-.atlas-options button.active{background:var(--creme);border-color:var(--creme);color:var(--verde-escuro)}
-.atlas-list{display:flex;flex-direction:column;gap:2px;margin-top:18px}
+.atlas-detail>p{margin-top:10px;max-width:720px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72)}
+.atlas-list{display:flex;flex-direction:column;gap:2px;margin-top:24px}
 .atlas-list button{display:flex;align-items:center;gap:12px;text-align:left;background:transparent;border:0;border-radius:14px;padding:10px 12px;font-size:15px;line-height:22px;letter-spacing:.02em;color:var(--creme);transition:background .2s}
 .atlas-list button i{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);font-style:normal;font-size:12px;font-weight:700;transition:background .2s,color .2s}
 .atlas-list button:hover{background:rgba(255,255,255,.07)}
 .atlas-list button.active{background:rgba(255,255,255,.1)}
 .atlas-list button.active i{background:var(--creme);color:var(--verde-escuro)}
 
-.atlas-canvas{position:relative;overflow:hidden;background:#0d4237;container-type:size}
-.atlas-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100cqw,calc(100cqh * 1.832));aspect-ratio:2400/1310}
-.atlas-stage>img{display:block;width:100%;height:100%;object-fit:cover}
+/* palco: foto do espaço selecionado */
+.atlas-stage{position:absolute;inset:0}
+.atlas-stage>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+/* mini-mapa no canto inferior direito */
+.atlas-minimap{position:absolute;right:18px;bottom:18px;z-index:5;width:26%;min-width:190px;aspect-ratio:2400/1310;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.55);background:#0d4237;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.atlas-minimap>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #atlasPins{position:absolute;inset:0}
-#atlasOverlay .map-pin{position:absolute;transform:translate(-50%,-50%);z-index:3;display:grid;place-items:center;width:34px;height:34px;padding:0;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;font-family:var(--inter);font-size:12px;line-height:1;font-weight:600;letter-spacing:0;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s,width .2s,height .2s}
+#atlasOverlay .map-pin{position:absolute;z-index:3;display:grid;place-items:center;width:20px;height:20px;margin:-10px 0 0 -10px;padding:0;border-radius:50%;border:1.5px solid #fff;background:var(--verde);color:#fff;font-family:var(--inter);font-size:10px;line-height:1;font-weight:600;letter-spacing:0;box-shadow:0 3px 10px rgba(0,0,0,.3);transition:background .2s,color .2s}
 #atlasOverlay .map-pin:hover{background:var(--verde-escuro)}
-#atlasOverlay .map-pin.active{z-index:4;width:40px;height:40px;background:#f5ead2;color:var(--verde);font-size:13px}
+#atlasOverlay .map-pin.active{z-index:4;width:26px;height:26px;margin:-13px 0 0 -13px;background:#f5ead2;color:var(--verde);font-size:11px}
 
-.detail-image{min-height:190px;border-radius:18px;overflow:hidden;margin:0;background:#0d4237;position:relative}
-.detail-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#atlasOverlay .tag-row>span{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--creme)}
-.atlas-detail>p{margin-top:12px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72)}
-.atlas-detail .hero-actions{margin-top:18px}
-.atlas-detail .tag-row{margin-top:12px}
-.atlas-detail .btn{background:var(--branco);color:var(--verde-escuro)}
-.atlas-detail .btn:hover{background:var(--creme)}
-.atlas-detail .ghost-btn{color:var(--creme)}
-.atlas-detail .ghost-btn:hover{background:rgba(255,255,255,.1)}
 
 /* ---------- detalhe da suíte ---------- */
 #suiteOverlay .modal{--mp:0px;overflow:auto}
@@ -134,19 +115,14 @@
 
 /* ---------- responsivo (V16: 1180 e 760) ---------- */
 @media(max-width:1180px){
-  .atlas-overlay-shell{display:flex;flex-direction:column;height:min(92vh,900px);overflow:auto;overscroll-behavior:contain}
+  .atlas-overlay-shell{display:flex;flex-direction:column;height:auto;max-height:min(92vh,900px);overflow:auto;overscroll-behavior:contain}
   .atlas-overlay-shell>.close-overlay{position:fixed;right:28px;top:28px}
   .atlas-sidebar,.atlas-detail{flex:none;overflow:visible}
   .atlas-sidebar{border-right:0;border-bottom:1px solid rgba(255,255,255,.12);padding-right:76px}
-  .atlas-detail{display:block;padding:34px 28px;border-top:1px solid rgba(255,255,255,.12)}
-  .atlas-detail h2{padding-right:0}
-  .atlas-detail .tag-row{margin-top:0}
-  .atlas-detail .hero-actions{margin-top:24px}
+  .atlas-detail{padding:26px 28px 32px}
   .atlas-list{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:6px}
   .atlas-list button{flex:none;white-space:nowrap;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 14px 6px 8px}
-  .atlas-canvas{flex:none;height:clamp(300px,50vw,460px)}
-  .atlas-stage{width:max(100cqw,calc(100cqh * 1.832))}
-  .detail-image{height:260px;min-height:0;margin:20px 0}
+  .atlas-canvas{flex:none;height:clamp(300px,52vw,480px)}
   .suite-modal-media{min-height:480px}
 }
 @media(max-width:760px){
@@ -161,12 +137,15 @@
   .journey-copy h2{font-size:34px}
   .journey-copy>p{font-size:16px}
   .journey-choices{margin-top:22px}
-  .atlas-overlay-shell{height:94vh;border-radius:22px}
+  .atlas-overlay-shell{height:auto;max-height:94vh;border-radius:22px}
   .atlas-sidebar,.atlas-detail{padding:26px 22px}
   .atlas-sidebar{padding-right:22px;padding-top:70px}
+  .atlas-detail h2{font-size:26px}
   .atlas-sidebar h2{font-size:26px}
-  .atlas-canvas{overflow-x:auto;overflow-y:hidden;height:349px;container-type:normal}
-  .atlas-stage{position:relative;left:0;top:0;transform:none;width:640px;height:349px}
+  .atlas-canvas{height:340px}
+  .atlas-minimap{right:10px;bottom:10px;width:46%;min-width:0;border-radius:12px}
+  #atlasOverlay .map-pin{width:18px;height:18px;margin:-9px 0 0 -9px;font-size:9px}
+  #atlasOverlay .map-pin.active{width:24px;height:24px;margin:-12px 0 0 -12px}
   .suite-modal-grid{grid-template-columns:1fr}
   .suite-modal-media{min-height:300px;height:300px}
   .suite-modal-copy{padding:28px 24px 30px}

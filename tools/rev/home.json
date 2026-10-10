@@ -1,0 +1,122 @@
+[
+ {
+  "bloco": "Home - geral",
+  "item": "A barra suspensa (o dia, a propriedade, suítes...) fica TRANSPARENTE no meio de um bloco e só surge ENTRE um bloco e outro",
+  "expr": "(async()=>{const w=ms=>new Promise(r=>setTimeout(r,ms));const bar=document.querySelector('.chapter-bar');const nav=document.querySelector('.home-chapter-nav');const op=()=>+getComputedStyle(bar).opacity;const pe=()=>getComputedStyle(bar).pointerEvents;const sec=document.getElementById('home-explorar');const nxt=document.getElementById('home-ficar');\nconst go=y=>{window.scrollTo({top:y,behavior:'instant'});return w(900)};\nconst top=el=>el.getBoundingClientRect().top+scrollY;\nawait go(top(sec)+450);const meio=op()===0&&pe()==='none';\nawait go(top(nxt)-110);const fronteira=op()>0.95&&pe()!=='none';\nawait go(top(nxt)+180);const volta=op()===0;return meio&&fronteira&&volta})()"
+ },
+ {
+  "bloco": "Home - bloco 1",
+  "item": "Reduzir o tamanho do texto (título) em 15%: 85% do .display da base, em todos os breakpoints",
+  "expr": "(()=>{const fs=parseFloat(getComputedStyle(document.querySelector('#page-home .hero .display')).fontSize);const base=Math.min(80,Math.max(44,innerWidth*.0417));return Math.abs(fs/base-.85)<.006})()"
+ },
+ {
+  "bloco": "Home - bloco 1",
+  "item": "Reduzir o tamanho do texto (sub, parágrafo .lead) em 15%",
+  "expr": "(()=>{const fs=parseFloat(getComputedStyle(document.querySelector('#page-home .hero .lead')).fontSize);const base=Math.min(27,Math.max(17,innerWidth*.014));return Math.abs(fs/base-.85)<.006})()"
+ },
+ {
+  "bloco": "Home - bloco 1",
+  "item": "Retirar o texto da esquerda embaixo (\"uma pousada com cara de casa. Jardim, bem-estar, convivência\")",
+  "expr": "(()=>{const h=document.querySelector('#page-home .hero');return !h.querySelector('.hero-side-note')&&!/pousada com cara de casa/i.test(h.textContent)&&!/jardim · bem-estar/i.test(h.textContent)})()"
+ },
+ {
+  "bloco": "Home - bloco 1",
+  "item": "Centralizar as informações da direita embaixo (15 Suítes, 8 categorias...) no centro horizontal do hero, na mesma altura vertical de hoje (112 px do fundo do hero, acima da barra de reserva)",
+  "expr": "(()=>{const h=document.querySelector('#page-home .hero').getBoundingClientRect();const s=document.querySelector('#page-home .stat-row').getBoundingClientRect();const cx=Math.abs((s.left+s.right)/2-(h.left+h.right)/2)<=3;const by=Math.abs((h.bottom-s.bottom)-112)<=3;return cx&&by&&document.querySelectorAll('#page-home .stat').length===4})()"
+ },
+ {
+  "bloco": "Home - bloco 2",
+  "item": "Substituir a imagem das 21h por assets/img/rev-home-21h.webp (aba night)",
+  "expr": "(()=>{document.querySelector('.time-tab[data-time=night]').click();return document.getElementById('homeTimeImage').src.includes('rev-home-21h.webp')})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "Nos menus em família/com amigos etc., tirar os textos de cima (principal, convivência...)",
+  "expr": "(()=>{const c=[...document.querySelectorAll('#page-home .profile-card')];return c.length===4&&c.every(b=>!b.querySelector('span'))&&!/principal|convivência|ao ar livre|grupo/i.test(c.map(b=>b.textContent).join(' '))})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "Alinhar o texto principal no CENTRO de cada retângulo (horizontal e vertical, tolerância 3 px)",
+  "expr": "(()=>[...document.querySelectorAll('#page-home .profile-card')].every(b=>{const r=b.getBoundingClientRect(),s=b.querySelector('strong').getBoundingClientRect();return Math.abs((r.left+r.right)/2-(s.left+s.right)/2)<=3&&Math.abs((r.top+r.bottom)/2-(s.top+s.bottom)/2)<=3}))()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "A imagem do Atlas Vivo passa a ser assets/img/rev-home-atlas.webp",
+  "expr": "document.querySelector('#page-home .atlas-map img').src.includes('rev-home-atlas.webp')"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "A imagem do Atlas aparece COMPLETA: caixa com aspect-ratio 2400/1310, sem recorte",
+  "expr": "(()=>{const m=document.querySelector('#page-home .atlas-map').getBoundingClientRect(),i=document.querySelector('#page-home .atlas-map img').getBoundingClientRect();return Math.abs(m.width/m.height-2400/1310)<.01&&Math.abs(i.width-m.width)<1&&Math.abs(i.height-m.height)<1&&getComputedStyle(document.querySelector('#page-home .atlas-map')).aspectRatio.replace(/ /g,'')==='2400/1310'})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "ABAIXO da imagem, dentro do mesmo cartão, o bloco verde-escuro com Atlas Vivo, título, texto e botões",
+  "expr": "(()=>{const c=document.querySelector('#page-home .atlas-home-card').getBoundingClientRect(),m=document.querySelector('#page-home .atlas-map').getBoundingClientRect(),t=document.querySelector('#page-home .atlas-home-copy'),r=t.getBoundingClientRect();const ok=r.top>=m.bottom-1&&r.bottom<=c.bottom+1&&r.left>=c.left-1&&r.right<=c.right+1;const txt=t.textContent;return ok&&getComputedStyle(t).backgroundColor==='rgb(13, 66, 55)'&&/Atlas Vivo/.test(txt)&&!!t.querySelector('#homeAtlasTitle')&&!!t.querySelector('#homeAtlasText')&&!!t.querySelector('.atlas-open')&&!!t.querySelector('[data-page-target=casa]')})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "O cartão do Atlas tem a mesma altura do painel de perfis ao lado (650 px a 1920)",
+  "expr": "(()=>{const a=document.querySelector('#page-home .atlas-home-card').getBoundingClientRect().height,p=document.querySelector('#page-home .profile-panel').getBoundingClientRect().height;return Math.abs(a-p)<=2&&a>=500})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "Os 9 pinos têm a numeração, os nomes e as posições (x,y em % da imagem) pedidas",
+  "expr": "(()=>{const E=[[1,'Chegada e estacionamento',70,6],[2,'Casa principal',47,90],[3,'Restaurante e café',14,90],[4,'Piscina e área de descanso',30,27],[5,'Área de eventos',88,27],[6,'Círculo do fogo',91,80],[7,'Suítes da ala lateral',6,62],[8,'Bloco de suítes 6 a 10',62,88],[9,'Faixa verde central',64,45]];const m=document.querySelector('#page-home .atlas-map').getBoundingClientRect();const P=[...document.querySelectorAll('#page-home .atlas-home-card .map-pin')];return P.length===9&&E.every(([n,pl,x,y])=>{const b=P.find(p=>p.textContent.trim()==String(n));if(!b||b.dataset.place!==pl)return false;const r=b.getBoundingClientRect();const px=((r.left+r.right)/2-m.left)/m.width*100,py=((r.top+r.bottom)/2-m.top)/m.height*100;return Math.abs(px-x)<.7&&Math.abs(py-y)<.7})})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "Remover o espaço 10 \"Área complementar\" (da Home)",
+  "expr": "!document.querySelector('#page-home [data-place=\"Área complementar\"]')&&document.querySelectorAll('#page-home .map-pin').length===9"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "Os pinos chamam CDL.selectHomeAtlas(place) e o texto do cartão acompanha o pino (testado nos pinos 6 e 8)",
+  "expr": "(()=>{let calls=[];const o=CDL.selectHomeAtlas;CDL.selectHomeAtlas=p=>{calls.push(p);return o&&o(p)};const b6=[...document.querySelectorAll('#page-home .map-pin')].find(b=>b.textContent==='6');b6.click();const a=document.getElementById('homeAtlasTitle').textContent==='Círculo do fogo'&&/círculo reúne conversa/.test(document.getElementById('homeAtlasText').textContent)&&b6.classList.contains('active');const b8=[...document.querySelectorAll('#page-home .map-pin')].find(b=>b.textContent==='8');b8.click();const c=document.getElementById('homeAtlasTitle').textContent==='Bloco de suítes 6 a 10'&&/suítes 6 a 10/.test(document.getElementById('homeAtlasText').textContent);CDL.selectHomeAtlas=o;return a&&c&&calls.join('|')==='Círculo do fogo|Bloco de suítes 6 a 10'})()"
+ },
+ {
+  "bloco": "Home - bloco 3",
+  "item": "Retirar o subtexto ao lado do título maior (\"escolha uma companhia…\") e os demais .small dos títulos de seção da Home",
+  "expr": "!document.querySelector('#page-home .section-head .small')&&!/Escolha uma companhia para destacar/.test(document.getElementById('page-home').textContent)"
+ },
+ {
+  "bloco": "Home - bloco 4",
+  "item": "Usar assets/img/rev-home-bloco4.webp (2400 px) como imagem de fundo (a textura/película do Figma continua por cima)",
+  "expr": "(()=>{const b=document.querySelector('#home-ficar .section-bg');const bi=getComputedStyle(b).backgroundImage;return bi.includes('rev-home-bloco4.webp')&&!bi.includes('8dd68a')&&!!document.querySelector('#home-ficar .max')})()"
+ },
+ {
+  "bloco": "Home - bloco 5",
+  "item": "Tirar os subtextos abaixo dos dias da semana (\"chegada e boas vindas\", título do dia) e as tags (chegada, tarde, noite...) no quadro da esquerda",
+  "expr": "(()=>{const p=document.querySelector('#page-home .experience-panel');return !p.querySelector('.kicker')&&!p.querySelector('h4')&&!p.querySelector('.tag-row')&&!/Chegada e boas-vindas|Do universo Tidelli/i.test(p.textContent)&&!document.getElementById('homeExpMoments')})()"
+ },
+ {
+  "bloco": "Home - bloco 5",
+  "item": "Os botões de dia continuam (Quinta, Sexta, Sábado, Domingo) e os botões Ver o programa / Receber datas",
+  "expr": "(()=>{const p=document.querySelector('#page-home .experience-panel');const d=[...p.querySelectorAll('#homeExperienceDays button')].map(b=>b.textContent.trim()).join(',')==='Quinta,Sexta,Sábado,Domingo';const t=[...p.querySelectorAll('button')].map(b=>b.textContent.trim());return d&&t.includes('Ver o programa')&&t.includes('Receber datas')})()"
+ },
+ {
+  "bloco": "Home - bloco 5",
+  "item": "As imagens da esquerda NÃO mudam mais conforme o dia (mantém a foto da quinta, 3c03d3); o texto do dia continua mudando",
+  "expr": "(()=>{const i=document.getElementById('homeProgramImage');const s0=i.src;const t0=document.getElementById('homeExpText').textContent;const r=[];for(const d of ['sexta','sabado','domingo','quinta']){document.querySelector('#homeExperienceDays [data-exp-day='+d+']').click();r.push(i.src===s0&&s0.includes('3c03d3.webp')&&document.querySelector('#homeExperienceDays .active').dataset.expDay===d)}document.querySelector('#homeExperienceDays [data-exp-day=sexta]').click();const mudou=document.getElementById('homeExpText').textContent!==t0;return r.every(Boolean)&&mudou})()"
+ },
+ {
+  "bloco": "Home - bloco 5",
+  "item": "Substituir a imagem do painel da direita (Eventos e imersões) por assets/img/rev-home-bloco5.webp",
+  "expr": "document.querySelector('#page-home .events-panel .feature-media img').src.includes('rev-home-bloco5.webp')"
+ },
+ {
+  "bloco": "Home - bloco 5",
+  "item": "\"Ver formatos\" abre EXATAMENTE no bloco de formatos da página Eventos (data-page-target=eventos data-anchor=eventFormats; #eventFormats = seção \"Escolha o formato\"; topo sob o cabeçalho)",
+  "expr": "(async()=>{const w=ms=>new Promise(r=>setTimeout(r,ms));const b=[...document.querySelectorAll('#page-home .events-panel button')].find(x=>x.textContent.trim()==='Ver formatos');if(!(b.dataset.pageTarget==='eventos'&&b.dataset.anchor==='eventFormats'))return false;b.click();await w(1500);const s=document.getElementById('eventFormats');const hh=(document.querySelector('.site-header')||{offsetHeight:76}).offsetHeight;const ok=document.getElementById('page-eventos').classList.contains('active')&&/Escolha o formato/.test(s.querySelector('.eyebrow').textContent)&&(s.getBoundingClientRect().top-hh)<=4&&(s.getBoundingClientRect().top-hh)>=-14;return ok})()"
+ },
+ {
+  "bloco": "Home - bloco 7",
+  "item": "\"Ver a curadoria\" abre exatamente no SEGUNDO bloco da página A Chapada (data-anchor=chapadaCuradoria, topo sob o cabeçalho)",
+  "expr": "(async()=>{const w=ms=>new Promise(r=>setTimeout(r,ms));const b=[...document.querySelectorAll('#home-voltar button')].find(x=>x.textContent.trim()==='Ver a curadoria');if(!(b.dataset.pageTarget==='chapada'&&b.dataset.anchor==='chapadaCuradoria'))return false;b.click();await w(1500);const s=document.getElementById('chapadaCuradoria');const hh=(document.querySelector('.site-header')||{offsetHeight:76}).offsetHeight;const segundo=[...document.getElementById('page-chapada').children].filter(e=>e.tagName==='SECTION').indexOf(s)===1;return document.getElementById('page-chapada').classList.contains('active')&&segundo&&(s.getBoundingClientRect().top-hh)<=4&&(s.getBoundingClientRect().top-hh)>=-14})()"
+ },
+ {
+  "bloco": "Home - bloco 7",
+  "item": "Excluir o botão \"viver a casa\"",
+  "expr": "![...document.querySelectorAll('#page-home button')].some(b=>/viver a casa/i.test(b.textContent))"
+ }
+]

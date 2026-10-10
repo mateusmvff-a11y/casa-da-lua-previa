@@ -22,45 +22,39 @@
 #page-casa .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--verde);flex:none}
 #page-casa .casa-hero .title{color:var(--creme);max-width:653px;font-size:clamp(40px,3.54vw,68px)}
 #page-casa .hero-lead{margin-top:24px;max-width:552px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
-#page-casa .hero-side-note{position:absolute;z-index:2;left:6vw;right:6vw;bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--creme)}
-#page-casa .hero-side-note strong{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2;letter-spacing:0}
-#page-casa .hero-side-note span{font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase}
 #page-casa .casa-hero .hero-actions{margin-top:36px}
 #page-casa .casa-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
 #page-casa .casa-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
 
 /* ---------- 2. Como tudo começou ---------- */
 #page-casa .casa-origem{padding-top:86px;padding-bottom:61px;min-height:560px}
-#page-casa .origin-editorial{display:grid;grid-template-columns:minmax(0,666fr) minmax(0,544fr);column-gap:70px;align-items:start}
+#page-casa .origin-editorial{display:grid;grid-template-columns:minmax(0,666fr) minmax(0,544fr);column-gap:70px;align-items:center}
 #page-casa .origem-copy .title{max-width:653px}
 #page-casa .origem-copy .lead{margin-top:24px;color:var(--verde-escuro);font-size:clamp(17px,1.302vw,25px);line-height:1.2}
 #page-casa .origem-texto{margin-top:16px;max-width:653px;font-size:16px;line-height:24px;color:#5a7069}
-#page-casa .year-stack{display:flex;flex-direction:column;border-left:1px solid var(--linha)}
-#page-casa .year-stack article{position:relative;padding:0 0 30px 32px;display:flex;flex-direction:column;gap:4.2px}
-#page-casa .year-stack article::before{content:"";position:absolute;left:-6px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--verde)}
-#page-casa .year-stack time{font-family:var(--serif);font-weight:400;letter-spacing:0;font-size:36px;line-height:56px;color:var(--texto)}
-#page-casa .year-stack article:first-child time{font-size:34px;line-height:36px}
+#page-casa .year-stack{display:flex;flex-direction:column;gap:36px;border-left:1px solid var(--linha);padding:4px 0}
+#page-casa .year-stack article{position:relative;padding:0 0 0 32px;display:flex;flex-direction:column;gap:4.2px}
+#page-casa .year-stack article::before{content:"";position:absolute;left:-6px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--verde)}
+#page-casa .year-stack time{font-family:var(--serif);font-weight:400;letter-spacing:0;font-size:36px;line-height:44px;color:var(--texto)}
 #page-casa .year-stack h3{margin:0;padding-top:.85px;font-family:var(--sans);font-weight:700;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto)}
 #page-casa .year-stack p{font-size:16px;line-height:24px;color:#60736d}
 
 /* ---------- 3. Atlas Vivo ---------- */
-#page-casa .casa-atlas::after,#page-casa .casa-historias::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.2);pointer-events:none}
+#page-casa .casa-historias::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.2);pointer-events:none}
+/* pelicula escura do bloco 3: cobre exatamente a secao, acima da foto e abaixo do texto */
+#page-casa .casa-veil{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,.52);pointer-events:none}
 #page-casa .casa-atlas .section-head>div:first-child{max-width:none}
 #page-casa .casa-atlas .section-head .eyebrow{color:var(--creme);font-family:var(--inter);font-weight:600}
-#page-casa .casa-atlas .section-head>div:first-child{flex:none}
-#page-casa .casa-atlas .section-head .small{flex:1 1 0;min-width:0;max-width:560px;align-self:flex-end;margin-top:-30px}
 #page-casa .casa-atlas .title{white-space:nowrap}
-#page-casa .atlas-teaser{display:grid;grid-template-columns:minmax(0,755fr) minmax(0,525fr);height:650px;background:#133b33;border-radius:30px;overflow:hidden;color:var(--creme)}
-#page-casa .atlas-map{position:relative;overflow:hidden}
-#page-casa .atlas-map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#page-casa .map-pin{position:absolute;z-index:3;width:34px;height:34px;padding:1px 6px;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;
+#page-casa .atlas-teaser{display:grid;grid-template-columns:minmax(0,755fr) minmax(0,525fr);background:#133b33;border-radius:30px;overflow:hidden;color:var(--creme)}
+#page-casa .atlas-map{position:relative;overflow:hidden;aspect-ratio:2400/1310}
+#page-casa .atlas-map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+#page-casa .map-pin{position:absolute;z-index:3;transform:translate(-50%,-50%);width:34px;height:34px;padding:1px 6px;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;
   display:grid;place-items:center;font-family:var(--inter);font-weight:600;font-size:12px;line-height:19px;letter-spacing:0;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s,transform .2s}
 #page-casa .map-pin:hover{background:var(--areia);color:var(--verde)}
-#page-casa .map-pin.active{background:var(--areia);color:var(--verde);transform:scale(1.17)}
-#page-casa .atlas-copy{padding:48px 48px 28px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
-#page-casa .atlas-copy .eyebrow{color:var(--verde);margin-bottom:16px}
-#page-casa .atlas-copy .chip{min-height:37px;padding:7px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);color:var(--creme)}
-#page-casa .atlas-place{padding-top:24.45px}
+#page-casa .map-pin.active{background:var(--areia);color:var(--verde);transform:translate(-50%,-50%) scale(1.17)}
+#page-casa .atlas-copy{padding:40px 48px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+#page-casa .atlas-place{padding-top:0}
 #page-casa .atlas-place h3{font-family:var(--serif);font-weight:700;font-size:38px;line-height:47px;letter-spacing:0;color:var(--creme);margin:0 0 12px}
 #page-casa .atlas-place p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72);margin:0}
 #page-casa .atlas-actions{margin-top:28px}
@@ -69,9 +63,8 @@
 
 /* ---------- 4. O que a torna única ---------- */
 #page-casa .casa-unica .section-head>div:first-child{max-width:900px}
-#page-casa .casa-unica .section-head .small{max-width:340px;flex:none}
-#page-casa .house-layers .card{height:250px;padding:66px 26px 0;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto-2)}
-#page-casa .house-layers .card h3{font-size:30px;line-height:32px;letter-spacing:0;margin:0 0 12px;color:var(--verde)}
+#page-casa .house-layers .card{height:auto;align-self:stretch;padding:32px 28px;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto-2)}
+#page-casa .house-layers .card h3{font-size:30px;line-height:32px;letter-spacing:0;margin:0 0 14px;color:var(--verde)}
 #page-casa .house-layers .card p{font-size:16px;line-height:24px;color:#587069}
 
 /* ---------- 5. Histórias da casa ---------- */
@@ -104,14 +97,11 @@
 
 /* ---------- Responsivo ---------- */
 @media(max-width:1180px){
-  #page-casa .casa-atlas .section-head>div:first-child{flex:1 1 auto}
-  #page-casa .casa-atlas .section-head .small{margin-top:0;max-width:340px}
   #page-casa .casa-hero{min-height:min(760px,calc(100svh - var(--header-h)));padding-top:60px;padding-bottom:60px}
   #page-casa .casa-hero::after{background:linear-gradient(90deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.16) 60%,rgba(0,0,0,.05) 100%)}
   #page-casa .origin-editorial{grid-template-columns:1fr;row-gap:44px}
   #page-casa .casa-origem{padding-top:80px;padding-bottom:70px}
   #page-casa .atlas-teaser{grid-template-columns:1fr;height:auto}
-  #page-casa .atlas-map{aspect-ratio:755/650}
   #page-casa .atlas-copy{gap:36px;padding:36px 36px 40px}
   #page-casa .casa-atlas .title{white-space:normal}
   #page-casa .casa-equipe .split{grid-template-columns:1fr}
@@ -139,7 +129,6 @@
   #page-casa .story-card h4{font-size:24px;line-height:34px}
   #page-casa .casa-equipe .title{letter-spacing:-.02em}
   #page-casa .media-frame{height:420px}
-  #page-casa .hero-side-note{position:static;order:2;margin-top:28px;flex-direction:column;align-items:flex-start;gap:8px}
   #page-casa .story-card{grid-template-columns:72px minmax(0,1fr);gap:16px}
   #page-casa .story-card .thumb{width:72px;height:72px}
   #page-casa .map-pin{width:30px;height:30px;padding:0;font-size:11px}

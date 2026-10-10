@@ -20,10 +20,6 @@
       </div>
     </div>
     <div class="hero-foot">
-      <div class="hero-side-note" data-anim="reveal">
-        <strong>Uma pousada com cara de casa.</strong>
-        <span>jardim · bem-estar · convivência</span>
-      </div>
       <div class="stat-row" data-anim="reveal">
         <div class="stat"><strong>15</strong><span>suítes</span></div>
         <div class="stat"><strong>8</strong><span>categorias</span></div>
@@ -54,7 +50,6 @@
           <div class="eyebrow" data-anim="reveal">A casa muda com o dia</div>
           <h2 class="title" data-anim="title">Três horários, <strong>três momentos<br class="br-d"> para estar aqui</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">A manhã prepara a saída. O fim de tarde recebe quem volta. A noite abre espaço para mesa, fogo, cinema e conversa.</p>
       </div>
       <div class="time-stage">
         <div class="time-tabs" role="tablist" aria-label="Horário do dia" data-stagger>
@@ -86,16 +81,15 @@
           <div class="eyebrow" data-anim="reveal">Explore pelo que importa para você</div>
           <h2 class="title" data-anim="title">A propriedade ganha outro<br class="br-d"> desenho <strong>conforme a companhia</strong></h2>
         </div>
-        <p class="small" data-anim="reveal">Escolha uma companhia para destacar lugares e caminhos. A navegação continua livre.</p>
       </div>
       <div class="explore-grid">
         <div class="profile-panel" data-guide-id="home.profile" data-anim="reveal">
           <div class="eyebrow">Como você vem?</div>
           <div class="profile-compact-grid" role="tablist" aria-label="Perfil de viagem">
-            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><span>principal</span><strong>Em família</strong></button>
-            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><span>convivência</span><strong>Com amigos</strong></button>
-            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><span>ao ar livre</span><strong>Com pet</strong></button>
-            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><span>grupo</span><strong>Para um<br>encontro</strong></button>
+            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><strong>Em família</strong></button>
+            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><strong>Com amigos</strong></button>
+            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><strong>Com pet</strong></button>
+            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><strong>Para um<br>encontro</strong></button>
           </div>
           <div class="profile-result" aria-live="polite">
             <div class="kicker">nossa sugestão:</div>
@@ -104,16 +98,20 @@
             <button class="btn" id="profileCTA" data-page-target="suites">Ver opções</button>
           </div>
         </div>
-        <div class="atlas-home-card" data-anim="image">
-          <img src="assets/img/350edc.webp" alt="Vista aérea da piscina e do jardim da Casa da Lua" loading="lazy" decoding="async" data-parallax="-6">
-          <!-- Pinos do V16 (x do V16; y comprimido para ficar acima do cartão, pois a foto 350edc não é a planta) -->
-          <div class="atlas-pins">
-            <button class="map-pin active" style="left:31%;top:26%" data-place="Casa principal" aria-label="Casa principal">1</button>
-            <button class="map-pin" style="left:37%;top:14%" data-place="Piscina e área de descanso" aria-label="Piscina e área de descanso">2</button>
-            <button class="map-pin" style="left:31%;top:36%" data-place="Restaurante e café" aria-label="Restaurante e café">3</button>
-            <button class="map-pin" style="left:58%;top:21%" data-place="Área de eventos" aria-label="Área de eventos">4</button>
-            <button class="map-pin" style="left:52%;top:29%" data-place="Círculo do fogo" aria-label="Círculo do fogo">5</button>
-            <button class="map-pin" style="left:69%;top:30%" data-place="Chegada e estacionamento" aria-label="Chegada e estacionamento">6</button>
+        <div class="atlas-home-card" data-anim="reveal">
+          <div class="atlas-map">
+            <img src="assets/img/rev-home-atlas.webp" alt="Mapa da propriedade da Casa da Lua, com os ambientes numerados" width="2400" height="1310" loading="lazy" decoding="async">
+            <div class="atlas-pins">
+            <button class="map-pin" style="left:70%;top:6%" data-place="Chegada e estacionamento" aria-label="1. Chegada e estacionamento">1</button>
+            <button class="map-pin active" style="left:47%;top:90%" data-place="Casa principal" aria-label="2. Casa principal">2</button>
+            <button class="map-pin" style="left:14%;top:90%" data-place="Restaurante e café" aria-label="3. Restaurante e café">3</button>
+            <button class="map-pin" style="left:30%;top:27%" data-place="Piscina e área de descanso" aria-label="4. Piscina e área de descanso">4</button>
+            <button class="map-pin" style="left:88%;top:27%" data-place="Área de eventos" aria-label="5. Área de eventos">5</button>
+            <button class="map-pin" style="left:91%;top:80%" data-place="Círculo do fogo" aria-label="6. Círculo do fogo">6</button>
+            <button class="map-pin" style="left:6%;top:62%" data-place="Suítes da ala lateral" aria-label="7. Suítes da ala lateral">7</button>
+            <button class="map-pin" style="left:62%;top:88%" data-place="Bloco de suítes 6 a 10" aria-label="8. Bloco de suítes 6 a 10">8</button>
+            <button class="map-pin" style="left:64%;top:45%" data-place="Faixa verde central" aria-label="9. Faixa verde central">9</button>
+            </div>
           </div>
           <div class="atlas-home-copy" aria-live="polite">
             <div class="eyebrow">Atlas Vivo</div>
@@ -131,7 +129,7 @@
 
   <!-- 4 · Escolha pelo estilo da viagem -->
   <section class="section white photo home-chapter" id="home-ficar" data-guide-id="home.suites">
-    <div class="section-bg" style="--bg:url(../assets/img/8dd68a.webp);--op:1" aria-hidden="true"></div>
+    <div class="section-bg" style="--bg:url(../assets/img/rev-home-bloco4.webp);--op:1" aria-hidden="true"></div>
     <div class="max">
       <div class="section-head">
         <div>
@@ -190,10 +188,7 @@
               <button class="chip chip-button" data-exp-day="sabado">Sábado</button>
               <button class="chip chip-button" data-exp-day="domingo">Domingo</button>
             </div>
-            <div class="kicker" id="homeExpKicker">Chegada e boas-vindas</div>
-            <h4 id="homeExpTitle">Do universo Tidelli à Casa da Lua</h4>
             <p id="homeExpText">Chegada, deslocamento para Alto Paraíso, check-in e um jantar para abrir a experiência em grupo</p>
-            <div class="tag-row" id="homeExpMoments"><span>chegada</span><span>tarde</span><span>noite</span></div>
             <div class="feature-actions">
               <button class="btn dark" data-page-target="experiencias">Ver o programa</button>
               <button class="text-button interest-open">Receber datas</button>
@@ -202,7 +197,7 @@
         </article>
         <article class="feature-panel events-panel" data-guide-id="home.events" data-anim="reveal">
           <div class="feature-media" data-anim="image">
-            <img src="assets/img/6054aa.webp" alt="Área de eventos da Casa da Lua" loading="lazy" decoding="async">
+            <img src="assets/img/rev-home-bloco5.webp" alt="Área de eventos da Casa da Lua" loading="lazy" decoding="async">
           </div>
           <div class="feature-body">
             <div class="eyebrow">Eventos e imersões</div>
@@ -210,7 +205,7 @@
             <p>Casamentos, celebrações, retiros e imersões podem combinar salão, jardim, áreas cobertas e quinze suítes na mesma propriedade</p>
             <div class="tag-row"><span>até 200 pessoas</span><span>15 suítes</span><span>plano para chuva</span></div>
             <div class="feature-actions">
-              <button class="btn dark" data-page-target="eventos">Ver formatos</button>
+              <button class="btn dark" data-page-target="eventos" data-anchor="eventFormats">Ver formatos</button>
               <button class="text-button proposal-open">Solicitar proposta</button>
             </div>
           </div>
@@ -249,8 +244,7 @@
         <h2 class="title" data-anim="title">A <strong>volta à casa</strong> faz<br class="br-d"> parte da viagem</h2>
         <p class="lead" data-anim="reveal">Depois da estrada, do sol e da água, o ritmo muda. Piscina, hidro, spa, mesa e fogo ajudam a alongar o dia e fazem a volta para casa ter o seu próprio prazer</p>
         <div class="hero-actions" data-anim="reveal">
-          <button class="btn" data-page-target="chapada">Ver a curadoria</button>
-          <button class="ghost-btn" data-page-target="viver">Viver a casa</button>
+          <button class="btn" data-page-target="chapada" data-anchor="chapadaCuradoria">Ver a curadoria</button>
         </div>
       </div>
       <div class="return-media" data-anim="image">

@@ -1,0 +1,52 @@
+[
+ {
+  "bloco": "Eventos - bloco 1",
+  "item": "retire os textos de baixo (\"chegar, reunir e ficar.\" e \"salão · jardim · hospedagem\"; a nota do hero inteira)",
+  "expr": "!document.querySelector('#page-eventos .hero-side-note') && !/chegar, reunir e ficar|salão · jardim · hospedagem/i.test(document.getElementById('page-eventos').textContent)"
+ },
+ {
+  "bloco": "Eventos - bloco 1",
+  "item": "hero continua com título, parágrafo, botões e estatísticas (nada além da nota foi removido)",
+  "expr": "!!document.querySelector('#page-eventos .hero h1') && !!document.querySelector('#page-eventos .hero .lead') && document.querySelectorAll('#page-eventos .hero .hero-actions button').length===2 && document.querySelectorAll('#page-eventos .hero .stat').length===2"
+ },
+ {
+  "bloco": "Eventos - bloco 2",
+  "item": "ok por enquanto (formatos e diagrama intactos, abas funcionam)",
+  "expr": "(()=>{const b=document.querySelector('.event-selector button[data-event-type=retiro]');b.click();const ok=document.getElementById('eventEyebrow').textContent==='Retiro'&&document.querySelectorAll('#eventObjects .floor-zone').length>0;document.querySelector('.event-selector button[data-event-type=casamento]').click();return ok&&document.getElementById('eventEyebrow').textContent==='Casamento'})()"
+ },
+ {
+  "bloco": "Eventos - bloco 2",
+  "item": "retire qualquer subtexto ao lado do título (\"Selecione um encontro para visualizar uma possibilidade de organização.\")",
+  "expr": "!document.querySelector('#eventFormats .section-head p') && !/Selecione um encontro/i.test(document.getElementById('eventFormats').textContent)"
+ },
+ {
+  "bloco": "Eventos - bloco 3",
+  "item": "tire o mini texto da direita do título \"A casa se adapta à escala e ao ritmo do encontro\"",
+  "expr": "(()=>{const s=[...document.querySelectorAll('#page-eventos .section')].find(x=>/A casa se adapta/.test(x.textContent));return !!s && !s.querySelector('.section-head p, .section-head .small') && !/A capacidade e a montagem/i.test(s.textContent)})()"
+ },
+ {
+  "bloco": "Eventos - bloco 3",
+  "item": "resto ok (título e os 4 cartões Salão, Jardim, Área coberta, Hospedagem)",
+  "expr": "(()=>{const s=[...document.querySelectorAll('#page-eventos .section')].find(x=>/A casa se adapta/.test(x.textContent));return !!s && s.querySelectorAll('.card').length===4})()"
+ },
+ {
+  "bloco": "Eventos - bloco 4",
+  "item": "ok (Se chover, o encontro continua)",
+  "expr": "(()=>{const s=document.querySelector('#page-eventos .rain');return !!s && /Se chover/.test(s.textContent) && s.querySelectorAll('.chip').length===4})()"
+ },
+ {
+  "bloco": "Eventos - bloco 5",
+  "item": "retire qualquer subtexto ao lado do título \"O que você está planejando?\"",
+  "expr": "!document.querySelector('#eventProposal .section-head p') && !/organiza os próximos detalhes/i.test(document.getElementById('eventProposal').textContent)"
+ },
+ {
+  "bloco": "Eventos - bloco 5",
+  "item": "rótulos (TIPO DE ENCONTRO, DATA OU PERÍODO, NÚMERO ESTIMADO DE PESSOAS, PRECISA DE HOSPEDAGEM?, CONTE UM POUCO…) com a mesma borda esquerda do campo logo abaixo (±1 px)",
+  "expr": "(()=>{const f=[...document.querySelectorAll('#eventProposal .proposal-form .field')].filter(x=>x.querySelector('input,select,textarea'));return f.length===5 && f.every(x=>Math.abs(x.querySelector('label').getBoundingClientRect().left-x.querySelector('input,select,textarea').getBoundingClientRect().left)<=1)})()"
+ },
+ {
+  "bloco": "Eventos - bloco 5",
+  "item": "Rótulos (tipo de encontro, data, número de pessoas, hospedagem, conte um pouco) alinhados ao texto dentro do campo, como em Experiências (recuo de 15 px)",
+  "expr": "(()=>{const ls=[...document.querySelectorAll('#page-eventos .proposal-form .field label')];if(ls.length<5)return 'poucos rótulos '+ls.length;return ls.every(l=>{const f=l.closest('.field').querySelector('input,select,textarea');const cs=getComputedStyle(l);const lt=l.getBoundingClientRect().left+parseFloat(cs.paddingLeft);const ft=f.getBoundingClientRect().left+parseFloat(getComputedStyle(f).paddingLeft);return Math.abs(lt-ft)<=2})})()"
+ }
+]

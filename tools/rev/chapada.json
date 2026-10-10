@@ -1,0 +1,92 @@
+[
+ {
+  "bloco": "Chapada - bloco 1",
+  "item": "Troque a imagem de fundo pelo vídeo em anexo e deixe ele em loop (autoplay, muted, loop, playsinline, poster, fontes -m e desktop)",
+  "expr": "(()=>{const v=document.querySelector('#page-chapada .chapada-hero video');if(!v)return false;const s=[...v.querySelectorAll('source')];return v.autoplay&&v.muted&&v.loop&&v.playsInline&&v.getAttribute('poster')==='assets/video/chapada-hero-poster.webp'&&s.length===2&&s[0].getAttribute('src')==='assets/video/chapada-hero-m.mp4'&&s[0].getAttribute('media')==='(max-width:760px)'&&s[1].getAttribute('src')==='assets/video/chapada-hero.mp4'})()"
+ },
+ {
+  "bloco": "Chapada - bloco 1",
+  "item": "O vídeo cobre o hero (object-fit:cover, mesmo tamanho do hero)",
+  "expr": "(()=>{const h=document.querySelector('#page-chapada .chapada-hero'),v=h.querySelector('video'),a=h.getBoundingClientRect(),b=v.getBoundingClientRect();return getComputedStyle(v).objectFit==='cover'&&Math.abs(a.width-b.width)<2&&Math.abs(a.height-b.height)<2&&Math.abs(a.top-b.top)<2})()"
+ },
+ {
+  "bloco": "Chapada - bloco 1",
+  "item": "A foto atual vira reserva embaixo do vídeo e a película escura do Figma fica por cima",
+  "expr": "(()=>{const h=document.querySelector('#page-chapada .chapada-hero'),k=[...h.children];const i=k.findIndex(e=>e.matches('img.chapada-hero-img')),v=k.findIndex(e=>e.tagName==='VIDEO'),s=k.findIndex(e=>e.matches('.chapada-hero-shade'));return i>=0&&i<v&&v<s&&getComputedStyle(h.querySelector('.chapada-hero-shade')).backgroundImage.includes('linear-gradient')})()"
+ },
+ {
+  "bloco": "Chapada - bloco 1",
+  "item": "Tire os textos de baixo (\"natureza, bem-estar e mesa.\" e \"uma seleção para ritmos diferentes\"; a nota do hero inteira)",
+  "expr": "!document.querySelector('#page-chapada .chapada-hero-note, #page-chapada .hero-side-note') && !/Natureza, bem-estar e mesa.|uma seleção para ritmos diferentes/i.test(document.getElementById('page-chapada').textContent)"
+ },
+ {
+  "bloco": "Chapada - bloco 2",
+  "item": "Mesmo padding em todos os 8 cartões (texto com 34 px em todos os lados)",
+  "expr": "new Set([...document.querySelectorAll('#page-chapada .chapada-card')].map(c=>{const s=getComputedStyle(c.querySelector('.chapada-copy'));return [s.paddingTop,s.paddingRight,s.paddingBottom,s.paddingLeft].join()})).size===1 && getComputedStyle(document.querySelector('#page-chapada .chapada-copy')).paddingTop==='34px'"
+ },
+ {
+  "bloco": "Chapada - bloco 2",
+  "item": "Textos ancorados no topo de forma igual em todos os cartões (rótulo na mesma distância do topo)",
+  "expr": "new Set([...document.querySelectorAll('#page-chapada .chapada-card')].map(c=>Math.round(c.querySelector('.eyebrow').getBoundingClientRect().top-c.getBoundingClientRect().top))).size===1"
+ },
+ {
+  "bloco": "Chapada - bloco 2",
+  "item": "Mesma distância rótulo → título em todos os cartões",
+  "expr": "new Set([...document.querySelectorAll('#page-chapada .chapada-card')].map(c=>Math.round(c.querySelector('h3').getBoundingClientRect().top-c.querySelector('.eyebrow').getBoundingClientRect().bottom))).size===1"
+ },
+ {
+  "bloco": "Chapada - bloco 2",
+  "item": "Mesma distância título → tags em todos os cartões",
+  "expr": "new Set([...document.querySelectorAll('#page-chapada .chapada-card')].map(c=>Math.round(c.querySelector('.chapada-tags').getBoundingClientRect().top-c.querySelector('h3').getBoundingClientRect().bottom))).size===1"
+ },
+ {
+  "bloco": "Chapada - bloco 2",
+  "item": "Mesma distância tags → texto e texto → \"Na volta\" em todos os cartões",
+  "expr": "new Set([...document.querySelectorAll('#page-chapada .chapada-card')].map(c=>Math.round(c.querySelector('p').getBoundingClientRect().top-c.querySelector('.chapada-tags').getBoundingClientRect().bottom))).size===1 && new Set([...document.querySelectorAll('#page-chapada .chapada-card')].map(c=>Math.round(c.querySelector('.return-note').getBoundingClientRect().top-c.querySelector('p').getBoundingClientRect().bottom))).size===1"
+ },
+ {
+  "bloco": "Chapada - bloco 2",
+  "item": "Mesma altura de cartão por fileira",
+  "expr": "(()=>{const m={};[...document.querySelectorAll('#page-chapada .chapada-card')].forEach(c=>{const r=c.getBoundingClientRect();(m[Math.round(r.top)]=m[Math.round(r.top)]||[]).push(Math.round(r.height))});return Object.keys(m).length===4&&Object.values(m).every(a=>a.length===2&&a[0]===a[1])})()"
+ },
+ {
+  "bloco": "Chapada - bloco 3",
+  "item": "Mesma altura dos 4 cartões e mesmo padding",
+  "expr": "(()=>{const c=[...document.querySelectorAll('#page-chapada .chapada-before .card')];return c.length===4&&new Set(c.map(x=>Math.round(x.getBoundingClientRect().height))).size===1&&new Set(c.map(x=>{const s=getComputedStyle(x);return [s.paddingTop,s.paddingRight,s.paddingBottom,s.paddingLeft].join()})).size===1})()"
+ },
+ {
+  "bloco": "Chapada - bloco 3",
+  "item": "Número de linhas igual: títulos com 2 linhas e textos com 3 linhas nos 4 cartões",
+  "expr": "(()=>{const c=[...document.querySelectorAll('#page-chapada .chapada-before .card')];const L=(e,lh)=>Math.round(e.getBoundingClientRect().height/lh);return c.every(x=>L(x.querySelector('h3'),32)===2&&L(x.querySelector('p'),24)===3)})()"
+ },
+ {
+  "bloco": "Chapada - bloco 3",
+  "item": "Mesmo respiro interno: título e texto na mesma distância do topo do cartão nos 4",
+  "expr": "(()=>{const c=[...document.querySelectorAll('#page-chapada .chapada-before .card')];const d=s=>new Set(c.map(x=>Math.round(x.querySelector(s).getBoundingClientRect().top-x.getBoundingClientRect().top))).size===1;return d('h3')&&d('p')})()"
+ },
+ {
+  "bloco": "Chapada - bloco 4",
+  "item": "O botão leva para a página \"viver\" (topo)",
+  "expr": "(()=>{const b=document.querySelector('#page-chapada .chapada-return .btn');return b&&b.textContent.trim()==='Viver a casa'&&b.dataset.pageTarget==='viver'&&!b.hasAttribute('data-anchor')})()"
+ },
+ {
+  "bloco": "Chapada - bloco 4",
+  "item": "Usar rev-chapada-bloco4 numa moldura com cantos do Figma e object-fit:cover",
+  "expr": "(()=>{const f=document.querySelector('#page-chapada .chapada-return-frame'),i=f.querySelector('img');return i.src.includes('rev-chapada-bloco4')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(f).borderRadius==='24px'&&getComputedStyle(f).overflow==='hidden'})()"
+ },
+ {
+  "bloco": "Chapada - bloco 4",
+  "item": "Moldura com a MESMA altura da coluna de texto (topo e base alinhados, centros iguais)",
+  "expr": "(()=>{const t=document.querySelector('#page-chapada .chapada-return .split>div:first-child').getBoundingClientRect(),f=document.querySelector('#page-chapada .chapada-return-frame').getBoundingClientRect();return Math.abs(t.top-f.top)<=3&&Math.abs(t.bottom-f.bottom)<=3&&Math.abs((t.top+t.bottom)/2-(f.top+f.bottom)/2)<=3})()"
+ },
+ {
+  "bloco": "A Chapada - bloco 4",
+  "item": "Imagem não é estreita nem faixa retangular: largura entre 80% e 140% da altura, e a altura acompanha (≥) a do bloco de texto da esquerda",
+  "expr": "(()=>{const fr=document.querySelector('#page-chapada .chapada-return-frame').getBoundingClientRect();const tx=document.querySelector('#page-chapada .chapada-return .split > div:first-child').getBoundingClientRect();const r=fr.width/fr.height;return r>=0.8&&r<=1.4&&fr.height>=tx.height-4&&Math.abs((fr.top+fr.height/2)-(tx.top+tx.height/2))<=8})()"
+ },
+ {
+  "bloco": "Chapada - geral",
+  "item": "Sem subtexto (.small) ao lado dos títulos grandes de seção",
+  "expr": "!document.querySelector('#page-chapada .section-head .small, #page-chapada .small') && !/Antes de sair, a equipe ajuda|Essas informações ajudam a escolher/i.test(document.getElementById('page-chapada').textContent)"
+ }
+]

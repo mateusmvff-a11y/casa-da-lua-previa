@@ -19,7 +19,7 @@
 
 <div class="overlay" id="journeyOverlay" role="dialog" aria-modal="true" aria-label="Percurso pela Casa da Lua" aria-hidden="true">
   <div class="journey-shell">
-    <div class="journey-media ov-anim"><img id="journeyImage" src="assets/img/v16-hero.webp" alt="Percurso pela Casa da Lua"></div>
+    <div class="journey-media ov-anim"><img id="journeyImage" src="assets/img/rev-jornada-1-chegada.webp" alt="Percurso pela Casa da Lua"></div>
     <div class="journey-copy">
       <button class="icon-btn close-overlay" type="button" aria-label="Fechar">×</button>
       <div class="eyebrow ov-anim" id="journeyKicker">Chegada</div>
@@ -36,32 +36,19 @@
     <button class="icon-btn close-overlay" type="button" aria-label="Fechar">×</button>
     <aside class="atlas-sidebar">
       <div class="eyebrow ov-anim">Atlas Vivo</div>
-      <h2 class="ov-anim">Conheça a propriedade por quatro lentes.</h2>
-      <div class="atlas-lenses ov-anim">
-        <button class="active" type="button" data-atlas-lens="lugar">Lugar</button>
-        <button type="button" data-atlas-lens="momento">Momento</button>
-        <button type="button" data-atlas-lens="companhia">Logística e companhia</button>
-        <button type="button" data-atlas-lens="programa">Programa</button>
-      </div>
-      <div class="atlas-options ov-anim" id="atlasOptions"></div>
+      <h2 class="ov-anim">Conheça os espaços da propriedade.</h2>
       <div class="atlas-list ov-anim" id="atlasList"></div>
     </aside>
     <div class="atlas-canvas ov-anim" id="atlasCanvas">
-      <div class="atlas-stage">
-        <img src="assets/img/350edc.webp" alt="Planta esquemática da propriedade" loading="lazy" decoding="async">
+      <div class="atlas-stage"><img id="atlasDetailImage" src="assets/img/rev-atlas-casa-principal.webp" alt="Casa principal"></div>
+      <div class="atlas-minimap">
+        <img src="assets/img/rev-home-atlas.webp" alt="Mapa da propriedade">
         <div id="atlasPins"></div>
       </div>
     </div>
     <aside class="atlas-detail">
-      <div class="eyebrow ov-anim">Ponto selecionado</div>
       <h2 class="ov-anim" id="atlasDetailTitle">Casa principal</h2>
-      <div class="detail-image ov-anim"><img id="atlasDetailImage" src="assets/img/v16-night.webp" alt=""></div>
-      <div class="tag-row ov-anim" id="atlasDetailTags"></div>
       <p class="ov-anim" id="atlasDetailText">Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.</p>
-      <div class="hero-actions ov-anim">
-        <button class="btn page-link close-overlay" type="button" id="atlasDetailCTA" data-page-target="casa">Abrir A Casa</button>
-        <button class="ghost-btn page-link close-overlay" type="button" data-page-target="reservar">Planejar estadia</button>
-      </div>
     </aside>
   </div>
 </div>

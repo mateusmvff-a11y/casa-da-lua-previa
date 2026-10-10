@@ -1,0 +1,77 @@
+[
+ {
+  "bloco": "A Casa - bloco 1",
+  "item": "Retire o texto da esquerda, embaixo, \"uma pousada com cara de casa\" (a nota do hero inteira)",
+  "expr": "!document.querySelector('#page-casa .hero-side-note') && !/uma pousada com cara de casa/i.test(document.querySelector('#page-casa').textContent) && !document.querySelector('#page-casa').textContent.includes('2009 · 2011 · 2012 · hoje')"
+ },
+ {
+  "bloco": "A Casa - bloco 2",
+  "item": "Centralizar a coluna da direita (anos e infos) com o texto da esquerda: centro vertical alinhado (tolerância 3 px)",
+  "expr": "(()=>{const a=document.querySelector('#page-casa .origem-copy').getBoundingClientRect(),b=document.querySelector('#page-casa .year-stack').getBoundingClientRect();return Math.abs((a.top+a.bottom)/2-(b.top+b.bottom)/2)<=3})()"
+ },
+ {
+  "bloco": "A Casa - bloco 2",
+  "item": "Espaçamentos uniformes entre os anos 2009/2011/2012",
+  "expr": "(()=>{const r=[...document.querySelectorAll('#page-casa .year-stack article')].map(e=>e.getBoundingClientRect());const g=[r[1].top-r[0].bottom,r[2].top-r[1].bottom];const h=r.map(x=>x.height);return r.length===3&&Math.abs(g[0]-g[1])<=1&&Math.abs(h[0]-h[1])<=1&&Math.abs(h[1]-h[2])<=1&&g[0]>=24})()"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Overlay de sombra cobre exatamente o bloco do Atlas (mesmo retângulo da seção) e fica acima da foto e abaixo do texto",
+  "expr": "(()=>{const s=document.querySelector('#page-casa .casa-atlas'),v=s.querySelector('.casa-veil');if(!v)return false;const a=s.getBoundingClientRect(),b=v.getBoundingClientRect();const img=s.querySelector('.section-bg');return ['top','left','right','bottom'].every(k=>Math.abs(a[k]-b[k])<=1)&&getComputedStyle(v).position==='absolute'&&(parseInt(getComputedStyle(v).zIndex)||0)>=(parseInt(getComputedStyle(img).zIndex)||0)&&(parseInt(getComputedStyle(v).zIndex)||0)<=0})()"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Aumente a opacidade da sombra para escurecer mais a imagem (antes 20%; agora no mínimo 45%)",
+  "expr": "(()=>{const c=getComputedStyle(document.querySelector('#page-casa .casa-veil')).backgroundColor.match(/[\\d.]+/g).map(Number);const a=c.length>3?c[3]:1;return a>=0.45})()"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Tirar a parte de cima, os menus \"Lugar\", \"Momento\" etc. (chips e rótulo \"Leituras do mapa\")",
+  "expr": "!document.querySelector('#page-casa .casa-atlas .chip') && !document.querySelector('#page-casa .casa-atlas .chip-row') && !/leituras do mapa/i.test(document.querySelector('#page-casa .casa-atlas').textContent)"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Mapa à esquerda usa assets/img/rev-home-atlas.webp",
+  "expr": "document.querySelector('#page-casa .atlas-map img').src.includes('rev-home-atlas.webp')"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Caixa do mapa com aspect-ratio 2400/1310, propriedade completa sem recorte (imagem preenche a caixa de mesma proporção)",
+  "expr": "(()=>{const m=document.querySelector('#page-casa .atlas-map'),i=m.querySelector('img');const r=m.getBoundingClientRect(),q=i.getBoundingClientRect();return Math.abs(r.width/r.height-2400/1310)<0.01&&Math.abs(q.width-r.width)<=1&&Math.abs(q.height-r.height)<=1})()"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "9 pinos com os nomes, numerais e posições (x,y em % da caixa) pedidos, sem o 10 \"Área complementar\"",
+  "expr": "(()=>{const exp=[['Chegada e estacionamento',70,6],['Casa principal',47,90],['Restaurante e café',14,90],['Piscina e área de descanso',30,27],['Área de eventos',88,27],['Círculo do fogo',91,80],['Suítes da ala lateral',6,62],['Bloco de suítes 6 a 10',62,88],['Faixa verde central',64,45]];const m=document.querySelector('#page-casa .atlas-map').getBoundingClientRect();const pins=[...document.querySelectorAll('#page-casa .atlas-map .map-pin')];if(pins.length!==9)return false;if(/Área complementar/.test(document.querySelector('#page-casa .casa-atlas').innerHTML))return false;return exp.every((e,i)=>{const p=pins[i],r=p.getBoundingClientRect();const cx=(r.left+r.width/2-m.left)/m.width*100,cy=(r.top+r.height/2-m.top)/m.height*100;return p.dataset.place===e[0]&&p.textContent.trim()===String(i+1)&&Math.abs(cx-e[1])<=0.6&&Math.abs(cy-e[2])<=1})})()"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Clique no pino troca título/texto do painel e o numeral corresponde ao ambiente (testa os 9)",
+  "expr": "(()=>{const pins=[...document.querySelectorAll('#page-casa .atlas-map .map-pin')];const t=document.getElementById('casaAtlasTitle'),x=document.getElementById('casaAtlasText');const seen=new Set();for(const p of pins){p.click();if(t.textContent!==p.dataset.place||!x.textContent.trim()||!p.classList.contains('active')||pins.filter(q=>q.classList.contains('active')).length!==1)return false;seen.add(x.textContent)}return seen.size===9})()"
+ },
+ {
+  "bloco": "A Casa - bloco 3",
+  "item": "Retire o subtexto ao lado do título maior (parágrafos .small das seções)",
+  "expr": "!document.querySelector('#page-casa .section-head .small') && !document.querySelector('#page-casa .casa-atlas p.small')"
+ },
+ {
+  "bloco": "A Casa - bloco 4",
+  "item": "Retire o subtexto ao lado do título \"A personalidade da casa…\"",
+  "expr": "!document.querySelector('#page-casa .casa-unica .small') && !document.querySelector('#page-casa .casa-unica .section-head > p')"
+ },
+ {
+  "bloco": "A Casa - bloco 4",
+  "item": "Conteúdo dos 3 cartões ancorado no topo com padding uniforme (mesma distância do topo do cartão ao título nos três; topo ≈ padding lateral)",
+  "expr": "(()=>{const cs=[...document.querySelectorAll('#page-casa .house-layers .card')];const tops=cs.map(c=>c.querySelector('h3').getBoundingClientRect().top-c.getBoundingClientRect().top);const left=cs.map(c=>c.querySelector('h3').getBoundingClientRect().left-c.getBoundingClientRect().left);return cs.length===3&&tops.every(t=>Math.abs(t-tops[0])<=1)&&tops[0]<=40&&Math.abs(tops[0]-left[0])<=6})()"
+ },
+ {
+  "bloco": "A Casa - bloco 4",
+  "item": "Reduzir a altura dos cartões para acompanhar o conteúdo, sem espaço sobrando (cartão mais alto: respiro de baixo igual ao de cima; antes 250 px)",
+  "expr": "(()=>{const cs=[...document.querySelectorAll('#page-casa .house-layers .card')];const hs=cs.map(c=>c.getBoundingClientRect().height);if(Math.max(...hs)>=235||Math.min(...hs)<=0)return false;if(Math.max(...hs)-Math.min(...hs)>1)return false;const gaps=cs.map(c=>{const r=c.getBoundingClientRect(),p=c.querySelector('p').getBoundingClientRect();return r.bottom-p.bottom});const tops=cs.map(c=>c.querySelector('h3').getBoundingClientRect().top-c.getBoundingClientRect().top);const i=gaps.indexOf(Math.min(...gaps));return Math.abs(gaps[i]-tops[i])<=3})()"
+ },
+ {
+  "bloco": "A Casa - bloco 6",
+  "item": "Botão \"Planejar a estadia\" vai direto à parte de reserva: data-page-target=\"reservar\" data-anchor=\"reserveShell\"",
+  "expr": "(()=>{const b=[...document.querySelectorAll('#page-casa .casa-equipe button')].find(x=>x.textContent.trim()==='Planejar a estadia');return !!b&&b.dataset.pageTarget==='reservar'&&b.dataset.anchor==='reserveShell'})()"
+ }
+]

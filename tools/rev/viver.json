@@ -1,0 +1,42 @@
+[
+ {
+  "bloco": "Viver - bloco 1",
+  "item": "tire os textos de baixo (\"manhã, retorno e noite.\" e \"o ritmo organiza a página\"; a nota do hero inteira)",
+  "expr": "!document.querySelector('#page-viver .vv-side, #page-viver .hero-side-note') && !/Manhã, retorno e noite|o ritmo organiza a página/i.test(document.getElementById('page-viver').textContent)"
+ },
+ {
+  "bloco": "Viver - bloco 2",
+  "item": "Trocar a foto de 17h40 por rev-viver-17h40",
+  "expr": "(()=>{document.querySelector('#page-viver .moment-tabs button[data-viver-moment=afternoon]').click();return document.getElementById('viverMomentImage').src.includes('rev-viver-17h40')})()"
+ },
+ {
+  "bloco": "Viver - bloco 2",
+  "item": "Trocar a foto de 21h por rev-viver-21h",
+  "expr": "(()=>{document.querySelector('#page-viver .moment-tabs button[data-viver-moment=night]').click();return document.getElementById('viverMomentImage').src.includes('rev-viver-21h')})()"
+ },
+ {
+  "bloco": "Viver - bloco 2",
+  "item": "a 7h30 não muda (3402e0)",
+  "expr": "(()=>{document.querySelector('#page-viver .moment-tabs button[data-viver-moment=morning]').click();return document.getElementById('viverMomentImage').src.includes('3402e0')})()"
+ },
+ {
+  "bloco": "Viver - bloco 2",
+  "item": "título \"O mesmo lugar assume outro papel conforme a hora do dia\" com texto igual ao pedido",
+  "expr": "document.querySelector('#page-viver .vv-moments .vv-h2').textContent.replace(/ /g,' ').replace(/\\s+/g,' ').trim()==='O mesmo lugar assume outro papel conforme a hora do dia'"
+ },
+ {
+  "bloco": "Viver - bloco 2",
+  "item": "título quebra em linhas de comprimento parecido (diferença entre linhas <= 15%, 1440 px)",
+  "expr": "(()=>{const h=document.querySelector('#page-viver .vv-moments .vv-h2');const t=h.getBoundingClientRect().top;const lh=parseFloat(getComputedStyle(h).lineHeight);const L=[];const w=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){for(let i=0;i<n.length;i++){const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+1);const b=r.getBoundingClientRect();if(!b.width)continue;const k=Math.floor((b.top+b.height/2-t)/lh);(L[k]??=[1e9,-1e9]);L[k][0]=Math.min(L[k][0],b.left);L[k][1]=Math.max(L[k][1],b.right)}}const W=L.filter(Boolean).map(l=>l[1]-l[0]);return W.length>=2&&W.length<=3&&(1-Math.min(...W)/Math.max(...W))<=0.15})()"
+ },
+ {
+  "bloco": "Viver - bloco 3",
+  "item": "descrições dos cartões em Forma DJR (var(--sans)), sem Inter",
+  "expr": "(()=>{const ps=[...document.querySelectorAll('#page-viver .vv-space-copy p')];return ps.length===6&&ps.every(p=>/forma-djr-display/i.test(getComputedStyle(p).fontFamily)&&!/inter/i.test(getComputedStyle(p).fontFamily))})()"
+ },
+ {
+  "bloco": "Viver - geral",
+  "item": "sem subtexto (.small) ao lado de títulos de seção",
+  "expr": "!document.querySelector('#page-viver .small, #page-viver .section-head')"
+ }
+]
