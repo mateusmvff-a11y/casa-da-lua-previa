@@ -1,0 +1,24 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    { "source": "/(.*)", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow" } ] },
+    { "source": "/assets/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" } ] }
+  ],
+  "redirects": [
+    { "source": "/a-pousada", "destination": "/#casa", "permanent": true },
+    { "source": "/galeria", "destination": "/#casa", "permanent": true },
+    { "source": "/experiencia", "destination": "/#experiencias", "permanent": true },
+    { "source": "/spa", "destination": "/#viver", "permanent": true },
+    { "source": "/suites", "destination": "/#suites", "permanent": true },
+    { "source": "/suite/:slug", "destination": "/#suites", "permanent": true },
+    { "source": "/eventos", "destination": "/#eventos", "permanent": true },
+    { "source": "/contato", "destination": "/#reservar", "permanent": true },
+    { "source": "/politica-de-reserva", "destination": "/#reservar", "permanent": true },
+    { "source": "/politica-de-pet-friendly", "destination": "/#reservar", "permanent": true },
+    { "source": "/politica-de-privacidade", "destination": "/#privacidade", "permanent": true },
+    { "source": "/aviso-de-cookies", "destination": "/#privacidade", "permanent": true },
+    { "source": "/en", "destination": "/", "permanent": true },
+    { "source": "/en/:path*", "destination": "/", "permanent": true }
+  ]
+}

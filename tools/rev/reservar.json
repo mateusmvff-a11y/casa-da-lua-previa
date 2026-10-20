@@ -38,5 +38,20 @@
   "bloco": "Reservar → Omnibees (20/10)",
   "item": "rodapé traz WhatsApp, telefone, e-mail, mapa, Instagram e Facebook do site oficial",
   "expr": "(()=>{const g=k=>document.querySelector('.footer-extra [data-contact='+k+']').getAttribute('href');return g('whatsapp').includes('phone=5562998329198')&&g('phone')==='tel:5562999089605'&&g('email')==='mailto:contato@casadaluapousada.com.br'&&g('maps')==='https://goo.gl/maps/GvnS4RvAsLX63L2u5'&&g('instagram')==='https://www.instagram.com/casadaluapousada.oficial'&&g('facebook')==='https://www.facebook.com/casadaluapousada'})()"
+ },
+ {
+  "bloco": "Política (20/10)",
+  "item": "rodapé abre a política de privacidade e fecha",
+  "expr": "(()=>{CDL.goPage('home',{instant:true});document.querySelector('.footer-extra .privacy-open').click();const o=document.getElementById('privacyOverlay').classList.contains('open')&&/LGPD|Lei Geral de Proteção/.test(document.getElementById('privacyOverlay').textContent);CDL.closeOverlays();return o})()"
+ },
+ {
+  "bloco": "Política (20/10)",
+  "item": "endereço #privacidade abre a política (destino do redirecionamento de /politica-de-privacidade)",
+  "expr": "(()=>{CDL.closeOverlays();location.hash='privacidade';window.dispatchEvent(new HashChangeEvent('hashchange'));const o=document.getElementById('privacyOverlay').classList.contains('open');CDL.closeOverlays();return o})()"
+ },
+ {
+  "bloco": "Vercel (20/10)",
+  "item": "vercel.json: redirecionamentos dos endereços antigos apontam para seções que existem",
+  "expr": "fetch('vercel.json').then(r=>r.json()).then(v=>{const pages=['home','casa','suites','viver','experiencias','eventos','chapada','reservar','privacidade'];return v.redirects.length>=10&&v.redirects.every(r=>r.destination==='/'||pages.includes(r.destination.replace('/#','')))&&v.headers.some(h=>h.headers.some(x=>x.key==='X-Robots-Tag'))})"
  }
 ]

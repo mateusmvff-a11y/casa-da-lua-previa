@@ -187,6 +187,7 @@ document.addEventListener('click',e=>{
   if(scroll){ scrollToId(scroll.dataset.scrollTo); return; }
   if(t.closest('.atlas-open')){ CDL.openAtlas ? CDL.openAtlas() : openOverlay('atlasOverlay'); return; }
   if(t.closest('.journey-open')){ CDL.openJourney ? CDL.openJourney() : openOverlay('journeyOverlay'); return; }
+  if(t.closest('.privacy-open')){ openOverlay('privacyOverlay'); return; }
   if(t.closest('.interest-open')){ openOverlay('interestOverlay'); return; }
   if(t.closest('.proposal-open')){ goPage('eventos'); setTimeout(()=>scrollToId('eventFormats'),350); return; }
   const suiteBtn = t.closest('.suite-detail-btn');
@@ -222,12 +223,14 @@ document.addEventListener('submit',e=>{
 });
 window.addEventListener('hashchange',()=>{
   const p = location.hash.replace('#','');
+  if(p==='privacidade'){ openOverlay('privacyOverlay'); return; }
   if(p && p!==state.page) goPage(p,{instant:true});
 });
 
 document.addEventListener('DOMContentLoaded',()=>{
   state.ready.forEach(fn=>fn());
   const hash = location.hash.replace('#','');
+  if(hash==='privacidade'){ goPage('home',{instant:true,force:true}); state.started = true; openOverlay('privacyOverlay'); return; }
   if(hash) goPage(hash,{instant:true}); else goPage('home',{instant:true,force:true});
   state.started = true;
 });
