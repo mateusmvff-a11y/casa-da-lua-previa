@@ -22,14 +22,17 @@ const CHECK = `(()=>{
    const r0=el.getBoundingClientRect(); if(r0.width===0||r0.height===0) continue;
    // palavras e suas linhas
    const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT); const words=[]; let t;
-   while((t=w.nextNode())){ const s=t.nodeValue; const re=/[^\\s\\u00a0]+(?:\\u00a0[^\\s\\u00a0]+)*/g; let m; // palavras unidas por nbsp contam como um bloco, mas cada palavra tem a sua linha
-     const re2=/\\S+/g; while((m=re2.exec(s))){ const rg=document.createRange(); rg.setStart(t,m.index); rg.setEnd(t,m.index+m[0].length); const rc=rg.getClientRects(); if(rc.length) words.push(Math.round(rc[rc.length-1].top)); } }
-   if(words.length<(el.matches(TITLE)?3:5)) continue;
-   const lines=[...new Set(words)].sort((a,b)=>a-b); if(lines.length<2) continue;
-   total++;
-   const last=words.filter(y=>Math.abs(y-lines[lines.length-1])<4).length;
+   while((t=w.nextNode())){ const s=t.nodeValue; const re2=/\S+/g; let m;
+     while((m=re2.exec(s))){ const rg=document.createRange(); rg.setStart(t,m.index); rg.setEnd(t,m.index+m[0].length); const rc=rg.getClientRects(); if(rc.length){ const q=rc[rc.length-1]; words.push({y:q.top,l:q.left,r:q.right}); } } }
    const isTitle=el.matches(TITLE);
-   if((isTitle&&last<2)||(!isTitle&&last<3)) bad.push((isTitle?'[título] ':'[texto] ')+last+' palavra(s) na última linha: "'+el.textContent.trim().replace(/\\s+/g,' ').slice(0,70)+'…"');
+   if(words.length<(isTitle?3:5)) continue;
+   /* agrupa por linha (tolerância de meia linha: um span inline pode deslocar o topo alguns px) */
+   const L=[]; for(const wd of words){ const ln=L.find(x=>Math.abs(x.y-wd.y)<10); if(ln){ln.n++;ln.l=Math.min(ln.l,wd.l);ln.r=Math.max(ln.r,wd.r);} else L.push({y:wd.y,n:1,l:wd.l,r:wd.r}); }
+   L.sort((a,b)=>a.y-b.y); if(L.length<2) continue;
+   total++;
+   const last=L[L.length-1]; const maxW=Math.max(...L.map(x=>x.r-x.l)); const cheia=(last.r-last.l)>=.6*maxW;
+   /* título: 2+ palavras na última linha; texto: 3+ palavras, ou a última linha tem pelo menos 60% da maior (texto equilibrado) */
+   if((isTitle&&last.n<2)||(!isTitle&&last.n<3&&!(last.n>=2&&cheia))) bad.push((isTitle?'[título] ':'[texto] ')+last.n+' palavra(s) na última linha: "'+el.textContent.trim().replace(/\s+/g,' ').slice(0,70)+'…"');
  }
  return {total,bad};
 })()`;

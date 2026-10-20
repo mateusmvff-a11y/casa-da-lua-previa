@@ -40,7 +40,8 @@
 #page-casa .year-stack p{font-size:16px;line-height:24px;color:#60736d}
 
 /* ---------- 3. Atlas Vivo ---------- */
-#page-casa .casa-historias::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.2);pointer-events:none}
+/* revisão 20/10: overlay preto 50% sobre a foto de fundo (era 20%) */
+#page-casa .casa-historias::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.5);pointer-events:none}
 /* pelicula escura do bloco 3: cobre exatamente a secao, acima da foto e abaixo do texto */
 #page-casa .casa-veil{position:absolute;inset:0;z-index:0;background:rgba(0,0,0,.52);pointer-events:none}
 #page-casa .casa-atlas .section-head>div:first-child{max-width:none}

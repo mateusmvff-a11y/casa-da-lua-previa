@@ -73,7 +73,7 @@ function autoMark(pageEl){
   const mark = (el,t) => { if(!el.hasAttribute('data-anim') && !(el.parentElement && el.parentElement.closest('[data-anim]'))) el.setAttribute('data-anim',t); };
   pageEl.querySelectorAll('.section h1,.section h2').forEach(el=>mark(el,'title'));
   pageEl.querySelectorAll('.section .eyebrow,.section .lead,.section-head > .small,.section-head > p,.stat-row,.hero-actions,.practical-item,.year-stack article,.timeline article,.story-mini-list span').forEach(el=>mark(el,'reveal'));
-  pageEl.querySelectorAll('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.reserve-steps,.form-card,.event-diagram,.event-copy,.program-stage,.moment-hero,.atlas-teaser,.atlas-home-card,.profile-panel').forEach(el=>mark(el,'reveal'));
+  pageEl.querySelectorAll('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.reserve-steps,.form-card,.event-copy,.program-stage,.moment-hero,.atlas-teaser,.atlas-home-card,.profile-panel').forEach(el=>mark(el,'reveal'));
   /* irmãos marcados viram uma fileira escalonada */
   pageEl.querySelectorAll('[data-anim="reveal"]').forEach(el=>{
     const p = el.parentElement; if(!p || p.hasAttribute('data-stagger')) return;
@@ -81,6 +81,8 @@ function autoMark(pageEl){
     if(n >= 2) p.setAttribute('data-stagger','');
   });
 }
+
+const heroBgOf = hero => hero.querySelector('.hero-video, img, .section-bg, .hero-bg');
 
 function build(pageEl){
   const page = pageEl.dataset.page;
@@ -94,17 +96,26 @@ function build(pageEl){
 
     /* HERO: entra ao abrir; ao rolar, o conteúdo se afasta devagar */
     pageEl.querySelectorAll('[data-anim="hero"]').forEach(hero=>{
-      const bg = hero.querySelector('.hero-video, img, .section-bg, .hero-bg');
+      const bg = heroBgOf(hero);
       if(bg){
+        bg.setAttribute('data-hero-bg','');   // o parallax genérico (abaixo) pula este elemento: dois gsap brigando pela mesma foto era a tremulação ao abrir
         gsap.fromTo(bg,{scale:1.12},{scale:1.02,duration:2.2,delay:D,ease:'power2.out'});
         if(desktop()) gsap.to(bg,{yPercent:9,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
       }
       const copy = hero.querySelector('.hero-copy');
       if(copy) gsap.to(copy,{yPercent:-6,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});   // só desliza: a cor/opacidade do texto nunca muda
+      /* o texto do hero entra todo junto, depois que as fontes carregam: o título vem primeiro e o resto acompanha.
+         (Antes só o título esperava as fontes e chegava depois dos outros textos.) */
       const inner = [...hero.querySelectorAll('[data-anim="title"],[data-anim="reveal"]')];
-      inner.forEach((el,i)=>{
-        if(el.dataset.anim === 'title') titleIn(el,{delay:.2+D,hero:true},sp,ctx);
-        else gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.95,delay:.55+D+i*.09,clearProps:'transform'});
+      fontsGate().then(()=>{
+        if(contexts[page] !== ctx) return;
+        ctx.add(()=>{
+          let n = 0;
+          inner.forEach(el=>{
+            if(el.dataset.anim === 'title') titleIn(el,{delay:.1+D,hero:true},sp,ctx);
+            else { gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.95,delay:D+(n === 0 ? .05 : .42+(n-1)*.11),clearProps:'transform'}); n++; }
+          });
+        });
       });
     });
 
@@ -141,6 +152,7 @@ function build(pageEl){
     /* PARALLAX (só em tela grande: no celular economiza o aparelho) */
     if(desktop()){
       pageEl.querySelectorAll('[data-parallax],.section-bg').forEach(el=>{
+        if(el.hasAttribute('data-hero-bg')) return;
         const isBg = el.classList.contains('section-bg');
         const v = el.hasAttribute('data-parallax') ? (parseFloat(el.dataset.parallax) || 0) : 5;
         if(!v) return;
@@ -153,6 +165,10 @@ function build(pageEl){
   });
 }
 
+/* espera as fontes (no máximo 1 s) para o texto entrar já com a fonte certa */
+function fontsGate(){
+  return (document.fonts && document.fonts.ready) ? Promise.race([document.fonts.ready, new Promise(r=>setTimeout(r,1000))]) : Promise.resolve();
+}
 function titleIn(el,opts,sp,ctx){
   const run = ()=>{
     if(contexts[el.closest('.page').dataset.page] !== ctx) return;
@@ -177,6 +193,8 @@ function activate(page){
   Object.keys(contexts).forEach(p=>{ if(p !== page) kill(p); });
   const pageEl = document.querySelector(`.page[data-page="${page}"]`);
   if(!pageEl) return;
+  /* a foto/vídeo do hero já nasce no zoom inicial, antes do primeiro quadro da página: sem o salto de 1,00 para 1,12 que parecia tremulação */
+  pageEl.querySelectorAll('[data-anim="hero"]').forEach(h=>{ const b = heroBgOf(h); if(b) gsap.set(b,{scale:1.12}); });
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ build(pageEl); ScrollTrigger.refresh(); }));
 }
 document.addEventListener('cdl:page',e=>activate(e.detail.page));
@@ -250,7 +268,7 @@ document.addEventListener('click',e=>{
   else if(t.closest('.program-day')) f = ()=>{ imageIn(document.getElementById('programImage')); textIn(q('.program-stage-copy > *')); };
   else if(t.closest('#homeExperienceDays button')) f = ()=>{ imageIn(document.getElementById('homeProgramImage')); textIn(q('#page-home .experience-panel .feature-body > *:not(.chip-row):not(.hero-actions)')); };
   else if(t.closest('.profile-card')) f = ()=>textIn(q('.profile-result > *'));
-  else if(t.closest('.event-selector button')) f = ()=>{ textIn(q('.event-copy > *')); const z = q('#eventObjects .floor-zone'); if(z.length) gsap.fromTo(z,{scale:.85,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,stagger:.05,ease:'back.out(1.8)',overwrite:true}); };
+  else if(t.closest('.event-selector button')) f = ()=>{ textIn(q('.event-copy > *')); };
   else if(t.closest('#journeyChoices button')) f = ()=>{ imageIn(document.getElementById('journeyImage')); textIn(q('#journeyOverlay .journey-copy .ov-anim, #journeyChoices button')); };
   else if(t.closest('[data-atlas-place],.atlas-lenses button,#atlasOptions button')) f = ()=>{ imageIn(document.getElementById('atlasDetailImage')); textIn(q('.atlas-detail > *:not(.detail-image)')); };
   else if(t.closest('.suite-filter[data-suite-filter]')) f = ()=>{ textCards(q('#page-suites .suite-card:not(.hidden-by-filter)')); };

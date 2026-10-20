@@ -47,6 +47,38 @@ const PROGRAM_DATA = {
   domingo:{asset:'breakfast',eyebrow:'Despedida',title:'Café, check-out e volta para casa.',text:'A manhã encerra a experiência com café da manhã e organização do retorno.',schedule:[['manhã','Café da manhã.'],['saída','Check-out.'],['retorno','Deslocamento para Brasília.']]}
 };
 
+/* Contatos e canais da pousada — copiados do site oficial (casadaluapousada.com.br) em 20/10/2026 */
+const CONTACT = {
+  whatsapp:'5562998329198', whatsappLabel:'+55 (62) 99832-9198',
+  phone:'5562999089605', phoneLabel:'+55 (62) 99908-9605',
+  email:'contato@casadaluapousada.com.br',
+  instagram:'https://www.instagram.com/casadaluapousada.oficial',
+  facebook:'https://www.facebook.com/casadaluapousada',
+  maps:'https://goo.gl/maps/GvnS4RvAsLX63L2u5',
+  address:'Rua do Segredo, 278 · Alto Paraíso de Goiás · CEP 73770-000'
+};
+/* Motor de reservas (Omnibees, hotel 10264): é o mesmo contrato da barra do site oficial —
+   hotelresults?q=10264&CheckIn=ddMMyyyy&CheckOut=ddMMyyyy&Code=<promo>&NRooms=<quartos>&ad=<adultos>&ch=<crianças> */
+const OMNIBEES = {hotel:'10264', results:'https://book.omnibees.com/hotelresults', page:'https://book.omnibees.com/hotel/10264&lang=pt-BR'};
+const booking = {arrival:'', departure:'', adults:2, children:0, code:''};
+const ddMMyyyy = iso => iso ? iso.split('-').reverse().join('') : '';
+const shortDate = iso => iso ? iso.split('-').reverse().slice(0,2).join('/') : '';
+function bookingRooms(b){ const total = (Number(b.adults)||0) + (Number(b.children)||0); return Math.max(1, Math.ceil(total/4)); }
+function omnibeesUrl(b){
+  b = b || booking;
+  const q = new URLSearchParams(); q.set('q',OMNIBEES.hotel);
+  if(b.arrival) q.set('CheckIn',ddMMyyyy(b.arrival));
+  if(b.departure) q.set('CheckOut',ddMMyyyy(b.departure));
+  if(b.code) q.set('Code',String(b.code).trim());
+  q.set('NRooms',String(bookingRooms(b))); q.set('ad',String(b.adults||1)); q.set('ch',String(b.children||0));
+  return OMNIBEES.results + '?' + q.toString();
+}
+function whatsappUrl(text){ return 'https://api.whatsapp.com/send?phone=' + CONTACT.whatsapp + (text ? '&text=' + encodeURIComponent(text) : ''); }
+function bookingGuestsLabel(b){
+  const a = Number(b.adults)||0, ch = Number(b.children)||0;
+  return a + (a===1?' adulto':' adultos') + (ch ? ' · ' + ch + (ch===1?' criança':' crianças') : '');
+}
+
 const state = {page:'home', ready:[], pageHooks:{}, started:false, busy:false};
 
 function ready(fn){ state.ready.push(fn); }
@@ -93,6 +125,12 @@ function updateBookingDock(){
   const set = (id,v)=>{ const e=document.getElementById(id); if(e) e.textContent = v; };
   set('dockTitle',d.title); set('dockText',d.text); set('dockAction',d.action);
   set('dockDates',d.dates||DOCK._default.dates); set('dockGuests',d.guests||DOCK._default.guests);
+  /* datas e hóspedes já informados na página Reservar seguem para a barra e, dali, para o Omnibees */
+  if(d===DOCK._default && booking.arrival && booking.departure){
+    set('dockTitle','Sua estadia'); set('dockText','Datas e hóspedes já informados');
+    set('dockDates',shortDate(booking.arrival)+' → '+shortDate(booking.departure)); set('dockGuests',bookingGuestsLabel(booking));
+    set('dockAction','Ver disponibilidade');
+  }
 }
 function goPage(page, opts={}){
   if(!document.querySelector(`.page[data-page="${page}"]`)) page = 'home';
@@ -133,6 +171,7 @@ function switchPage(page, opts={}){
 /* API pública para os scripts das páginas e das sobreposições */
 const CDL = window.CDL = {
   $, $$, ASSETS, SUITES, PROGRAM_DATA, DOCK, state, ready, onPage,
+  CONTACT, OMNIBEES, booking, omnibeesUrl, whatsappUrl, bookingGuestsLabel, shortDate,
   showToast, openOverlay, closeOverlays, scrollToId, scrollTop, goPage, updateBookingDock, lenis:null,
   openSuite:null, openAtlas:null, openJourney:null, openCompare:null /* preenchidos por overlays.js */
 };
@@ -156,14 +195,30 @@ document.addEventListener('click',e=>{
   if(t.closest('#dockAction')){
     if(state.page==='eventos') scrollToId('eventFormats');
     else if(state.page==='experiencias') openOverlay('interestOverlay');
+    else if(booking.arrival && booking.departure) window.open(omnibeesUrl(),'_blank','noopener');
     else goPage('reservar');
     return;
   }
   if(t.classList && t.classList.contains('overlay')) closeOverlays();
 });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeOverlays(); });
+/* Não há servidor de formulários: o pedido vai para o WhatsApp da pousada com tudo o que a pessoa preencheu */
 document.addEventListener('submit',e=>{
-  if(e.target.closest('.interest-form,.proposal-form')){ e.preventDefault(); showToast('Formulário demonstrativo. A integração será definida.'); }
+  const form = e.target.closest('.interest-form,.proposal-form'); if(!form) return;
+  e.preventDefault();
+  const rows = [...form.querySelectorAll('.field')].map(f=>{
+    const lab = f.querySelector('label'), inp = f.querySelector('input,select,textarea');
+    return lab && inp && String(inp.value||'').trim() ? [lab.textContent.trim(), String(inp.value).trim()] : null;
+  }).filter(Boolean);
+  const isProposal = form.classList.contains('proposal-form');
+  const contact = rows.find(r=>/contato|whatsapp/i.test(r[0]));
+  if(!isProposal && !contact){ showToast('Informe um contato para receber as datas.'); return; }
+  if(isProposal && !rows.length){ showToast('Conte um pouco sobre o encontro para enviarmos o pedido.'); return; }
+  const head = isProposal ? 'Olá, gostaria de solicitar uma proposta para um evento na Casa da Lua.' : 'Olá, gostaria de receber as próximas datas da Experiência Tidelli.';
+  const text = head + '\n' + rows.map(r=>r[0]+': '+r[1]).join('\n');
+  window.open(whatsappUrl(text),'_blank','noopener');
+  showToast('Abrindo o WhatsApp da pousada com os seus dados.');
+  closeOverlays();
 });
 window.addEventListener('hashchange',()=>{
   const p = location.hash.replace('#','');
@@ -183,18 +238,22 @@ document.addEventListener('DOMContentLoaded',()=>{
    Casa da Lua — typo.js
    Sem viúvas: títulos nunca terminam com uma palavra sozinha na última linha (as 2 últimas palavras ficam juntas
    e o CSS equilibra as linhas) e textos corridos terminam com pelo menos 3 palavras na última linha.
-   Funciona por espaço inseparável (nbsp) entre as últimas palavras; roda ao abrir cada página e
-   quando o texto muda (abas, filtros, sobreposições). Não altera o conteúdo lido (nbsp conta como espaço).
+   Funciona por espaço inseparável (nbsp) entre as últimas palavras; roda ao abrir cada página, ao redimensionar
+   e quando o texto muda (abas, filtros, sobreposições). Não altera o conteúdo lido (nbsp conta como espaço).
+   Revisão 20/10: textos corridos de até 6 linhas NÃO recebem nbsp quando o navegador equilibra as linhas
+   (text-wrap:balance): o nbsp atrapalhava o equilíbrio e deixava linhas de tamanhos muito diferentes.
+   Só os textos mais longos (7+ linhas, que o navegador não equilibra) usam a regra das 3 últimas palavras.
    ========================================================= */
 (function(){
 'use strict';
 if(!window.CDL) return;
-const NBSP = ' ';
+const NBSP = String.fromCharCode(160);   // espaço inseparável (U+00A0)
 const TITLE = 'h1,h2,h3,h4,.title,.display,.subtitle';
 const BODY  = 'p,li,.lead,.small,figcaption,blockquote,.kicker';
 const SEL   = TITLE + ',' + BODY;
 const SKIP  = 'script,style,button,.btn,.ghost-btn,.chip,.tag-row,input,textarea,select,label,table,th,td,.curtain,[data-nowidow]';
 const isSpace = c => c === ' ' || c === '\n' || c === '\t' || c === '\r';
+const CAN_BALANCE = !!(window.CSS && CSS.supports && CSS.supports('text-wrap','balance'));
 
 function textNodes(el){
   const out = [];
@@ -204,29 +263,101 @@ function textNodes(el){
   if(brs.length){ const last = brs[brs.length-1]; return out.filter(n=>last.compareDocumentPosition(n) & Node.DOCUMENT_POSITION_FOLLOWING); }  // só o trecho depois da última quebra
   return out;
 }
+/* quantas linhas o texto ocupa agora (0 = escondido) */
+function lineCount(el){
+  const r = el.getBoundingClientRect(); if(!r.height) return 0;
+  const cs = getComputedStyle(el); const lh = parseFloat(cs.lineHeight) || (parseFloat(cs.fontSize) * 1.4);
+  return Math.round((r.height - (parseFloat(cs.paddingTop)||0) - (parseFloat(cs.paddingBottom)||0)) / lh);
+}
+/* desfaz o que esta função prendeu (só os espaços que ela trocou; nbsp escrito no HTML fica) */
+function unbind(el){
+  if(!el.__bound) return;
+  el.__bound.forEach(b=>{ const s = b.node.nodeValue; if(s[b.idx] === NBSP) b.node.nodeValue = s.slice(0,b.idx) + b.orig + s.slice(b.idx+1); });
+  el.__bound = null;
+}
+/* larguras de cada linha do texto (para medir o equilíbrio) */
+function lineWidths(el){
+  const w = document.createTreeWalker(el,NodeFilter.SHOW_TEXT); let t; const L = [];
+  while((t = w.nextNode())){
+    const re = /\S+/g; let m;
+    while((m = re.exec(t.nodeValue))){
+      const r = document.createRange(); r.setStart(t,m.index); r.setEnd(t,m.index+m[0].length);
+      for(const b of r.getClientRects()){
+        if(!b.width) continue;
+        const ln = L.find(x=>Math.abs(x.y-b.top) < 10);
+        if(ln){ ln.l = Math.min(ln.l,b.left); ln.r = Math.max(ln.r,b.right); } else L.push({y:b.top,l:b.left,r:b.right});
+      }
+    }
+  }
+  return L.map(x=>x.r-x.l);
+}
+/* o equilíbrio nativo (text-wrap:balance) às vezes deixa uma linha bem menor que a outra: se a razão
+   menor/maior ficar abaixo de .8, procura a MENOR largura que mantém o mesmo número de linhas (max-width)
+   e fica com ela só se melhorar de verdade */
+const refined = new Set();
+function refine(el){
+  const cs = getComputedStyle(el); if(/center|right|end/.test(cs.textAlign)) return;
+  const w0 = lineWidths(el); if(w0.length < 2 || w0.length > 6) return;
+  const q0 = Math.min(...w0) / Math.max(...w0); if(q0 >= .8) return;
+  const full = el.getBoundingClientRect().width, n = w0.length;
+  const prevMW = el.style.maxWidth, prevTW = el.style.textWrap;
+  el.style.textWrap = 'wrap';
+  let lo = Math.floor(full * .45), hi = Math.ceil(full);
+  while(hi - lo > 2){ const mid = (lo + hi) >> 1; el.style.maxWidth = mid + 'px'; if(lineWidths(el).length <= n) hi = mid; else lo = mid; }
+  el.style.maxWidth = hi + 'px';
+  const w1 = lineWidths(el); const q1 = w1.length === n ? Math.min(...w1) / Math.max(...w1) : 0;
+  if(q1 > q0 + .02) refined.add(el); else { el.style.maxWidth = prevMW; el.style.textWrap = prevTW; }
+}
+function resetRefined(){ refined.forEach(e=>{ e.style.maxWidth = ''; e.style.textWrap = ''; e.__wd = null; }); refined.clear(); }
+
+/* palavras com hífen que não podem quebrar no meio ("check-/in"): ganham um <span class=nb> (white-space:nowrap) */
+const NOBREAK = /(check-in|check-out)/gi;
+function noBreak(el){
+  if(!NOBREAK.test(el.textContent)){ NOBREAK.lastIndex = 0; return; }
+  NOBREAK.lastIndex = 0;
+  const w = document.createTreeWalker(el,NodeFilter.SHOW_TEXT); const list = []; let t;
+  while((t = w.nextNode())) if(!t.parentElement.closest('.nb') && /check-(in|out)/i.test(t.nodeValue)) list.push(t);
+  list.forEach(node=>{
+    const m = node.nodeValue.match(/check-(in|out)/i); if(!m) return;
+    const r = document.createRange(); r.setStart(node,m.index); r.setEnd(node,m.index+m[0].length);
+    const s = document.createElement('span'); s.className = 'nb'; r.surroundContents(s);
+  });
+}
 function fix(el){
   if(!el || el.nodeType !== 1 || el.closest(SKIP)) return;
-  if(el.__wd === el.textContent) return;
+  if(!el.__nbDone || el.__nbDone !== el.textContent){ noBreak(el); el.__nbDone = el.textContent; }
   const isTitle = el.matches(TITLE);
-  const nodes = textNodes(el); if(!nodes.length){ el.__wd = el.textContent; return; }
+  const w = el.clientWidth;
+  if(el.__wd === el.textContent && el.__wdw === w) return;
+  const mark = ()=>{ el.__wd = el.textContent; el.__wdw = w; };
+  /* texto corrido que o navegador equilibra (até 6 linhas): sem nbsp */
+  if(!isTitle && CAN_BALANCE){
+    const n = lineCount(el);
+    if(n === 0) return;                           // escondido (outra página): roda de novo quando abrir
+    if(n <= 6){ unbind(el); mark(); refine(el); if(refined.has(el)) el.__wdw = el.clientWidth; return; }
+  }
+  if(el.__bound){ mark(); return; }               // já preso e continua longo
+  const nodes = textNodes(el); if(!nodes.length){ mark(); return; }
   const words = nodes.map(n=>n.nodeValue).join(' ').trim().split(/\s+/).length;
   const n = isTitle ? 1 : 2;                       // espaços a prender: título = 2 palavras juntas; texto = 3
-  if(words < (isTitle ? 3 : 5)){ el.__wd = el.textContent; return; }
-  let left = n;
+  if(words < (isTitle ? 3 : 5)){ mark(); return; }
+  let left = n; const bound = [];
   for(let i = nodes.length-1; i >= 0 && left > 0; i--){
     let s = nodes[i].nodeValue; let end = s.length;
     if(i === nodes.length-1) while(end > 0 && /\s/.test(s[end-1])) end--;   // espaços do fim do texto não contam
     let k = end;
-    while(k > 0 && left > 0){ k--; if(isSpace(s[k])){ s = s.slice(0,k) + NBSP + s.slice(k+1); left--; } }
+    while(k > 0 && left > 0){ k--; if(isSpace(s[k])){ bound.push({node:nodes[i],idx:k,orig:s[k] === NBSP ? ' ' : s[k]}); s = s.slice(0,k) + NBSP + s.slice(k+1); left--; } }
     nodes[i].nodeValue = s;
   }
-  el.__wd = el.textContent;
+  el.__bound = bound;
+  mark();
 }
 function run(root){ (root || document).querySelectorAll(SEL).forEach(fix); }
 window.CDL.widow = fix; window.CDL.widowAll = run;
 
 window.CDL.ready(()=>{
   run(document);
+  let rzt; window.addEventListener('resize',()=>{ clearTimeout(rzt); rzt = setTimeout(()=>{ resetRefined(); run(document.querySelector('.page.active')); },250); });
   let pend = new Set(), tm = null;
   const flush = ()=>{ tm = null; const s = pend; pend = new Set(); s.forEach(e=>{ if(e.isConnected) fix(e); }); };
   const mo = new MutationObserver(ms=>{
@@ -303,23 +434,14 @@ CDL.ready(()=>{
 
   /* ---- Atlas em miniatura: 9 pinos (posições no HTML, em % da imagem do mapa).
      Textos locais (não dependem de CDL.ATLAS_PLACES); o pino ainda chama CDL.selectHomeAtlas para o destaque ---- */
-  const ATLAS_TXT = {
-    'Chegada e estacionamento':'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade',
-    'Casa principal':'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem',
-    'Restaurante e café':'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos',
-    'Piscina e área de descanso':'A piscina é um dos centros da propriedade, com a área de descanso ao redor',
-    'Área de eventos':'Salão e área de apoio para casamentos, imersões, retiros e celebrações',
-    'Círculo do fogo':'Na época de seca, o círculo reúne conversa, vinho e céu aberto',
-    'Suítes da ala lateral':'Conjunto lateral com quartos, uma suíte e o espaço da sinuca',
-    'Bloco de suítes 6 a 10':'Bloco que reúne as suítes 6 a 10',
-    'Faixa verde central':'Área aberta que costura pousada, restaurante, suítes, círculo e eventos'
-  };
+  /* nomes e textos vêm de CDL.ATLAS_PLACES (a mesma fonte do A Casa e da janela do Atlas) */
   $$('.atlas-home-card .map-pin').forEach(b=>b.addEventListener('click',()=>{
     const place = b.dataset.place;
     if(typeof CDL.selectHomeAtlas==='function') CDL.selectHomeAtlas(place);
     $$('.atlas-home-card .map-pin').forEach(p=>p.classList.toggle('active',p===b));
+    const d = (CDL.ATLAS_PLACES||{})[place];
     setText('homeAtlasTitle',place);
-    setText('homeAtlasText',ATLAS_TXT[place]||'');
+    setText('homeAtlasText',d ? np(d.text) : '');
   }));
 
   /* ---- Experiência Tidelli: a foto fica fixa; os botões de dia trocam só o texto ---- */
@@ -376,24 +498,15 @@ CDL.ready(()=>{
   const title = root.querySelector('#casaAtlasTitle');
   const text = root.querySelector('#casaAtlasText');
   if(!pins.length) return;
-  const TEXTS = {
-    'Chegada e estacionamento':'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',
-    'Casa principal':'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',
-    'Restaurante e café':'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos.',
-    'Piscina e área de descanso':'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',
-    'Área de eventos':'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',
-    'Círculo do fogo':'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',
-    'Suítes da ala lateral':'Conjunto lateral com quartos, uma suíte e o espaço da sinuca.',
-    'Bloco de suítes 6 a 10':'Bloco que reúne as suítes 6 a 10.',
-    'Faixa verde central':'Área aberta que costura pousada, restaurante, suítes, círculo e eventos.'
-  };
+  /* nomes e textos vêm de CDL.ATLAS_PLACES (a mesma fonte da Home e da janela do Atlas) */
   pins.forEach(btn=>{
     btn.addEventListener('click',()=>{
       const place = btn.dataset.place;
       if(typeof CDL.selectHomeAtlas === 'function') CDL.selectHomeAtlas(place);
       pins.forEach(p=>p.classList.toggle('active', p===btn));
+      const d = (CDL.ATLAS_PLACES||{})[place];
       if(title && place) title.textContent = place;
-      if(text && TEXTS[place]) text.textContent = TEXTS[place];
+      if(text && d) text.textContent = d.text;
     });
   });
 });
@@ -576,7 +689,7 @@ CDL.ready(()=>{
 });
 
 
-/* Eventos e Imersões: configurador de formato (dados e diagramas do V16) */
+/* Eventos e Imersões: configurador de formato (dados do V16; o diagrama da esquerda saiu a pedido do cliente, 20/10) */
 CDL.ready(()=>{
   const root = document.getElementById('page-eventos'); if(!root) return;
   const qa = (s)=>Array.from(root.querySelectorAll(s));
@@ -589,27 +702,6 @@ CDL.ready(()=>{
   };
   const TIPO = {casamento:'Casamento',imersao:'Imersão empresarial',retiro:'Retiro',celebracao:'Celebração'};
 
-  function objectsHTML(layout){
-    if(layout==='wedding') return `
-      <div class="floor-zone" style="left:19%;top:24%;width:30%;height:16%;border-radius:999px">Cerimônia</div>
-      <div class="floor-zone" style="left:16%;top:48%;width:13%;height:13%;border-radius:50%">Mesa</div>
-      <div class="floor-zone" style="left:32%;top:48%;width:13%;height:13%;border-radius:50%">Mesa</div>
-      <div class="floor-zone" style="left:48%;top:48%;width:13%;height:13%;border-radius:50%">Mesa</div>`;
-    if(layout==='work') return `
-      <div class="floor-zone" style="left:17%;top:25%;width:38%;height:10%">Tela / conteúdo</div>
-      <div class="floor-zone" style="left:16%;top:43%;width:18%;height:12%">Grupo</div>
-      <div class="floor-zone" style="left:38%;top:43%;width:18%;height:12%">Grupo</div>
-      <div class="floor-zone" style="left:23%;top:62%;width:27%;height:12%">Roda</div>`;
-    if(layout==='circle') return `
-      <div class="floor-zone" style="left:20%;top:23%;width:34%;height:34%;border-radius:50%">Prática / roda</div>
-      <div class="floor-zone" style="left:18%;top:64%;width:18%;height:10%">Apoio</div>
-      <div class="floor-zone" style="left:40%;top:64%;width:18%;height:10%">Mesa</div>`;
-    return `
-      <div class="floor-zone" style="left:16%;top:22%;width:38%;height:18%">Mesa principal</div>
-      <div class="floor-zone" style="left:16%;top:48%;width:18%;height:14%">Convivência</div>
-      <div class="floor-zone" style="left:38%;top:48%;width:18%;height:14%">Bar</div>`;
-  }
-
   let current = 'casamento';
   function setEventType(type){
     const d = EVENT_DATA[type]; if(!d) return;
@@ -620,8 +712,6 @@ CDL.ready(()=>{
     set('eventTitle',d.title);
     set('eventText',d.text);
     set('eventFeatures',d.features.map(f=>`<li><span>${f[0]}</span><span>${f[1]}</span></li>`).join(''));
-    set('eventObjects',objectsHTML(d.layout));
-    const eo = document.getElementById('eventObjects'); if(eo) eo.classList.toggle('solid',d.layout!=='wedding');
   }
   qa('.event-selector button[data-event-type]').forEach(b=>b.addEventListener('click',()=>setEventType(b.dataset.eventType)));
   setEventType('casamento');
@@ -697,13 +787,38 @@ CDL.ready(()=>{
   const fmt = v => v ? v.split('-').reverse().join('/') : 'data a definir';
   const totalGuests = () => Number($('#reserveAdults').value||0) + Number($('#reserveChildren').value||0);
 
+  /* o que a pessoa digita vira CDL.booking: o mesmo objeto monta o link do Omnibees, a mensagem do WhatsApp e a barra de reserva */
+  const B = CDL.booking;
+  function syncBooking(){
+    B.arrival = $('#reserveArrival').value; B.departure = $('#reserveDeparture').value;
+    B.adults = Number($('#reserveAdults').value||1); B.children = Number($('#reserveChildren').value||0);
+    B.code = ($('#reserveCode').value||'').trim();
+    refreshLinks();
+    if(CDL.state.page==='reservar') return;
+    CDL.updateBookingDock();
+  }
+  function whatsappText(){
+    const sel = $('.reserve-suite-choice.active'); const suite = sel ? SUITES.find(s=>s.id===sel.dataset.suite) : null;
+    const lines = ['Olá, gostaria de fazer uma reserva!'];
+    if(B.arrival && B.departure) lines.push('Chegada: '+fmt(B.arrival)+' · Saída: '+fmt(B.departure));
+    lines.push('Hóspedes: '+CDL.bookingGuestsLabel(B));
+    if(suite) lines.push('Preferência de suíte: '+suite.name);
+    if(prefs.size) lines.push('Prioridades: '+[...prefs].join(', '));
+    if(B.code) lines.push('Código promocional: '+B.code);
+    return lines.join('\n');
+  }
+  function refreshLinks(){
+    const o = $('#openOmnibees'), w = $('#openWhatsApp');
+    if(o) o.href = CDL.omnibeesUrl(B);
+    if(w) w.href = CDL.whatsappUrl(whatsappText());
+  }
   function setStep(n){
     $$('.reserve-step').forEach(s=>s.classList.toggle('hidden',Number(s.dataset.step)!==n));
     $$('.step-dot').forEach((d,i)=>d.classList.toggle('active',i<n));
     $('#reserveSideTitle').textContent = SIDE[n-1][0];
     $('#reserveSideText').textContent = SIDE[n-1][1];
     if(n===3) renderSuggestions();
-    if(n===4) renderSummary();
+    if(n===4){ syncBooking(); renderSummary(); }
     const card = $('.form-card');
     if(card && card.getBoundingClientRect().top < 70) card.scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -730,7 +845,15 @@ CDL.ready(()=>{
     $('#reserveSummary').innerHTML = `<h3>Resumo</h3><p><strong>${fmt($('#reserveArrival').value)}</strong> a <strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} hóspedes${suite?`<br>Preferência: ${suite.name}`:''}</p>`;
   }
 
-  $$('.reserve-next').forEach(b=>b.addEventListener('click',()=>setStep(Number(b.dataset.nextStep))));
+  $$('.reserve-next').forEach(b=>b.addEventListener('click',()=>{
+    /* etapa 1: o Omnibees precisa das datas; sem elas a pessoa teria de digitar de novo lá */
+    if(b.dataset.nextStep==='2' && (!$('#reserveArrival').value || !$('#reserveDeparture').value)){
+      CDL.showToast('Informe a data de chegada e a de saída para continuar.');
+      ($('#reserveArrival').value ? $('#reserveDeparture') : $('#reserveArrival')).focus();
+      return;
+    }
+    setStep(Number(b.dataset.nextStep));
+  }));
   $$('.reserve-prev').forEach(b=>b.addEventListener('click',()=>setStep(Number(b.dataset.prevStep))));
   $$('.choice').forEach(b=>b.addEventListener('click',()=>{
     b.classList.toggle('active');
@@ -742,7 +865,12 @@ CDL.ready(()=>{
     $$('.reserve-suite-choice').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
   });
-  $('#openWhatsApp').addEventListener('click',()=>CDL.showToast('Em breve você poderá falar com a equipe por aqui.'));
+  ['#reserveArrival','#reserveDeparture','#reserveAdults','#reserveChildren','#reserveCode'].forEach(s=>{ $(s).addEventListener('change',syncBooking); $(s).addEventListener('input',syncBooking); });
+  $('#reserveSuggestions').addEventListener('click',()=>setTimeout(refreshLinks,0));
+  $$('.choice').forEach(b=>b.addEventListener('click',()=>setTimeout(refreshLinks,0)));
+  /* ao sair de Reservar, a barra de reserva passa a mostrar as datas e os hóspedes informados */
+  document.addEventListener('cdl:page',e=>{ if(e.detail.prev==='reservar') syncBooking(); });
+  syncBooking();
   $('#reserveForm').addEventListener('submit',e=>e.preventDefault()); /* Enter num campo não recarrega a página */
 
   /* datas coerentes: chegada a partir de hoje, saída depois da chegada */
@@ -776,15 +904,15 @@ const IMG = k => CDL.ASSETS[k];
 /* ---------- Atlas: dados. x/y em % do mapa (assets/img/rev-home-atlas.webp); asset = foto do ambiente.
    Os mesmos números valem na Home e em A Casa. Revisão do cliente 09/10: 9 espaços, sem lentes/opções/etiquetas. ---------- */
 const ATLAS_PLACES = CDL.ATLAS_PLACES = {
-  'Chegada e estacionamento':{asset:'assets/img/rev-atlas-chegada.webp',text:'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',x:70,y:6},
-  'Casa principal':{asset:'assets/img/rev-atlas-casa-principal.webp',text:'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',x:47,y:90},
-  'Restaurante e café':{asset:'assets/img/rev-atlas-restaurante.webp',text:'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos.',x:14,y:90},
-  'Piscina e área de descanso':{asset:'assets/img/rev-atlas-piscina.webp',text:'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',x:30,y:27},
-  'Área de eventos':{asset:'assets/img/rev-atlas-eventos.webp',text:'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',x:88,y:27},
-  'Círculo do fogo':{asset:'assets/img/v16-fire.webp',text:'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',x:91,y:80},
-  'Suítes da ala lateral':{asset:'assets/img/rev-atlas-ala-lateral.webp',text:'Conjunto lateral com quartos, uma suíte e o espaço da sinuca.',x:6,y:62},
-  'Bloco de suítes 6 a 10':{asset:'assets/img/rev-atlas-suites-6-10.webp',text:'Bloco que reúne as suítes 6 a 10.',x:62,y:88},
-  'Faixa verde central':{asset:'assets/img/rev-atlas-faixa-verde.webp',text:'Área aberta que costura pousada, restaurante, suítes, círculo e eventos.',x:64,y:45}
+  'Entrada':{asset:'assets/img/rev-atlas-chegada.webp',text:'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',x:70,y:6},
+  'Recepção / Restaurante':{asset:'assets/img/rev-atlas-restaurante.webp',text:'É onde a chegada acontece, a manhã começa e a mesa costuma reunir hóspedes, famílias e grupos.',x:47,y:90},
+  'Casa principal':{asset:'assets/img/rev-atlas-casa-principal.webp',text:'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',x:14,y:90},
+  'Piscina':{asset:'assets/img/rev-atlas-piscina.webp',text:'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',x:30,y:27},
+  'Espaço de eventos':{asset:'assets/img/rev-atlas-eventos.webp',text:'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',x:88,y:27},
+  'Círculo do fogo / Fogueira':{asset:'assets/img/v16-fire.webp',text:'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',x:91,y:80},
+  'Bar piscina':{asset:'assets/img/v16-pool.webp',text:'Um ponto de apoio junto à água para o fim de tarde, depois da Chapada.',x:6,y:62},
+  'Jardim':{asset:'assets/img/rev-atlas-faixa-verde.webp',text:'O lado de fora funciona como sala, caminho e lugar de permanência.',x:62,y:88},
+  'Fogueira':{asset:'assets/img/gen-viver-fogo.webp',text:'Na época de seca, a fogueira reúne vinho, conversa e céu estrelado.',x:64,y:45}
 };
 const imgOf = p => (p && p.indexOf('/')>-1) ? p : IMG(p);
 let atlasPlace = 'Casa principal';
@@ -844,8 +972,8 @@ CDL.openJourney = function(){
 };
 
 /* ---------- Detalhe da suíte (V16 2049) ---------- */
-/* Fotos provisórias do Figma por categoria (Suites: 9efed9 / bef858 / a58fed) */
-const SUITE_IMG = {standard:'assets/img/9efed9.webp','luxo-superior':'assets/img/a58fed.webp'};
+/* Fotos das 8 categorias (enviadas pelo cliente em 20/10) */
+const SUITE_IMG = Object.fromEntries(['standard','luxo','luxo-superior','premium','premium-hidro','premium-ofuro','master','presidencial'].map(id=>[id,'assets/img/suite-'+id+'.webp']));
 CDL.openSuite = function(id){
   const s = CDL.SUITES.find(x=>x.id===id);
   if(!s) return;
@@ -853,7 +981,7 @@ CDL.openSuite = function(id){
   set('suiteModalTitle',s.name);
   set('suiteModalUnits',`${s.units} ${s.units===1?'unidade':'unidades'} · ${s.area}`);
   set('suiteModalIntro',`${s.beds}. ${s.location}. ${s.outdoor}.`);
-  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/bef858.webp'; img.alt = `Suíte ${s.name}`; }
+  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/suite-standard.webp'; img.alt = `Suíte ${s.name}`; }
   const meta = $('#suiteModalMeta');
   if(meta) meta.innerHTML = [['Capacidade',`Até ${s.guests} hóspedes`],['Acesso',s.access],['Vista',s.view],['Área externa',s.outdoor]].map(x=>`<div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
   const feats = $('#suiteModalFeatures'); if(feats) feats.innerHTML = s.features.map(f=>`<li>${f}</li>`).join('');
@@ -915,7 +1043,9 @@ CDL.ready(()=>{
    As sombras/texturas de fundo (.section-bg.baked) ganham movimento: um vídeo curto em loop
    (WebM com transparência, assets/video/sh-<ref>.webm) toca por cima da imagem estática e só
    enquanto a seção está perto da tela. A opacidade (--op) é a mesma da textura.
-   Fica estático em: Safari (sem alfa em WebM), celular/toque, "reduzir movimento" e economia de dados.
+   Onde o vídeo não serve (Safari: sem alfa em WebM; celular/toque; economia de dados) a sombra recebe um balanço
+   leve por CSS (classe .sh-drift: translate/scale/rotate, só enquanto a seção está perto da tela).
+   Fica estática apenas com "reduzir movimento" ligado no sistema.
    Para trocar por um vídeo de sombra de verdade: node tools/shadow-video.mjs --from clipe.mp4 --ref <ref>
    ========================================================= */
 (function(){
@@ -927,7 +1057,9 @@ const safari = /^((?!chrome|chromium|android|crios|fxios|edg).)*safari/i.test(ua
 const coarse = window.matchMedia('(pointer:coarse)').matches;
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const save = navigator.connection && navigator.connection.saveData;
-if(safari || coarse || reduce || save || !('IntersectionObserver' in window)) return;
+if(reduce) return;
+const hasIO = 'IntersectionObserver' in window;
+const useDrift = safari || coarse || save || !hasIO;
 
 const refOf = el => {
   const st = el.getAttribute('style') || '';
@@ -947,6 +1079,15 @@ function build(el){
   el.appendChild(v); el.__sv = v;
 }
 window.CDL.ready(()=>{
+  if(useDrift){
+    const els = [...document.querySelectorAll('.section-bg.baked')];
+    els.forEach(el=>el.classList.add('sh-drift'));
+    if(hasIO){
+      const dio = new IntersectionObserver(es=>es.forEach(en=>en.target.classList.toggle('sh-on',en.isIntersecting)),{rootMargin:'300px 0px'});
+      els.forEach(el=>dio.observe(el));
+    } else els.forEach(el=>el.classList.add('sh-on'));
+    return;
+  }
   const io = new IntersectionObserver(es=>es.forEach(en=>{
     const el = en.target, v = el.__sv;
     if(en.isIntersecting){ if(!v) build(el); else { const p = v.play(); if(p) p.catch(()=>{}); } }
@@ -1032,7 +1173,7 @@ function autoMark(pageEl){
   const mark = (el,t) => { if(!el.hasAttribute('data-anim') && !(el.parentElement && el.parentElement.closest('[data-anim]'))) el.setAttribute('data-anim',t); };
   pageEl.querySelectorAll('.section h1,.section h2').forEach(el=>mark(el,'title'));
   pageEl.querySelectorAll('.section .eyebrow,.section .lead,.section-head > .small,.section-head > p,.stat-row,.hero-actions,.practical-item,.year-stack article,.timeline article,.story-mini-list span').forEach(el=>mark(el,'reveal'));
-  pageEl.querySelectorAll('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.reserve-steps,.form-card,.event-diagram,.event-copy,.program-stage,.moment-hero,.atlas-teaser,.atlas-home-card,.profile-panel').forEach(el=>mark(el,'reveal'));
+  pageEl.querySelectorAll('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.reserve-steps,.form-card,.event-copy,.program-stage,.moment-hero,.atlas-teaser,.atlas-home-card,.profile-panel').forEach(el=>mark(el,'reveal'));
   /* irmãos marcados viram uma fileira escalonada */
   pageEl.querySelectorAll('[data-anim="reveal"]').forEach(el=>{
     const p = el.parentElement; if(!p || p.hasAttribute('data-stagger')) return;
@@ -1040,6 +1181,8 @@ function autoMark(pageEl){
     if(n >= 2) p.setAttribute('data-stagger','');
   });
 }
+
+const heroBgOf = hero => hero.querySelector('.hero-video, img, .section-bg, .hero-bg');
 
 function build(pageEl){
   const page = pageEl.dataset.page;
@@ -1053,17 +1196,26 @@ function build(pageEl){
 
     /* HERO: entra ao abrir; ao rolar, o conteúdo se afasta devagar */
     pageEl.querySelectorAll('[data-anim="hero"]').forEach(hero=>{
-      const bg = hero.querySelector('.hero-video, img, .section-bg, .hero-bg');
+      const bg = heroBgOf(hero);
       if(bg){
+        bg.setAttribute('data-hero-bg','');   // o parallax genérico (abaixo) pula este elemento: dois gsap brigando pela mesma foto era a tremulação ao abrir
         gsap.fromTo(bg,{scale:1.12},{scale:1.02,duration:2.2,delay:D,ease:'power2.out'});
         if(desktop()) gsap.to(bg,{yPercent:9,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
       }
       const copy = hero.querySelector('.hero-copy');
       if(copy) gsap.to(copy,{yPercent:-6,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});   // só desliza: a cor/opacidade do texto nunca muda
+      /* o texto do hero entra todo junto, depois que as fontes carregam: o título vem primeiro e o resto acompanha.
+         (Antes só o título esperava as fontes e chegava depois dos outros textos.) */
       const inner = [...hero.querySelectorAll('[data-anim="title"],[data-anim="reveal"]')];
-      inner.forEach((el,i)=>{
-        if(el.dataset.anim === 'title') titleIn(el,{delay:.2+D,hero:true},sp,ctx);
-        else gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.95,delay:.55+D+i*.09,clearProps:'transform'});
+      fontsGate().then(()=>{
+        if(contexts[page] !== ctx) return;
+        ctx.add(()=>{
+          let n = 0;
+          inner.forEach(el=>{
+            if(el.dataset.anim === 'title') titleIn(el,{delay:.1+D,hero:true},sp,ctx);
+            else { gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.95,delay:D+(n === 0 ? .05 : .42+(n-1)*.11),clearProps:'transform'}); n++; }
+          });
+        });
       });
     });
 
@@ -1100,6 +1252,7 @@ function build(pageEl){
     /* PARALLAX (só em tela grande: no celular economiza o aparelho) */
     if(desktop()){
       pageEl.querySelectorAll('[data-parallax],.section-bg').forEach(el=>{
+        if(el.hasAttribute('data-hero-bg')) return;
         const isBg = el.classList.contains('section-bg');
         const v = el.hasAttribute('data-parallax') ? (parseFloat(el.dataset.parallax) || 0) : 5;
         if(!v) return;
@@ -1112,6 +1265,10 @@ function build(pageEl){
   });
 }
 
+/* espera as fontes (no máximo 1 s) para o texto entrar já com a fonte certa */
+function fontsGate(){
+  return (document.fonts && document.fonts.ready) ? Promise.race([document.fonts.ready, new Promise(r=>setTimeout(r,1000))]) : Promise.resolve();
+}
 function titleIn(el,opts,sp,ctx){
   const run = ()=>{
     if(contexts[el.closest('.page').dataset.page] !== ctx) return;
@@ -1136,6 +1293,8 @@ function activate(page){
   Object.keys(contexts).forEach(p=>{ if(p !== page) kill(p); });
   const pageEl = document.querySelector(`.page[data-page="${page}"]`);
   if(!pageEl) return;
+  /* a foto/vídeo do hero já nasce no zoom inicial, antes do primeiro quadro da página: sem o salto de 1,00 para 1,12 que parecia tremulação */
+  pageEl.querySelectorAll('[data-anim="hero"]').forEach(h=>{ const b = heroBgOf(h); if(b) gsap.set(b,{scale:1.12}); });
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ build(pageEl); ScrollTrigger.refresh(); }));
 }
 document.addEventListener('cdl:page',e=>activate(e.detail.page));
@@ -1209,7 +1368,7 @@ document.addEventListener('click',e=>{
   else if(t.closest('.program-day')) f = ()=>{ imageIn(document.getElementById('programImage')); textIn(q('.program-stage-copy > *')); };
   else if(t.closest('#homeExperienceDays button')) f = ()=>{ imageIn(document.getElementById('homeProgramImage')); textIn(q('#page-home .experience-panel .feature-body > *:not(.chip-row):not(.hero-actions)')); };
   else if(t.closest('.profile-card')) f = ()=>textIn(q('.profile-result > *'));
-  else if(t.closest('.event-selector button')) f = ()=>{ textIn(q('.event-copy > *')); const z = q('#eventObjects .floor-zone'); if(z.length) gsap.fromTo(z,{scale:.85,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,stagger:.05,ease:'back.out(1.8)',overwrite:true}); };
+  else if(t.closest('.event-selector button')) f = ()=>{ textIn(q('.event-copy > *')); };
   else if(t.closest('#journeyChoices button')) f = ()=>{ imageIn(document.getElementById('journeyImage')); textIn(q('#journeyOverlay .journey-copy .ov-anim, #journeyChoices button')); };
   else if(t.closest('[data-atlas-place],.atlas-lenses button,#atlasOptions button')) f = ()=>{ imageIn(document.getElementById('atlasDetailImage')); textIn(q('.atlas-detail > *:not(.detail-image)')); };
   else if(t.closest('.suite-filter[data-suite-filter]')) f = ()=>{ textCards(q('#page-suites .suite-card:not(.hidden-by-filter)')); };

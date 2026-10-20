@@ -1,0 +1,42 @@
+[
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "sem datas, \"Continuar\" não avança (o Omnibees precisa delas)",
+  "expr": "(()=>{CDL.goPage('reservar',{instant:true});document.getElementById('reserveArrival').value='';document.getElementById('reserveDeparture').value='';document.querySelector('[data-step=\"1\"] .reserve-next').click();return !document.querySelector('[data-step=\"1\"]').classList.contains('hidden')&&document.querySelector('[data-step=\"2\"]').classList.contains('hidden')})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "datas, hóspedes e código digitados viram o link do Omnibees (CheckIn/CheckOut ddMMyyyy, NRooms, ad, ch, Code)",
+  "expr": "(()=>{CDL.goPage('reservar',{instant:true});const set=(id,v)=>{const e=document.getElementById(id);e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))};set('reserveArrival','2026-11-15');set('reserveDeparture','2026-11-18');set('reserveAdults','2');set('reserveChildren','1');set('reserveCode','CASA10');for(const n of [2,3,4]){document.querySelector('.reserve-step:not(.hidden) .reserve-next').click()}const a=document.getElementById('openOmnibees');const u=new URL(a.href);const p=u.searchParams;return u.origin+u.pathname==='https://book.omnibees.com/hotelresults'&&p.get('q')==='10264'&&p.get('CheckIn')==='15112026'&&p.get('CheckOut')==='18112026'&&p.get('NRooms')==='1'&&p.get('ad')==='2'&&p.get('ch')==='1'&&p.get('Code')==='CASA10'&&a.target==='_blank'&&/noopener/.test(a.rel)})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "mais de 4 hóspedes pedem mais de um quarto (NRooms = ceil(hóspedes/4))",
+  "expr": "(()=>{CDL.goPage('reservar',{instant:true});const set=(id,v)=>{const e=document.getElementById(id);e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))};set('reserveAdults','5');set('reserveChildren','1');return new URL(CDL.omnibeesUrl()).searchParams.get('NRooms')==='2'})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "\"Falar com a equipe\" abre o WhatsApp 5562998329198 com datas, hóspedes e código na mensagem",
+  "expr": "(()=>{CDL.goPage('reservar',{instant:true});const set=(id,v)=>{const e=document.getElementById(id);e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))};set('reserveAdults','2');set('reserveChildren','1');const w=new URL(document.getElementById('openWhatsApp').href);const t=w.searchParams.get('text');return w.origin+w.pathname==='https://api.whatsapp.com/send'&&w.searchParams.get('phone')==='5562998329198'&&/reserva/.test(t)&&t.includes('15/11/2026')&&t.includes('18/11/2026')&&/2 adultos · 1 criança/.test(t)&&/CASA10/.test(t)})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "a barra de reserva, em outra página, mostra as datas/hóspedes e abre o Omnibees já preenchido",
+  "expr": "(()=>{CDL.goPage('suites',{instant:true});const d=document.getElementById('dockDates').textContent,g=document.getElementById('dockGuests').textContent;let opened=null;const o=window.open;window.open=(u)=>{opened=u;return null};document.getElementById('dockAction').click();window.open=o;return d==='15/11 → 18/11'&&/2 adultos/.test(g)&&!!opened&&opened.includes('CheckIn=15112026')&&opened.includes('CheckOut=18112026')})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "Experiências: \"Quero receber\" abre o WhatsApp com nome e contato",
+  "expr": "(()=>{CDL.goPage('experiencias',{instant:true});document.getElementById('expNome').value='Maria';document.getElementById('expContato').value='maria@exemplo.com';let opened=null;const o=window.open;window.open=(u)=>{opened=u;return null};document.querySelector('#page-experiencias .exp-form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));window.open=o;if(!opened)return false;const t=new URL(opened).searchParams.get('text');return opened.includes('phone=5562998329198')&&/Maria/.test(t)&&/maria@exemplo.com/.test(t)})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "Eventos: \"Enviar pedido de proposta\" abre o WhatsApp com tipo, data, pessoas e conversa",
+  "expr": "(()=>{CDL.goPage('eventos',{instant:true});document.getElementById('evTipo').value='Casamento';document.getElementById('evData').value='outubro de 2027';document.getElementById('evPessoas').value='80';let opened=null;const o=window.open;window.open=(u)=>{opened=u;return null};document.querySelector('#page-eventos .proposal-form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));window.open=o;if(!opened)return false;const t=new URL(opened).searchParams.get('text');return opened.includes('phone=5562998329198')&&/proposta/.test(t)&&/Casamento/.test(t)&&/outubro de 2027/.test(t)&&/80/.test(t)})()"
+ },
+ {
+  "bloco": "Reservar → Omnibees (20/10)",
+  "item": "rodapé traz WhatsApp, telefone, e-mail, mapa, Instagram e Facebook do site oficial",
+  "expr": "(()=>{const g=k=>document.querySelector('.footer-extra [data-contact='+k+']').getAttribute('href');return g('whatsapp').includes('phone=5562998329198')&&g('phone')==='tel:5562999089605'&&g('email')==='mailto:contato@casadaluapousada.com.br'&&g('maps')==='https://goo.gl/maps/GvnS4RvAsLX63L2u5'&&g('instagram')==='https://www.instagram.com/casadaluapousada.oficial'&&g('facebook')==='https://www.facebook.com/casadaluapousada'})()"
+ }
+]

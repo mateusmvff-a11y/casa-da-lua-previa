@@ -1,14 +1,72 @@
 [
- {"bloco":"Experiências - bloco 1","item":"tire os textos de baixo (\"natureza, bem-estar, mesa e convivência.\" e \"quinta a domingo\"; a nota do hero inteira)","expr":"!document.querySelector('#page-experiencias .hero-side-note') && !/quinta a domingo/i.test(document.querySelector('#page-experiencias .exp-hero').innerText) && !document.querySelector('#page-experiencias .exp-hero strong:not(h1 strong)')"},
- {"bloco":"Experiências - bloco 2","item":"foto do dia Sexta · Natureza = rev-exp-natureza.webp","expr":"(()=>{document.querySelector('#page-experiencias .program-day[data-program-day=sexta]').click();return document.getElementById('programImage').src.includes('rev-exp-natureza.webp')})()"},
- {"bloco":"Experiências - bloco 2","item":"as outras abas continuam trocando a foto (quinta volta para a original)","expr":"(()=>{const q=n=>document.querySelector('#page-experiencias .program-day[data-program-day='+n+']');q('sabado').click();const a=document.getElementById('programImage').src.includes('v16-wellness');q('quinta').click();return a&&document.getElementById('programImage').src.includes('fabcc9')})()"},
- {"bloco":"Experiências - bloco 3","item":"overlay/textura de \"O que atravessa os 4 dias\" cobre exatamente o bloco","expr":"(()=>{const s=document.querySelector('#page-experiencias .exp-thread'),b=s.querySelector('.section-bg'),r=s.getBoundingClientRect(),q=b.getBoundingClientRect();return Math.abs(r.top-q.top)<=1&&Math.abs(r.bottom-q.bottom)<=1&&Math.abs(r.left-q.left)<=1&&Math.abs(r.right-q.right)<=1})()"},
- {"bloco":"Experiências - bloco 3","item":"a almofada amarela não fica atrás do título (recorte da textura mais abaixo)","expr":"getComputedStyle(document.querySelector('#page-experiencias .exp-thread .section-bg')).backgroundPositionY!=='50%'"},
- {"bloco":"Experiências - bloco 4","item":"tire os 2 círculos sobre a foto","expr":"!document.querySelector('#page-experiencias .exp-dots') && !document.querySelector('#page-experiencias .exp-memory-frame i')"},
- {"bloco":"Experiências - bloco 4","item":"carrossel com 5 fotos, botões anterior/próximo com aria-label","expr":"document.querySelectorAll('#expSlides .exp-slide').length>=5 && document.querySelector('#page-experiencias .exp-car-btn.prev').getAttribute('aria-label')==='Foto anterior' && document.querySelector('#page-experiencias .exp-car-btn.next').getAttribute('aria-label')==='Próxima foto'"},
- {"bloco":"Experiências - bloco 4","item":"botão próximo/anterior troca a foto","expr":"(()=>{const i=()=>[...document.querySelectorAll('#expSlides .exp-slide')].findIndex(x=>x.classList.contains('is-active'));const a=i();document.querySelector('#page-experiencias .exp-car-btn.next').click();const b=i();document.querySelector('#page-experiencias .exp-car-btn.prev').click();return b===a+1&&i()===a})()"},
- {"bloco":"Experiências - bloco 4","item":"troca automática a cada ~5 s","expr":"new Promise(res=>{const i=()=>[...document.querySelectorAll('#expSlides .exp-slide')].findIndex(x=>x.classList.contains('is-active'));const a=i();setTimeout(()=>res(i()!==a),6200)})"},
- {"bloco":"Experiências - bloco 5","item":"rótulos \"nome\" e \"contato\" com a mesma borda esquerda do campo","expr":"[...document.querySelectorAll('#page-experiencias .exp-form .field')].every(f=>Math.abs(f.querySelector('label').getBoundingClientRect().left-f.querySelector('input').getBoundingClientRect().left)<=1)"},
- {"bloco":"Experiências - bloco 5","item":"os dois campos têm a mesma altura e alinham na base","expr":"(()=>{const i=[...document.querySelectorAll('#page-experiencias .exp-form input')].map(x=>x.getBoundingClientRect());return Math.abs(i[0].height-i[1].height)<=1&&Math.abs(i[0].bottom-i[1].bottom)<=1})()"},
- {"bloco":"Geral","item":"sem subtexto (.small) ao lado de títulos de seção","expr":"!document.querySelector('#page-experiencias .section-head .small')"}
+ {
+  "bloco": "Experiências - bloco 1",
+  "item": "tire os textos de baixo (\"natureza, bem-estar, mesa e convivência.\" e \"quinta a domingo\"; a nota do hero inteira)",
+  "expr": "!document.querySelector('#page-experiencias .hero-side-note') && !/quinta a domingo/i.test(document.querySelector('#page-experiencias .exp-hero').innerText) && !document.querySelector('#page-experiencias .exp-hero strong:not(h1 strong)')"
+ },
+ {
+  "bloco": "Experiências - bloco 2",
+  "item": "foto do dia Sexta · Natureza = rev-exp-natureza.webp",
+  "expr": "(()=>{document.querySelector('#page-experiencias .program-day[data-program-day=sexta]').click();return document.getElementById('programImage').src.includes('rev-exp-natureza.webp')})()"
+ },
+ {
+  "bloco": "Experiências - bloco 2",
+  "item": "as outras abas continuam trocando a foto (quinta volta para a original)",
+  "expr": "(()=>{const q=n=>document.querySelector('#page-experiencias .program-day[data-program-day='+n+']');q('sabado').click();const a=document.getElementById('programImage').src.includes('v16-wellness');q('quinta').click();return a&&document.getElementById('programImage').src.includes('fabcc9')})()"
+ },
+ {
+  "bloco": "Experiências - bloco 3",
+  "item": "overlay/textura de \"O que atravessa os 4 dias\" cobre exatamente o bloco",
+  "expr": "(()=>{const s=document.querySelector('#page-experiencias .exp-thread'),b=s.querySelector('.section-bg'),r=s.getBoundingClientRect(),q=b.getBoundingClientRect();return Math.abs(r.top-q.top)<=1&&Math.abs(r.bottom-q.bottom)<=1&&Math.abs(r.left-q.left)<=1&&Math.abs(r.right-q.right)<=1})()"
+ },
+ {
+  "bloco": "Experiências - bloco 3",
+  "item": "a almofada amarela não fica atrás do título (recorte da textura mais abaixo)",
+  "expr": "getComputedStyle(document.querySelector('#page-experiencias .exp-thread .section-bg')).backgroundPositionY!=='50%'"
+ },
+ {
+  "bloco": "Experiências - bloco 4",
+  "item": "tire os 2 círculos sobre a foto",
+  "expr": "!document.querySelector('#page-experiencias .exp-dots') && !document.querySelector('#page-experiencias .exp-memory-frame i')"
+ },
+ {
+  "bloco": "Experiências - bloco 4",
+  "item": "carrossel com 5 fotos, botões anterior/próximo com aria-label",
+  "expr": "document.querySelectorAll('#expSlides .exp-slide').length>=5 && document.querySelector('#page-experiencias .exp-car-btn.prev').getAttribute('aria-label')==='Foto anterior' && document.querySelector('#page-experiencias .exp-car-btn.next').getAttribute('aria-label')==='Próxima foto'"
+ },
+ {
+  "bloco": "Experiências - bloco 4",
+  "item": "botão próximo/anterior troca a foto",
+  "expr": "(()=>{const i=()=>[...document.querySelectorAll('#expSlides .exp-slide')].findIndex(x=>x.classList.contains('is-active'));const a=i();document.querySelector('#page-experiencias .exp-car-btn.next').click();const b=i();document.querySelector('#page-experiencias .exp-car-btn.prev').click();return b===a+1&&i()===a})()"
+ },
+ {
+  "bloco": "Experiências - bloco 4",
+  "item": "troca automática a cada ~5 s",
+  "expr": "new Promise(res=>{const i=()=>[...document.querySelectorAll('#expSlides .exp-slide')].findIndex(x=>x.classList.contains('is-active'));const a=i();setTimeout(()=>res(i()!==a),6200)})"
+ },
+ {
+  "bloco": "Experiências - bloco 5",
+  "item": "rótulos \"nome\" e \"contato\" com a mesma borda esquerda do campo",
+  "expr": "[...document.querySelectorAll('#page-experiencias .exp-form .field')].every(f=>Math.abs(f.querySelector('label').getBoundingClientRect().left-f.querySelector('input').getBoundingClientRect().left)<=1)"
+ },
+ {
+  "bloco": "Experiências - bloco 5",
+  "item": "os dois campos têm a mesma altura e alinham na base",
+  "expr": "(()=>{const i=[...document.querySelectorAll('#page-experiencias .exp-form input')].map(x=>x.getBoundingClientRect());return Math.abs(i[0].height-i[1].height)<=1&&Math.abs(i[0].bottom-i[1].bottom)<=1})()"
+ },
+ {
+  "bloco": "Geral",
+  "item": "sem subtexto (.small) ao lado de títulos de seção",
+  "expr": "!document.querySelector('#page-experiencias .section-head .small')"
+ },
+ {
+  "bloco": "Experiências - bloco 1 (20/10)",
+  "item": "a segunda linha do texto do hero começa depois de \"natureza,\"",
+  "expr": "(()=>{const p=document.querySelector('#page-experiencias .exp-hero-lead');const r=document.createRange();const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let t,topN=null,topB=null;while((t=w.nextNode())){const i=t.nodeValue.indexOf('natureza,');if(i>=0){r.setStart(t,i);r.setEnd(t,i+9);topN=r.getBoundingClientRect().top}const j=t.nodeValue.indexOf('bem-estar,');if(j>=0){r.setStart(t,j);r.setEnd(t,j+10);topB=r.getBoundingClientRect().top}}return topN!=null&&topB>topN+10})()"
+ },
+ {
+  "bloco": "Experiências - bloco 2 (20/10)",
+  "item": "texto da programação (todos os dias) com linhas equilibradas e \"check-in\" sem quebrar",
+  "expr": "(async()=>{const ok=[];for(const d of ['quinta','sexta','sabado','domingo']){document.querySelector('[data-program-day='+d+']').click();await new Promise(r=>setTimeout(r,200));ok.push((()=>{const ps=[...document.querySelectorAll(\"#programText\")].filter(e=>e.getBoundingClientRect().height>0);if(!ps.length)return false;return ps.every(p=>{const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let t;const L={};while((t=w.nextNode())){const re=/\\S+/g;let m;while((m=re.exec(t.nodeValue))){const r=document.createRange();r.setStart(t,m.index);r.setEnd(t,m.index+m[0].length);const b=r.getBoundingClientRect();const k=Object.keys(L).find(y=>Math.abs(y-b.top)<10)??b.top;(L[k]||={l:1e9,r:-1e9});L[k].l=Math.min(L[k].l,b.left);L[k].r=Math.max(L[k].r,b.right);}}const ws=Object.values(L).map(x=>x.r-x.l);return ws.length<2||Math.min(...ws)/Math.max(...ws)>=.65})})())}document.querySelector('[data-program-day=quinta]').click();const nb=[...document.querySelectorAll('#page-experiencias .nb')].every(e=>getComputedStyle(e).whiteSpace==='nowrap');return ok.every(Boolean)&&nb})()"
+ }
 ]

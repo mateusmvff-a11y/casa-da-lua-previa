@@ -88,5 +88,10 @@
   "bloco": "Chapada - geral",
   "item": "Sem subtexto (.small) ao lado dos títulos grandes de seção",
   "expr": "!document.querySelector('#page-chapada .section-head .small, #page-chapada .small') && !/Antes de sair, a equipe ajuda|Essas informações ajudam a escolher/i.test(document.getElementById('page-chapada').textContent)"
+ },
+ {
+  "bloco": "A Chapada - bloco 3 (20/10)",
+  "item": "ponto final nos textos dos 4 retângulos brancos (e não nos títulos)",
+  "expr": "(()=>{const sec=[...document.querySelectorAll('#page-chapada .chapada-before .card')];return sec.length===4&&sec.every(c=>/\\.$/.test(c.querySelector('p').textContent.trim())&&!/\\.$/.test(c.querySelector('h3').textContent.trim()))})()"
  }
 ]

@@ -47,6 +47,38 @@ const PROGRAM_DATA = {
   domingo:{asset:'breakfast',eyebrow:'Despedida',title:'Café, check-out e volta para casa.',text:'A manhã encerra a experiência com café da manhã e organização do retorno.',schedule:[['manhã','Café da manhã.'],['saída','Check-out.'],['retorno','Deslocamento para Brasília.']]}
 };
 
+/* Contatos e canais da pousada — copiados do site oficial (casadaluapousada.com.br) em 20/10/2026 */
+const CONTACT = {
+  whatsapp:'5562998329198', whatsappLabel:'+55 (62) 99832-9198',
+  phone:'5562999089605', phoneLabel:'+55 (62) 99908-9605',
+  email:'contato@casadaluapousada.com.br',
+  instagram:'https://www.instagram.com/casadaluapousada.oficial',
+  facebook:'https://www.facebook.com/casadaluapousada',
+  maps:'https://goo.gl/maps/GvnS4RvAsLX63L2u5',
+  address:'Rua do Segredo, 278 · Alto Paraíso de Goiás · CEP 73770-000'
+};
+/* Motor de reservas (Omnibees, hotel 10264): é o mesmo contrato da barra do site oficial —
+   hotelresults?q=10264&CheckIn=ddMMyyyy&CheckOut=ddMMyyyy&Code=<promo>&NRooms=<quartos>&ad=<adultos>&ch=<crianças> */
+const OMNIBEES = {hotel:'10264', results:'https://book.omnibees.com/hotelresults', page:'https://book.omnibees.com/hotel/10264&lang=pt-BR'};
+const booking = {arrival:'', departure:'', adults:2, children:0, code:''};
+const ddMMyyyy = iso => iso ? iso.split('-').reverse().join('') : '';
+const shortDate = iso => iso ? iso.split('-').reverse().slice(0,2).join('/') : '';
+function bookingRooms(b){ const total = (Number(b.adults)||0) + (Number(b.children)||0); return Math.max(1, Math.ceil(total/4)); }
+function omnibeesUrl(b){
+  b = b || booking;
+  const q = new URLSearchParams(); q.set('q',OMNIBEES.hotel);
+  if(b.arrival) q.set('CheckIn',ddMMyyyy(b.arrival));
+  if(b.departure) q.set('CheckOut',ddMMyyyy(b.departure));
+  if(b.code) q.set('Code',String(b.code).trim());
+  q.set('NRooms',String(bookingRooms(b))); q.set('ad',String(b.adults||1)); q.set('ch',String(b.children||0));
+  return OMNIBEES.results + '?' + q.toString();
+}
+function whatsappUrl(text){ return 'https://api.whatsapp.com/send?phone=' + CONTACT.whatsapp + (text ? '&text=' + encodeURIComponent(text) : ''); }
+function bookingGuestsLabel(b){
+  const a = Number(b.adults)||0, ch = Number(b.children)||0;
+  return a + (a===1?' adulto':' adultos') + (ch ? ' · ' + ch + (ch===1?' criança':' crianças') : '');
+}
+
 const state = {page:'home', ready:[], pageHooks:{}, started:false, busy:false};
 
 function ready(fn){ state.ready.push(fn); }
@@ -93,6 +125,12 @@ function updateBookingDock(){
   const set = (id,v)=>{ const e=document.getElementById(id); if(e) e.textContent = v; };
   set('dockTitle',d.title); set('dockText',d.text); set('dockAction',d.action);
   set('dockDates',d.dates||DOCK._default.dates); set('dockGuests',d.guests||DOCK._default.guests);
+  /* datas e hóspedes já informados na página Reservar seguem para a barra e, dali, para o Omnibees */
+  if(d===DOCK._default && booking.arrival && booking.departure){
+    set('dockTitle','Sua estadia'); set('dockText','Datas e hóspedes já informados');
+    set('dockDates',shortDate(booking.arrival)+' → '+shortDate(booking.departure)); set('dockGuests',bookingGuestsLabel(booking));
+    set('dockAction','Ver disponibilidade');
+  }
 }
 function goPage(page, opts={}){
   if(!document.querySelector(`.page[data-page="${page}"]`)) page = 'home';
@@ -133,6 +171,7 @@ function switchPage(page, opts={}){
 /* API pública para os scripts das páginas e das sobreposições */
 const CDL = window.CDL = {
   $, $$, ASSETS, SUITES, PROGRAM_DATA, DOCK, state, ready, onPage,
+  CONTACT, OMNIBEES, booking, omnibeesUrl, whatsappUrl, bookingGuestsLabel, shortDate,
   showToast, openOverlay, closeOverlays, scrollToId, scrollTop, goPage, updateBookingDock, lenis:null,
   openSuite:null, openAtlas:null, openJourney:null, openCompare:null /* preenchidos por overlays.js */
 };
@@ -156,14 +195,30 @@ document.addEventListener('click',e=>{
   if(t.closest('#dockAction')){
     if(state.page==='eventos') scrollToId('eventFormats');
     else if(state.page==='experiencias') openOverlay('interestOverlay');
+    else if(booking.arrival && booking.departure) window.open(omnibeesUrl(),'_blank','noopener');
     else goPage('reservar');
     return;
   }
   if(t.classList && t.classList.contains('overlay')) closeOverlays();
 });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeOverlays(); });
+/* Não há servidor de formulários: o pedido vai para o WhatsApp da pousada com tudo o que a pessoa preencheu */
 document.addEventListener('submit',e=>{
-  if(e.target.closest('.interest-form,.proposal-form')){ e.preventDefault(); showToast('Formulário demonstrativo. A integração será definida.'); }
+  const form = e.target.closest('.interest-form,.proposal-form'); if(!form) return;
+  e.preventDefault();
+  const rows = [...form.querySelectorAll('.field')].map(f=>{
+    const lab = f.querySelector('label'), inp = f.querySelector('input,select,textarea');
+    return lab && inp && String(inp.value||'').trim() ? [lab.textContent.trim(), String(inp.value).trim()] : null;
+  }).filter(Boolean);
+  const isProposal = form.classList.contains('proposal-form');
+  const contact = rows.find(r=>/contato|whatsapp/i.test(r[0]));
+  if(!isProposal && !contact){ showToast('Informe um contato para receber as datas.'); return; }
+  if(isProposal && !rows.length){ showToast('Conte um pouco sobre o encontro para enviarmos o pedido.'); return; }
+  const head = isProposal ? 'Olá, gostaria de solicitar uma proposta para um evento na Casa da Lua.' : 'Olá, gostaria de receber as próximas datas da Experiência Tidelli.';
+  const text = head + '\n' + rows.map(r=>r[0]+': '+r[1]).join('\n');
+  window.open(whatsappUrl(text),'_blank','noopener');
+  showToast('Abrindo o WhatsApp da pousada com os seus dados.');
+  closeOverlays();
 });
 window.addEventListener('hashchange',()=>{
   const p = location.hash.replace('#','');

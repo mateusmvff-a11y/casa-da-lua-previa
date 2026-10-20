@@ -3,7 +3,9 @@
    As sombras/texturas de fundo (.section-bg.baked) ganham movimento: um vídeo curto em loop
    (WebM com transparência, assets/video/sh-<ref>.webm) toca por cima da imagem estática e só
    enquanto a seção está perto da tela. A opacidade (--op) é a mesma da textura.
-   Fica estático em: Safari (sem alfa em WebM), celular/toque, "reduzir movimento" e economia de dados.
+   Onde o vídeo não serve (Safari: sem alfa em WebM; celular/toque; economia de dados) a sombra recebe um balanço
+   leve por CSS (classe .sh-drift: translate/scale/rotate, só enquanto a seção está perto da tela).
+   Fica estática apenas com "reduzir movimento" ligado no sistema.
    Para trocar por um vídeo de sombra de verdade: node tools/shadow-video.mjs --from clipe.mp4 --ref <ref>
    ========================================================= */
 (function(){
@@ -15,7 +17,9 @@ const safari = /^((?!chrome|chromium|android|crios|fxios|edg).)*safari/i.test(ua
 const coarse = window.matchMedia('(pointer:coarse)').matches;
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const save = navigator.connection && navigator.connection.saveData;
-if(safari || coarse || reduce || save || !('IntersectionObserver' in window)) return;
+if(reduce) return;
+const hasIO = 'IntersectionObserver' in window;
+const useDrift = safari || coarse || save || !hasIO;
 
 const refOf = el => {
   const st = el.getAttribute('style') || '';
@@ -35,6 +39,15 @@ function build(el){
   el.appendChild(v); el.__sv = v;
 }
 window.CDL.ready(()=>{
+  if(useDrift){
+    const els = [...document.querySelectorAll('.section-bg.baked')];
+    els.forEach(el=>el.classList.add('sh-drift'));
+    if(hasIO){
+      const dio = new IntersectionObserver(es=>es.forEach(en=>en.target.classList.toggle('sh-on',en.isIntersecting)),{rootMargin:'300px 0px'});
+      els.forEach(el=>dio.observe(el));
+    } else els.forEach(el=>el.classList.add('sh-on'));
+    return;
+  }
   const io = new IntersectionObserver(es=>es.forEach(en=>{
     const el = en.target, v = el.__sv;
     if(en.isIntersecting){ if(!v) build(el); else { const p = v.play(); if(p) p.catch(()=>{}); } }

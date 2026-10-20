@@ -11,8 +11,8 @@
  },
  {
   "bloco": "Eventos - bloco 2",
-  "item": "ok por enquanto (formatos e diagrama intactos, abas funcionam)",
-  "expr": "(()=>{const b=document.querySelector('.event-selector button[data-event-type=retiro]');b.click();const ok=document.getElementById('eventEyebrow').textContent==='Retiro'&&document.querySelectorAll('#eventObjects .floor-zone').length>0;document.querySelector('.event-selector button[data-event-type=casamento]').click();return ok&&document.getElementById('eventEyebrow').textContent==='Casamento'})()"
+  "item": "formatos funcionam e o diagrama da esquerda saiu (só o retângulo verde das informações, 20/10)",
+  "expr": "(()=>{const b=document.querySelector('.event-selector button[data-event-type=retiro]');b.click();const ok=document.getElementById('eventEyebrow').textContent==='Retiro'&&!document.querySelector('#page-eventos .event-diagram,#page-eventos #eventObjects,#page-eventos .floor-zone')&&document.querySelectorAll('#page-eventos .event-config > *').length===1;document.querySelector('.event-selector button[data-event-type=casamento]').click();return ok&&document.getElementById('eventEyebrow').textContent==='Casamento'&&!!document.querySelector('#page-eventos .event-copy .feature-list li')})()"
  },
  {
   "bloco": "Eventos - bloco 2",
@@ -48,5 +48,20 @@
   "bloco": "Eventos - bloco 5",
   "item": "Rótulos (tipo de encontro, data, número de pessoas, hospedagem, conte um pouco) alinhados ao texto dentro do campo, como em Experiências (recuo de 15 px)",
   "expr": "(()=>{const ls=[...document.querySelectorAll('#page-eventos .proposal-form .field label')];if(ls.length<5)return 'poucos rótulos '+ls.length;return ls.every(l=>{const f=l.closest('.field').querySelector('input,select,textarea');const cs=getComputedStyle(l);const lt=l.getBoundingClientRect().left+parseFloat(cs.paddingLeft);const ft=f.getBoundingClientRect().left+parseFloat(getComputedStyle(f).paddingLeft);return Math.abs(lt-ft)<=2})})()"
+ },
+ {
+  "bloco": "Eventos - bloco 2 (20/10)",
+  "item": "retângulo da esquerda (diagrama) removido; só o verde, com as informações",
+  "expr": "!document.querySelector('#page-eventos .event-diagram')&&!!document.querySelector('#page-eventos .event-copy')&&document.getElementById('eventFeatures').children.length===3&&!!document.getElementById('eventAsk')"
+ },
+ {
+  "bloco": "Eventos - bloco 3 (20/10)",
+  "item": "ponto final nos textos dos 4 retângulos brancos (e não nos títulos)",
+  "expr": "(()=>{const sec=[...document.querySelectorAll('#page-eventos .section.white .card')];return sec.length===4&&sec.every(c=>/\\.$/.test(c.querySelector('p').textContent.trim())&&!/\\.$/.test(c.querySelector('h3').textContent.trim()))})()"
+ },
+ {
+  "bloco": "Eventos - bloco 1 (20/10)",
+  "item": "texto do hero com linhas equilibradas",
+  "expr": "(()=>{const ps=[...document.querySelectorAll(\"#page-eventos .hero .lead\")].filter(e=>e.getBoundingClientRect().height>0);if(!ps.length)return false;return ps.every(p=>{const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let t;const L={};while((t=w.nextNode())){const re=/\\S+/g;let m;while((m=re.exec(t.nodeValue))){const r=document.createRange();r.setStart(t,m.index);r.setEnd(t,m.index+m[0].length);const b=r.getBoundingClientRect();const k=Object.keys(L).find(y=>Math.abs(y-b.top)<5)??b.top;(L[k]||={l:1e9,r:-1e9});L[k].l=Math.min(L[k].l,b.left);L[k].r=Math.max(L[k].r,b.right);}}const ws=Object.values(L).map(x=>x.r-x.l);return ws.length<2||Math.min(...ws)/Math.max(...ws)>=.74})})()"
  }
 ]

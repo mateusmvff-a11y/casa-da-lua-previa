@@ -62,7 +62,7 @@
  {
   "bloco": "Home - bloco 3",
   "item": "Os 9 pinos têm a numeração, os nomes e as posições (x,y em % da imagem) pedidas",
-  "expr": "(()=>{const E=[[1,'Chegada e estacionamento',70,6],[2,'Casa principal',47,90],[3,'Restaurante e café',14,90],[4,'Piscina e área de descanso',30,27],[5,'Área de eventos',88,27],[6,'Círculo do fogo',91,80],[7,'Suítes da ala lateral',6,62],[8,'Bloco de suítes 6 a 10',62,88],[9,'Faixa verde central',64,45]];const m=document.querySelector('#page-home .atlas-map').getBoundingClientRect();const P=[...document.querySelectorAll('#page-home .atlas-home-card .map-pin')];return P.length===9&&E.every(([n,pl,x,y])=>{const b=P.find(p=>p.textContent.trim()==String(n));if(!b||b.dataset.place!==pl)return false;const r=b.getBoundingClientRect();const px=((r.left+r.right)/2-m.left)/m.width*100,py=((r.top+r.bottom)/2-m.top)/m.height*100;return Math.abs(px-x)<.7&&Math.abs(py-y)<.7})})()"
+  "expr": "(()=>{const E=[\"Entrada\",\"Recepção / Restaurante\",\"Casa principal\",\"Piscina\",\"Espaço de eventos\",\"Círculo do fogo / Fogueira\",\"Bar piscina\",\"Jardim\",\"Fogueira\"].map((n,i)=>[i+1,n,...[[70,6],[47,90],[14,90],[30,27],[88,27],[91,80],[6,62],[62,88],[64,45]][i]]);const m=document.querySelector('#page-home .atlas-map').getBoundingClientRect();const P=[...document.querySelectorAll('#page-home .atlas-home-card .map-pin')];return P.length===9&&E.every(([n,pl,x,y])=>{const b=P.find(p=>p.textContent.trim()==String(n));if(!b||b.dataset.place!==pl)return false;const r=b.getBoundingClientRect();const px=((r.left+r.right)/2-m.left)/m.width*100,py=((r.top+r.bottom)/2-m.top)/m.height*100;return Math.abs(px-x)<.7&&Math.abs(py-y)<.7})})()"
  },
  {
   "bloco": "Home - bloco 3",
@@ -72,7 +72,7 @@
  {
   "bloco": "Home - bloco 3",
   "item": "Os pinos chamam CDL.selectHomeAtlas(place) e o texto do cartão acompanha o pino (testado nos pinos 6 e 8)",
-  "expr": "(()=>{let calls=[];const o=CDL.selectHomeAtlas;CDL.selectHomeAtlas=p=>{calls.push(p);return o&&o(p)};const b6=[...document.querySelectorAll('#page-home .map-pin')].find(b=>b.textContent==='6');b6.click();const a=document.getElementById('homeAtlasTitle').textContent==='Círculo do fogo'&&/círculo reúne conversa/.test(document.getElementById('homeAtlasText').textContent)&&b6.classList.contains('active');const b8=[...document.querySelectorAll('#page-home .map-pin')].find(b=>b.textContent==='8');b8.click();const c=document.getElementById('homeAtlasTitle').textContent==='Bloco de suítes 6 a 10'&&/suítes 6 a 10/.test(document.getElementById('homeAtlasText').textContent);CDL.selectHomeAtlas=o;return a&&c&&calls.join('|')==='Círculo do fogo|Bloco de suítes 6 a 10'})()"
+  "expr": "(()=>{let calls=[];const o=CDL.selectHomeAtlas;CDL.selectHomeAtlas=p=>{calls.push(p);return o&&o(p)};const b6=[...document.querySelectorAll('#page-home .map-pin')].find(b=>b.textContent==='6');b6.click();const a=document.getElementById('homeAtlasTitle').textContent==='Círculo do fogo / Fogueira'&&/círculo reúne conversa/.test(document.getElementById('homeAtlasText').textContent)&&b6.classList.contains('active');const b8=[...document.querySelectorAll('#page-home .map-pin')].find(b=>b.textContent==='8');b8.click();const c=document.getElementById('homeAtlasTitle').textContent==='Jardim'&&/lado de fora/.test(document.getElementById('homeAtlasText').textContent);CDL.selectHomeAtlas=o;return a&&c&&calls.join('|')==='Círculo do fogo / Fogueira|Jardim'})()"
  },
  {
   "bloco": "Home - bloco 3",
@@ -118,5 +118,15 @@
   "bloco": "Home - bloco 7",
   "item": "Excluir o botão \"viver a casa\"",
   "expr": "![...document.querySelectorAll('#page-home button')].some(b=>/viver a casa/i.test(b.textContent))"
+ },
+ {
+  "bloco": "Home - bloco 2 (20/10)",
+  "item": "subtexto do cartão 17h40 e 21h em exatamente 2 linhas",
+  "expr": "(async()=>{const out=[];for(const k of ['afternoon','night']){document.querySelector('[data-time='+k+']').click();await new Promise(r=>setTimeout(r,200));const p=document.getElementById('homeTimeText');out.push(Math.round(p.getBoundingClientRect().height/parseFloat(getComputedStyle(p).lineHeight)))}document.querySelector('[data-time=morning]').click();return out.join()==='2,2'})()"
+ },
+ {
+  "bloco": "Home - bloco 3 (20/10)",
+  "item": "abas \"Com amigos\" e \"Para um encontro\": linhas do texto equilibradas",
+  "expr": "(async()=>{const ok=[];for(const k of ['amigos','encontro']){document.querySelector('[data-profile='+k+']').click();await new Promise(r=>setTimeout(r,200));ok.push((()=>{const ps=[...document.querySelectorAll(\"#profileText\")].filter(e=>e.getBoundingClientRect().height>0);if(!ps.length)return false;return ps.every(p=>{const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let t;const L={};while((t=w.nextNode())){const re=/\\S+/g;let m;while((m=re.exec(t.nodeValue))){const r=document.createRange();r.setStart(t,m.index);r.setEnd(t,m.index+m[0].length);const b=r.getBoundingClientRect();const k=Object.keys(L).find(y=>Math.abs(y-b.top)<5)??b.top;(L[k]||={l:1e9,r:-1e9});L[k].l=Math.min(L[k].l,b.left);L[k].r=Math.max(L[k].r,b.right);}}const ws=Object.values(L).map(x=>x.r-x.l);return ws.length<2||Math.min(...ws)/Math.max(...ws)>=.74})})())}document.querySelector('[data-profile=familia]').click();return ok.every(Boolean)})()"
  }
 ]

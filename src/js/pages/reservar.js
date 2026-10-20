@@ -16,13 +16,38 @@ CDL.ready(()=>{
   const fmt = v => v ? v.split('-').reverse().join('/') : 'data a definir';
   const totalGuests = () => Number($('#reserveAdults').value||0) + Number($('#reserveChildren').value||0);
 
+  /* o que a pessoa digita vira CDL.booking: o mesmo objeto monta o link do Omnibees, a mensagem do WhatsApp e a barra de reserva */
+  const B = CDL.booking;
+  function syncBooking(){
+    B.arrival = $('#reserveArrival').value; B.departure = $('#reserveDeparture').value;
+    B.adults = Number($('#reserveAdults').value||1); B.children = Number($('#reserveChildren').value||0);
+    B.code = ($('#reserveCode').value||'').trim();
+    refreshLinks();
+    if(CDL.state.page==='reservar') return;
+    CDL.updateBookingDock();
+  }
+  function whatsappText(){
+    const sel = $('.reserve-suite-choice.active'); const suite = sel ? SUITES.find(s=>s.id===sel.dataset.suite) : null;
+    const lines = ['Olá, gostaria de fazer uma reserva!'];
+    if(B.arrival && B.departure) lines.push('Chegada: '+fmt(B.arrival)+' · Saída: '+fmt(B.departure));
+    lines.push('Hóspedes: '+CDL.bookingGuestsLabel(B));
+    if(suite) lines.push('Preferência de suíte: '+suite.name);
+    if(prefs.size) lines.push('Prioridades: '+[...prefs].join(', '));
+    if(B.code) lines.push('Código promocional: '+B.code);
+    return lines.join('\n');
+  }
+  function refreshLinks(){
+    const o = $('#openOmnibees'), w = $('#openWhatsApp');
+    if(o) o.href = CDL.omnibeesUrl(B);
+    if(w) w.href = CDL.whatsappUrl(whatsappText());
+  }
   function setStep(n){
     $$('.reserve-step').forEach(s=>s.classList.toggle('hidden',Number(s.dataset.step)!==n));
     $$('.step-dot').forEach((d,i)=>d.classList.toggle('active',i<n));
     $('#reserveSideTitle').textContent = SIDE[n-1][0];
     $('#reserveSideText').textContent = SIDE[n-1][1];
     if(n===3) renderSuggestions();
-    if(n===4) renderSummary();
+    if(n===4){ syncBooking(); renderSummary(); }
     const card = $('.form-card');
     if(card && card.getBoundingClientRect().top < 70) card.scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -49,7 +74,15 @@ CDL.ready(()=>{
     $('#reserveSummary').innerHTML = `<h3>Resumo</h3><p><strong>${fmt($('#reserveArrival').value)}</strong> a <strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} hóspedes${suite?`<br>Preferência: ${suite.name}`:''}</p>`;
   }
 
-  $$('.reserve-next').forEach(b=>b.addEventListener('click',()=>setStep(Number(b.dataset.nextStep))));
+  $$('.reserve-next').forEach(b=>b.addEventListener('click',()=>{
+    /* etapa 1: o Omnibees precisa das datas; sem elas a pessoa teria de digitar de novo lá */
+    if(b.dataset.nextStep==='2' && (!$('#reserveArrival').value || !$('#reserveDeparture').value)){
+      CDL.showToast('Informe a data de chegada e a de saída para continuar.');
+      ($('#reserveArrival').value ? $('#reserveDeparture') : $('#reserveArrival')).focus();
+      return;
+    }
+    setStep(Number(b.dataset.nextStep));
+  }));
   $$('.reserve-prev').forEach(b=>b.addEventListener('click',()=>setStep(Number(b.dataset.prevStep))));
   $$('.choice').forEach(b=>b.addEventListener('click',()=>{
     b.classList.toggle('active');
@@ -61,7 +94,12 @@ CDL.ready(()=>{
     $$('.reserve-suite-choice').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
   });
-  $('#openWhatsApp').addEventListener('click',()=>CDL.showToast('Em breve você poderá falar com a equipe por aqui.'));
+  ['#reserveArrival','#reserveDeparture','#reserveAdults','#reserveChildren','#reserveCode'].forEach(s=>{ $(s).addEventListener('change',syncBooking); $(s).addEventListener('input',syncBooking); });
+  $('#reserveSuggestions').addEventListener('click',()=>setTimeout(refreshLinks,0));
+  $$('.choice').forEach(b=>b.addEventListener('click',()=>setTimeout(refreshLinks,0)));
+  /* ao sair de Reservar, a barra de reserva passa a mostrar as datas e os hóspedes informados */
+  document.addEventListener('cdl:page',e=>{ if(e.detail.prev==='reservar') syncBooking(); });
+  syncBooking();
   $('#reserveForm').addEventListener('submit',e=>e.preventDefault()); /* Enter num campo não recarrega a página */
 
   /* datas coerentes: chegada a partir de hoje, saída depois da chegada */

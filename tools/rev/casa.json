@@ -42,7 +42,7 @@
  {
   "bloco": "A Casa - bloco 3",
   "item": "9 pinos com os nomes, numerais e posições (x,y em % da caixa) pedidos, sem o 10 \"Área complementar\"",
-  "expr": "(()=>{const exp=[['Chegada e estacionamento',70,6],['Casa principal',47,90],['Restaurante e café',14,90],['Piscina e área de descanso',30,27],['Área de eventos',88,27],['Círculo do fogo',91,80],['Suítes da ala lateral',6,62],['Bloco de suítes 6 a 10',62,88],['Faixa verde central',64,45]];const m=document.querySelector('#page-casa .atlas-map').getBoundingClientRect();const pins=[...document.querySelectorAll('#page-casa .atlas-map .map-pin')];if(pins.length!==9)return false;if(/Área complementar/.test(document.querySelector('#page-casa .casa-atlas').innerHTML))return false;return exp.every((e,i)=>{const p=pins[i],r=p.getBoundingClientRect();const cx=(r.left+r.width/2-m.left)/m.width*100,cy=(r.top+r.height/2-m.top)/m.height*100;return p.dataset.place===e[0]&&p.textContent.trim()===String(i+1)&&Math.abs(cx-e[1])<=0.6&&Math.abs(cy-e[2])<=1})})()"
+  "expr": "(()=>{const exp=[\"Entrada\",\"Recepção / Restaurante\",\"Casa principal\",\"Piscina\",\"Espaço de eventos\",\"Círculo do fogo / Fogueira\",\"Bar piscina\",\"Jardim\",\"Fogueira\"].map((n,i)=>[n,...[[70,6],[47,90],[14,90],[30,27],[88,27],[91,80],[6,62],[62,88],[64,45]][i]]);const m=document.querySelector('#page-casa .atlas-map').getBoundingClientRect();const pins=[...document.querySelectorAll('#page-casa .atlas-map .map-pin')];if(pins.length!==9)return false;if(/Área complementar/.test(document.querySelector('#page-casa .casa-atlas').innerHTML))return false;return exp.every((e,i)=>{const p=pins[i],r=p.getBoundingClientRect();const cx=(r.left+r.width/2-m.left)/m.width*100,cy=(r.top+r.height/2-m.top)/m.height*100;return p.dataset.place===e[0]&&p.textContent.trim()===String(i+1)&&Math.abs(cx-e[1])<=0.6&&Math.abs(cy-e[2])<=1})})()"
  },
  {
   "bloco": "A Casa - bloco 3",
@@ -73,5 +73,20 @@
   "bloco": "A Casa - bloco 6",
   "item": "Botão \"Planejar a estadia\" vai direto à parte de reserva: data-page-target=\"reservar\" data-anchor=\"reserveShell\"",
   "expr": "(()=>{const b=[...document.querySelectorAll('#page-casa .casa-equipe button')].find(x=>x.textContent.trim()==='Planejar a estadia');return !!b&&b.dataset.pageTarget==='reservar'&&b.dataset.anchor==='reserveShell'})()"
+ },
+ {
+  "bloco": "A Casa - bloco 4 (20/10)",
+  "item": "ponto final nos textos dos 3 retângulos (e não nos títulos)",
+  "expr": "(()=>{const ps=[...document.querySelectorAll(\"#page-casa .house-layers .card p\")];return ps.length>=3&&ps.every(p=>/\\.$/.test(p.textContent.trim()))&&[...document.querySelectorAll(\"#page-casa .house-layers .card h3\")].every(h=>!/\\.$/.test(h.textContent.trim()))})()"
+ },
+ {
+  "bloco": "A Casa - bloco 5 (20/10)",
+  "item": "overlay preto 50% sobre a foto de fundo",
+  "expr": "getComputedStyle(document.querySelector('#page-casa .casa-historias'),'::after').backgroundColor.replace(/ /g,'')==='rgba(0,0,0,0.5)'"
+ },
+ {
+  "bloco": "A Casa - blocos 1 e 6 (20/10)",
+  "item": "textos explicativos com linhas de tamanhos parecidos",
+  "expr": "(()=>{const ps=[...document.querySelectorAll(\"#page-casa .hero-lead,#page-casa .equipe-copy .lead\")].filter(e=>e.getBoundingClientRect().height>0);if(!ps.length)return false;return ps.every(p=>{const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let t;const L={};while((t=w.nextNode())){const re=/\\S+/g;let m;while((m=re.exec(t.nodeValue))){const r=document.createRange();r.setStart(t,m.index);r.setEnd(t,m.index+m[0].length);const b=r.getBoundingClientRect();const k=Object.keys(L).find(y=>Math.abs(y-b.top)<5)??b.top;(L[k]||={l:1e9,r:-1e9});L[k].l=Math.min(L[k].l,b.left);L[k].r=Math.max(L[k].r,b.right);}}const ws=Object.values(L).map(x=>x.r-x.l);return ws.length<2||Math.min(...ws)/Math.max(...ws)>=.74})})()"
  }
 ]

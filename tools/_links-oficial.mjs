@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+const f = process.argv[2] || '_site-oficial/index.html';
+const h = fs.readFileSync(f,'utf8');
+const dec = s => s.replace(/&amp;/g,'&');
+const uniq = a => [...new Set(a)];
+console.log('=== href (sem assets) ===');
+console.log(uniq([...h.matchAll(/href="([^"]+)"/g)].map(m=>dec(m[1])).filter(x=>!/_next\/static|\.css|\.ico|apple-touch|manifest|\.png$/.test(x))).join('\n'));
+console.log('\n=== URLs externas (sem imagens) ===');
+console.log(uniq([...h.matchAll(/https?:\/\/[^"'<> \\]+/g)].map(m=>dec(m[0])).filter(u=>!/cloudinary|_next|w3\.org|schema\.org|fonts\.g/.test(u))).join('\n'));
+console.log('\n=== forms/inputs ===', (h.match(/<form/g)||[]).length);
+console.log([...h.matchAll(/<(input|select|button)[^>]*>/g)].map(m=>m[0].slice(0,200)).slice(0,40).join('\n'));
+console.log('\n=== scripts ===');
+console.log(uniq([...h.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1])).join('\n'));

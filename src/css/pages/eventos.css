@@ -54,22 +54,15 @@
 }
 #page-eventos .event-selector button:hover{background:rgba(81,132,78,.12)}
 #page-eventos .event-selector button.active{background:var(--verde);color:var(--creme);font-weight:700}
-#page-eventos .event-config{display:grid;grid-template-columns:534fr 722fr;gap:24px;align-items:stretch;min-height:570px}
-
-#page-eventos .event-diagram{position:relative;overflow:hidden;background:#ede2ca;border-radius:28px;min-height:570px}
-#page-eventos .event-diagram::before{content:"";position:absolute;inset:22px;border:1px solid rgba(19,59,51,.18);border-radius:22px;pointer-events:none}
-#page-eventos .floor-zone{
-  position:absolute;display:grid;place-items:center;text-align:center;
-  background:rgba(255,255,255,.42);border:1px solid rgba(19,59,51,.35);border-radius:14px;
-  font-family:var(--inter);font-weight:normal;font-size:11px;line-height:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--texto)
-}
-
-#page-eventos #eventObjects.solid .floor-zone{background:#faf6ec}
-
+/* revisão 20/10: o diagrama da esquerda saiu; o retângulo verde das informações ocupa a largura toda, em duas colunas (texto | lista) */
+#page-eventos .event-config{display:block}
 #page-eventos .event-copy{
-  display:flex;flex-direction:column;align-items:flex-start;
-  background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:60px 44px 47px
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(40px,6vw,110px);align-items:start;
+  background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:60px 56px 47px
 }
+#page-eventos .event-copy>.eyebrow,#page-eventos .event-copy>h3,#page-eventos .event-copy>p{grid-column:1}
+#page-eventos .event-copy>.feature-list{grid-column:2;grid-row:1 / span 3;align-self:start;margin-top:0}
+#page-eventos .event-copy>.btn{grid-column:2;grid-row:4;justify-self:start;margin-top:12px}
 #page-eventos .event-copy .eyebrow{margin:0 0 16px;color:var(--verde)}
 #page-eventos .event-copy h3{
   font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme);margin:0
@@ -134,8 +127,9 @@
   #page-eventos .hero-media::after{background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.12) 100%)}
   #page-eventos .dbr{display:none}
   #page-eventos .section-head{display:block;margin-bottom:34px}
-  #page-eventos .event-config{grid-template-columns:1fr;min-height:0}
-  #page-eventos .event-diagram{min-height:520px}
+  #page-eventos .event-copy{display:flex;flex-direction:column;align-items:flex-start}
+  #page-eventos .event-copy>.feature-list{margin-top:16px}
+  #page-eventos .event-copy>.btn{margin-top:16px}
 }
 @media(max-width:760px){
   #page-eventos .dbr-s{display:none}
@@ -144,7 +138,6 @@
   #page-eventos .hero-actions .btn,#page-eventos .hero-actions .ghost-btn{white-space:nowrap}
   #page-eventos .hero .title{font-size:clamp(36px,10.5vw,52px);line-height:1.04}
   #page-eventos .stat strong{font-size:30px;line-height:32px}
-  #page-eventos .event-diagram{min-height:420px}
   #page-eventos .event-copy{padding:36px 24px 32px}
   #page-eventos .event-copy h3{font-size:28px;line-height:30px}
   #page-eventos .feature-list li{flex-direction:column;gap:2px}

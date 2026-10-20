@@ -16,15 +16,15 @@ const IMG = k => CDL.ASSETS[k];
 /* ---------- Atlas: dados. x/y em % do mapa (assets/img/rev-home-atlas.webp); asset = foto do ambiente.
    Os mesmos números valem na Home e em A Casa. Revisão do cliente 09/10: 9 espaços, sem lentes/opções/etiquetas. ---------- */
 const ATLAS_PLACES = CDL.ATLAS_PLACES = {
-  'Chegada e estacionamento':{asset:'assets/img/rev-atlas-chegada.webp',text:'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',x:70,y:6},
-  'Casa principal':{asset:'assets/img/rev-atlas-casa-principal.webp',text:'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',x:47,y:90},
-  'Restaurante e café':{asset:'assets/img/rev-atlas-restaurante.webp',text:'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos.',x:14,y:90},
-  'Piscina e área de descanso':{asset:'assets/img/rev-atlas-piscina.webp',text:'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',x:30,y:27},
-  'Área de eventos':{asset:'assets/img/rev-atlas-eventos.webp',text:'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',x:88,y:27},
-  'Círculo do fogo':{asset:'assets/img/v16-fire.webp',text:'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',x:91,y:80},
-  'Suítes da ala lateral':{asset:'assets/img/rev-atlas-ala-lateral.webp',text:'Conjunto lateral com quartos, uma suíte e o espaço da sinuca.',x:6,y:62},
-  'Bloco de suítes 6 a 10':{asset:'assets/img/rev-atlas-suites-6-10.webp',text:'Bloco que reúne as suítes 6 a 10.',x:62,y:88},
-  'Faixa verde central':{asset:'assets/img/rev-atlas-faixa-verde.webp',text:'Área aberta que costura pousada, restaurante, suítes, círculo e eventos.',x:64,y:45}
+  'Entrada':{asset:'assets/img/rev-atlas-chegada.webp',text:'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.',x:70,y:6},
+  'Recepção / Restaurante':{asset:'assets/img/rev-atlas-restaurante.webp',text:'É onde a chegada acontece, a manhã começa e a mesa costuma reunir hóspedes, famílias e grupos.',x:47,y:90},
+  'Casa principal':{asset:'assets/img/rev-atlas-casa-principal.webp',text:'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.',x:14,y:90},
+  'Piscina':{asset:'assets/img/rev-atlas-piscina.webp',text:'A piscina é um dos centros da propriedade, com a área de descanso ao redor.',x:30,y:27},
+  'Espaço de eventos':{asset:'assets/img/rev-atlas-eventos.webp',text:'Salão e área de apoio para casamentos, imersões, retiros e celebrações.',x:88,y:27},
+  'Círculo do fogo / Fogueira':{asset:'assets/img/v16-fire.webp',text:'Na época de seca, o círculo reúne conversa, vinho e céu aberto.',x:91,y:80},
+  'Bar piscina':{asset:'assets/img/v16-pool.webp',text:'Um ponto de apoio junto à água para o fim de tarde, depois da Chapada.',x:6,y:62},
+  'Jardim':{asset:'assets/img/rev-atlas-faixa-verde.webp',text:'O lado de fora funciona como sala, caminho e lugar de permanência.',x:62,y:88},
+  'Fogueira':{asset:'assets/img/gen-viver-fogo.webp',text:'Na época de seca, a fogueira reúne vinho, conversa e céu estrelado.',x:64,y:45}
 };
 const imgOf = p => (p && p.indexOf('/')>-1) ? p : IMG(p);
 let atlasPlace = 'Casa principal';
@@ -84,8 +84,8 @@ CDL.openJourney = function(){
 };
 
 /* ---------- Detalhe da suíte (V16 2049) ---------- */
-/* Fotos provisórias do Figma por categoria (Suites: 9efed9 / bef858 / a58fed) */
-const SUITE_IMG = {standard:'assets/img/9efed9.webp','luxo-superior':'assets/img/a58fed.webp'};
+/* Fotos das 8 categorias (enviadas pelo cliente em 20/10) */
+const SUITE_IMG = Object.fromEntries(['standard','luxo','luxo-superior','premium','premium-hidro','premium-ofuro','master','presidencial'].map(id=>[id,'assets/img/suite-'+id+'.webp']));
 CDL.openSuite = function(id){
   const s = CDL.SUITES.find(x=>x.id===id);
   if(!s) return;
@@ -93,7 +93,7 @@ CDL.openSuite = function(id){
   set('suiteModalTitle',s.name);
   set('suiteModalUnits',`${s.units} ${s.units===1?'unidade':'unidades'} · ${s.area}`);
   set('suiteModalIntro',`${s.beds}. ${s.location}. ${s.outdoor}.`);
-  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/bef858.webp'; img.alt = `Suíte ${s.name}`; }
+  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/suite-standard.webp'; img.alt = `Suíte ${s.name}`; }
   const meta = $('#suiteModalMeta');
   if(meta) meta.innerHTML = [['Capacidade',`Até ${s.guests} hóspedes`],['Acesso',s.access],['Vista',s.view],['Área externa',s.outdoor]].map(x=>`<div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
   const feats = $('#suiteModalFeatures'); if(feats) feats.innerHTML = s.features.map(f=>`<li>${f}</li>`).join('');

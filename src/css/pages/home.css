@@ -62,7 +62,7 @@
 #page-home .time-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,28,26,0) 45%,rgba(6,28,26,.78) 100%)}
 #page-home .time-scene-copy{position:absolute;left:34px;right:34px;bottom:30px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 #page-home .time-scene-copy h3{font-family:var(--serif);font-weight:400;font-size:48px;line-height:48px;letter-spacing:0;color:var(--creme)}
-#page-home .time-scene-copy p{max-width:300px;margin-right:13px;font-size:16px;line-height:23px;text-align:right;color:var(--creme);margin-bottom:-3px}
+#page-home .time-scene-copy p{max-width:440px;margin-right:13px;font-size:16px;line-height:23px;text-align:right;color:var(--creme);margin-bottom:-3px}
 
 /* ---------- 3 · Perfis + Atlas em miniatura ---------- */
 #page-home #home-explorar{padding-bottom:110px}
@@ -196,6 +196,12 @@
   #page-home .feature-panel{min-height:0}
   #page-home .feature-body{padding-bottom:34px}
   #page-home .practical-grid{grid-template-columns:1fr 1fr;gap:20px 24px}
+}
+/* tablet estreito: título e texto do cartão do dia empilham (o texto de baixo fica em 2 linhas) */
+@media(min-width:761px) and (max-width:900px){
+  #page-home .time-scene-copy{flex-direction:column;align-items:flex-start;gap:12px}
+  #page-home .time-scene-copy h3{font-size:40px;line-height:42px}
+  #page-home .time-scene-copy p{text-align:left;max-width:440px;margin:0}
 }
 @media(max-width:760px){
   #page-home .hero{min-height:calc(100svh - var(--header-h));padding:56px var(--pad) 120px}

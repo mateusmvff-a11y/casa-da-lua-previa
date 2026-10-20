@@ -58,23 +58,14 @@ CDL.ready(()=>{
 
   /* ---- Atlas em miniatura: 9 pinos (posições no HTML, em % da imagem do mapa).
      Textos locais (não dependem de CDL.ATLAS_PLACES); o pino ainda chama CDL.selectHomeAtlas para o destaque ---- */
-  const ATLAS_TXT = {
-    'Chegada e estacionamento':'É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade',
-    'Casa principal':'Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem',
-    'Restaurante e café':'É onde a manhã começa e onde a mesa costuma reunir hóspedes, famílias e grupos',
-    'Piscina e área de descanso':'A piscina é um dos centros da propriedade, com a área de descanso ao redor',
-    'Área de eventos':'Salão e área de apoio para casamentos, imersões, retiros e celebrações',
-    'Círculo do fogo':'Na época de seca, o círculo reúne conversa, vinho e céu aberto',
-    'Suítes da ala lateral':'Conjunto lateral com quartos, uma suíte e o espaço da sinuca',
-    'Bloco de suítes 6 a 10':'Bloco que reúne as suítes 6 a 10',
-    'Faixa verde central':'Área aberta que costura pousada, restaurante, suítes, círculo e eventos'
-  };
+  /* nomes e textos vêm de CDL.ATLAS_PLACES (a mesma fonte do A Casa e da janela do Atlas) */
   $$('.atlas-home-card .map-pin').forEach(b=>b.addEventListener('click',()=>{
     const place = b.dataset.place;
     if(typeof CDL.selectHomeAtlas==='function') CDL.selectHomeAtlas(place);
     $$('.atlas-home-card .map-pin').forEach(p=>p.classList.toggle('active',p===b));
+    const d = (CDL.ATLAS_PLACES||{})[place];
     setText('homeAtlasTitle',place);
-    setText('homeAtlasText',ATLAS_TXT[place]||'');
+    setText('homeAtlasText',d ? np(d.text) : '');
   }));
 
   /* ---- Experiência Tidelli: a foto fica fixa; os botões de dia trocam só o texto ---- */

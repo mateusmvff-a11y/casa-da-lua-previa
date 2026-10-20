@@ -16,8 +16,8 @@ function fromImage(ref, i){
   const ph = (i*0.9)%6.28;   // fase diferente por textura
   /* cada termo é (sin(wt+f) - sin(f)): no instante 0 e no fim do loop o deslocamento é zero, então o vídeo começa exatamente igual à textura estática */
   const t = (a, w, ax, d, p) => `${a}*(sin(${w}*PI*T/${DUR}+${ax}/${d}+${p.toFixed(2)})-sin(${ax}/${d}+${p.toFixed(2)}))`;
-  const dx = t(10,2,'Y',95,ph)+'+'+t(4.5,4,'X',140,ph*1.7);
-  const dy = t(8,2,'X',120,ph*0.6)+'+'+t(4,4,'Y',110,ph*2.3);
+  const dx = t(24,2,'Y',95,ph)+'+'+t(10,4,'X',140,ph*1.7);   // balanço mais perceptível (revisão 20/10): ~2,4x o anterior
+  const dy = t(18,2,'X',120,ph*0.6)+'+'+t(9,4,'Y',110,ph*2.3);
   const out = path.join(root,`assets/video/sh-${ref}.webm`);
   execFileSync('ffmpeg',['-loglevel','error','-y','-loop','1','-framerate',String(FPS),'-i',src,'-f','lavfi','-i',`color=c=black:s=${W}x${H}:r=${FPS}`,
     '-filter_complex',`[0]scale=${W}:${H},format=gray,gblur=sigma=1.4,geq=lum='lum(X+${dx},Y+${dy})'[w];[w]negate[a];[1][a]alphamerge`,

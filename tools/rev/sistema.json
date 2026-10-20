@@ -1,32 +1,157 @@
 [
- {"bloco":"Janela do Atlas Vivo","item":"REMOVA as lentes (lugar/momento/companhia/programa): não vamos ver por 4 lentes","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const o=document.getElementById('atlasOverlay');const t=o.textContent.toLowerCase();return !o.querySelector('[data-atlas-lens],.atlas-lenses')&&!t.includes('lentes')&&!t.includes('momento')&&!t.includes('logística e companhia')})()"},
- {"bloco":"Janela do Atlas Vivo","item":"REMOVA as opções (chips Todos/Hospedagem/…)","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const o=document.getElementById('atlasOverlay');return !o.querySelector('.atlas-options,[data-atlas-option]')&&![...o.querySelectorAll('button')].some(b=>/^(todos|hospedagem|bem-estar|convivência|eventos|chegada)$/i.test(b.textContent.trim()))})()"},
- {"bloco":"Janela do Atlas Vivo","item":"a chamada principal da esquerda vira um texto simples e coerente: \"Conheça os espaços da propriedade.\"","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();return document.querySelector('#atlasOverlay .atlas-sidebar h2').textContent.replace(/\\s+/g,' ').trim()==='Conheça os espaços da propriedade.'})()"},
- {"bloco":"Janela do Atlas Vivo","item":"Mantenha apenas o menu da lista, com os números e os nomes dos espaços (9 itens)","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const b=[...document.querySelectorAll('#atlasList button')];const n=[\"Chegada e estacionamento\",\"Casa principal\",\"Restaurante e café\",\"Piscina e área de descanso\",\"Área de eventos\",\"Círculo do fogo\",\"Suítes da ala lateral\",\"Bloco de suítes 6 a 10\",\"Faixa verde central\"];return b.length===9&&b.every((x,i)=>x.textContent.trim()===(i+1)+n[i])})()"},
- {"bloco":"Janela do Atlas Vivo","item":"Excluir o espaço 10 \"Área complementar\" (dados, lista e pinos)","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();return !CDL.ATLAS_PLACES['Área complementar']&&Object.keys(CDL.ATLAS_PLACES).length===9&&!document.getElementById('atlasOverlay').textContent.includes('Área complementar')&&document.querySelectorAll('#atlasPins .map-pin').length===9})()"},
- {"bloco":"Janela do Atlas Vivo","item":"Ao clicar nos itens da lista, a foto muda para a do respectivo ambiente (1 a 9)","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const e=[\"rev-atlas-chegada\",\"rev-atlas-casa-principal\",\"rev-atlas-restaurante\",\"rev-atlas-piscina\",\"rev-atlas-eventos\",\"v16-fire\",\"rev-atlas-ala-lateral\",\"rev-atlas-suites-6-10\",\"rev-atlas-faixa-verde\"];return [...document.querySelectorAll('#atlasList button')].every((b,i)=>{b.click();return document.getElementById('atlasDetailImage').src.includes(e[i]+'.webp')&&b.classList.contains('active')})})()"},
- {"bloco":"Janela do Atlas Vivo","item":"Ao clicar no pino correspondente da imagem (mini-mapa), a foto muda para a do ambiente","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const e=[\"rev-atlas-chegada\",\"rev-atlas-casa-principal\",\"rev-atlas-restaurante\",\"rev-atlas-piscina\",\"rev-atlas-eventos\",\"v16-fire\",\"rev-atlas-ala-lateral\",\"rev-atlas-suites-6-10\",\"rev-atlas-faixa-verde\"];return [...document.querySelectorAll('#atlasPins .map-pin')].every((b,i)=>{b.click();return document.getElementById('atlasDetailImage').src.includes(e[i]+'.webp')&&b.classList.contains('active')&&document.querySelectorAll('#atlasPins .map-pin.active').length===1})})()"},
- {"bloco":"Janela do Atlas Vivo","item":"6 Círculo do fogo = mantenha a imagem anterior da miniatura (v16-fire.webp)","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();document.querySelector('#atlasList button:nth-child(6)').click();return document.getElementById('atlasDetailImage').src.includes('assets/img/v16-fire.webp')})()"},
- {"bloco":"Janela do Atlas Vivo","item":"o palco principal mostra a foto do espaço e um MINI-MAPA (inset no canto inferior direito, ~26% da largura, cantos arredondados, borda fina) com rev-home-atlas.webp","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const c=document.getElementById('atlasCanvas').getBoundingClientRect(),m=document.querySelector('#atlasOverlay .atlas-minimap'),r=m.getBoundingClientRect(),cs=getComputedStyle(m);return m.querySelector('img').src.includes('rev-home-atlas.webp')&&Math.abs(r.width/c.width-.26)<.03&&Math.abs(c.right-r.right-18)<4&&Math.abs(c.bottom-r.bottom-18)<4&&parseFloat(cs.borderTopLeftRadius)>=10&&parseFloat(cs.borderTopWidth)===1&&document.getElementById('atlasDetailImage').getBoundingClientRect().width>=c.width-2})()"},
- {"bloco":"Janela do Atlas Vivo","item":"o mini-mapa tem os 9 pinos numerados, nas posições (x,y %) pedidas, clicáveis; o do espaço atual destacado","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const m=document.querySelector('#atlasOverlay .atlas-minimap').getBoundingClientRect();const xy=[[70,6],[47,90],[14,90],[30,27],[88,27],[91,80],[6,62],[62,88],[64,45]];const pins=[...document.querySelectorAll('#atlasPins .map-pin')];return pins.length===9&&pins.every((p,i)=>{const r=p.getBoundingClientRect();return p.textContent.trim()===String(i+1)&&Math.abs((r.left+r.width/2-m.left)/m.width*100-xy[i][0])<1.5&&Math.abs((r.top+r.height/2-m.top)/m.height*100-xy[i][1])<1.5})&&document.querySelector('#atlasPins .map-pin.active').textContent.trim()==='2'})()"},
- {"bloco":"Janela do Atlas Vivo","item":"Ao abrir, o espaço selecionado é o 2 \"Casa principal\", com sua foto","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();return document.getElementById('atlasDetailTitle').textContent==='Casa principal'&&document.getElementById('atlasDetailImage').src.includes('rev-atlas-casa-principal.webp')&&document.querySelector('#atlasList button.active').textContent.trim()==='2Casa principal'})()"},
- {"bloco":"Janela do Atlas Vivo","item":"CDL.ATLAS_PLACES com x,y, nomes, textos e asset pedidos (Home e A Casa usam os mesmos números)","expr":"(()=>{const e=[[\"Chegada e estacionamento\",\"rev-atlas-chegada\",70,6],[\"Casa principal\",\"rev-atlas-casa-principal\",47,90],[\"Restaurante e café\",\"rev-atlas-restaurante\",14,90],[\"Piscina e área de descanso\",\"rev-atlas-piscina\",30,27],[\"Área de eventos\",\"rev-atlas-eventos\",88,27],[\"Círculo do fogo\",\"v16-fire\",91,80],[\"Suítes da ala lateral\",\"rev-atlas-ala-lateral\",6,62],[\"Bloco de suítes 6 a 10\",\"rev-atlas-suites-6-10\",62,88],[\"Faixa verde central\",\"rev-atlas-faixa-verde\",64,45]];const P=CDL.ATLAS_PLACES;return e.every(p=>P[p[0]]&&P[p[0]].x===p[2]&&P[p[0]].y===p[3]&&P[p[0]].asset.includes(p[1])&&P[p[0]].text.length>20)})()"},
- {"bloco":"Janela do Atlas Vivo","item":"A barra de baixo fica só com o título do espaço e o texto (sem a imagem quadrada)","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const d=document.querySelector('#atlasOverlay .atlas-detail');return [...d.children].map(x=>x.tagName).join()==='H2,P'&&!d.querySelector('img,.detail-image')&&d.querySelector('p').textContent===CDL.ATLAS_PLACES['Casa principal'].text})()"},
- {"bloco":"Janela do Atlas Vivo","item":"ELIMINE os mini menus/tags (\"acesso\", \"estacionamento\"…) abaixo do texto principal","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const o=document.getElementById('atlasOverlay');return !o.querySelector('.tag-row,#atlasDetailTags')&&!o.textContent.includes('estacionamento'.toUpperCase())&&![...o.querySelectorAll('span')].some(s=>/^(acesso|estacionamento|origem|convivência|café|mesa)$/.test(s.textContent.trim()))})()"},
- {"bloco":"Janela do Atlas Vivo","item":"ELIMINE os botões \"Entender a chegada\"/\"Conhecer A Casa\"/\"Planejar estadia\"","expr":"(()=>{CDL.closeOverlays();CDL.openAtlas();const d=document.querySelector('#atlasOverlay .atlas-detail');const t=document.getElementById('atlasOverlay').textContent;return !d.querySelector('button,a,.btn,.ghost-btn')&&!t.includes('Entender a chegada')&&!t.includes('Conhecer A Casa')&&!t.includes('Planejar estadia')&&document.querySelectorAll('#atlasOverlay .close-overlay').length===1})()"},
- {"bloco":"Janela do Atlas Vivo","item":"Mantenha os textos de cada espaço de ATLAS_PLACES, sem tom de nota interna","expr":"(()=>{const t=Object.values(CDL.ATLAS_PLACES).map(p=>p.text).join(' ').toLowerCase();return !/(ainda precisa|rascunho|planta identifica|identificado na planta|validar|confirmar)/.test(t)&&CDL.ATLAS_PLACES['Círculo do fogo'].text==='Na época de seca, o círculo reúne conversa, vinho e céu aberto.'&&CDL.ATLAS_PLACES['Restaurante e café'].text.startsWith('É onde a manhã começa')})()"},
- {"bloco":"Entrar na Casa (percurso)","item":"cena 1 \"Chegada\" = rev-jornada-1-chegada.webp","expr":"(()=>{CDL.closeOverlays();CDL.openJourney();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-1-chegada.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"},
- {"bloco":"Entrar na Casa (percurso)","item":"cena 2 \"Jardim\" = rev-jornada-2-jardim.webp (retrato, object-fit:cover, object-position:center)","expr":"(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-2-jardim.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"},
- {"bloco":"Entrar na Casa (percurso)","item":"cena 3 \"A piscina\" (Fim de tarde) = rev-jornada-3-piscina.webp (retrato)","expr":"(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();document.querySelector('[data-journey-target=pool]').click();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-3-piscina.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"},
- {"bloco":"Entrar na Casa (percurso)","item":"cena 4 (Bem-estar) mantém a foto atual (v16-wellness)","expr":"(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();document.querySelector('[data-journey-target=pool]').click();document.querySelector('[data-journey-target=wellness]').click();const i=document.getElementById('journeyImage');return i.src.includes('v16-wellness.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"},
- {"bloco":"Entrar na Casa (percurso)","item":"cena 5 \"Noite\" = rev-jornada-5-noite.webp","expr":"(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();document.querySelector('[data-journey-target=pool]').click();document.querySelector('[data-journey-target=wellness]').click();document.querySelector('[data-journey-target=night]').click();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-5-noite.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"},
- {"bloco":"Reservar - bloco 1","item":"título \"Escolha suas datas, a casa ajuda no resto\" (vírgula entre as frases, sem ponto final)","expr":"(()=>{const h=document.querySelector('#page-reservar h1');return h.innerHTML.replace(/<br>/g,' ').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim()==='Escolha suas datas, a casa ajuda no resto'&&!/[.]\\s*$/.test(h.textContent)})()"},
- {"bloco":"Reservar - bloco 1","item":"Tirar o botão \"abrir motor oficial\" na etapa final: remover #openBookingEngine","expr":"(()=>!document.getElementById('openBookingEngine')&&!document.getElementById('page-reservar').textContent.includes('Abrir motor oficial'))()"},
- {"bloco":"Reservar - bloco 1","item":"etapa final mantém só \"Voltar\" e \"Falar com a equipe\"","expr":"(()=>{const p=document.querySelector('#page-reservar .reserve-step[data-step=\"4\"] .hero-actions');return [...p.querySelectorAll('button')].map(b=>b.textContent.trim()).join('|')==='Voltar|Falar com a equipe'&&!!document.getElementById('openWhatsApp')})()"},
- {"bloco":"Reservar - bloco 1","item":"o contêiner .reserve-shell tem o id reserveShell (A Casa abre direto nele com data-anchor)","expr":"(()=>{const e=document.getElementById('reserveShell');return !!e&&e.classList.contains('reserve-shell')&&e.contains(document.getElementById('reserveForm'))})()"},
- {"bloco":"Reservar - bloco 1","item":"o botão de A Casa com data-anchor=\"reserveShell\" existe e o id está na página Reservar (se houver)","expr":"(()=>{const b=document.querySelectorAll('[data-anchor=\"reserveShell\"]');return [...b].every(x=>x.dataset.pageTarget==='reservar')&&!!document.querySelector('#page-reservar #reserveShell')})()"},
- {"bloco":"Reservar - bloco 2","item":"título \"Antes de reservar,<br>o essencial\" (quebra explícita; \"o essencial\" junto na 2ª linha)","expr":"(()=>{const h=document.querySelector('#reserveBefore h2');const br=h.querySelector('br');return !!br&&h.innerHTML.replace(/<br>/g,' ').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim()==='Antes de reservar, o essencial'&&br.previousSibling.textContent.trim()==='Antes de reservar,'&&br.nextElementSibling.textContent==='o essencial'})()"},
- {"bloco":"Reservar - bloco 2","item":"sem texto interno (\"políticas ainda precisam…\", \"protótipo\", \"placeholder\", \"demonstração\") na página","expr":"(()=>{const t=document.getElementById('page-reservar').textContent.toLowerCase()+document.getElementById('interestOverlay').textContent.toLowerCase();return !/(ainda precisam|protótipo|placeholder|demonstração)/.test(t)})()"},
- {"bloco":"Regra geral","item":"retire qualquer subtexto ao lado de títulos grandes de seção (Reservar: parágrafo ao lado do título do topo)","expr":"(()=>!document.querySelector('#page-reservar .section-head p,#page-reservar .section-head .small,#page-reservar .rv-lead'))()"},
- {"bloco":"Reservar - mobile/1440","item":"sem rolagem horizontal na página Reservar","expr":"(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)()"}
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "REMOVA as lentes (lugar/momento/companhia/programa): não vamos ver por 4 lentes",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const o=document.getElementById('atlasOverlay');const t=o.textContent.toLowerCase();return !o.querySelector('[data-atlas-lens],.atlas-lenses')&&!t.includes('lentes')&&!t.includes('momento')&&!t.includes('logística e companhia')})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "REMOVA as opções (chips Todos/Hospedagem/…)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const o=document.getElementById('atlasOverlay');return !o.querySelector('.atlas-options,[data-atlas-option]')&&![...o.querySelectorAll('button')].some(b=>/^(todos|hospedagem|bem-estar|convivência|eventos|chegada)$/i.test(b.textContent.trim()))})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "a chamada principal da esquerda vira um texto simples e coerente: \"Conheça os espaços da propriedade.\"",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();return document.querySelector('#atlasOverlay .atlas-sidebar h2').textContent.replace(/\\s+/g,' ').trim()==='Conheça os espaços da propriedade.'})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "Mantenha apenas o menu da lista, com os números e os nomes dos espaços (9 itens)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const b=[...document.querySelectorAll('#atlasList button')];const n=['Entrada','Recepção / Restaurante','Casa principal','Piscina','Espaço de eventos','Círculo do fogo / Fogueira','Bar piscina','Jardim','Fogueira'];return b.length===9&&b.every((x,i)=>x.textContent.trim()===(i+1)+n[i])})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "Excluir o espaço 10 \"Área complementar\" (dados, lista e pinos)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();return !CDL.ATLAS_PLACES['Área complementar']&&Object.keys(CDL.ATLAS_PLACES).length===9&&!document.getElementById('atlasOverlay').textContent.includes('Área complementar')&&document.querySelectorAll('#atlasPins .map-pin').length===9})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "Ao clicar nos itens da lista, a foto muda para a do respectivo ambiente (1 a 9)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const e=[\"rev-atlas-chegada\",\"rev-atlas-restaurante\",\"rev-atlas-casa-principal\",\"rev-atlas-piscina\",\"rev-atlas-eventos\",\"v16-fire\",\"v16-pool\",\"rev-atlas-faixa-verde\",\"gen-viver-fogo\"];return [...document.querySelectorAll('#atlasList button')].every((b,i)=>{b.click();return document.getElementById('atlasDetailImage').src.includes(e[i]+'.webp')&&b.classList.contains('active')})})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "Ao clicar no pino correspondente da imagem (mini-mapa), a foto muda para a do ambiente",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const e=[\"rev-atlas-chegada\",\"rev-atlas-restaurante\",\"rev-atlas-casa-principal\",\"rev-atlas-piscina\",\"rev-atlas-eventos\",\"v16-fire\",\"v16-pool\",\"rev-atlas-faixa-verde\",\"gen-viver-fogo\"];return [...document.querySelectorAll('#atlasPins .map-pin')].every((b,i)=>{b.click();return document.getElementById('atlasDetailImage').src.includes(e[i]+'.webp')&&b.classList.contains('active')&&document.querySelectorAll('#atlasPins .map-pin.active').length===1})})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "6 Círculo do fogo = mantenha a imagem anterior da miniatura (v16-fire.webp)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();document.querySelector('#atlasList button:nth-child(6)').click();return document.getElementById('atlasDetailImage').src.includes('assets/img/v16-fire.webp')})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "o palco principal mostra a foto do espaço e um MINI-MAPA (inset no canto inferior direito, ~26% da largura, cantos arredondados, borda fina) com rev-home-atlas.webp",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const c=document.getElementById('atlasCanvas').getBoundingClientRect(),m=document.querySelector('#atlasOverlay .atlas-minimap'),r=m.getBoundingClientRect(),cs=getComputedStyle(m);return m.querySelector('img').src.includes('rev-home-atlas.webp')&&Math.abs(r.width/c.width-.26)<.03&&Math.abs(c.right-r.right-18)<4&&Math.abs(c.bottom-r.bottom-18)<4&&parseFloat(cs.borderTopLeftRadius)>=10&&parseFloat(cs.borderTopWidth)===1&&document.getElementById('atlasDetailImage').getBoundingClientRect().width>=c.width-2})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "o mini-mapa tem os 9 pinos numerados, nas posições (x,y %) pedidas, clicáveis; o do espaço atual destacado",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const m=document.querySelector('#atlasOverlay .atlas-minimap').getBoundingClientRect();const xy=[[70,6],[47,90],[14,90],[30,27],[88,27],[91,80],[6,62],[62,88],[64,45]];const pins=[...document.querySelectorAll('#atlasPins .map-pin')];return pins.length===9&&pins.every((p,i)=>{const r=p.getBoundingClientRect();return p.textContent.trim()===String(i+1)&&Math.abs((r.left+r.width/2-m.left)/m.width*100-xy[i][0])<1.5&&Math.abs((r.top+r.height/2-m.top)/m.height*100-xy[i][1])<1.5})&&document.querySelector('#atlasPins .map-pin.active').textContent.trim()==='3'})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "Ao abrir, o espaço selecionado é o 3 \"Casa principal\", com sua foto",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();return document.getElementById('atlasDetailTitle').textContent==='Casa principal'&&document.getElementById('atlasDetailImage').src.includes('rev-atlas-casa-principal.webp')&&document.querySelector('#atlasList button.active').textContent.trim()==='3Casa principal'})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "CDL.ATLAS_PLACES com x,y, nomes, textos e asset pedidos (Home e A Casa usam os mesmos números)",
+  "expr": "(()=>{const N=[\"Entrada\",\"Recepção / Restaurante\",\"Casa principal\",\"Piscina\",\"Espaço de eventos\",\"Círculo do fogo / Fogueira\",\"Bar piscina\",\"Jardim\",\"Fogueira\"],F=[\"rev-atlas-chegada\",\"rev-atlas-restaurante\",\"rev-atlas-casa-principal\",\"rev-atlas-piscina\",\"rev-atlas-eventos\",\"v16-fire\",\"v16-pool\",\"rev-atlas-faixa-verde\",\"gen-viver-fogo\"],XY=[[70,6],[47,90],[14,90],[30,27],[88,27],[91,80],[6,62],[62,88],[64,45]];const P=CDL.ATLAS_PLACES;return N.every((n,i)=>P[n]&&P[n].x===XY[i][0]&&P[n].y===XY[i][1]&&P[n].asset.includes(F[i])&&P[n].text.length>20)&&Object.keys(P).join('|')===N.join('|')})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "A barra de baixo fica só com o título do espaço e o texto (sem a imagem quadrada)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const d=document.querySelector('#atlasOverlay .atlas-detail');return [...d.children].map(x=>x.tagName).join()==='H2,P'&&!d.querySelector('img,.detail-image')&&d.querySelector('p').textContent===CDL.ATLAS_PLACES['Casa principal'].text})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "ELIMINE os mini menus/tags (\"acesso\", \"estacionamento\"…) abaixo do texto principal",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const o=document.getElementById('atlasOverlay');return !o.querySelector('.tag-row,#atlasDetailTags')&&!o.textContent.includes('estacionamento'.toUpperCase())&&![...o.querySelectorAll('span')].some(s=>/^(acesso|estacionamento|origem|convivência|café|mesa)$/.test(s.textContent.trim()))})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "ELIMINE os botões \"Entender a chegada\"/\"Conhecer A Casa\"/\"Planejar estadia\"",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const d=document.querySelector('#atlasOverlay .atlas-detail');const t=document.getElementById('atlasOverlay').textContent;return !d.querySelector('button,a,.btn,.ghost-btn')&&!t.includes('Entender a chegada')&&!t.includes('Conhecer A Casa')&&!t.includes('Planejar estadia')&&document.querySelectorAll('#atlasOverlay .close-overlay').length===1})()"
+ },
+ {
+  "bloco": "Janela do Atlas Vivo",
+  "item": "Mantenha os textos de cada espaço de ATLAS_PLACES, sem tom de nota interna",
+  "expr": "(()=>{const t=Object.values(CDL.ATLAS_PLACES).map(p=>p.text).join(' ').toLowerCase();return !/(ainda precisa|rascunho|planta identifica|identificado na planta|validar|confirmar)/.test(t)&&CDL.ATLAS_PLACES['Círculo do fogo / Fogueira'].text==='Na época de seca, o círculo reúne conversa, vinho e céu aberto.'&&CDL.ATLAS_PLACES['Recepção / Restaurante'].text.startsWith('É onde a chegada')})()"
+ },
+ {
+  "bloco": "Entrar na Casa (percurso)",
+  "item": "cena 1 \"Chegada\" = rev-jornada-1-chegada.webp",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openJourney();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-1-chegada.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"
+ },
+ {
+  "bloco": "Entrar na Casa (percurso)",
+  "item": "cena 2 \"Jardim\" = rev-jornada-2-jardim.webp (retrato, object-fit:cover, object-position:center)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-2-jardim.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"
+ },
+ {
+  "bloco": "Entrar na Casa (percurso)",
+  "item": "cena 3 \"A piscina\" (Fim de tarde) = rev-jornada-3-piscina.webp (retrato)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();document.querySelector('[data-journey-target=pool]').click();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-3-piscina.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"
+ },
+ {
+  "bloco": "Entrar na Casa (percurso)",
+  "item": "cena 4 (Bem-estar) mantém a foto atual (v16-wellness)",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();document.querySelector('[data-journey-target=pool]').click();document.querySelector('[data-journey-target=wellness]').click();const i=document.getElementById('journeyImage');return i.src.includes('v16-wellness.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"
+ },
+ {
+  "bloco": "Entrar na Casa (percurso)",
+  "item": "cena 5 \"Noite\" = rev-jornada-5-noite.webp",
+  "expr": "(()=>{CDL.closeOverlays();CDL.openJourney();document.querySelector('[data-journey-target=garden]').click();document.querySelector('[data-journey-target=pool]').click();document.querySelector('[data-journey-target=wellness]').click();document.querySelector('[data-journey-target=night]').click();const i=document.getElementById('journeyImage');return i.src.includes('rev-jornada-5-noite.webp')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(i).objectPosition==='50% 50%'})()"
+ },
+ {
+  "bloco": "Reservar - bloco 1",
+  "item": "título \"Escolha suas datas, a casa ajuda no resto\" (vírgula entre as frases, sem ponto final)",
+  "expr": "(()=>{const h=document.querySelector('#page-reservar h1');return h.innerHTML.replace(/<br>/g,' ').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim()==='Escolha suas datas, a casa ajuda no resto'&&!/[.]\\s*$/.test(h.textContent)})()"
+ },
+ {
+  "bloco": "Reservar - bloco 1",
+  "item": "Tirar o botão \"abrir motor oficial\" na etapa final: remover #openBookingEngine",
+  "expr": "(()=>!document.getElementById('openBookingEngine')&&!document.getElementById('page-reservar').textContent.includes('Abrir motor oficial'))()"
+ },
+ {
+  "bloco": "Reservar - bloco 1",
+  "item": "etapa final: \"Voltar\", \"Ver disponibilidade\" (Omnibees) e \"Falar com a equipe\" (WhatsApp)",
+  "expr": "(()=>{const p=document.querySelector('#page-reservar .reserve-step[data-step=\"4\"] .hero-actions');return [...p.children].map(b=>b.textContent.trim()).join('|')==='Voltar|Ver disponibilidade|Falar com a equipe'&&!!document.getElementById('openWhatsApp')&&!!document.getElementById('openOmnibees')})()"
+ },
+ {
+  "bloco": "Reservar - bloco 1",
+  "item": "o contêiner .reserve-shell tem o id reserveShell (A Casa abre direto nele com data-anchor)",
+  "expr": "(()=>{const e=document.getElementById('reserveShell');return !!e&&e.classList.contains('reserve-shell')&&e.contains(document.getElementById('reserveForm'))})()"
+ },
+ {
+  "bloco": "Reservar - bloco 1",
+  "item": "o botão de A Casa com data-anchor=\"reserveShell\" existe e o id está na página Reservar (se houver)",
+  "expr": "(()=>{const b=document.querySelectorAll('[data-anchor=\"reserveShell\"]');return [...b].every(x=>x.dataset.pageTarget==='reservar')&&!!document.querySelector('#page-reservar #reserveShell')})()"
+ },
+ {
+  "bloco": "Reservar - bloco 2",
+  "item": "título \"Antes de reservar,<br>o essencial\" (quebra explícita; \"o essencial\" junto na 2ª linha)",
+  "expr": "(()=>{const h=document.querySelector('#reserveBefore h2');const br=h.querySelector('br');return !!br&&h.innerHTML.replace(/<br>/g,' ').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim()==='Antes de reservar, o essencial'&&br.previousSibling.textContent.trim()==='Antes de reservar,'&&br.nextElementSibling.textContent==='o essencial'})()"
+ },
+ {
+  "bloco": "Reservar - bloco 2",
+  "item": "sem texto interno (\"políticas ainda precisam…\", \"protótipo\", \"placeholder\", \"demonstração\") na página",
+  "expr": "(()=>{const t=document.getElementById('page-reservar').textContent.toLowerCase()+document.getElementById('interestOverlay').textContent.toLowerCase();return !/(ainda precisam|protótipo|placeholder|demonstração)/.test(t)})()"
+ },
+ {
+  "bloco": "Regra geral",
+  "item": "retire qualquer subtexto ao lado de títulos grandes de seção (Reservar: parágrafo ao lado do título do topo)",
+  "expr": "(()=>!document.querySelector('#page-reservar .section-head p,#page-reservar .section-head .small,#page-reservar .rv-lead'))()"
+ },
+ {
+  "bloco": "Reservar - mobile/1440",
+  "item": "sem rolagem horizontal na página Reservar",
+  "expr": "(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)()"
+ },
+ {
+  "bloco": "Sombras (20/10)",
+  "item": "todas as texturas de sombra (18 fundos) têm vídeo de sombra e arquivo existente",
+  "expr": "(async()=>{const els=[...document.querySelectorAll('.section-bg.baked')];const refs=[...new Set(els.map(e=>((e.getAttribute('style')||'')+(e.querySelector('img')?.src||'')).match(/([0-9a-f]{6})-m\\.webp/)?.[1]).filter(Boolean))];const r=await Promise.all(refs.map(x=>fetch('assets/video/sh-'+x+'.webm',{method:'HEAD'}).then(a=>a.ok)));return els.length>=18&&r.every(Boolean)})()"
+ }
 ]
