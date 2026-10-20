@@ -240,3 +240,7 @@ main{padding-top:var(--header-h)}
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 .section-bg.baked{mix-blend-mode:normal!important}
+
+/* seletor de idioma (PT | EN) */
+.lang-switch{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--verde-escuro);text-decoration:none;border:1px solid transparent;transition:background .2s,color .2s}
+.lang-switch:hover{background:rgba(19,59,51,.08)}

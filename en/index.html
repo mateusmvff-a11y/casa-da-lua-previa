@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0d4237">
+<title>Casa da Lua · Alto Paraíso de Goiás</title>
+<meta name="description" content="An inn that feels like a home in Alto Paraíso, Brazil. Garden, wellness, experiences, events and 15 suites to live the Chapada dos Veadeiros at a different pace.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2732%27 fill=%27%230d4237%27/%3E%3Cpath d=%27M40 12a20 20 0 1 0 0 40 16 16 0 0 1 0-40z%27 fill=%27%23e2dcd0%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/lqm1qwg.css">
+<script>if(location.search.indexOf("sem-movimento")<0)document.documentElement.classList.add("motion-on");setTimeout(function(){document.documentElement.classList.remove("motion-on")},7000)</script>
+<link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#home" data-page-target="home" aria-label="Casa da Lua, go to Home">
+    <img src="../assets/img/3bbd97.webp" alt="Casa da Lua by Tati Mandelli" width="129" height="46">
+  </a>
+  <nav class="main-nav" aria-label="Main navigation">
+    <button class="nav-link active" data-page-target="home">Home</button>
+    <button class="nav-link" data-page-target="casa">The House</button>
+    <button class="nav-link" data-page-target="suites">Suites</button>
+    <button class="nav-link" data-page-target="viver">Living</button>
+    <button class="nav-link" data-page-target="experiencias">Experiences</button>
+    <button class="nav-link" data-page-target="eventos">Events</button>
+    <button class="nav-link" data-page-target="chapada">The Chapada</button>
+  </nav>
+  <div class="header-actions">
+    <a class="lang-switch" data-lang-switch href="../" hreflang="pt-BR" lang="pt-BR" aria-label="Ler o site em português">PT</a>
+    <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+    <button class="ghost-btn journey-open">Step inside</button>
+    <button class="btn" data-page-target="reservar">Book now</button>
+  </div>
+</header>
+
+<main>
+
+<section class="page" id="page-home" data-page="home">
+
+  <!-- 1 · Hero (Figma: tela cheia, imagem c532c2 + película escura, texto centralizado) -->
+  <section class="hero" id="home-hero" data-anim="hero" data-guide-id="home.hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="../assets/img/c532c2.webp" alt="" fetchpriority="high" decoding="async">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="../assets/video/home-hero-poster.webp" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+        <source src="../assets/video/home-hero-m.mp4" type="video/mp4" media="(max-width:760px)">
+        <source src="../assets/video/home-hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-copy">
+      <div class="hero-badge" data-anim="reveal"><i></i><span>Alto Paraíso · Chapada dos Veadeiros</span></div>
+      <h1 class="display" data-anim="title">A living house, open to the Chapada</h1>
+      <p class="lead" data-anim="reveal">Fifteen suites, garden, pool, spa, cinema, table and fire.<br class="br-d"> A place to live Alto Paraíso with comfort, company and time</p>
+      <div class="hero-actions" data-anim="reveal">
+        <button class="btn" data-page-target="suites">See suites</button>
+        <button class="ghost-btn journey-open">Step inside</button>
+        <button class="ghost-btn" data-page-target="reservar">Check dates</button>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div class="stat-row" data-anim="reveal">
+        <div class="stat"><strong>15</strong><span>suites</span></div>
+        <div class="stat"><strong>8</strong><span>categories</span></div>
+        <div class="stat"><strong>7:30 am</strong><span>breakfast starts</span></div>
+        <div class="stat"><strong>2 pm</strong><span>check-in</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atalhos da Home (V16): barra sticky logo abaixo do hero, sem ocupar altura -->
+  <nav class="home-chapter-nav" aria-label="Shortcuts of the home page">
+    <div class="chapter-bar" role="group">
+      <button class="active" data-home-anchor="home-viver" data-scroll-to="home-viver">The day</button>
+      <button data-home-anchor="home-explorar" data-scroll-to="home-explorar">The property</button>
+      <button data-home-anchor="home-ficar" data-scroll-to="home-ficar">Suites</button>
+      <button data-home-anchor="home-encontrar" data-scroll-to="home-encontrar">Experiences</button>
+      <button data-home-anchor="home-historia" data-scroll-to="home-historia">The story</button>
+      <button data-home-anchor="home-voltar" data-scroll-to="home-voltar">The Chapada</button>
+    </div>
+  </nav>
+
+  <!-- 2 · A casa muda com o dia -->
+  <section class="section dark home-chapter" id="home-viver" data-guide-id="home.rhythm">
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/79f7c0-m.webp);--op:0.51" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">The house changes with the day</div>
+          <h2 class="title" data-anim="title">Three times of day, <strong>three moments<br class="br-d"> to be here</strong></h2>
+        </div>
+      </div>
+      <div class="time-stage">
+        <div class="time-tabs" role="tablist" aria-label="Time of day" data-stagger>
+          <button class="time-tab active" data-time="morning" role="tab" aria-selected="true" data-anim="reveal"><strong>7:30 am</strong><span>the day begins</span></button>
+          <button class="time-tab" data-time="afternoon" role="tab" aria-selected="false" data-anim="reveal"><strong>5:40 pm</strong><span>the return</span></button>
+          <button class="time-tab" data-time="night" role="tab" aria-selected="false" data-anim="reveal"><strong>9 pm</strong><span>the house lights up</span></button>
+        </div>
+        <div class="time-scene" data-anim="image">
+          <img id="homeTimeImage" src="../assets/img/5f9ce3.webp" alt="Breakfast at Casa da Lua" loading="lazy" decoding="async" data-parallax="-6">
+          <div class="time-shade" aria-hidden="true"></div>
+          <div class="time-scene-copy" aria-live="polite">
+            <div>
+              <div class="kicker" id="homeTimeKicker">Morning</div>
+              <h3 id="homeTimeTitle">Breakfast in the garden</h3>
+            </div>
+            <p id="homeTimeText">The table is part of the house. Breakfast is included and served from 7:30 to 10:30 am</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · A propriedade ganha outro desenho conforme a companhia (perfis + Atlas em miniatura) -->
+  <section class="section cream home-chapter" id="home-explorar" data-guide-id="home.atlas">
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/0a1586-m.webp);--op:0.2" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Explore by what matters to you</div>
+          <h2 class="title" data-anim="title">The property takes on a different<br class="br-d"> design <strong>depending on your company</strong></h2>
+        </div>
+      </div>
+      <div class="explore-grid">
+        <div class="profile-panel" data-guide-id="home.profile" data-anim="reveal">
+          <div class="eyebrow">How are you coming?</div>
+          <div class="profile-compact-grid" role="tablist" aria-label="Travel profile">
+            <button class="profile-card compact-profile active" data-profile="familia" role="tab" aria-selected="true"><strong>With family</strong></button>
+            <button class="profile-card compact-profile" data-profile="amigos" role="tab" aria-selected="false"><strong>With friends</strong></button>
+            <button class="profile-card compact-profile" data-profile="pet" role="tab" aria-selected="false"><strong>With a pet</strong></button>
+            <button class="profile-card compact-profile" data-profile="encontro" role="tab" aria-selected="false"><strong>For a<br>gathering</strong></button>
+          </div>
+          <div class="profile-result" aria-live="polite">
+            <div class="kicker">our suggestion:</div>
+            <h3 id="profileTitle">A stay in which the whole house takes part</h3>
+            <p id="profileText">Start with the Master, Presidential or Luxury suites and see how they relate to the pool, breakfast and garden</p>
+            <button class="btn" id="profileCTA" data-page-target="suites">See options</button>
+          </div>
+        </div>
+        <div class="atlas-home-card" data-anim="reveal">
+          <div class="atlas-map">
+            <img src="../assets/img/rev-home-atlas.webp" alt="Map of the Casa da Lua property, with the spaces numbered" width="2400" height="1310" loading="lazy" decoding="async">
+            <div class="atlas-pins">
+            <button class="map-pin" style="left:70%;top:6%" data-place="Entrance" aria-label="1. Entrance">1</button>
+            <button class="map-pin" style="left:47%;top:90%" data-place="Reception / Restaurant" aria-label="2. Reception / Restaurant">2</button>
+            <button class="map-pin active" style="left:14%;top:90%" data-place="Main house" aria-label="3. Main house">3</button>
+            <button class="map-pin" style="left:30%;top:27%" data-place="Pool" aria-label="4. Pool">4</button>
+            <button class="map-pin" style="left:88%;top:27%" data-place="Events space" aria-label="5. Events space">5</button>
+            <button class="map-pin" style="left:91%;top:80%" data-place="Fire circle / Bonfire" aria-label="6. Fire circle / Bonfire">6</button>
+            <button class="map-pin" style="left:6%;top:62%" data-place="Pool bar" aria-label="7. Pool bar">7</button>
+            <button class="map-pin" style="left:62%;top:88%" data-place="Garden" aria-label="8. Garden">8</button>
+            <button class="map-pin" style="left:64%;top:45%" data-place="Bonfire" aria-label="9. Bonfire">9</button>
+            </div>
+          </div>
+          <div class="atlas-home-copy" aria-live="polite">
+            <div class="eyebrow">Living Atlas</div>
+            <h3 id="homeAtlasTitle">Main house</h3>
+            <p id="homeAtlasText">The original core of the property, tied to the memory of the house and part of the accommodation</p>
+            <div class="hero-actions">
+              <button class="btn atlas-open">Open the Atlas</button>
+              <button class="ghost-btn" data-page-target="casa">Discover the house</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Escolha pelo estilo da viagem -->
+  <section class="section white photo home-chapter" id="home-ficar" data-guide-id="home.suites">
+    <div class="section-bg" style="--bg:url(../assets/img/rev-home-bloco4.webp);--op:1" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">8 categories, 15 suites</div>
+          <h2 class="title" data-anim="title">Choose by the <strong>style</strong> of your trip</h2>
+        </div>
+        <button class="text-button" data-page-target="suites" data-anim="reveal">See all categories</button>
+      </div>
+      <div class="suite-picks" data-stagger>
+        <article class="card" data-anim="reveal">
+          <div class="eyebrow">Family</div>
+          <h3>Master</h3>
+          <p>Up to 4 guests, king bed, 2 single beds, double hot tub and a balcony facing the garden</p>
+          <div class="tag-row"><span>28 m²</span><span>up to 4 guests</span><span>hot tub</span></div>
+          <button class="text-button suite-detail-btn" data-suite="master">See the suite</button>
+        </article>
+        <article class="card" data-anim="reveal">
+          <div class="eyebrow">View and balcony</div>
+          <h3>Superior Luxury</h3>
+          <p>5 units with a balcony and a view of the garden or the pool</p>
+          <div class="tag-row"><span>22 m²</span><span>up to 2 guests</span><span>privileged view</span></div>
+          <button class="text-button suite-detail-btn" data-suite="luxo-superior">See the suite</button>
+        </article>
+        <article class="card" data-anim="reveal">
+          <div class="eyebrow">Wellness</div>
+          <h3>Premium Hydro</h3>
+          <p>Ground-floor suite with a living area, balcony and hot tub</p>
+          <div class="tag-row"><span>28 m²</span><span>up to 3 guests</span><span>ground floor</span></div>
+          <button class="text-button suite-detail-btn" data-suite="premium-hidro">See the suite</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Programas e encontros (Experiência Tidelli + Eventos) -->
+  <section class="section cream home-chapter" id="home-encontrar">
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/c514f2-m.webp);--op:0.78" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Beyond the stay</div>
+          <h2 class="title" data-anim="title"><strong>Programs</strong> and <strong>gatherings</strong> that<br class="br-d"> change the pace of the house</h2>
+        </div>
+      </div>
+      <div class="dual-feature-grid">
+        <article class="feature-panel experience-panel" data-guide-id="home.experience" data-anim="reveal">
+          <div class="feature-media" data-anim="image">
+            <img id="homeProgramImage" src="../assets/img/3c03d3.webp" alt="Experience at Casa da Lua" loading="lazy" decoding="async">
+          </div>
+          <div class="feature-body">
+            <div class="eyebrow">Tidelli Experience</div>
+            <h3><strong>4 days,</strong> <strong>each with its own rhythm</strong></h3>
+            <div class="chip-row compact" id="homeExperienceDays">
+              <button class="chip chip-button active" data-exp-day="quinta">Thursday</button>
+              <button class="chip chip-button" data-exp-day="sexta">Friday</button>
+              <button class="chip chip-button" data-exp-day="sabado">Saturday</button>
+              <button class="chip chip-button" data-exp-day="domingo">Sunday</button>
+            </div>
+            <p id="homeExpText">Arrival, transfer to Alto Paraíso, check-in and a dinner to open the group experience</p>
+            <div class="feature-actions">
+              <button class="btn dark" data-page-target="experiencias">See the program</button>
+              <button class="text-button interest-open">Get dates</button>
+            </div>
+          </div>
+        </article>
+        <article class="feature-panel events-panel" data-guide-id="home.events" data-anim="reveal">
+          <div class="feature-media" data-anim="image">
+            <img src="../assets/img/rev-home-bloco5.webp" alt="Events area at Casa da Lua" loading="lazy" decoding="async">
+          </div>
+          <div class="feature-body">
+            <div class="eyebrow">Events and retreats</div>
+            <h3>Stay and gathering in the same place</h3>
+            <p>Weddings, celebrations, retreats and immersions can combine a hall, garden, covered areas and fifteen suites on the same property</p>
+            <div class="tag-row"><span>up to 200 people</span><span>15 suites</span><span>rain plan</span></div>
+            <div class="feature-actions">
+              <button class="btn dark" data-page-target="eventos" data-anchor="eventFormats">See formats</button>
+              <button class="text-button proposal-open">Request a proposal</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · A Casa da Lua nasceu como casa -->
+  <section class="section sand home-chapter story-teaser" id="home-historia" data-guide-id="home.stories">
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/124ae6-m.webp);--op:0.26" aria-hidden="true"></div>
+    <div class="story-grid">
+      <div class="story-media" data-anim="image">
+        <img src="../assets/img/b0fa2f.webp" alt="Balcony with sofa, rugs and a view of the garden at Casa da Lua" loading="lazy" decoding="async" data-parallax="-6">
+      </div>
+      <div class="story-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Before the inn</div>
+        <h2 class="title" data-anim="title">Casa da Lua<br class="br-d"> <strong>was born a home</strong></h2>
+        <p class="story-text" data-anim="reveal">Tati Mandelli arrived in Alto Paraíso in 2009. The house was finished in 2011 and, at the end of the following year, began to receive guests. Even as time went by, books, objects, the garden and certain rituals kept setting the tone of the place</p>
+        <div class="story-mini-list" data-anim="reveal">
+          <span>A living room inspired by a reference found in Portugal</span>
+          <span>Art and objects gathered over a lifetime</span>
+          <span>Fire, wine and a starry sky in the dry season</span>
+        </div>
+        <div data-anim="reveal"><button class="btn" data-page-target="casa">Discover the story</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · A volta à casa faz parte da viagem -->
+  <section class="section dark home-chapter chapada-return" id="home-voltar">
+    <div class="section-bg baked mul" style="--bg:url(../assets/img/a435c5-m.webp);--op:0.54" aria-hidden="true"></div>
+    <div class="return-grid">
+      <div class="return-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">The Chapada continues on the way back</div>
+        <h2 class="title" data-anim="title">The <strong>return home</strong> is<br class="br-d"> part of the trip</h2>
+        <p class="lead" data-anim="reveal">After the road, the sun and the water, the rhythm changes. Pool, hot tub, spa, table and fire help stretch the day and give the return home its own pleasure</p>
+        <div class="hero-actions" data-anim="reveal">
+          <button class="btn" data-page-target="chapada" data-anchor="chapadaCuradoria">See the curation</button>
+        </div>
+      </div>
+      <div class="return-media" data-anim="image">
+        <img src="../assets/img/c67a20.webp" alt="Casa da Lua seen from the garden, with a woven swing in the foreground" loading="lazy" decoding="async" data-parallax="-6">
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · Informações práticas -->
+  <section class="section paper compact home-practical">
+    <div class="max">
+      <div class="practical-grid" data-stagger>
+        <div class="practical-item" data-anim="reveal"><strong>2 pm</strong><span>check-in</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>11 am</strong><span>check-out</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>7:30–10:30 am</strong><span>breakfast included</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>Complimentary</strong><span>parking and Wi-Fi</span></div>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<section class="page" id="page-casa" data-page="casa">
+
+  <!-- 1. Hero: A história da Casa da Lua -->
+  <section class="casa-hero" data-guide-id="casa.origin" data-status="confirmed" data-anim="hero">
+    <div class="casa-hero-media">
+      <img src="../assets/img/15659d.webp" alt="Living room of Casa da Lua with sofa, rug and an artwork on the wall" style="object-view-box:xywh(56px 209px 1992px 1166px)" data-parallax="-6">
+    </div>
+    <div class="casa-hero-copy" data-stagger>
+      <div class="hero-badge" data-anim="reveal"><i></i><span>The story of Casa da Lua</span></div>
+      <h1 class="title" data-anim="title">Before it was an inn, <strong>it was a home</strong></h1>
+      <p class="hero-lead" data-anim="reveal">Tati arrived in Alto Paraíso in 2009. The house was finished in 2011 and, at the end of the following year, began to receive guests. It grew into rooms, gardens and meeting spaces without losing the domestic scale that gave it its origin</p>
+      <div class="hero-actions" data-anim="reveal">
+        <button class="btn atlas-open" type="button">Explore the property</button>
+        <button class="ghost-btn page-link" type="button" data-page-target="suites">See the suites</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Como tudo começou -->
+  <section class="section cream casa-origem">
+    <div class="section-bg baked casa-bg casa-multiply" style="--op:0.42" aria-hidden="true"><img src="../assets/img/444b9d-m.webp" alt="" loading="lazy" decoding="async" style="object-view-box:xywh(0px 44px 2400px 700px)"></div>
+    <div class="max origin-editorial">
+      <div class="origem-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">How it all began</div>
+        <h2 class="title" data-anim="title">The house grew <strong>without losing its feel of home</strong></h2>
+        <p class="lead" data-anim="reveal">In December 2012, the residence began to receive guests. New suites came later, then leisure spaces, wellness areas and gatherings</p>
+        <p class="origem-texto" data-anim="reveal">What ties these phases together is a simple way of occupying the place: coffee in the morning, paths through the garden, shade, water, the table and the fire at the end of the day. The structure grew; the feeling of being in a home remained,</p>
+      </div>
+      <div class="year-stack" aria-label="Milestones of the story" data-stagger>
+        <article data-anim="reveal"><time>2009</time><h3>Arrival</h3><p>Tati arrives in Alto Paraíso with the wish to build a house</p></article>
+        <article data-anim="reveal"><time>2011</time><h3>The house is finished</h3><p>The place begins to be lived in by the family</p></article>
+        <article data-anim="reveal"><time>2012</time><h3>The doors open</h3><p>In December, the house begins to receive guests</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Atlas Vivo -->
+  <section class="section dark casa-atlas" data-guide-id="casa.atlas" data-status="placeholder">
+    <div class="section-bg casa-bg" style="--op:1" aria-hidden="true"><img src="../assets/img/175273.webp" alt="" loading="lazy" decoding="async" style="object-view-box:xywh(0px 0px 1347px 715px)"></div>
+    <div class="casa-veil" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head" data-stagger>
+        <div>
+          <div class="eyebrow" data-anim="reveal">Living Atlas</div>
+          <h2 class="title" data-anim="title">Understand how the house <strong>is organized</strong></h2>
+        </div>
+      </div>
+      <div class="atlas-teaser" data-anim="reveal">
+        <div class="atlas-map">
+          <img src="../assets/img/rev-home-atlas.webp" alt="Schematic plan of the property" width="2400" height="1310" loading="lazy" decoding="async">
+          <button class="map-pin" type="button" style="left:70%;top:6%" data-place="Entrance" aria-label="1 · Entrance">1</button>
+          <button class="map-pin" type="button" style="left:47%;top:90%" data-place="Reception / Restaurant" aria-label="2 · Reception / Restaurant">2</button>
+          <button class="map-pin" type="button" style="left:14%;top:90%" data-place="Main house" aria-label="3 · Main house">3</button>
+          <button class="map-pin" type="button" style="left:30%;top:27%" data-place="Pool" aria-label="4 · Pool">4</button>
+          <button class="map-pin" type="button" style="left:88%;top:27%" data-place="Events space" aria-label="5 · Events space">5</button>
+          <button class="map-pin" type="button" style="left:91%;top:80%" data-place="Fire circle / Bonfire" aria-label="6 · Fire circle / Bonfire">6</button>
+          <button class="map-pin" type="button" style="left:6%;top:62%" data-place="Pool bar" aria-label="7 · Pool bar">7</button>
+          <button class="map-pin" type="button" style="left:62%;top:88%" data-place="Garden" aria-label="8 · Garden">8</button>
+          <button class="map-pin" type="button" style="left:64%;top:45%" data-place="Bonfire" aria-label="9 · Bonfire">9</button>
+        </div>
+        <div class="atlas-copy">
+          <div class="atlas-place">
+            <h3 id="casaAtlasTitle">A simple base to locate the house</h3>
+            <p id="casaAtlasText">The plan helps locate the main cores of the property and serves as the base for the full Atlas, which can later be refined with more precision</p>
+            <div class="atlas-actions"><button class="btn light atlas-open" type="button">Open the Atlas</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. O que a torna única -->
+  <section class="section dark casa-unica" data-guide-id="casa.authorship" data-status="working">
+    <div class="section-bg baked casa-bg casa-multiply" style="--op:0.76" aria-hidden="true"><img src="../assets/img/a435c5-m.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="max">
+      <div class="section-head" data-stagger>
+        <div>
+          <div class="eyebrow" data-anim="reveal">What makes it unique</div>
+          <h2 class="title" data-anim="title">The <strong>personality</strong> of the house took shape little by little</h2>
+        </div>
+      </div>
+      <div class="grid-3 house-layers" data-stagger>
+        <article class="card" data-anim="reveal"><h3>Memory in the rooms</h3><p>A reference seen in Portugal became the masonry of the living room; books, artworks and objects found their place around it.</p></article>
+        <article class="card" data-anim="reveal"><h3>Design made to be used</h3><p>Pieces from Tidelli enter the routine of the house, especially in the relationship between interior, garden and outdoor life.</p></article>
+        <article class="card" data-anim="reveal"><h3>Use that gives meaning</h3><p>Breakfast, the return from the trail, conversation and fire make the spaces change throughout the day.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Histórias da casa -->
+  <section class="section sand casa-historias" data-guide-id="casa.stories" data-status="confirmed">
+    <div class="section-bg casa-bg" style="--op:1" aria-hidden="true"><img src="../assets/img/ea1b27.webp" alt="" loading="lazy" decoding="async" style="object-view-box:xywh(594px 0px 1620px 892px)"></div>
+    <div class="max">
+      <div class="section-head" data-stagger>
+        <div>
+          <div class="eyebrow" data-anim="reveal">Stories of the house</div>
+          <h2 class="title" data-anim="title"><strong>Three stories</strong> help you understand the house</h2>
+        </div>
+      </div>
+      <div class="story-grid">
+        <article class="story-main" data-anim="image">
+          <img src="../assets/img/bef858.webp" alt="Living room and objects at Casa da Lua" style="object-view-box:xywh(42px 0px 1116px 1000px)" loading="lazy" decoding="async" data-parallax="-5">
+          <div class="story-main-copy">
+            <div class="kicker">Living room and books</div>
+            <h3>From Portugal to Alto Paraíso</h3>
+            <p>The living-room masonry was born from a magazine reference and helped give a home to Tati's books</p>
+          </div>
+        </article>
+        <div class="story-list" data-stagger>
+          <article class="story-card" data-anim="reveal"><div class="thumb"><img src="../assets/img/gen-casa-acervo.webp" alt="Art and objects of the house" loading="lazy" decoding="async"></div><div><h4>The collection of a lifetime</h4><p>Carybé railings, works from different places and drawings tied to the pool's moon</p></div></article>
+          <article class="story-card" data-anim="reveal"><div class="thumb"><img src="../assets/img/gen-viver-fogo.webp" alt="Fire circle" loading="lazy" decoding="async"></div><div><h4>The fire space</h4><p>In the dry season, the bonfire brings together wine, conversation and a starry sky</p></div></article>
+          <article class="story-card" data-anim="reveal"><div class="thumb"><img src="../assets/img/gen-casa-design.webp" alt="Furniture of the house in use" loading="lazy" decoding="async"></div><div><h4>Lived-in design</h4><p>The furniture is part of the house in use, from the pool to the garden, never a showroom apart from daily life</p></div></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. O jeito de receber -->
+  <section class="section cream casa-equipe" data-guide-id="casa.team" data-status="working">
+    <div class="section-bg baked casa-bg casa-multiply" style="--op:0.56" aria-hidden="true"><img src="../assets/img/0fe412-m.webp" alt="" loading="lazy" decoding="async" style="object-view-box:xywh(0px 509px 2400px 1125px)"></div>
+    <div class="max split">
+      <div class="equipe-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">The way we welcome</div>
+        <h2 class="title" data-anim="title">The house also shows up in the <strong>care</strong> of every day</h2>
+        <p class="lead" data-anim="reveal">During your stay, the team helps organize outings, schedules, experiences and the use of the spaces. It is a practical, close presence, without the distance of a formal hotel</p>
+        <div class="hero-actions" data-anim="reveal"><button class="btn page-link" type="button" data-page-target="reservar" data-anchor="reserveShell">Plan your stay</button></div>
+      </div>
+      <div class="media-frame tall" data-anim="image">
+        <img src="../assets/img/f6643a.webp" alt="Breakfast table at Casa da Lua" loading="lazy" decoding="async" data-parallax="-5">
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<section class="page" id="page-suites" data-page="suites">
+
+  <!-- 1. Hero (Figma: Section 1920x1124, foto 439f36 em tela cheia) -->
+  <section class="suites-hero" data-anim="hero" data-guide-id="suites.intro">
+    <img class="crop suites-hero-bg" src="../assets/img/439f36.webp" alt="Bed with golden cushions and a lit lamp in a suite at Casa da Lua" decoding="async">
+    <div class="suites-hero-copy">
+      <div class="suites-badge" data-anim="reveal"><i></i><span>15 suites · 8 categories</span></div>
+      <h1 class="suites-hero-title" data-anim="title">Find <strong>the right suite</strong> for your trip</h1>
+      <p class="suites-hero-lead" data-anim="reveal">Choosing gets simpler when capacity, access, view and highlights appear together. Use the filters, compare categories and move on to availability</p>
+      <div class="hero-actions" data-anim="reveal">
+        <button class="btn" data-scroll-to="suiteGridSection">See categories</button>
+        <button class="ghost-btn suites-hero-ghost" data-page-target="reservar">Check dates</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Da escolha à disponibilidade (Figma: seção verde com 3 passos) -->
+  <section class="section dark" data-guide-id="suites.booking">
+    <div class="section-bg baked suites-bg-dark" style="--bg:url(../assets/img/247695-m.webp);--op:0.41" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">From choice to availability</div>
+          <h2 class="title" data-anim="title">Your <strong>choice</strong> goes with you</h2>
+        </div>
+      </div>
+      <div class="suites-steps" data-stagger>
+        <article class="suites-step" data-anim="reveal"><div class="suites-step-n">1</div><h3>Choose</h3><p>Filter by capacity, access and highlight</p></article>
+        <article class="suites-step" data-anim="reveal"><div class="suites-step-n">2</div><h3>Compare</h3><p>See up to three categories side by side</p></article>
+        <article class="suites-step" data-anim="reveal"><div class="suites-step-n">3</div><h3>Check</h3><p>Go to the engine with dates, guests and category preserved</p></article>
+      </div>
+      <div class="suites-steps-cta" data-anim="reveal">
+        <button class="btn" data-page-target="reservar">Check dates</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Filtros e categorias (Figma: seção areia com 8 cartões) -->
+  <section class="section sand" id="suiteGridSection" data-guide-id="suites.filters">
+    <div class="section-bg baked" style="--bg:url(../assets/img/a6844e-m.webp);--op:0.2" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Filter categories</div>
+          <h2 class="title" data-anim="title">Discover <strong>our suites</strong></h2>
+        </div>
+        <p class="small" aria-live="polite"><span id="suiteCount">8</span> <span id="suiteCountLabel">categories shown</span></p>
+      </div>
+      <div class="suites-filters" role="group" aria-label="Suite filters" data-anim="reveal">
+        <button class="suite-filter active" data-suite-filter="all">All</button>
+        <button class="suite-filter" data-suite-filter="2 guests">Up to 2 guests</button>
+        <button class="suite-filter" data-suite-filter="3 guests">Up to 3 guests</button>
+        <button class="suite-filter" data-suite-filter="4 guests">Up to 4 guests</button>
+        <button class="suite-filter" data-suite-filter="ground floor">Ground floor</button>
+        <button class="suite-filter" data-suite-filter="balcony">Balcony</button>
+        <button class="suite-filter" data-suite-filter="view">View</button>
+        <button class="suite-filter" data-suite-filter="hot tub">Hot tub</button>
+        <button class="suite-filter" data-suite-filter="ofurô">Ofurô</button>
+      </div>
+      <div class="suite-grid" data-guide-id="suites.cards">
+
+        <article class="suite-card" data-suite-id="standard" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-standard.webp" alt="Standard Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>2 units</span><span>22 m²</span></div>
+            <h3>Standard</h3>
+            <p>1 queen-size bed. Outdoor area, ground floor.</p>
+            <div class="tag-row"><span>ground floor</span><span>2 guests</span><span>balcony</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="standard"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="standard">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="luxo" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-luxo.webp" alt="Luxury Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>3 units</span><span>30 m²</span></div>
+            <h3>Luxury</h3>
+            <p>1 queen-size bed + 1 single bed. Main house, 1st floor.</p>
+            <div class="tag-row"><span>3 guests</span><span>main house</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="luxo"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="luxo">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="luxo-superior" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-luxo-superior.webp" alt="Superior Luxury Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>5 units</span><span>22 m²</span></div>
+            <h3>Superior Luxury</h3>
+            <p>1 queen-size bed. Outdoor area.</p>
+            <div class="tag-row"><span>2 guests</span><span>view</span><span>balcony</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="luxo-superior"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="luxo-superior">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="premium" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-premium.webp" alt="Premium Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unit</span><span>30 m²</span></div>
+            <h3>Premium</h3>
+            <p>1 queen-size bed. Outdoor area, 1st floor.</p>
+            <div class="tag-row"><span>3 guests</span><span>living area</span><span>balcony</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="premium"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="premium">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="premium-hidro" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-premium-hidro.webp" alt="Premium Hydro Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unit</span><span>28 m²</span></div>
+            <h3>Premium Hydro</h3>
+            <p>1 queen-size bed. Outdoor area, ground floor.</p>
+            <div class="tag-row"><span>3 guests</span><span>ground floor</span><span>hot tub</span><span>living area</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="premium-hidro"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="premium-hidro">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="premium-ofuro" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-premium-ofuro.webp" alt="Premium Ofurô Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unit</span><span>28 m²</span></div>
+            <h3>Premium Ofurô</h3>
+            <p>1 king-size bed. Main house, rooftop.</p>
+            <div class="tag-row"><span>2 guests</span><span>ofurô</span><span>view</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="premium-ofuro"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="premium-ofuro">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="master" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-master.webp" alt="Master Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unit</span><span>28 m²</span></div>
+            <h3>Master</h3>
+            <p>1 king-size bed + 2 single beds. Outdoor area.</p>
+            <div class="tag-row"><span>4 guests</span><span>hot tub</span><span>garden</span><span>family</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="master"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="master">See details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="suite-card" data-suite-id="presidencial" data-anim="reveal">
+          <div class="suite-card-media">
+            <img src="../assets/img/suite-presidencial.webp" alt="Presidential Suite" loading="lazy" decoding="async">
+          </div>
+          <div class="suite-card-copy">
+            <div class="suite-card-top"><span>1 unit</span><span>63 m²</span></div>
+            <h3>Presidential</h3>
+            <p>1 king-size bed + 2 single beds, in two bedrooms. Main house, 1st floor.</p>
+            <div class="tag-row"><span>4 guests</span><span>2 bedrooms</span><span>hot tub</span><span>sauna</span></div>
+            <div class="suite-actions">
+              <label><input class="compare-check" type="checkbox" value="presidencial"><span>compare</span></label>
+              <button class="text-button suite-detail-btn" data-suite="presidencial">See details</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra de comparação (V16): fixa, visível só com seleção -->
+  <div class="compare-dock" id="compareDock" role="region" aria-label="Suite comparison">
+    <span><strong id="compareCount">0</strong> <span id="compareLabel">suites selected</span></span>
+    <button class="btn" id="openCompare" disabled>Compare</button>
+  </div>
+</section>
+
+<section class="page" id="page-viver" data-page="viver">
+
+  <!-- Hero (Figma: Section 1920x1124, imagem b3af24) -->
+  <section class="vv-hero" data-anim="hero" data-guide-id="viver.hero">
+    <div class="vv-hero-bg" aria-hidden="true">
+      <img src="../assets/img/b3af24.webp" alt="" decoding="async" data-parallax="-8">
+    </div>
+    <div class="vv-hero-copy">
+      <div class="vv-badge" data-anim="reveal"><i></i><span>Living at the House</span></div>
+      <h1 class="vv-h1" data-anim="title">The day changes pace <br>when <strong>you come back</strong></h1>
+      <p class="vv-lead" data-anim="reveal">At Casa da Lua, the stay has a life of its own. Breakfast, water, spa, cinema, billiards, table and fire become part of the trip with the same weight as what happens outside the inn</p>
+      <div class="hero-actions vv-actions" data-anim="reveal">
+        <button class="btn" type="button" id="jumpMoments" data-scroll-to="momentsSection">See the moments</button>
+        <button class="ghost-btn vv-ghost" type="button" data-page-target="reservar">Plan your stay</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Momentos da casa (Figma: Section 1138, fundo verde-escuro + textura dc4f2a) -->
+  <section class="section dark vv-moments" id="momentsSection" data-guide-id="viver.moments">
+    <div class="section-bg baked" style="--bg:url(../assets/img/dc4f2a-m.webp);--op:0.58" aria-hidden="true" data-parallax="-8"></div>
+    <div class="max">
+      <div class="vv-head" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Moments of the house</div>
+        <h2 class="vv-h2" data-anim="title">The same place <strong>takes on another role</strong> depending on the time of day</h2>
+      </div>
+      <div class="vv-tabs moment-tabs" role="tablist" aria-label="Moments of the day" data-anim="reveal">
+        <button type="button" class="active" role="tab" aria-selected="true" data-viver-moment="morning">7:30 am · morning</button>
+        <button type="button" role="tab" aria-selected="false" data-viver-moment="afternoon">5:40 pm · return</button>
+        <button type="button" role="tab" aria-selected="false" data-viver-moment="night">9 pm · evening</button>
+      </div>
+      <div class="vv-moment moment-hero" data-anim="reveal">
+        <div class="vv-moment-media moment-media" data-anim="image">
+          <img id="viverMomentImage" src="../assets/img/3402e0.webp" alt="Breakfast table at Casa da Lua" loading="lazy" decoding="async">
+        </div>
+        <div class="vv-moment-copy moment-copy" aria-live="polite">
+          <div class="eyebrow" id="viverMomentEyebrow">The day begins</div>
+          <div class="vv-time time" id="viverMomentTime">7:30 am</div>
+          <h3 class="vv-moment-title" id="viverMomentTitle">Breakfast served, garden waking up</h3>
+          <p class="vv-moment-text" id="viverMomentText">Breakfast is included and served from 7:30 to 10:30 am. It is when the day gains direction without having to start in a hurry.</p>
+          <div class="chip-row" id="viverMomentTags"><span class="chip">coffee</span><span class="chip">garden</span><span class="chip">preparation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Espaços (Figma: Section 1146, areia + textura 6b0fe2) -->
+  <section class="section sand vv-spaces" data-guide-id="viver.spaces">
+    <div class="section-bg baked" style="--bg:url(../assets/img/6b0fe2-m.webp);--op:0.62" aria-hidden="true" data-parallax="-8"></div>
+    <div class="max">
+      <div class="vv-head" data-stagger>
+        <div class="eyebrow" data-anim="reveal">The whole house takes part</div>
+        <h2 class="vv-h2 vv-h2-dark" data-anim="title"><strong>Spaces</strong> for resting, <br>playing, caring and staying</h2>
+      </div>
+      <div class="vv-space-grid space-grid" data-stagger>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="../assets/img/2cc20b.webp" alt="Casa da Lua pool" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Pool and jacuzzi</h3><p>Water, a slide and late afternoon after the Chapada.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="../assets/img/ca5f75.webp" alt="Towels in the spa sauna" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Spa, sauna and massage</h3><p>A layer of care so the body returns to its own rhythm.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <!-- Figma: este cartão não tem imagem. Imagem provisória gen-viver-jardim (será trocada pela gerada, mesmo nome). -->
+          <img src="../assets/img/gen-viver-jardim.webp" alt="Casa da Lua garden" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Garden and nooks</h3><p>The outdoors works as a living room, a path and a place to linger.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="../assets/img/06c265.webp" alt="Set table in the restaurant" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Restaurant and bar</h3><p>Food, drinks and snacks within the house experience.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <img src="../assets/img/f3a25d.webp" alt="Cinema and billiards room" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Cinema and billiards</h3><p>Ways to carry on the evening without having to go out.</p></div>
+        </article>
+        <article class="vv-space space-card" data-anim="reveal">
+          <!-- Figma: este cartão não tem imagem. Imagem provisória gen-viver-fogo (será trocada pela gerada, mesmo nome). -->
+          <img src="../assets/img/gen-viver-fogo.webp" alt="Casa da Lua bonfire" loading="lazy" decoding="async">
+          <div class="vv-space-copy"><h3>Fire and togetherness</h3><p>In the dry season, the circle opens up for wine, conversation and sky.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- A manhã começa na mesa (só no V16 1213-1229; estilo do Figma) -->
+  <section class="section white vv-breakfast" data-guide-id="viver.breakfast">
+    <div class="max vv-split">
+      <div class="vv-breakfast-media media-frame wide" data-anim="image">
+        <img src="../assets/img/v16-breakfast.webp" alt="Casa da Lua breakfast" loading="lazy" decoding="async" data-parallax="-8">
+      </div>
+      <div class="vv-breakfast-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Breakfast</div>
+        <h2 class="vv-h2 vv-h2-dark" data-anim="title">The morning <strong>starts at the table</strong></h2>
+        <p class="vv-breakfast-text" data-anim="reveal">Served in the restaurant from 7:30 to 10:30 am, breakfast is included in the rate. It is one of the strongest moments of the house, because it brings together the table, the garden and the start of the day in one mood.</p>
+        <div class="vv-stats stat-row" data-anim="reveal">
+          <div class="stat"><strong>7:30 am</strong><span>start</span></div>
+          <div class="stat"><strong>10:30 am</strong><span>end</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Noite (Figma: Section 650, folhagem 8c273a + véu preto) -->
+  <section class="section vv-night" data-guide-id="viver.night">
+    <div class="section-bg" style="--bg:url(../assets/img/8c273a.webp)" aria-hidden="true" data-parallax="-8"></div>
+    <div class="max vv-night-grid split reverse">
+      <div class="vv-night-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">When the night arrives</div>
+        <h2 class="vv-h2" data-anim="title">At night, the house <strong>takes on another mood</strong></h2>
+        <p class="vv-night-text" data-anim="reveal">Cinema, billiards, table and fire appear as possibilities for those who prefer to stay in. Instead of imposing an itinerary, the night leaves room for each group to use the house in its own way.</p>
+        <div class="chip-row vv-night-chips" data-anim="reveal"><span class="chip">cinema</span><span class="chip">billiards</span><span class="chip">bonfire</span><span class="chip">table</span></div>
+      </div>
+      <div class="vv-night-media media-frame wide" data-anim="image">
+        <img src="../assets/img/8dd68a.webp" alt="Casa da Lua at night, with bonfires in the garden" loading="lazy" decoding="async" data-parallax="-8">
+      </div>
+    </div>
+  </section>
+
+  <!-- Informações práticas (Figma: faixa 1920x233, creme) -->
+  <section class="section compact cream vv-practical" data-guide-id="viver.practical">
+    <div class="max">
+      <div class="vv-practical-grid practical-grid" data-stagger>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>Included</strong><span>Breakfast</span></div>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>Available</strong><span>Wi-Fi in all areas</span></div>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>Complimentary</strong><span>Parking</span></div>
+        <div class="vv-practical-item practical-item" data-anim="reveal"><strong>On request</strong><span>Wellness bookings and costs</span></div>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<section class="page" id="page-experiencias" data-page="experiencias">
+
+  <!-- Hero: Experiência Tidelli -->
+  <section class="exp-hero" data-anim="hero">
+    <div class="exp-hero-media" aria-hidden="false">
+      <img src="../assets/img/10384c.webp" alt="Group yoga class at the Tidelli Experience, in the covered hall of Casa da Lua" decoding="async">
+    </div>
+    <div class="exp-hero-shade" aria-hidden="true"></div>
+    <div class="exp-hero-copy">
+      <div class="hero-badge" data-anim="reveal"><i></i> Tidelli Experience</div>
+      <h1 data-anim="title">Experience <strong>Tidelli</strong></h1>
+      <p class="exp-hero-lead" data-anim="reveal">A recurring program that brings together design, nature,<br class="br-d"> wellness, table and togetherness. The structure repeats;<br class="br-d"> some details may change in each edition</p>
+      <div class="exp-hero-actions hero-actions" data-anim="reveal">
+        <button class="btn" id="jumpProgram" type="button" data-scroll-to="programSection">See the program</button>
+        <button class="ghost-btn interest-open" type="button">Get the next dates</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programação por dia -->
+  <section class="section cream exp-program" id="programSection">
+    <div class="section-bg baked" style="--bg:url(../assets/img/0a1586-m.webp);--op:0.2" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Recurring structure</div>
+          <h2 class="title" data-anim="title">The program spreads over <strong>4 days</strong></h2>
+        </div>
+      </div>
+      <div class="program-shell">
+        <div class="program-days" data-anim="reveal" data-stagger>
+          <button class="program-day active" type="button" data-program-day="quinta" data-anim="reveal" aria-pressed="true"><small>thursday</small><strong>Welcome</strong></button>
+          <button class="program-day" type="button" data-program-day="sexta" data-anim="reveal" aria-pressed="false"><small>friday</small><strong>Nature</strong></button>
+          <button class="program-day" type="button" data-program-day="sabado" data-anim="reveal" aria-pressed="false"><small>saturday</small><strong>Wellness</strong></button>
+          <button class="program-day" type="button" data-program-day="domingo" data-anim="reveal" aria-pressed="false"><small>sunday</small><strong>Farewell</strong></button>
+        </div>
+        <div class="program-stage" data-anim="reveal">
+          <div class="program-stage-media" data-anim="image">
+            <img id="programImage" src="../assets/img/fabcc9.webp" alt="Program of the Tidelli Experience" loading="lazy" decoding="async">
+          </div>
+          <div class="program-stage-copy">
+            <div class="eyebrow" id="programEyebrow">Arrival and welcome</div>
+            <h3 id="programTitle">From the <strong>Tidelli</strong> <br>universe to <strong>Casa da Lua</strong></h3>
+            <p id="programText">Arrival, transfer to Alto Paraíso, check-in and a dinner to open the group experience.</p>
+            <div class="schedule-list" id="programSchedule">
+              <div class="schedule-item"><span>arrival</span><p>Reception and start of the route</p></div>
+              <div class="schedule-item"><span>afternoon</span><p>Transfer and check-in at Casa da Lua</p></div>
+              <div class="schedule-item"><span>evening</span><p>Welcome dinner</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que atravessa os 4 dias -->
+  <section class="section dark exp-thread">
+    <div class="section-bg" style="--bg:url(../assets/img/18780c.webp);--op:0.54" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">What runs through the 4 days</div>
+          <h2 class="title" data-anim="title">An edition may change<br class="br-d"> <strong>without losing its shape</strong></h2>
+        </div>
+      </div>
+      <div class="grid-4" data-stagger>
+        <article class="card" data-anim="reveal"><h3>Nature</h3><p>Landscape, water, travel and time outdoors</p></article>
+        <article class="card" data-anim="reveal"><h3>Wellness</h3><p>Yoga, sauna, hot tub, massage and pauses</p></article>
+        <article class="card" data-anim="reveal"><h3>Table</h3><p>Breakfast, a special lunch, dinner and shared food</p></article>
+        <article class="card" data-anim="reveal"><h3>Togetherness</h3><p>Arrival, fire, conversations and farewell</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que já vivemos -->
+  <section class="section sand exp-memory">
+    <div class="section-bg baked" style="--bg:url(../assets/img/79f7c0-m.webp);--op:0.3" aria-hidden="true"></div>
+    <div class="max exp-memory-grid">
+      <div class="exp-memory-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">what we have lived</div>
+        <h2 class="title" data-anim="title"><strong>Past experiences</strong> that stayed in the memory</h2>
+        <p class="exp-memory-text" data-anim="reveal">Arrival, nature, yoga, table, massage and fire make up a library of images that can be reorganized according to the program</p>
+        <div class="chip-row" data-anim="reveal"><span class="chip">arrival</span><span class="chip">nature</span><span class="chip">yoga</span><span class="chip">table</span><span class="chip">fire</span></div>
+      </div>
+      <div class="exp-memory-frame exp-carousel" data-anim="image" role="group" aria-roledescription="carrossel" aria-label="Photos of past experiences">
+        <div class="exp-slides" id="expSlides">
+          <img class="exp-slide is-active" src="../assets/img/3c880f.webp" alt="Thatched covered hall with guests gathered, in a previous edition of the experience" loading="lazy" decoding="async">
+        </div>
+        <button class="exp-car-btn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="exp-car-btn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Próximas edições -->
+  <section class="section exp-next" id="proximasEdicoes">
+    <div class="section-bg" style="--bg:url(../assets/img/56f002.webp);--op:1" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Next editions</div>
+          <h2 class="title title-sm" data-anim="title">Get the dates of the<br class="br-d"> <strong>next experience</strong></h2>
+        </div>
+      </div>
+      <form class="interest-form exp-form" data-anim="reveal" novalidate>
+        <div class="field"><label for="expNome">Name</label><input id="expNome" name="nome" type="text" placeholder="Your full name" autocomplete="name"></div>
+        <div class="field"><label for="expContato">contact</label><input id="expContato" name="contato" type="text" placeholder="WhatsApp or e-mail" autocomplete="email"></div>
+        <button class="btn" type="submit">Keep me posted</button>
+      </form>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="page-eventos" data-page="eventos">
+
+  <!-- 1. Hero (Figma: Section 1920x1124, foto 3142af + gradiente) -->
+  <section class="hero" data-anim="hero" data-guide-id="eventos.types" data-status="confirmed">
+    <div class="hero-media">
+      <img src="../assets/img/3142af.webp" alt="Hall at Casa da Lua with rows of wicker chairs under the wood-and-thatch roof" data-parallax="-8">
+    </div>
+    <div class="hero-copy" data-stagger>
+      <div class="hero-badge" data-anim="reveal"><i></i><span>Events &amp; Retreats</span></div>
+      <h1 class="title" data-anim="title">Stay and gathering <br class="dbr-s"><strong>in the same place</strong></h1>
+      <p class="lead" data-anim="reveal">Casa da Lua hosts weddings, corporate immersions, retreats and celebrations with a hall, garden, covered areas and 15 suites on the same property</p>
+      <div class="hero-actions" data-anim="reveal">
+        <button class="btn" type="button" id="jumpEvents" data-scroll-to="eventFormats">Explore the formats</button>
+        <button class="ghost-btn" type="button" data-scroll-to="eventProposal">Talk to the team</button>
+      </div>
+      <div class="stat-row" data-anim="reveal">
+        <div class="stat"><strong>up to 200</strong><span>people, depending on the format</span></div>
+        <div class="stat"><strong>15</strong><span>suites on the property</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Escolha o formato (configurador) -->
+  <section class="section cream" id="eventFormats" data-guide-id="eventos.types" data-status="confirmed">
+    <div class="section-bg baked" style="--bg:url(../assets/img/444b9d-m.webp);--op:0.6" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head" data-stagger>
+        <div>
+          <div class="eyebrow" data-anim="reveal">Choose the format</div>
+          <h2 class="title" data-anim="title"><strong>4 ways</strong> to use the house</h2>
+        </div>
+      </div>
+      <div class="event-selector" data-anim="reveal">
+        <button class="active" type="button" data-event-type="casamento">Wedding</button>
+        <button type="button" data-event-type="imersao">Corporate immersion</button>
+        <button type="button" data-event-type="retiro">Retreat</button>
+        <button type="button" data-event-type="celebracao">Celebration</button>
+      </div>
+      <div class="event-config" data-anim="reveal">
+        <div class="event-copy">
+          <div class="eyebrow" id="eventEyebrow">Wedding</div>
+          <h3 id="eventTitle">Ceremony, dinner and party <br class="dbr-s"><strong>in the same place</strong></h3>
+          <p id="eventText">The garden can host the ceremony and the socializing; the hall and the covered area support the reception and the rain plan; the suites keep part of the group close by</p>
+          <ul class="feature-list" id="eventFeatures"><li><span>Moments</span><span>ceremony + reception</span></li><li><span>Spaces</span><span>garden + hall + canopy</span></li><li><span>Accommodation</span><span>15 suites</span></li></ul>
+          <button class="btn light" type="button" id="eventAsk" data-scroll-to="eventProposal">Request a proposal for this format</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Estrutura -->
+  <section class="section white" data-guide-id="eventos.capacity" data-status="working">
+    <div class="section-bg baked" style="--bg:url(../assets/img/b32395-m.webp);--op:0.69" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head" data-stagger>
+        <div>
+          <div class="eyebrow" data-anim="reveal">Structure</div>
+          <h2 class="title" data-anim="title"><strong>The house adapts</strong> to the scale <br class="dbr">and rhythm of the gathering</h2>
+        </div>
+      </div>
+      <div class="grid-4" data-stagger>
+        <article class="card" data-anim="reveal"><h3>Hall</h3><p>Meals, content, reception or the main part of the rain plan.</p></article>
+        <article class="card" data-anim="reveal"><h3>Garden</h3><p>Opens room for ceremonies, breaks, tables and socializing outdoors.</p></article>
+        <article class="card" data-anim="reveal"><h3>Covered area</h3><p>The canopy widens the possibilities and keeps the gathering going on rainy days.</p></article>
+        <article class="card" data-anim="reveal"><h3>Accommodation</h3><p>8 categories and 15 suites make it possible to keep part of the group on the property.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Plano para chuva (foto e9656c como fundo da seção) -->
+  <section class="section dark rain">
+    <div class="section-bg" style="--bg:url(../assets/img/e9656c.webp)" aria-hidden="true" data-anim="image"></div>
+    <div class="max">
+      <div class="rain-copy" data-stagger>
+        <div class="eyebrow" data-anim="reveal">Rain plan</div>
+        <h2 class="title" data-anim="title"><strong>If it rains,</strong> the gathering goes on</h2>
+        <p class="lead" data-anim="reveal">The proposal already takes into account what happens in the hall, what stays under the covered area and how the group moves between accommodation, meals and program.</p>
+        <div class="chip-row" data-anim="reveal"><span class="chip">hall</span><span class="chip">canopy</span><span class="chip">circulation</span><span class="chip">support</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Solicitar proposta -->
+  <section class="section cream" id="eventProposal" data-guide-id="eventos.proposal" data-status="working">
+    <div class="section-bg baked" style="--bg:url(../assets/img/444b9d-m.webp);--op:0.49" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head" data-stagger>
+        <div>
+          <div class="eyebrow" data-anim="reveal">Request a proposal</div>
+          <h2 class="title" data-anim="title">What are you <strong>planning?</strong></h2>
+        </div>
+      </div>
+      <form class="form-card proposal-form" data-anim="reveal">
+        <div class="form-grid">
+          <div class="field"><label for="evTipo">Type of gathering</label><select id="evTipo"><option value="" selected>E.g.: wedding</option><option>Wedding</option><option>Corporate immersion</option><option>Retreat</option><option>Celebration</option></select></div>
+          <div class="field"><label for="evData">Date or period</label><input id="evData" type="text" placeholder="E.g.: October 2026"></div>
+          <div class="field"><label for="evPessoas">Estimated number of people</label><input id="evPessoas" type="number" min="1" placeholder="E.g.: 80"></div>
+          <div class="field"><label for="evHosp">Do you need accommodation?</label><select id="evHosp"><option value="" selected>Yes/No</option><option>Yes</option><option>No</option><option>To be defined</option></select></div>
+          <div class="field full"><label for="evConta">Tell us a little about the gathering</label><textarea id="evConta" rows="4" placeholder="Format, food, activities and need for exclusivity"></textarea></div>
+          <div class="field full"><button class="btn" type="submit">Send proposal request</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="page-chapada" data-page="chapada">
+
+  <!-- Hero -->
+  <section class="chapada-hero" data-anim="hero" data-guide-id="chapada.curadoria" data-status="working">
+    <img class="chapada-hero-img" src="../assets/img/396b1c.webp" alt="" aria-hidden="true" decoding="async">
+    <video class="chapada-hero-video" autoplay muted loop playsinline preload="auto" poster="../assets/video/chapada-hero-poster.webp" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+      <source src="../assets/video/chapada-hero-m.mp4" type="video/mp4" media="(max-width:760px)">
+      <source src="../assets/video/chapada-hero.mp4" type="video/mp4">
+    </video>
+    <div class="chapada-hero-shade" aria-hidden="true"></div>
+    <div class="chapada-hero-copy">
+      <div class="chapada-badge" data-anim="reveal"><i></i><span>The Chapada through Casa da Lua</span></div>
+      <h1 class="chapada-h1" data-anim="title">Not every day needs <strong>the same rhythm</strong></h1>
+      <p class="chapada-hero-lead" data-anim="reveal">There are long trails, swims near town, <span style="white-space:nowrap">wellness</span> experiences and tables worth the trip. The curation helps you choose without turning the trip into a race</p>
+      <div class="hero-actions" data-anim="reveal">
+        <button class="btn" type="button" id="jumpChapada" data-scroll-to="chapadaCuradoria">See the choices</button>
+        <button class="ghost-btn" type="button" data-page-target="viver">Plan the return</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curadoria -->
+  <section class="section cream" id="chapadaCuradoria" data-guide-id="chapada.curadoria" data-status="working">
+    <div class="max">
+      <div class="section-head">
+        <div data-stagger>
+          <div class="eyebrow" data-anim="reveal">First picks</div>
+          <h2 class="title" data-anim="title"><strong>8 choices</strong> to get started</h2>
+        </div>
+      </div>
+      <div class="chapada-filter" data-anim="reveal">
+        <button class="suite-filter active" type="button" data-chapada-filter="all">All</button>
+        <button class="suite-filter" type="button" data-chapada-filter="natureza">Nature</button>
+        <button class="suite-filter" type="button" data-chapada-filter="familia">For families</button>
+        <button class="suite-filter" type="button" data-chapada-filter="bem-estar">Wellness</button>
+        <button class="suite-filter" type="button" data-chapada-filter="mesa">Table</button>
+      </div>
+      <div class="chapada-list" data-stagger>
+        <article class="chapada-card" data-anim="reveal" data-tags="natureza dia-inteiro">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/0b6e40.webp" alt="Chapada dos Veadeiros National Park" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Nature</div><h3>National Park</h3><div class="chapada-tags"><span>São Jorge</span><span>varied trails</span><span>full day</span></div><p>Saltos, Carrossel, Corredeiras, Cânions and Cariocas appear on routes of different intensity. The choice of trail should follow the group and the conditions of the day.</p><div class="return-note"><strong>On the way back:</strong> hot tub, a massage or a slower late afternoon at the house</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="natureza meio-periodo">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/cffe9e.webp" alt="Vale da Lua" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Nature</div><h3>Vale da Lua</h3><div class="chapada-tags"><span>short trail</span><span>half day</span><span>rock formations</span></div><p>A short walk leads to rocks sculpted by the São Miguel River, with viewpoints, natural pools and a singular landscape in the Chapada.</p><div class="return-note"><strong>On the way back:</strong> a bath, the garden and an unhurried table</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="natureza familia meio-periodo">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/06ae87.webp" alt="Loquinhas Waterfall" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Nature · families</div><h3>Loquinhas</h3><div class="chapada-tags"><span>close to town</span><span>structured trails</span><span>several pools</span></div><p>A complex near Alto Paraíso, with walkways, pools and falls along circuits that let you choose how far to walk and where to stop.</p><div class="return-note"><strong>On the way back:</strong> pool, cinema or free time in the garden</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="natureza familia meio-periodo">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/409c19.webp" alt="Cristais Waterfall" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Nature · families</div><h3>Cristais Waterfall</h3><div class="chapada-tags"><span>several levels</span><span>close to Alto Paraíso</span><span>swimming breaks</span></div><p>The sequence of falls lets you combine a shorter access with longer walks. The Poço da Vovó is near the parking area and widens the options for groups with different paces.</p><div class="return-note"><strong>On the way back:</strong> coffee, rest and late afternoon by the pool</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="natureza dia-inteiro">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/aefa1b.webp" alt="Almécegas and São Bento Waterfalls" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Nature</div><h3>Almécegas and São Bento</h3><div class="chapada-tags"><span>viewpoint</span><span>waterfalls</span><span>same property</span></div><p>Three waterfalls with different profiles let you build a day of viewpoint, trail and swimming without changing property.</p><div class="return-note"><strong>On the way back:</strong> spa, dinner and a quieter night</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="bem-estar">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/3ef27e.webp" alt="Wellness experiences in the Chapada" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Wellness</div><h3>Healing experiences and therapies</h3><div class="chapada-tags"><span>on request</span><span>private experience</span><span>booking</span></div><p>The region brings together therapists and practices that can be arranged privately. The Casa da Lua team advises on what is available for each period.</p><div class="return-note"><strong>At the house:</strong> sauna, hot tub, spa and silence to prolong the care</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="mesa">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/0ce1cd.webp" alt="Restaurante Na Mata" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Table</div><h3>Restaurante na Mata</h3><div class="chapada-tags"><span>São Miguel River</span><span>cooking over fire</span><span>destination experience</span></div><p>A meal in the middle of the forest, beside the São Miguel River, with dishes prepared over fire and a path that is already part of the experience.</p><div class="return-note"><strong>Before you go:</strong> confirm access, booking and the best time with the team</div></div>
+        </article>
+        <article class="chapada-card" data-anim="reveal" data-tags="mesa">
+          <div class="chapada-photo" data-anim="image"><img src="../assets/img/4b4402.webp" alt="Santo Cerrado in São Jorge" loading="lazy" decoding="async"></div>
+          <div class="chapada-copy"><div class="eyebrow">Table</div><h3>Santo Cerrado</h3><div class="chapada-tags"><span>São Jorge</span><span>risottos</span><span>flavors of the Cerrado</span></div><p>A risotto restaurant in São Jorge that brings Brazilian and Italian cooking close to the ingredients and aromas of the Cerrado.</p><div class="return-note"><strong>Pair it with:</strong> National Park, Vale da Lua or an evening in the village</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Antes de sair -->
+  <section class="section chapada-before" data-guide-id="chapada.details" data-status="working">
+    <div class="section-bg" data-parallax="-8" style="--bg:url(../assets/img/8c273a.webp)" aria-hidden="true"></div>
+    <div class="chapada-before-shade" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div data-stagger>
+          <div class="eyebrow" data-anim="reveal">Before you head out</div>
+          <h2 class="title" data-anim="title">Before choosing an outing, <strong>it is worth confirming:</strong></h2>
+        </div>
+      </div>
+      <div class="grid-4" data-stagger>
+        <article class="card" data-anim="reveal"><h3>Time available</h3><p>Some outings take the whole day. Others fit in a morning or an afternoon.</p></article>
+        <article class="card" data-anim="reveal"><h3>Pace of the group</h3><p>Distance, terrain, age and mobility change the experience of each route quite a lot.</p></article>
+        <article class="card" data-anim="reveal"><h3>Conditions of the day</h3><p>Weather, the need to book, the presence of a guide and the chance to swim can change the plan.</p></article>
+        <article class="card" data-anim="reveal"><h3>Logistics and company</h3><p>It is worth considering children, pets, transport and the real pace of the group before heading out.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- A Chapada continua quando você volta -->
+  <section class="section cream chapada-return" data-guide-id="chapada.return" data-status="working">
+    <div class="max split">
+      <div data-stagger>
+        <div class="eyebrow" data-anim="reveal">The Chapada continues when you return</div>
+        <h2 class="title" data-anim="title">Each outing <strong>finds another rhythm</strong> at the house</h2>
+        <p class="chapada-return-lead" data-anim="reveal">A long day may call for water and a massage. A half day leaves room for the pool, cinema or fire. The curation connects the outside to what happens afterwards.</p>
+        <div class="hero-actions" data-anim="reveal"><button class="btn" type="button" data-page-target="viver">Live the house</button></div>
+      </div>
+      <div class="chapada-return-frame" data-anim="image"><img src="../assets/img/rev-chapada-bloco4.webp" alt="Guests back at Casa da Lua after an outing" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+</section>
+
+<section class="page" id="page-reservar" data-page="reservar">
+  <section class="section cream rv-top">
+    <div class="section-bg baked" style="--bg:url(../assets/img/444b9d-m.webp);--op:0.49" aria-hidden="true"></div>
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Book now</div>
+          <h1 class="title" data-anim="title">Choose your dates,<br><strong>the house helps</strong> with the rest</h1>
+        </div>
+      </div>
+
+      <div class="reserve-shell" id="reserveShell" data-anim="reveal">
+        <aside class="reserve-steps">
+          <div class="eyebrow">Your trip</div>
+          <h2 id="reserveSideTitle">Dates and guests</h2>
+          <p id="reserveSideText">Tell us the period and the occupancy. Preferences come later and are optional.</p>
+          <div class="step-list" aria-hidden="true">
+            <div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div>
+          </div>
+          <div class="card rv-info">
+            <div class="kicker">Confirmed information</div>
+            <ul class="feature-list">
+              <li><span>Check-in</span><span>2 pm</span></li>
+              <li><span>Check-out</span><span>11 am</span></li>
+              <li><span>Breakfast</span><span>7:30–10:30 am</span></li>
+              <li><span>Parking</span><span>complimentary</span></li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="form-card">
+          <form id="reserveForm" novalidate>
+            <div class="reserve-step active" data-step="1">
+              <div class="eyebrow">Step 1 of 4</div>
+              <h2 class="subtitle">When and <strong>with whom?</strong></h2>
+              <div class="form-grid">
+                <div class="field"><label for="reserveArrival">Arrival</label><input id="reserveArrival" type="date"></div>
+                <div class="field"><label for="reserveDeparture">Departure</label><input id="reserveDeparture" type="date"></div>
+                <div class="field"><label for="reserveAdults">Adults</label><select id="reserveAdults"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+                <div class="field"><label for="reserveChildren">Children</label><select id="reserveChildren"><option selected>0</option><option>1</option><option>2</option><option>3</option></select></div>
+                <div class="field full"><label for="reserveCode">Promo code <span class="opt">(optional)</span></label><input id="reserveCode" type="text" autocomplete="off" placeholder="If you have a code"></div>
+                <div class="field full"><button class="btn reserve-next" type="button" data-next-step="2">Continue</button></div>
+              </div>
+            </div>
+
+            <div class="reserve-step hidden" data-step="2">
+              <div class="eyebrow">Step 2 of 4</div>
+              <h2 class="subtitle">Any <strong>priority?</strong></h2>
+              <p class="small">This step is optional and helps rank the categories.</p>
+              <div class="choice-grid">
+                <button class="choice" type="button" data-reserve-pref="ground floor"><strong>Ground floor or few steps</strong><span>Makes access easier.</span></button>
+                <button class="choice" type="button" data-reserve-pref="view"><strong>Balcony or view</strong><span>A stronger link with the outdoors.</span></button>
+                <button class="choice" type="button" data-reserve-pref="hot tub"><strong>Hot tub or ofurô</strong><span>Wellness inside the suite.</span></button>
+                <button class="choice" type="button" data-reserve-pref="pet"><strong>I'm traveling with a pet</strong><span>The team helps confirm the best option.</span></button>
+              </div>
+              <div class="hero-actions">
+                <button class="ghost-btn reserve-prev" type="button" data-prev-step="1">Back</button>
+                <button class="btn reserve-next" type="button" data-next-step="3">See categories</button>
+              </div>
+            </div>
+
+            <div class="reserve-step hidden" data-step="3">
+              <div class="eyebrow">Step 3 of 4</div>
+              <h2 class="subtitle">Compatible <strong>categories</strong></h2>
+              <p class="small">The suggestion takes capacity and preferences into account. Real availability comes from the official booking engine.</p>
+              <div class="reserve-suggestions" id="reserveSuggestions"></div>
+              <div class="hero-actions">
+                <button class="ghost-btn reserve-prev" type="button" data-prev-step="2">Back</button>
+                <button class="btn reserve-next" type="button" data-next-step="4">Continue</button>
+              </div>
+            </div>
+
+            <div class="reserve-step hidden" data-step="4">
+              <div class="eyebrow">Step 4 of 4</div>
+              <h2 class="subtitle">Go to <strong>availability</strong></h2>
+              <p class="rv-p">Availability opens in the inn's official booking engine, already with your dates and guests. You don't need to fill it in again.</p>
+              <div class="card" id="reserveSummary"></div>
+              <div class="hero-actions">
+                <button class="ghost-btn reserve-prev" type="button" data-prev-step="3">Back</button>
+                <a class="btn" id="openOmnibees" href="#" target="_blank" rel="noopener">See availability</a>
+                <a class="ghost-btn" id="openWhatsApp" href="#" target="_blank" rel="noopener">Talk to the team</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section white" id="reserveBefore">
+    <div class="max">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-anim="reveal">Practical information</div>
+          <h2 class="title" data-anim="title">Before booking,<br><strong>the essentials</strong></h2>
+        </div>
+      </div>
+      <div class="practical-grid" data-anim="reveal" data-stagger>
+        <div class="practical-item" data-anim="reveal"><strong>2 pm</strong><span>check-in</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>11 am</strong><span>check-out</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>Included</strong><span>breakfast</span></div>
+        <div class="practical-item" data-anim="reveal"><strong>Complimentary</strong><span>Wi-Fi and parking</span></div>
+      </div>
+      <div class="grid-3 rv-policies" data-stagger>
+        <article class="card" data-anim="reveal"><h3>Pets</h3><p>Talk to the team to confirm accommodation and current conditions.</p></article>
+        <article class="card" data-anim="reveal"><h3>Children</h3><p>Capacity varies by category. The team helps adjust the setup.</p></article>
+        <article class="card" data-anim="reveal"><h3>Cancellation and payment</h3><p>The current terms will be shown in the official booking engine.</p></article>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="../assets/img/3967b9.webp" alt="Casa da Lua by Tati Mandelli" width="290" height="103">
+      <p>An inn that feels like a home in Alto Paraíso. Garden, wellness, experiences, events and 15 suites to live the Chapada at a different pace</p>
+    </div>
+    <div class="footer-col">
+      <h3>Discover</h3>
+      <button data-page-target="casa">The House</button>
+      <button data-page-target="suites">Suites</button>
+      <button data-page-target="viver">Living at the House</button>
+      <button data-page-target="chapada">The Chapada</button>
+    </div>
+    <div class="footer-col">
+      <h3>Plan</h3>
+      <button data-page-target="experiencias">Experiences</button>
+      <button data-page-target="eventos">Events &amp; Retreats</button>
+      <button data-page-target="reservar">Book now</button>
+      <button class="journey-open">Step inside</button>
+    </div>
+  </div>
+  <!-- Contatos copiados do site oficial (20/10/2026). Quando a casa responde por WhatsApp, a mensagem já vem escrita. -->
+  <div class="footer-extra">
+    <div class="footer-contact">
+      <a href="https://api.whatsapp.com/send?phone=5562998329198&amp;text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20uma%20reserva!" target="_blank" rel="noopener" data-contact="whatsapp">WhatsApp · +55 (62) 99832-9198</a>
+      <a href="tel:5562999089605" data-contact="phone">Phone · +55 (62) 99908-9605</a>
+      <a href="mailto:contato@casadaluapousada.com.br" data-contact="email">contato@casadaluapousada.com.br</a>
+      <a href="https://goo.gl/maps/GvnS4RvAsLX63L2u5" target="_blank" rel="noopener" data-contact="maps">Rua do Segredo, 278 · Alto Paraíso de Goiás, Brazil</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/casadaluapousada.oficial" target="_blank" rel="noopener" data-contact="instagram">Instagram</a>
+      <a href="https://www.facebook.com/casadaluapousada" target="_blank" rel="noopener" data-contact="facebook">Facebook</a>
+      <button type="button" class="privacy-open" data-contact="privacy">Privacy policy</button>
+    </div>
+  </div>
+</footer>
+
+<div class="booking-dock" id="bookingDock">
+  <div class="dock-copy"><strong id="dockTitle">Plan your stay</strong><span id="dockText">Dates, guests and categories</span></div>
+  <div class="dock-fields"><span class="dock-field" id="dockDates">Dates</span><span class="dock-field" id="dockGuests">Guests</span></div>
+  <button class="btn" id="dockAction">Check availability</button>
+</div>
+
+
+<!-- Sobreposições do site (HTML V16 1668-1775) — conteúdo preenchido por src/js/overlays.js -->
+
+<div class="overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Navigation" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Close">×</button>
+    <div class="eyebrow ov-anim">Navigation</div>
+    <div class="stack">
+      <button class="card page-link ov-anim" type="button" data-page-target="home"><h3>Home</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="casa"><h3>The House</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="suites"><h3>Suites</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="viver"><h3>Living at the House</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="experiencias"><h3>Experiences</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="eventos"><h3>Events &amp; Retreats</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="chapada"><h3>The Chapada</h3></button>
+      <button class="card page-link ov-anim" type="button" data-page-target="reservar"><h3>Book now</h3></button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="journeyOverlay" role="dialog" aria-modal="true" aria-label="Tour of Casa da Lua" aria-hidden="true">
+  <div class="journey-shell">
+    <div class="journey-media ov-anim"><img id="journeyImage" src="../assets/img/rev-jornada-1-chegada.webp" alt="Tour of Casa da Lua"></div>
+    <div class="journey-copy">
+      <button class="icon-btn close-overlay" type="button" aria-label="Close">×</button>
+      <div class="eyebrow ov-anim" id="journeyKicker">Arrival</div>
+      <h2 class="ov-anim" id="journeyTitle">The house appears between garden and light.</h2>
+      <p class="ov-anim" id="journeyText">The tour begins at the arrival and opens two paths: follow the garden or go straight to the suites.</p>
+      <div class="journey-choices ov-anim" id="journeyChoices"></div>
+      <button class="text-button close-overlay ov-anim" type="button">Leave the tour</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="atlasOverlay" role="dialog" aria-modal="true" aria-label="Living Atlas" aria-hidden="true">
+  <div class="atlas-overlay-shell">
+    <button class="icon-btn close-overlay" type="button" aria-label="Close">×</button>
+    <aside class="atlas-sidebar">
+      <div class="eyebrow ov-anim">Living Atlas</div>
+      <h2 class="ov-anim">Discover the spaces of the property.</h2>
+      <div class="atlas-list ov-anim" id="atlasList"></div>
+    </aside>
+    <div class="atlas-canvas ov-anim" id="atlasCanvas">
+      <div class="atlas-stage"><img id="atlasDetailImage" src="../assets/img/rev-atlas-casa-principal.webp" alt="Main house"></div>
+      <div class="atlas-minimap">
+        <img src="../assets/img/rev-home-atlas.webp" alt="Map of the property">
+        <div id="atlasPins"></div>
+      </div>
+    </div>
+    <aside class="atlas-detail">
+      <h2 class="ov-anim" id="atlasDetailTitle">Main house</h2>
+      <p class="ov-anim" id="atlasDetailText">The original core of the property, tied to the memory of the house and part of the accommodation.</p>
+    </aside>
+  </div>
+</div>
+
+<div class="overlay" id="suiteOverlay" role="dialog" aria-modal="true" aria-label="Suite details" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Close">×</button>
+    <div class="suite-modal-grid">
+      <div class="suite-modal-media ov-anim"><img id="suiteModalImage" src="../assets/img/bef858.webp" alt="Suite"></div>
+      <div class="suite-modal-copy">
+        <div class="eyebrow ov-anim" id="suiteModalUnits">Category</div>
+        <h2 class="ov-anim" id="suiteModalTitle">Suite</h2>
+        <p class="ov-anim" id="suiteModalIntro"></p>
+        <div class="meta-grid ov-anim" id="suiteModalMeta"></div>
+        <h3 class="subtitle ov-anim">What this category offers</h3>
+        <ul class="amenity-list ov-anim" id="suiteModalFeatures"></ul>
+        <div class="hero-actions ov-anim"><button class="btn page-link close-overlay" type="button" data-page-target="reservar">Check dates</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="compareOverlay" role="dialog" aria-modal="true" aria-label="Compare suites" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Close">×</button>
+    <div class="eyebrow ov-anim">Compare suites</div>
+    <h2 class="title ov-anim">See the differences <strong>side by side.</strong></h2>
+    <div class="compare-scroll ov-anim"><table class="compare-table" id="compareTable"></table></div>
+  </div>
+</div>
+
+<div class="overlay" id="interestOverlay" role="dialog" aria-modal="true" aria-label="Next dates" aria-hidden="true">
+  <div class="modal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Close">×</button>
+    <div class="eyebrow ov-anim">Next dates</div>
+    <h2 class="title ov-anim">Get the <strong>next editions.</strong></h2>
+    <p class="lead ov-anim">Leave your contact and receive the next dates of the Tidelli Experience.</p>
+    <form class="interest-form form-grid ov-anim">
+      <div class="field"><label for="interestName">Name</label><input id="interestName" type="text" placeholder="Your name"></div>
+      <div class="field"><label for="interestContact">WhatsApp or e-mail</label><input id="interestContact" type="text" placeholder="Your contact"></div>
+      <div class="field full"><button class="btn" type="submit">Keep me posted</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="privacyOverlay" role="dialog" aria-modal="true" aria-label="Privacy policy" aria-hidden="true">
+  <div class="modal legal">
+    <button class="icon-btn modal-close close-overlay" type="button" aria-label="Close">×</button>
+    <div class="eyebrow ov-anim">Privacy policy</div>
+    <h2 class="title ov-anim">How we look after <strong>your data.</strong></h2>
+    <p class="legal-date ov-anim">Updated on October 20, 2026</p>
+    <div class="legal-body ov-anim">
+      <h3>Who we are</h3>
+      <p>This policy applies to the website of Casa da Lua Pousada, in Alto Paraíso de Goiás (GO), Brazil, and explains how we handle the personal data of people who visit it, ask for information or book a stay.</p>
+
+      <h3>What data we handle</h3>
+      <ul>
+        <li><strong>What you fill in on the forms</strong> (name, contact, dates, number of people, type of event and message). The forms build the message and open the inn's WhatsApp: it is only sent when you confirm it in WhatsApp, which has its own policy.</li>
+        <li><strong>Booking data.</strong> Bookings are made on the Omnibees booking engine. The guest and payment data entered there are handled by the inn and by Omnibees, under the engine's own policy. This site does not collect or store card data.</li>
+        <li><strong>Browsing data</strong>, such as pages visited, type of device and browser, collected through cookies and audience and advertising measurement tools, when they are active.</li>
+      </ul>
+
+      <h3>What we use it for</h3>
+      <p>To answer your requests, complete and manage bookings, look after you during your stay, understand how the site is used so we can improve it and, with your consent, send news and dates of upcoming programs.</p>
+
+      <h3>Who we share it with</h3>
+      <p>Only with those needed for the service: Omnibees (bookings), WhatsApp (conversations), the company that hosts the site and the measurement tools we use. We do not sell personal data.</p>
+
+      <h3>Cookies</h3>
+      <p>Cookies store preferences and help measure how the site is used. You can block or delete cookies in your browser settings; some features may stop working as expected.</p>
+
+      <h3>Your rights</h3>
+      <p>Under Brazil's General Data Protection Law (Law 13,709/2018), you may ask us to confirm that we handle your data, and to give you access to it, correct it, delete it, make it portable and revoke your consent, where applicable.</p>
+
+      <h3>How long we keep it</h3>
+      <p>For as long as needed to fulfil the purpose for which it was collected and the inn's legal obligations. After that, the data is deleted or anonymized.</p>
+
+      <h3>Changes</h3>
+      <p>We may update this policy. The date of the last update is always at the top of this page.</p>
+
+      <h3>Get in touch</h3>
+      <p>Questions, requests or complaints about personal data: <a href="mailto:contato@casadaluapousada.com.br">contato@casadaluapousada.com.br</a>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="../js/site.en.js"></script>
+</body>
+</html>

@@ -91,11 +91,11 @@ CDL.openSuite = function(id){
   if(!s) return;
   const set = (i,v)=>{ const e=document.getElementById(i); if(e) e.textContent=v; };
   set('suiteModalTitle',s.name);
-  set('suiteModalUnits',`${s.units} ${s.units===1?'unidade':'unidades'} · ${s.area}`);
+  set('suiteModalUnits',`${s.units} ${CDL.t(s.units===1?'unidade':'unidades')} · ${s.area}`);
   set('suiteModalIntro',`${s.beds}. ${s.location}. ${s.outdoor}.`);
-  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/suite-standard.webp'; img.alt = `Suíte ${s.name}`; }
+  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/suite-standard.webp'; img.alt = CDL.t('Suíte {name}',{name:s.name}); }
   const meta = $('#suiteModalMeta');
-  if(meta) meta.innerHTML = [['Capacidade',`Até ${s.guests} hóspedes`],['Acesso',s.access],['Vista',s.view],['Área externa',s.outdoor]].map(x=>`<div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
+  if(meta) meta.innerHTML = [['Capacidade',CDL.t('Até {n} hóspedes',{n:s.guests})],['Acesso',s.access],['Vista',s.view],['Área externa',s.outdoor]].map(x=>`<div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
   const feats = $('#suiteModalFeatures'); if(feats) feats.innerHTML = s.features.map(f=>`<li>${f}</li>`).join('');
   const modal = $('#suiteOverlay .modal'); if(modal) modal.scrollTop = 0;
   CDL.openOverlay('suiteOverlay');
@@ -108,7 +108,7 @@ CDL.openCompare = function(ids){
   const rows = [
     ['Categoria',...list.map(s=>s.name)],
     ['Área',...list.map(s=>s.area)],
-    ['Capacidade',...list.map(s=>`Até ${s.guests}`)],
+    ['Capacidade',...list.map(s=>CDL.t('Até {n}',{n:s.guests}))],
     ['Camas',...list.map(s=>s.beds)],
     ['Localização',...list.map(s=>s.location)],
     ['Acesso',...list.map(s=>s.access)],

@@ -13,7 +13,7 @@ CDL.ready(()=>{
     ['Categorias indicadas','A sugestão considera capacidade e preferências, não disponibilidade.'],
     ['Motor oficial','Revise o resumo e siga para a disponibilidade ou atendimento.']
   ];
-  const fmt = v => v ? v.split('-').reverse().join('/') : 'data a definir';
+  const fmt = v => v ? CDL.fmtDate(v) : CDL.t('data a definir');
   const totalGuests = () => Number($('#reserveAdults').value||0) + Number($('#reserveChildren').value||0);
 
   /* o que a pessoa digita vira CDL.booking: o mesmo objeto monta o link do Omnibees, a mensagem do WhatsApp e a barra de reserva */
@@ -56,7 +56,7 @@ CDL.ready(()=>{
     const total = totalGuests();
     const box = $('#reserveSuggestions');
     if(total>4){
-      box.innerHTML = `<article class="suggestion"><strong>Combinação de suítes</strong><p>Para ${total} hóspedes, a equipe precisa combinar duas ou mais categorias.</p></article>`;
+      box.innerHTML = `<article class="suggestion"><strong>${CDL.t('Combinação de suítes')}</strong><p>${CDL.t('Para {n} hóspedes, a equipe precisa combinar duas ou mais categorias.',{n:total})}</p></article>`;
       return;
     }
     const score = s=>{
@@ -65,13 +65,13 @@ CDL.ready(()=>{
       return n - Math.abs(s.guests-total);
     };
     const top = SUITES.filter(s=>s.guests>=Math.min(total,4)).sort((a,b)=>score(b)-score(a)).slice(0,3);
-    box.innerHTML = top.map(s=>`<button type="button" class="suggestion reserve-suite-choice" data-suite="${s.id}"><strong>${s.name}</strong><p>${s.area} · até ${s.guests} hóspedes</p></button>`).join('');
+    box.innerHTML = top.map(s=>`<button type="button" class="suggestion reserve-suite-choice" data-suite="${s.id}"><strong>${s.name}</strong><p>${s.area} · ${CDL.t('até {n} hóspedes',{n:s.guests})}</p></button>`).join('');
   }
 
   function renderSummary(){
     const sel = $('.reserve-suite-choice.active');
     const suite = sel ? SUITES.find(s=>s.id===sel.dataset.suite) : null;
-    $('#reserveSummary').innerHTML = `<h3>Resumo</h3><p><strong>${fmt($('#reserveArrival').value)}</strong> a <strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} hóspedes${suite?`<br>Preferência: ${suite.name}`:''}</p>`;
+    $('#reserveSummary').innerHTML = `<h3>${CDL.t('Resumo')}</h3><p><strong>${fmt($('#reserveArrival').value)}</strong>${CDL.t(' a ')}<strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} ${CDL.t('hóspedes')}${suite?`<br>${CDL.t('Preferência: ')}${suite.name}`:''}</p>`;
   }
 
   $$('.reserve-next').forEach(b=>b.addEventListener('click',()=>{

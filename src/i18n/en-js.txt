@@ -1,0 +1,377 @@
+0|=
+1|=
+2|1 queen-size bed
+3|Outdoor area, ground floor
+4|No significant stairs
+5|No defined view
+6|Balcony with a hammock and a table for two
+7|Shower with chromotherapy
+8|32” Smart TV with SKY
+9|Minibar
+10|Air conditioning
+11|=
+12|Water provided
+13|ground floor
+14|2 guests
+15|Luxury
+16|=
+17|1 queen-size bed + 1 single bed
+18|Main house, 1st floor
+19|Two flights of stairs
+20|No defined view
+21|No balcony
+22|Shower with chromotherapy
+23|32” Smart TV with SKY
+24|Minibar
+25|Air conditioning
+26|=
+27|Water provided
+28|3 guests
+29|Superior Luxury
+30|=
+31|1 queen-size bed
+32|Outdoor area
+33|Five steps
+34|Garden or pool
+35|Balcony with a swing or chaise and a table for two
+36|Shower with chromotherapy
+37|43” Smart TV with SKY
+38|Kettle with teas
+39|Minibar
+40|Air conditioning
+41|=
+42|2 guests
+43|=
+44|=
+45|1 queen-size bed
+46|Outdoor area, 1st floor
+47|Two flights of stairs
+48|No defined view
+49|Balcony with a hammock and a table for two
+50|Living area
+51|Shower with chromotherapy
+52|43” Smart TV with SKY
+53|Kettle with teas
+54|Minibar
+55|Air conditioning
+56|3 guests
+57|Premium Hydro
+58|=
+59|1 queen-size bed
+60|Outdoor area, ground floor
+61|Ground floor
+62|No defined view
+63|Balcony with a hammock and a table for two
+64|Single hot tub
+65|Living area
+66|Bathrobe
+67|43” Smart TV with SKY
+68|Coffee maker
+69|Premium amenities
+70|3 guests
+71|ground floor
+72|Premium Ofurô
+73|=
+74|1 king-size bed
+75|Main house, rooftop
+76|Four flights of stairs
+77|Rooftop view
+78|Rooftop balcony with an ofurô soaking tub and a table for two
+79|Ofurô
+80|Bathrobe
+81|49” Smart TV with SKY
+82|Coffee maker
+83|Premium amenities
+84|Shower with chromotherapy
+85|2 guests
+86|ofurô
+87|=
+88|=
+89|1 king-size bed + 2 single beds
+90|Outdoor area
+91|Five steps
+92|Garden
+93|Balcony with a swing and a table for up to four people
+94|Double hot tub
+95|Bathrobe
+96|49” Smart TV with SKY
+97|Coffee maker
+98|Premium amenities
+99|Shower with chromotherapy
+100|4 guests
+101|family
+102|Presidential
+103|=
+104|1 king-size bed + 2 single beds, in two bedrooms
+105|Main house, 1st floor
+106|Two flights of stairs
+107|Mezzanine with a panoramic view of the garden
+108|Balcony with a swing or chaise and a table for up to four people
+109|Two bedrooms
+110|Mezzanine
+111|Double hot tub
+112|=
+113|Bathrobe
+114|49” Smart TV with SKY
+115|4 guests
+116|2 bedrooms
+117|family
+118|Plan your stay
+119|Dates, guests and categories
+120|Check availability
+121|Dates
+122|Guests
+123|Planning a gathering?
+124|Format, period and number of people
+125|Request a proposal
+126|Format
+127|People
+128|Want to receive the next dates?
+129|The Tidelli Experience opens in editions
+130|Keep me posted
+131|Next dates
+132|Contact
+133|Arrival and welcome
+134|From the Tidelli universe to Casa da Lua.
+135|Arrival, transfer to Alto Paraíso, check-in and a dinner to open the group experience.
+136|Reception and start of the route.
+137|Transfer and check-in at Casa da Lua.
+138|Welcome dinner.
+139|Nature and connection
+140|The day leaves the house and returns to the fire.
+141|Yoga, breakfast, nature, a special lunch, return to the inn, dinner and togetherness.
+142|morning
+143|Yoga, breakfast and a trip out into nature.
+144|Waterfall and a special lunch outdoors.
+145|Return, dinner and bonfire.
+146|Wellness and contemplation
+147|A day with more space between one thing and another.
+148|Yoga, breakfast, sauna, massage therapy, hot tub, lunch by the pool and sunset.
+149|morning
+150|Yoga, breakfast and wellness.
+151|Lunch by the pool and rest.
+152|Sunset in Alto Paraíso.
+153|Farewell
+154|Breakfast, check-out and the way home.
+155|The morning closes the experience with breakfast and arrangements for the return.
+156|morning
+157|Breakfast.
+158|departure
+159|Check-out.
+160|Transfer to Brasília.
+161|=
+162|Rua do Segredo, 278 · Alto Paraíso de Goiás · ZIP 73770-000 · Brazil
+168| adult
+169| adults
+170| child
+171| children
+172|Your stay
+173|Dates and guests already entered
+174|See availability
+176|Please enter a contact to receive the dates.
+177|Tell us a little about the gathering so we can send your request.
+178|Hello, I'd like to request a proposal for an event at Casa da Lua.
+179|Hello, I'd like to receive the next dates of the Tidelli Experience.
+180|Opening the inn's WhatsApp with your details.
+182|Step inside
+183|Entrance
+184|This is where the experience begins, with its own access and a clearer reading of the arrival at the property.
+185|Reception / Restaurant
+186|This is where the arrival happens, the morning begins and the table often brings together guests, families and groups.
+187|Main house
+188|The original core of the property, tied to the memory of the house and part of the accommodation.
+189|Pool
+190|The pool is one of the centers of the property, with the rest area around it.
+191|Events space
+192|A hall and support area for weddings, immersions, retreats and celebrations.
+193|Fire circle / Bonfire
+194|In the dry season, the circle brings together conversation, wine and open sky.
+195|Pool bar
+196|A support point by the water for the late afternoon, after the Chapada.
+197|Garden
+198|The outdoors works as a living room, a path and a place to linger.
+199|Bonfire
+200|In the dry season, the bonfire brings together wine, conversation and a starry sky.
+201|Main house
+202|Main house
+206|Main house
+207|Main house
+209|Main house
+211|Step inside
+212|Arrival
+213|The house appears between garden and light.
+214|The tour begins at the arrival and opens two paths: follow the garden or go straight to the suites.
+215|Follow the garden
+216|Discover the suites
+217|Garden
+218|The outdoors works as a living room.
+219|Paths, shade and places to linger connect the house, the pool and the nooks.
+220|Go to the pool
+221|Open the Atlas
+222|Late afternoon
+223|The water welcomes those who return.
+224|Pool and jacuzzi come in at the moment the body shifts its rhythm after the Chapada.
+225|Move on to wellness
+226|See nearby suites
+227|Wellness
+228|Spa, sauna and massage prolong the return.
+229|Spa, sauna and massage prolong the return and help the body change rhythm after the Chapada.
+230|Arrive at night
+231|Plan your stay
+232|Night
+233|Fire, table and sky close the tour.
+234|From here, you can go on to book or go back to exploring the house.
+235|Book now
+236|Back to the Atlas
+242|Capacity
+243|Up to {n} guests
+244|Access
+245|View
+246|Outdoor area
+250|Select at least two categories.
+251|Category
+252|Area
+253|Capacity
+254|Up to {n}
+255|Beds
+256|Location
+257|Access
+258|View
+259|Highlights
+267|Wedding
+268|Ceremony, dinner and party <br class="dbr-s"><strong>in the same place</strong>
+269|The garden can host the ceremony and the socializing; the hall and the covered area support the reception and the rain plan; the suites keep part of the group close by
+270|Moments
+271|ceremony + reception
+272|Spaces
+273|garden + hall + canopy
+274|Accommodation
+275|15 suites
+276|Corporate immersion
+277|Content, breaks and togetherness <br class="dbr-s"><strong>on the same journey</strong>
+278|The gathering can alternate content, working groups, meals and outdoor areas without separating the program from the accommodation
+279|Rhythm
+280|content + breaks
+281|Setup
+282|circle, auditorium or tables
+283|Accommodation
+284|Retreat
+285|Practice, silence and <br class="dbr-s"><strong>shared moments</strong>
+286|The hall, garden and wellness areas can host practices, conversations, meals and pauses with the accommodation close by
+287|Rhythm
+288|practices + meals
+289|Spaces
+290|hall + garden
+291|Wellness
+292|spa, sauna and hot tub
+293|Celebration
+294|A special occasion <br class="dbr-s"><strong>with the house around you</strong>
+295|Lunches, birthdays and private gatherings can take over the table, hall and garden at different scales
+296|Moment
+297|lunch, dinner or cocktail
+298|Spaces
+299|table + garden + hall
+300|Accommodation
+301|Wedding
+302|Corporate immersion
+303|Retreat
+304|Celebration
+308|Request a proposal for this format
+309|From the <strong>Tidelli</strong> universe <br>to <strong>Casa da Lua</strong>
+312|Past experiences
+313|Thatched covered hall with guests gathered, in a previous edition of the experience
+314|Tables and lights at the welcome dinner of the Tidelli Experience
+315|A nature day of the Tidelli Experience
+316|Wellness at Casa da Lua
+317|Farewell breakfast of the Tidelli Experience
+320|A stay in which the whole house takes part
+321|Start with the Master, Presidential or Luxury suites and see how they relate to the pool, breakfast and garden
+322|See options
+323|Room to be together without losing privacy
+324|The categories for three or four people, the garden, the billiards and the nights at the house help organize a group trip
+325|See suites
+326|The outdoors matters even more
+327|Garden, paths and outdoor suites help organize the stay. The team confirms the category and the conditions best suited to each pet
+328|Plan your stay
+329|Accommodation, outdoor areas and a hall on the same property
+330|Weddings, celebrations, retreats and immersions follow their own proposal path
+331|See events
+332|Breakfast at Casa da Lua
+333|Morning
+334|Breakfast in the garden
+335|The table is part of the house. Breakfast is included and served from 7:30 to 10:30 am
+336|Casa da Lua pool in the late afternoon
+337|Late afternoon
+338|The return from the Chapada slows down in the water.
+339|Pool, jacuzzi, spa and massage prolong the day without asking for another trip.
+340|Casa da Lua lit up at night
+341|Night
+342|The house lights up and takes on another silence.
+343|Fire, cinema, billiards and table come in as possibilities to stay a little longer.
+349|Dates and guests
+350|Tell us the period and the occupancy. Preferences come later and are optional.
+351|Priorities
+352|Choose only what helps rank the categories.
+353|Suggested categories
+354|The suggestion considers capacity and preferences, not availability.
+355|Official engine
+356|Review the summary and go on to availability or to our team.
+357|Hello, I'd like to make a booking!
+358|Arrival:
+359| · Departure:
+360|Guests:
+361|Suite preference:
+362|Priorities:
+363|Promo code:
+364|<article class="suggestion"><strong>Suite combination</strong><p>For ${total} guests, the team needs to combine two or more categories.</p></article>
+365|ofurô
+366|<button type="button" class="suggestion reserve-suite-choice" data-suite="${s.id}"><strong>${s.name}</strong><p>${s.area} · up to ${s.guests} guests</p></button>
+369|Enter the arrival and departure dates to continue.
+370|2 guests
+371|3 guests
+372|4 guests
+373|category shown
+374|categories shown
+375|suite selected
+376|suites selected
+377|Select at least two categories.
+378|The comparison is being prepared.
+379|Compare up to three categories.
+380|Breakfast table at Casa da Lua
+381|The day begins
+382|Breakfast served, garden waking up
+383|Breakfast is included and served from 7:30 to 10:30 am. It is when the day gains direction without having to start in a hurry.
+384|coffee
+385|preparation
+386|Casa da Lua in the late afternoon
+387|The return
+388|Water, spa and a slower rhythm
+389|Pool, jacuzzi, sauna, massage and garden welcome those who come back from the Chapada without asking for another trip.
+390|Casa da Lua at 9 pm
+391|The house lights up
+392|Fire, table, cinema and conversation
+393|The night opens up possibilities for togetherness and for silence too. Nothing needs to feel like a mandatory program.
++7h30|7:30 am
++17h40|5:40 pm
++21h|9 pm
++piscina|pool
++hidro|hot tub
++spa|=
++descanso|rest
++fogo|fire
++cinema|=
++bilhar|billiards
++mesa|table
++Resumo|Summary
++hóspedes|guests
++Preferência: |Preference:
++ a | to 
++data a definir|date to be defined
++unidade|unit
++unidades|units
++Suíte {name}|{name} Suite
++Até {n} hóspedes|Up to {n} guests
++Até {n}|Up to {n}
++Combinação de suítes|Suite combination
++Para {n} hóspedes, a equipe precisa combinar duas ou mais categorias.|For {n} guests, the team needs to combine two or more categories.
++até {n} hóspedes|up to {n} guests

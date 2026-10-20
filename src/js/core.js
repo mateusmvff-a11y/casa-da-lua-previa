@@ -62,7 +62,24 @@ const CONTACT = {
 const OMNIBEES = {hotel:'10264', results:'https://book.omnibees.com/hotelresults', page:'https://book.omnibees.com/hotel/10264&lang=pt-BR'};
 const booking = {arrival:'', departure:'', adults:2, children:0, code:''};
 const ddMMyyyy = iso => iso ? iso.split('-').reverse().join('') : '';
-const shortDate = iso => iso ? iso.split('-').reverse().slice(0,2).join('/') : '';
+/* idioma da página (<html lang>): o site em inglês é gerado pelo build em /en/ com o mesmo código */
+const LANG = (document.documentElement.getAttribute('lang') || 'pt').slice(0,2);
+/* texto que só se conhece em tempo de execução (plurais, datas, mensagens): CDL.t('chave {n}',{n:3}); em português devolve a própria chave */
+const t = (k, v) => {
+  let s = (window.CDL_I18N && window.CDL_I18N[k]) || k;
+  if(v) for(const x in v) s = s.split('{'+x+'}').join(v[x]);
+  return s;
+};
+const fmtDate = iso => {
+  if(!iso) return '';
+  if(LANG === 'en') return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  return iso.split('-').reverse().join('/');
+};
+const shortDate = iso => {
+  if(!iso) return '';
+  if(LANG === 'en') return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  return iso.split('-').reverse().slice(0,2).join('/');
+};
 function bookingRooms(b){ const total = (Number(b.adults)||0) + (Number(b.children)||0); return Math.max(1, Math.ceil(total/4)); }
 function omnibeesUrl(b){
   b = b || booking;
@@ -71,12 +88,13 @@ function omnibeesUrl(b){
   if(b.departure) q.set('CheckOut',ddMMyyyy(b.departure));
   if(b.code) q.set('Code',String(b.code).trim());
   q.set('NRooms',String(bookingRooms(b))); q.set('ad',String(b.adults||1)); q.set('ch',String(b.children||0));
+  if(LANG === 'en') q.set('lang','en-US');      /* o motor abre em inglês quando a pessoa reserva pela versão em inglês */
   return OMNIBEES.results + '?' + q.toString();
 }
 function whatsappUrl(text){ return 'https://api.whatsapp.com/send?phone=' + CONTACT.whatsapp + (text ? '&text=' + encodeURIComponent(text) : ''); }
 function bookingGuestsLabel(b){
   const a = Number(b.adults)||0, ch = Number(b.children)||0;
-  return a + (a===1?' adulto':' adultos') + (ch ? ' · ' + ch + (ch===1?' criança':' crianças') : '');
+  return a + t(a===1?' adulto':' adultos') + (ch ? ' · ' + ch + t(ch===1?' criança':' crianças') : '');
 }
 
 const state = {page:'home', ready:[], pageHooks:{}, started:false, busy:false};
@@ -171,7 +189,7 @@ function switchPage(page, opts={}){
 /* API pública para os scripts das páginas e das sobreposições */
 const CDL = window.CDL = {
   $, $$, ASSETS, SUITES, PROGRAM_DATA, DOCK, state, ready, onPage,
-  CONTACT, OMNIBEES, booking, omnibeesUrl, whatsappUrl, bookingGuestsLabel, shortDate,
+  CONTACT, OMNIBEES, booking, omnibeesUrl, whatsappUrl, bookingGuestsLabel, shortDate, fmtDate, t, LANG,
   showToast, openOverlay, closeOverlays, scrollToId, scrollTop, goPage, updateBookingDock, lenis:null,
   openSuite:null, openAtlas:null, openJourney:null, openCompare:null /* preenchidos por overlays.js */
 };
@@ -180,6 +198,8 @@ Object.defineProperty(CDL,'currentPage',{get:()=>state.page});
 /* Delegação dos botões globais — funciona mesmo que a página não tenha todos os elementos */
 document.addEventListener('click',e=>{
   const t = e.target;
+  const ls = t.closest('[data-lang-switch]');
+  if(ls){ e.preventDefault(); location.href = ls.getAttribute('href') + location.hash; return; }   /* troca de idioma mantendo a seção em que a pessoa está */
   const pageLink = t.closest('[data-page-target]');
   if(pageLink){ e.preventDefault(); goPage(pageLink.dataset.pageTarget,{anchor:pageLink.dataset.anchor}); return; }
   if(t.closest('.close-overlay')){ closeOverlays(); return; }

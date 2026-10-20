@@ -1,0 +1,396 @@
+src/js/core.js:25 Standard
+src/js/core.js:25 22 m²
+src/js/core.js:25 1 cama queen size
+src/js/core.js:25 Área externa, térreo
+src/js/core.js:25 Sem escadas relevantes
+src/js/core.js:25 Sem vista definida
+src/js/core.js:25 Varanda com rede e mesa para duas pessoas
+src/js/core.js:25 Chuveiro com cromoterapia
+src/js/core.js:25 TV Smart 32” com SKY
+src/js/core.js:25 Frigobar
+src/js/core.js:25 Ar-condicionado
+src/js/core.js:25 Wi-Fi
+src/js/core.js:25 Água da casa
+src/js/core.js:25 térreo
+src/js/core.js:25 2 hóspedes
+src/js/core.js:26 Luxo
+src/js/core.js:26 30 m²
+src/js/core.js:26 1 cama queen size + 1 cama de solteiro
+src/js/core.js:26 Casa principal, 1º andar
+src/js/core.js:26 Dois lances de escada
+src/js/core.js:26 Sem vista definida
+src/js/core.js:26 Sem varanda
+src/js/core.js:26 Chuveiro com cromoterapia
+src/js/core.js:26 TV Smart 32” com SKY
+src/js/core.js:26 Frigobar
+src/js/core.js:26 Ar-condicionado
+src/js/core.js:26 Wi-Fi
+src/js/core.js:26 Água da casa
+src/js/core.js:26 3 hóspedes
+src/js/core.js:27 Luxo Superior
+src/js/core.js:27 22 m²
+src/js/core.js:27 1 cama queen size
+src/js/core.js:27 Área externa
+src/js/core.js:27 Escada de cinco degraus
+src/js/core.js:27 Jardim ou piscina
+src/js/core.js:27 Varanda com balanço ou chaise e mesa para duas pessoas
+src/js/core.js:27 Chuveiro com cromoterapia
+src/js/core.js:27 TV Smart 43” com SKY
+src/js/core.js:27 Chaleira com chás
+src/js/core.js:27 Frigobar
+src/js/core.js:27 Ar-condicionado
+src/js/core.js:27 Wi-Fi
+src/js/core.js:27 2 hóspedes
+src/js/core.js:28 Premium
+src/js/core.js:28 30 m²
+src/js/core.js:28 1 cama queen size
+src/js/core.js:28 Área externa, 1º andar
+src/js/core.js:28 Dois lances de escada
+src/js/core.js:28 Sem vista definida
+src/js/core.js:28 Varanda com rede e mesa para duas pessoas
+src/js/core.js:28 Sala de estar
+src/js/core.js:28 Chuveiro com cromoterapia
+src/js/core.js:28 TV Smart 43” com SKY
+src/js/core.js:28 Chaleira com chás
+src/js/core.js:28 Frigobar
+src/js/core.js:28 Ar-condicionado
+src/js/core.js:28 3 hóspedes
+src/js/core.js:29 Premium Hidro
+src/js/core.js:29 28 m²
+src/js/core.js:29 1 cama queen size
+src/js/core.js:29 Área externa, térreo
+src/js/core.js:29 Térreo
+src/js/core.js:29 Sem vista definida
+src/js/core.js:29 Varanda com rede e mesa para duas pessoas
+src/js/core.js:29 Hidromassagem simples
+src/js/core.js:29 Sala de estar
+src/js/core.js:29 Roupão
+src/js/core.js:29 TV Smart 43” com SKY
+src/js/core.js:29 Cafeteira
+src/js/core.js:29 Amenities diferenciados
+src/js/core.js:29 3 hóspedes
+src/js/core.js:29 térreo
+src/js/core.js:30 Premium Ofurô
+src/js/core.js:30 28 m²
+src/js/core.js:30 1 cama king size
+src/js/core.js:30 Casa principal, cobertura
+src/js/core.js:30 Quatro lances de escada
+src/js/core.js:30 Vista da cobertura
+src/js/core.js:30 Varanda na cobertura com ofurô e mesa para duas pessoas
+src/js/core.js:30 Ofurô
+src/js/core.js:30 Roupão
+src/js/core.js:30 TV Smart 49” com SKY
+src/js/core.js:30 Cafeteira
+src/js/core.js:30 Amenities diferenciados
+src/js/core.js:30 Chuveiro com cromoterapia
+src/js/core.js:30 2 hóspedes
+src/js/core.js:30 ofurô
+src/js/core.js:31 Master
+src/js/core.js:31 28 m²
+src/js/core.js:31 1 cama king size + 2 camas de solteiro
+src/js/core.js:31 Área externa
+src/js/core.js:31 Escada de cinco degraus
+src/js/core.js:31 Jardim
+src/js/core.js:31 Varanda com balanço e mesa para até quatro pessoas
+src/js/core.js:31 Hidromassagem dupla
+src/js/core.js:31 Roupão
+src/js/core.js:31 TV Smart 49” com SKY
+src/js/core.js:31 Cafeteira
+src/js/core.js:31 Amenities diferenciados
+src/js/core.js:31 Chuveiro com cromoterapia
+src/js/core.js:31 4 hóspedes
+src/js/core.js:31 família
+src/js/core.js:32 Presidencial
+src/js/core.js:32 63 m²
+src/js/core.js:32 1 cama king size + 2 camas de solteiro, em dois quartos
+src/js/core.js:32 Casa principal, 1º andar
+src/js/core.js:32 Dois lances de escada
+src/js/core.js:32 Mezanino com vista panorâmica para o jardim
+src/js/core.js:32 Varanda com balanço ou chaise e mesa para até quatro pessoas
+src/js/core.js:32 Dois quartos
+src/js/core.js:32 Mezanino
+src/js/core.js:32 Hidromassagem dupla
+src/js/core.js:32 Sauna
+src/js/core.js:32 Roupão
+src/js/core.js:32 TV Smart 49” com SKY
+src/js/core.js:32 4 hóspedes
+src/js/core.js:32 2 quartos
+src/js/core.js:32 família
+src/js/core.js:37 Planeje a estadia
+src/js/core.js:37 Datas, hóspedes e categorias
+src/js/core.js:37 Consultar
+src/js/core.js:37 Datas
+src/js/core.js:37 Hóspedes
+src/js/core.js:38 Planejando um encontro?
+src/js/core.js:38 Formato, período e número de pessoas
+src/js/core.js:38 Solicitar proposta
+src/js/core.js:38 Formato
+src/js/core.js:38 Pessoas
+src/js/core.js:39 Quer receber as próximas datas?
+src/js/core.js:39 A Experiência Tidelli abre em edições
+src/js/core.js:39 Quero receber
+src/js/core.js:39 Próximas datas
+src/js/core.js:39 Contato
+src/js/core.js:44 Chegada e boas-vindas
+src/js/core.js:44 Do universo Tidelli à Casa da Lua.
+src/js/core.js:44 Chegada, deslocamento para Alto Paraíso, check-in e um jantar para abrir a experiência em grupo.
+src/js/core.js:44 Recepção e início do percurso.
+src/js/core.js:44 Deslocamento e check-in na Casa da Lua.
+src/js/core.js:44 Jantar de boas-vindas.
+src/js/core.js:45 Natureza e conexão
+src/js/core.js:45 O dia sai da casa e volta para o fogo.
+src/js/core.js:45 Yoga, café da manhã, natureza, almoço especial, retorno à pousada, jantar e convivência.
+src/js/core.js:45 manhã
+src/js/core.js:45 Yoga, café e saída para a natureza.
+src/js/core.js:45 Cachoeira e almoço especial ao ar livre.
+src/js/core.js:45 Retorno, jantar e fogueira.
+src/js/core.js:46 Bem-estar e contemplação
+src/js/core.js:46 Um dia com mais espaço entre uma coisa e outra.
+src/js/core.js:46 Yoga, café, sauna, massoterapia, hidromassagem, almoço junto à piscina e pôr do sol.
+src/js/core.js:46 manhã
+src/js/core.js:46 Yoga, café e bem-estar.
+src/js/core.js:46 Almoço à beira da piscina e descanso.
+src/js/core.js:46 Pôr do sol em Alto Paraíso.
+src/js/core.js:47 Despedida
+src/js/core.js:47 Café, check-out e volta para casa.
+src/js/core.js:47 A manhã encerra a experiência com café da manhã e organização do retorno.
+src/js/core.js:47 manhã
+src/js/core.js:47 Café da manhã.
+src/js/core.js:47 saída
+src/js/core.js:47 Check-out.
+src/js/core.js:47 Deslocamento para Brasília.
+src/js/core.js:54 contato@casadaluapousada.com.br
+src/js/core.js:58 Rua do Segredo, 278 · Alto Paraíso de Goiás · CEP 73770-000
+src/js/core.js:70 CheckIn
+src/js/core.js:71 CheckOut
+src/js/core.js:72 Code
+src/js/core.js:73 NRooms
+src/js/core.js:76 &text=
+src/js/core.js:79  adulto
+src/js/core.js:79  adultos
+src/js/core.js:79  criança
+src/js/core.js:79  crianças
+src/js/core.js:130 Sua estadia
+src/js/core.js:130 Datas e hóspedes já informados
+src/js/core.js:132 Ver disponibilidade
+src/js/core.js:205 Escape
+src/js/core.js:216 Informe um contato para receber as datas.
+src/js/core.js:217 Conte um pouco sobre o encontro para enviarmos o pedido.
+src/js/core.js:218 Olá, gostaria de solicitar uma proposta para um evento na Casa da Lua.
+src/js/core.js:218 Olá, gostaria de receber as próximas datas da Experiência Tidelli.
+src/js/core.js:221 Abrindo o WhatsApp da pousada com os seus dados.
+src/js/core.js:230 DOMContentLoaded
+src/js/overlays.js:3 Entrar na Casa
+src/js/overlays.js:19 Entrada
+src/js/overlays.js:19 É por aqui que a experiência começa, com acesso próprio e uma leitura mais clara da chegada à propriedade.
+src/js/overlays.js:20 Recepção / Restaurante
+src/js/overlays.js:20 É onde a chegada acontece, a manhã começa e a mesa costuma reunir hóspedes, famílias e grupos.
+src/js/overlays.js:21 Casa principal
+src/js/overlays.js:21 Núcleo original da propriedade, ligado à memória da casa e a parte da hospedagem.
+src/js/overlays.js:22 Piscina
+src/js/overlays.js:22 A piscina é um dos centros da propriedade, com a área de descanso ao redor.
+src/js/overlays.js:23 Espaço de eventos
+src/js/overlays.js:23 Salão e área de apoio para casamentos, imersões, retiros e celebrações.
+src/js/overlays.js:24 Círculo do fogo / Fogueira
+src/js/overlays.js:24 Na época de seca, o círculo reúne conversa, vinho e céu aberto.
+src/js/overlays.js:25 Bar piscina
+src/js/overlays.js:25 Um ponto de apoio junto à água para o fim de tarde, depois da Chapada.
+src/js/overlays.js:26 Jardim
+src/js/overlays.js:26 O lado de fora funciona como sala, caminho e lugar de permanência.
+src/js/overlays.js:27 Fogueira
+src/js/overlays.js:27 Na época de seca, a fogueira reúne vinho, conversa e céu estrelado.
+src/js/overlays.js:30 Casa principal
+src/js/overlays.js:34 Casa principal
+src/js/overlays.js:35 .atlas-home-card .map-pin,.atlas-teaser .map-pin
+src/js/overlays.js:44 <button type="button" class="${n===atlasPlace?'active':''}" data-atlas-place="${n}"><i>${i+1}</i>${n}</button>
+src/js/overlays.js:45 <button type="button" class="map-pin ${n===atlasPlace?'active':''}" data-atlas-place="${n}" style="left:${d.x}%;top:${d.y}%" aria-label="${n}">${i+1}</button>
+src/js/overlays.js:49 Casa principal
+src/js/overlays.js:50 Casa principal
+src/js/overlays.js:51 #atlasOverlay [data-atlas-place]
+src/js/overlays.js:57 Casa principal
+src/js/overlays.js:60 #atlasOverlay .close-overlay
+src/js/overlays.js:63 Entrar na Casa
+src/js/overlays.js:65 Chegada
+src/js/overlays.js:65 A casa aparece entre jardim e luz.
+src/js/overlays.js:65 O percurso começa pela chegada e abre duas escolhas: seguir para o jardim ou ir direto às suítes.
+src/js/overlays.js:65 Seguir pelo jardim
+src/js/overlays.js:65 Conhecer as suítes
+src/js/overlays.js:66 Jardim
+src/js/overlays.js:66 O lado de fora funciona como sala.
+src/js/overlays.js:66 Caminhos, sombra e lugares de permanência conectam a casa, a piscina e os recantos.
+src/js/overlays.js:66 Ir para a piscina
+src/js/overlays.js:66 Abrir o Atlas
+src/js/overlays.js:67 Fim de tarde
+src/js/overlays.js:67 A água recebe quem volta.
+src/js/overlays.js:67 Piscina e jacuzzi entram no momento em que o corpo muda de ritmo depois da Chapada.
+src/js/overlays.js:67 Seguir para o bem-estar
+src/js/overlays.js:67 Ver suítes próximas
+src/js/overlays.js:68 Bem-estar
+src/js/overlays.js:68 Spa, sauna e massagem prolongam a volta.
+src/js/overlays.js:68 Spa, sauna e massagem prolongam a volta e ajudam o corpo a mudar de ritmo depois da Chapada.
+src/js/overlays.js:68 Chegar à noite
+src/js/overlays.js:68 Planejar a estadia
+src/js/overlays.js:69 Noite
+src/js/overlays.js:69 Fogo, mesa e céu encerram o percurso.
+src/js/overlays.js:69 Daqui, a pessoa pode seguir para a reserva ou voltar a explorar a casa.
+src/js/overlays.js:69 Reservar
+src/js/overlays.js:69 Voltar ao Atlas
+src/js/overlays.js:77 <button type="button" data-journey-target="${c[1]}"><span>${c[0]}</span><i aria-hidden="true">→</i></button>
+src/js/overlays.js:83 #journeyOverlay .close-overlay
+src/js/overlays.js:94 ${s.units} ${s.units===1?'unidade':'unidades'} · ${s.area}
+src/js/overlays.js:95 ${s.beds}. ${s.location}. ${s.outdoor}.
+src/js/overlays.js:96 Suíte ${s.name}
+src/js/overlays.js:98 Capacidade
+src/js/overlays.js:98 Até ${s.guests} hóspedes
+src/js/overlays.js:98 Acesso
+src/js/overlays.js:98 Vista
+src/js/overlays.js:98 Área externa
+src/js/overlays.js:98 <div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>
+src/js/overlays.js:99 <li>${f}</li>
+src/js/overlays.js:100 #suiteOverlay .modal
+src/js/overlays.js:107 Selecione pelo menos duas categorias.
+src/js/overlays.js:109 Categoria
+src/js/overlays.js:110 Área
+src/js/overlays.js:111 Capacidade
+src/js/overlays.js:111 Até ${s.guests}
+src/js/overlays.js:112 Camas
+src/js/overlays.js:113 Localização
+src/js/overlays.js:114 Acesso
+src/js/overlays.js:115 Vista
+src/js/overlays.js:116 Diferenciais
+src/js/overlays.js:119 ).join('')}</tr>
+src/js/overlays.js:120 #compareOverlay .modal
+src/js/overlays.js:147 #mobileNavOverlay [data-page-target]
+src/js/pages/casa.js:5 .atlas-teaser .map-pin
+src/js/pages/chapada.js:5 .chapada-filter button[data-chapada-filter]
+src/js/pages/chapada.js:29 .chapada-return .split>div:first-child
+src/js/pages/chapada.js:38 ResizeObserver
+src/js/pages/eventos.js:7 Casamento
+src/js/pages/eventos.js:7 Cerimônia, jantar e festa <br class="dbr-s"><strong>no mesmo lugar</strong>
+src/js/pages/eventos.js:7 O jardim pode receber a cerimônia e a convivência; o salão e a área coberta apoiam a recepção e o plano para chuva; as suítes mantêm parte do grupo por perto
+src/js/pages/eventos.js:7 Momentos
+src/js/pages/eventos.js:7 cerimônia + recepção
+src/js/pages/eventos.js:7 Espaços
+src/js/pages/eventos.js:7 jardim + salão + toldo
+src/js/pages/eventos.js:7 Hospedagem
+src/js/pages/eventos.js:7 15 suítes
+src/js/pages/eventos.js:8 Imersão empresarial
+src/js/pages/eventos.js:8 Conteúdo, pausas e convivência <br class="dbr-s"><strong>no mesmo percurso</strong>
+src/js/pages/eventos.js:8 O encontro pode alternar conteúdo, grupos de trabalho, refeições e áreas externas sem separar a programação da hospedagem
+src/js/pages/eventos.js:8 Ritmo
+src/js/pages/eventos.js:8 conteúdo + pausas
+src/js/pages/eventos.js:8 Configuração
+src/js/pages/eventos.js:8 roda, auditório ou mesas
+src/js/pages/eventos.js:8 Hospedagem
+src/js/pages/eventos.js:9 Retiro
+src/js/pages/eventos.js:9 Prática, silêncio e <br class="dbr-s"><strong>momentos compartilhados</strong>
+src/js/pages/eventos.js:9 Salão, jardim e áreas de bem-estar podem receber práticas, conversas, refeições e pausas com a hospedagem por perto
+src/js/pages/eventos.js:9 Ritmo
+src/js/pages/eventos.js:9 práticas + refeições
+src/js/pages/eventos.js:9 Espaços
+src/js/pages/eventos.js:9 salão + jardim
+src/js/pages/eventos.js:9 Bem-estar
+src/js/pages/eventos.js:9 spa, sauna e hidro
+src/js/pages/eventos.js:10 Celebração
+src/js/pages/eventos.js:10 Uma ocasião especial <br class="dbr-s"><strong>com a casa ao redor</strong>
+src/js/pages/eventos.js:10 Almoços, aniversários e encontros privados podem ocupar mesa, salão e jardim em escalas diferentes
+src/js/pages/eventos.js:10 Momento
+src/js/pages/eventos.js:10 almoço, jantar ou coquetel
+src/js/pages/eventos.js:10 Espaços
+src/js/pages/eventos.js:10 mesa + jardim + salão
+src/js/pages/eventos.js:10 Hospedagem
+src/js/pages/eventos.js:12 Casamento
+src/js/pages/eventos.js:12 Imersão empresarial
+src/js/pages/eventos.js:12 Retiro
+src/js/pages/eventos.js:12 Celebração
+src/js/pages/eventos.js:18 .event-selector button
+src/js/pages/eventos.js:23 <li><span>${f[0]}</span><span>${f[1]}</span></li>
+src/js/pages/eventos.js:25 .event-selector button[data-event-type]
+src/js/pages/eventos.js:28 Pedir proposta para este formato
+src/js/pages/experiencias.js:13 Do universo <strong>Tidelli</strong> <br>à <strong>Casa da Lua</strong>
+src/js/pages/experiencias.js:17 ]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
+src/js/pages/experiencias.js:32 <div class="schedule-item"><span>${esc(r[0])}</span><p>${esc(noDot(r[1]))}</p></div>
+src/js/pages/experiencias.js:37 Experiências anteriores
+src/js/pages/experiencias.js:43 Salão coberto de palha com hóspedes reunidos, em uma edição anterior da experiência
+src/js/pages/experiencias.js:44 Mesas e luzes do jantar de boas-vindas da Experiência Tidelli
+src/js/pages/experiencias.js:45 Dia de natureza da Experiência Tidelli
+src/js/pages/experiencias.js:46 Bem-estar na Casa da Lua
+src/js/pages/experiencias.js:47 Café da manhã de despedida da Experiência Tidelli
+src/js/pages/experiencias.js:56  is-active
+src/js/pages/experiencias.js:63 (prefers-reduced-motion: reduce)
+src/js/pages/home.js:21 Uma estadia em que a casa inteira participa
+src/js/pages/home.js:21 Comece pelas suítes Master, Presidencial ou Luxo e veja como elas se relacionam com piscina, café e jardim
+src/js/pages/home.js:21 Ver opções
+src/js/pages/home.js:22 Espaço para ficar junto sem perder privacidade
+src/js/pages/home.js:22 As categorias para três ou quatro pessoas, o jardim, o bilhar e a noite na casa ajudam a organizar a viagem em grupo
+src/js/pages/home.js:22 Ver suítes
+src/js/pages/home.js:23 O lado de fora ganha ainda mais importância
+src/js/pages/home.js:23 Jardim, caminhos e suítes externas ajudam a organizar a estadia. A equipe confirma a categoria e as condições mais adequadas para cada pet
+src/js/pages/home.js:23 Planejar estadia
+src/js/pages/home.js:24 Hospedagem, áreas externas e salão na mesma propriedade
+src/js/pages/home.js:24 Casamentos, celebrações, retiros e imersões seguem um caminho próprio de proposta
+src/js/pages/home.js:24 Ver eventos
+src/js/pages/home.js:41 Café da manhã na Casa da Lua
+src/js/pages/home.js:41 Manhã
+src/js/pages/home.js:41 Café no jardim
+src/js/pages/home.js:41 A mesa é parte da casa. O café da manhã está incluído e é servido das 7h30 às 10h30
+src/js/pages/home.js:42 Piscina da Casa da Lua no fim da tarde
+src/js/pages/home.js:42 Fim de tarde
+src/js/pages/home.js:42 A volta da Chapada desacelera na água.
+src/js/pages/home.js:42 Piscina, jacuzzi, spa e massagem prolongam o dia sem pedir outro deslocamento.
+src/js/pages/home.js:43 Casa da Lua acesa à noite
+src/js/pages/home.js:43 Noite
+src/js/pages/home.js:43 A casa acende e ganha outro silêncio.
+src/js/pages/home.js:43 Fogo, cinema, bilhar e mesa entram como possibilidades para ficar mais um pouco.
+src/js/pages/home.js:62 .atlas-home-card .map-pin
+src/js/pages/home.js:65 .atlas-home-card .map-pin
+src/js/pages/home.js:74 #homeExperienceDays button
+src/js/pages/home.js:77 #homeExperienceDays button
+src/js/pages/home.js:89 -38% 0px -48% 0px
+src/js/pages/reservar.js:11 Datas e hóspedes
+src/js/pages/reservar.js:11 Informe o período e a ocupação. As preferências entram depois e são opcionais.
+src/js/pages/reservar.js:12 Prioridades
+src/js/pages/reservar.js:12 Escolha apenas o que ajuda a ordenar as categorias.
+src/js/pages/reservar.js:13 Categorias indicadas
+src/js/pages/reservar.js:13 A sugestão considera capacidade e preferências, não disponibilidade.
+src/js/pages/reservar.js:14 Motor oficial
+src/js/pages/reservar.js:14 Revise o resumo e siga para a disponibilidade ou atendimento.
+src/js/pages/reservar.js:31 Olá, gostaria de fazer uma reserva!
+src/js/pages/reservar.js:32 Chegada: 
+src/js/pages/reservar.js:32  · Saída: 
+src/js/pages/reservar.js:33 Hóspedes: 
+src/js/pages/reservar.js:34 Preferência de suíte: 
+src/js/pages/reservar.js:35 Prioridades: 
+src/js/pages/reservar.js:36 Código promocional: 
+src/js/pages/reservar.js:59 <article class="suggestion"><strong>Combinação de suítes</strong><p>Para ${total} hóspedes, a equipe precisa combinar duas ou mais categorias.</p></article>
+src/js/pages/reservar.js:64 ofurô
+src/js/pages/reservar.js:68 <button type="button" class="suggestion reserve-suite-choice" data-suite="${s.id}"><strong>${s.name}</strong><p>${s.area} · até ${s.guests} hóspedes</p></button>
+src/js/pages/reservar.js:74 <h3>Resumo</h3><p><strong>${fmt($('#reserveArrival').value)}</strong> a <strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} hóspedes${suite?
+src/js/pages/reservar.js:74 :''}</p>
+src/js/pages/reservar.js:80 Informe a data de chegada e a de saída para continuar.
+src/js/pages/suites.js:15 2 hóspedes
+src/js/pages/suites.js:16 3 hóspedes
+src/js/pages/suites.js:17 4 hóspedes
+src/js/pages/suites.js:31 categoria visível
+src/js/pages/suites.js:31 categorias visíveis
+src/js/pages/suites.js:37 suíte selecionada
+src/js/pages/suites.js:37 suítes selecionadas
+src/js/pages/suites.js:43 Selecione pelo menos duas categorias.
+src/js/pages/suites.js:45 A comparação está sendo preparada.
+src/js/pages/suites.js:52 Compare até três categorias.
+src/js/pages/viver.js:6 Mesa do café da manhã da Casa da Lua
+src/js/pages/viver.js:6 O dia começa
+src/js/pages/viver.js:6 Café servido, jardim acordando
+src/js/pages/viver.js:7 O café da manhã está incluído e é servido das 7h30 às 10h30. É quando o dia ganha direção sem precisar começar com pressa.
+src/js/pages/viver.js:7 café
+src/js/pages/viver.js:7 preparação
+src/js/pages/viver.js:8 Casa da Lua no fim de tarde
+src/js/pages/viver.js:8 A volta
+src/js/pages/viver.js:8 Água, spa e um ritmo mais lento
+src/js/pages/viver.js:9 Piscina, jacuzzi, sauna, massagem e jardim recebem quem volta da Chapada sem pedir outro deslocamento.
+src/js/pages/viver.js:10 Casa da Lua às 21h
+src/js/pages/viver.js:10 A casa acende
+src/js/pages/viver.js:10 Fogo, mesa, cinema e conversa
+src/js/pages/viver.js:11 A noite abre possibilidades de convivência e também de silêncio. Nada precisa parecer uma programação obrigatória.
+src/js/pages/viver.js:13 #page-viver .moment-tabs button[data-viver-moment]
+src/js/pages/viver.js:23 <span class="chip">${t}</span>

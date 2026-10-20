@@ -62,7 +62,24 @@ const CONTACT = {
 const OMNIBEES = {hotel:'10264', results:'https://book.omnibees.com/hotelresults', page:'https://book.omnibees.com/hotel/10264&lang=pt-BR'};
 const booking = {arrival:'', departure:'', adults:2, children:0, code:''};
 const ddMMyyyy = iso => iso ? iso.split('-').reverse().join('') : '';
-const shortDate = iso => iso ? iso.split('-').reverse().slice(0,2).join('/') : '';
+/* idioma da página (<html lang>): o site em inglês é gerado pelo build em /en/ com o mesmo código */
+const LANG = (document.documentElement.getAttribute('lang') || 'pt').slice(0,2);
+/* texto que só se conhece em tempo de execução (plurais, datas, mensagens): CDL.t('chave {n}',{n:3}); em português devolve a própria chave */
+const t = (k, v) => {
+  let s = (window.CDL_I18N && window.CDL_I18N[k]) || k;
+  if(v) for(const x in v) s = s.split('{'+x+'}').join(v[x]);
+  return s;
+};
+const fmtDate = iso => {
+  if(!iso) return '';
+  if(LANG === 'en') return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  return iso.split('-').reverse().join('/');
+};
+const shortDate = iso => {
+  if(!iso) return '';
+  if(LANG === 'en') return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  return iso.split('-').reverse().slice(0,2).join('/');
+};
 function bookingRooms(b){ const total = (Number(b.adults)||0) + (Number(b.children)||0); return Math.max(1, Math.ceil(total/4)); }
 function omnibeesUrl(b){
   b = b || booking;
@@ -71,12 +88,13 @@ function omnibeesUrl(b){
   if(b.departure) q.set('CheckOut',ddMMyyyy(b.departure));
   if(b.code) q.set('Code',String(b.code).trim());
   q.set('NRooms',String(bookingRooms(b))); q.set('ad',String(b.adults||1)); q.set('ch',String(b.children||0));
+  if(LANG === 'en') q.set('lang','en-US');      /* o motor abre em inglês quando a pessoa reserva pela versão em inglês */
   return OMNIBEES.results + '?' + q.toString();
 }
 function whatsappUrl(text){ return 'https://api.whatsapp.com/send?phone=' + CONTACT.whatsapp + (text ? '&text=' + encodeURIComponent(text) : ''); }
 function bookingGuestsLabel(b){
   const a = Number(b.adults)||0, ch = Number(b.children)||0;
-  return a + (a===1?' adulto':' adultos') + (ch ? ' · ' + ch + (ch===1?' criança':' crianças') : '');
+  return a + t(a===1?' adulto':' adultos') + (ch ? ' · ' + ch + t(ch===1?' criança':' crianças') : '');
 }
 
 const state = {page:'home', ready:[], pageHooks:{}, started:false, busy:false};
@@ -171,7 +189,7 @@ function switchPage(page, opts={}){
 /* API pública para os scripts das páginas e das sobreposições */
 const CDL = window.CDL = {
   $, $$, ASSETS, SUITES, PROGRAM_DATA, DOCK, state, ready, onPage,
-  CONTACT, OMNIBEES, booking, omnibeesUrl, whatsappUrl, bookingGuestsLabel, shortDate,
+  CONTACT, OMNIBEES, booking, omnibeesUrl, whatsappUrl, bookingGuestsLabel, shortDate, fmtDate, t, LANG,
   showToast, openOverlay, closeOverlays, scrollToId, scrollTop, goPage, updateBookingDock, lenis:null,
   openSuite:null, openAtlas:null, openJourney:null, openCompare:null /* preenchidos por overlays.js */
 };
@@ -180,6 +198,8 @@ Object.defineProperty(CDL,'currentPage',{get:()=>state.page});
 /* Delegação dos botões globais — funciona mesmo que a página não tenha todos os elementos */
 document.addEventListener('click',e=>{
   const t = e.target;
+  const ls = t.closest('[data-lang-switch]');
+  if(ls){ e.preventDefault(); location.href = ls.getAttribute('href') + location.hash; return; }   /* troca de idioma mantendo a seção em que a pessoa está */
   const pageLink = t.closest('[data-page-target]');
   if(pageLink){ e.preventDefault(); goPage(pageLink.dataset.pageTarget,{anchor:pageLink.dataset.anchor}); return; }
   if(t.closest('.close-overlay')){ closeOverlays(); return; }
@@ -787,7 +807,7 @@ CDL.ready(()=>{
     ['Categorias indicadas','A sugestão considera capacidade e preferências, não disponibilidade.'],
     ['Motor oficial','Revise o resumo e siga para a disponibilidade ou atendimento.']
   ];
-  const fmt = v => v ? v.split('-').reverse().join('/') : 'data a definir';
+  const fmt = v => v ? CDL.fmtDate(v) : CDL.t('data a definir');
   const totalGuests = () => Number($('#reserveAdults').value||0) + Number($('#reserveChildren').value||0);
 
   /* o que a pessoa digita vira CDL.booking: o mesmo objeto monta o link do Omnibees, a mensagem do WhatsApp e a barra de reserva */
@@ -830,7 +850,7 @@ CDL.ready(()=>{
     const total = totalGuests();
     const box = $('#reserveSuggestions');
     if(total>4){
-      box.innerHTML = `<article class="suggestion"><strong>Combinação de suítes</strong><p>Para ${total} hóspedes, a equipe precisa combinar duas ou mais categorias.</p></article>`;
+      box.innerHTML = `<article class="suggestion"><strong>${CDL.t('Combinação de suítes')}</strong><p>${CDL.t('Para {n} hóspedes, a equipe precisa combinar duas ou mais categorias.',{n:total})}</p></article>`;
       return;
     }
     const score = s=>{
@@ -839,13 +859,13 @@ CDL.ready(()=>{
       return n - Math.abs(s.guests-total);
     };
     const top = SUITES.filter(s=>s.guests>=Math.min(total,4)).sort((a,b)=>score(b)-score(a)).slice(0,3);
-    box.innerHTML = top.map(s=>`<button type="button" class="suggestion reserve-suite-choice" data-suite="${s.id}"><strong>${s.name}</strong><p>${s.area} · até ${s.guests} hóspedes</p></button>`).join('');
+    box.innerHTML = top.map(s=>`<button type="button" class="suggestion reserve-suite-choice" data-suite="${s.id}"><strong>${s.name}</strong><p>${s.area} · ${CDL.t('até {n} hóspedes',{n:s.guests})}</p></button>`).join('');
   }
 
   function renderSummary(){
     const sel = $('.reserve-suite-choice.active');
     const suite = sel ? SUITES.find(s=>s.id===sel.dataset.suite) : null;
-    $('#reserveSummary').innerHTML = `<h3>Resumo</h3><p><strong>${fmt($('#reserveArrival').value)}</strong> a <strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} hóspedes${suite?`<br>Preferência: ${suite.name}`:''}</p>`;
+    $('#reserveSummary').innerHTML = `<h3>${CDL.t('Resumo')}</h3><p><strong>${fmt($('#reserveArrival').value)}</strong>${CDL.t(' a ')}<strong>${fmt($('#reserveDeparture').value)}</strong><br>${totalGuests()} ${CDL.t('hóspedes')}${suite?`<br>${CDL.t('Preferência: ')}${suite.name}`:''}</p>`;
   }
 
   $$('.reserve-next').forEach(b=>b.addEventListener('click',()=>{
@@ -982,11 +1002,11 @@ CDL.openSuite = function(id){
   if(!s) return;
   const set = (i,v)=>{ const e=document.getElementById(i); if(e) e.textContent=v; };
   set('suiteModalTitle',s.name);
-  set('suiteModalUnits',`${s.units} ${s.units===1?'unidade':'unidades'} · ${s.area}`);
+  set('suiteModalUnits',`${s.units} ${CDL.t(s.units===1?'unidade':'unidades')} · ${s.area}`);
   set('suiteModalIntro',`${s.beds}. ${s.location}. ${s.outdoor}.`);
-  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/suite-standard.webp'; img.alt = `Suíte ${s.name}`; }
+  const img = $('#suiteModalImage'); if(img){ img.src = SUITE_IMG[s.id] || 'assets/img/suite-standard.webp'; img.alt = CDL.t('Suíte {name}',{name:s.name}); }
   const meta = $('#suiteModalMeta');
-  if(meta) meta.innerHTML = [['Capacidade',`Até ${s.guests} hóspedes`],['Acesso',s.access],['Vista',s.view],['Área externa',s.outdoor]].map(x=>`<div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
+  if(meta) meta.innerHTML = [['Capacidade',CDL.t('Até {n} hóspedes',{n:s.guests})],['Acesso',s.access],['Vista',s.view],['Área externa',s.outdoor]].map(x=>`<div class="meta-item"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
   const feats = $('#suiteModalFeatures'); if(feats) feats.innerHTML = s.features.map(f=>`<li>${f}</li>`).join('');
   const modal = $('#suiteOverlay .modal'); if(modal) modal.scrollTop = 0;
   CDL.openOverlay('suiteOverlay');
@@ -999,7 +1019,7 @@ CDL.openCompare = function(ids){
   const rows = [
     ['Categoria',...list.map(s=>s.name)],
     ['Área',...list.map(s=>s.area)],
-    ['Capacidade',...list.map(s=>`Até ${s.guests}`)],
+    ['Capacidade',...list.map(s=>CDL.t('Até {n}',{n:s.guests}))],
     ['Camas',...list.map(s=>s.beds)],
     ['Localização',...list.map(s=>s.location)],
     ['Acesso',...list.map(s=>s.access)],
