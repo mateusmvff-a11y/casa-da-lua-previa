@@ -33,7 +33,17 @@ function build(el){
   v.className = 'sh-video'; v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
   v.setAttribute('aria-hidden','true'); v.tabIndex = -1; v.disablePictureInPicture = true;
   const img = el.querySelector('img');
-  if(img && img.getAttribute('style')) v.setAttribute('style',img.getAttribute('style'));   // mesmo recorte (object-view-box)
+  /* mesmo recorte da imagem (object-view-box): os valores estão em pixels da IMAGEM (ex.: 2400 px de largura) e o vídeo tem outra
+     largura; sem converter, o vídeo aparecia só num retângulo no canto (bug de 03/11). Escala = largura do vídeo / largura da imagem. */
+  const ovb = img && (img.getAttribute('style') || '');
+  const aplicaRecorte = ()=>{
+    const m = ovb && ovb.match(/object-view-box:\s*xywh\(([^)]+)\)/);
+    if(!m || !img.naturalWidth || !v.videoWidth) return;
+    const k = v.videoWidth / img.naturalWidth;
+    const n = m[1].trim().split(/\s+/).map(x=>parseFloat(x)*k);
+    if(n.length === 4) v.style.objectViewBox = 'xywh(' + n.map(x=>x.toFixed(1)+'px').join(' ') + ')';
+  };
+  v.addEventListener('loadedmetadata',()=>{ if(img.complete) aplicaRecorte(); else img.addEventListener('load',aplicaRecorte,{once:true}); },{once:true});
   v.addEventListener('loadeddata',()=>{ el.classList.add('has-video'); const p = v.play(); if(p) p.catch(()=>{}); },{once:true});
   v.src = 'assets/video/sh-' + ref + '.webm';
   el.appendChild(v); el.__sv = v;
