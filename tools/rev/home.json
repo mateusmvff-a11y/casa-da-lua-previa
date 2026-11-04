@@ -21,8 +21,8 @@
  },
  {
   "bloco": "Home - bloco 1",
-  "item": "Centralizar as informações da direita embaixo (15 Suítes, 8 categorias...) no centro horizontal do hero, na mesma altura vertical de hoje (112 px do fundo do hero, acima da barra de reserva)",
-  "expr": "(()=>{const h=document.querySelector('#page-home .hero').getBoundingClientRect();const s=document.querySelector('#page-home .stat-row').getBoundingClientRect();const cx=Math.abs((s.left+s.right)/2-(h.left+h.right)/2)<=3;const by=Math.abs((h.bottom-s.bottom)-112)<=3;return cx&&by&&document.querySelectorAll('#page-home .stat').length===4})()"
+  "item": "Centralizar as informações da direita embaixo (15 Suítes, 8 categorias...) no centro horizontal do hero, perto do fundo do hero (40-140 px; desde 04/11 a barra de reserva não aparece no topo)",
+  "expr": "(()=>{const h=document.querySelector('#page-home .hero').getBoundingClientRect();const s=document.querySelector('#page-home .stat-row').getBoundingClientRect();const cx=Math.abs((s.left+s.right)/2-(h.left+h.right)/2)<=3;const by=(h.bottom-s.bottom)>=40&&(h.bottom-s.bottom)<=140;return cx&&by&&document.querySelectorAll('#page-home .stat').length===4})()"
  },
  {
   "bloco": "Home - bloco 2",

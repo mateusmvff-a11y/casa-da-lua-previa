@@ -119,3 +119,26 @@ body.no-topo-ainda .booking-dock{opacity:0;pointer-events:none;transform:transla
   -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 12px 40px rgba(27,38,32,.16)}
 .booking-dock .dock-field{--pilula:1;border-radius:999px;background:rgba(255,255,255,.72);border-color:rgba(38,51,44,.1)}
 .booking-dock .btn{--pilula:1;border-radius:999px}
+
+/* ---------- 04/11 (3): sem "riscos" com cara de IA e capa da Home mais premium ---------- */
+/* tag do topo: só o itálico, sem o traço */
+#page-home .hero-badge i,#page-casa .hero-badge i,#page-suites .suites-badge i,#page-viver .vv-badge i,#page-experiencias .hero-badge i,#page-eventos .hero-badge i,#page-chapada .chapada-badge i{display:none!important}
+#page-home .hero-badge{margin-bottom:22px!important;opacity:.92}
+/* título maior, em duas linhas equilibradas; texto em bloco único e mais arejado */
+#page-home .hero .display{max-width:11.5em;text-wrap:balance;margin:0 0 26px}
+#page-home .hero .lead{line-height:1.6;max-width:none;margin:0 0 40px;opacity:.92;font-weight:400}
+@media(max-width:760px){#page-home .hero .lead br{display:none}}
+/* dois botões só (o "Consultar datas" já está no Reservar do topo), na fonte do site e com mais folga */
+#page-home .hero .hero-actions{gap:14px}
+#page-home .hero .hero-actions [data-page-target="reservar"]{display:none}
+#page-home .hero .btn,#page-home .hero .ghost-btn{font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.01em;padding:15px 30px}
+/* números do rodapé: sem as barrinhas, rótulo em letra normal (nada de caixa alta espaçada) */
+#page-home .hero-foot{bottom:52px}
+#page-home .stat-row{gap:clamp(40px,5vw,88px)}
+#page-home .stat{border-left:0!important;padding:0!important;gap:6px;align-items:center;text-align:center}
+#page-home .stat strong{font-size:40px;line-height:1;font-weight:300;text-shadow:none}
+#page-home .stat span{font-size:13px;line-height:18px;letter-spacing:.01em;text-transform:none;color:rgba(255,255,255,.78);text-shadow:none}
+@media(max-width:760px){
+  #page-home .stat-row{gap:22px 0}
+  #page-home .stat strong{font-size:32px}
+}
