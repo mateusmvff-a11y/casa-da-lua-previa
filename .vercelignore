@@ -1,0 +1,9 @@
+# Só o site pronto sobe para a Vercel (o resto é material de trabalho, alguns com centenas de MB)
+/*
+!/index.html
+!/css
+!/js
+!/en
+!/assets
+!/robots.txt
+!/vercel.json

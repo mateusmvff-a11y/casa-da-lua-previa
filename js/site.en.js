@@ -1187,7 +1187,8 @@ const desktop = () => window.matchMedia('(min-width:1025px)').matches;
 
 /* ---------- Rolagem suave (Lenis) ---------- */
 let lenis = null;
-if(typeof Lenis !== 'undefined' && !window.matchMedia('(pointer:coarse)').matches){
+/* desligado em 04/11: o cliente sentiu a rolagem "segurando"; a nativa do navegador responde na hora */
+if(false && typeof Lenis !== 'undefined' && !window.matchMedia('(pointer:coarse)').matches){
   lenis = new Lenis({lerp:.09,wheelMultiplier:.95,smoothWheel:true});
   CDL.lenis = lenis;
   lenis.on('scroll',ScrollTrigger.update);
@@ -1382,7 +1383,7 @@ CDL.transition = (page, swap, end) => {
   tl.fromTo(curtain,{yPercent:100},{yPercent:0,duration:.6})
     .fromTo(cSym,{autoAlpha:0,scale:.7},{autoAlpha:1,scale:1,duration:.45,ease:'power3.out'},.2);
   tl.addPause('>',()=>{ dec.then(()=>tl.resume()); });
-  tl.add(()=>{ S.delay = .3; swap(); window.scrollTo(0,0); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); })
+  tl.add(()=>{ S.delay = .3; swap(); window.scrollTo({top:0,left:0,behavior:'instant'}); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); })
     .to(cSym,{autoAlpha:0,scale:.85,duration:.3,ease:'power2.in'},'>+.05')
     .to(curtain,{yPercent:-100,duration:.7},'<+.05');
 };
@@ -1395,26 +1396,47 @@ function overlayIn(el){
   gsap.killTweensOf([el,panel,...items,...imgs]);
   const tl = gsap.timeline();
   tl.fromTo(el,{autoAlpha:0},{autoAlpha:1,duration:.55,ease:'power2.out'},0)
-    .fromTo(panel,{y:64,scale:.955,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.85,ease:'expo.out',clearProps:'transform'},.05)
-    .fromTo(items,{y:28,autoAlpha:0},{y:0,autoAlpha:1,duration:.8,stagger:.045,ease:'power3.out',clearProps:'transform'},.22);
+    .fromTo(panel,{y:22,scale:.99,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.8,ease:'power3.out',clearProps:'transform'},.05)
+    .fromTo(items,{y:10,autoAlpha:0},{y:0,autoAlpha:1,duration:.8,stagger:.04,ease:'power2.out',clearProps:'transform'},.2);
   if(imgs.length) tl.fromTo(imgs,{scale:1.04},{scale:1,duration:1.8,ease:'power2.out',clearProps:'transform'},.05);
   const pins = [...el.querySelectorAll('.map-pin')];
-  if(pins.length) tl.fromTo(pins,{scale:0,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,ease:'back.out(2.2)',stagger:.035,clearProps:'transform'},.75);
+  if(pins.length) tl.fromTo(pins,{scale:.7,autoAlpha:0},{scale:1,autoAlpha:1,duration:.6,ease:'power2.out',stagger:.03,clearProps:'transform'},.6);
 }
 CDL.overlayOut = (el,done) => {
   const panel = panelOf(el);
   gsap.killTweensOf([el,panel]);
   gsap.timeline({onComplete:()=>{ done(); gsap.set([el,panel,...el.querySelectorAll('.ov-anim,.map-pin')],{clearProps:'opacity,visibility,transform'}); }})
-    .to(panel,{y:28,scale:.985,autoAlpha:0,duration:.42,ease:'power2.in'},0)
+    .to(panel,{y:12,scale:.995,autoAlpha:0,duration:.4,ease:'power2.inOut'},0)
     .to(el,{autoAlpha:0,duration:.42,ease:'power1.inOut'},.06);
 };
 document.addEventListener('cdl:overlay',e=>{ if(e.detail.open){ showHeader(); overlayIn(e.detail.el); } });
 
 /* ---------- Troca de conteúdo (abas, perfis, filtros) ---------- */
 const q = (s,r=document) => [...r.querySelectorAll(s)];
-const textIn = els => { if(els.length) gsap.fromTo(els,{autoAlpha:0,y:20},{autoAlpha:1,y:0,duration:.8,stagger:.06,ease:'power3.out',overwrite:true,clearProps:'transform'}); };
-const imageIn = el => { if(el) gsap.fromTo(el,{autoAlpha:0},{autoAlpha:1,duration:1.1,ease:'power2.out',overwrite:true}); };
-function textCards(cards){ if(cards.length) gsap.fromTo(cards,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:.9,stagger:.06,ease:'power3.out',overwrite:true,clearProps:'transform'}); }
+const textIn = els => { if(els.length) gsap.fromTo(els,{autoAlpha:0,y:8},{autoAlpha:1,y:0,duration:.7,stagger:.05,ease:'power2.out',overwrite:true,clearProps:'transform'}); };
+/* transição cruzada (04/11): a foto antiga fica por cima e some devagar enquanto a nova já está embaixo; antes a nova
+   entrava do zero e o fundo piscava. O endereço antigo é guardado na fase de captura do clique, antes da troca. */
+const oldSrc = new Map();
+const IMG_IDS = ['homeTimeImage','viverMomentImage','programImage','homeProgramImage','journeyImage','atlasDetailImage'];
+document.addEventListener('click',()=>{ IMG_IDS.forEach(id=>{ const i = document.getElementById(id); if(i) oldSrc.set(id, i.currentSrc || i.src); }); },true);
+const imageIn = el => {
+  if(!el) return;
+  const prev = oldSrc.get(el.id);
+  if(!prev || prev === (el.currentSrc || el.src) || !el.offsetWidth){ return; }
+  const ghost = el.cloneNode(false);
+  ghost.removeAttribute('id'); ghost.src = prev; ghost.removeAttribute('srcset');
+  Object.assign(ghost.style,{position:'absolute',left:el.offsetLeft+'px',top:el.offsetTop+'px',width:el.offsetWidth+'px',height:el.offsetHeight+'px',margin:0,pointerEvents:'none',zIndex:1,transform:'none'});
+  el.parentNode.insertBefore(ghost, el.nextSibling);
+  const go = ()=>gsap.to(ghost,{autoAlpha:0,duration:.75,ease:'power1.inOut',onComplete:()=>ghost.remove()});
+  (el.decode ? el.decode().catch(()=>{}) : Promise.resolve()).then(go);
+  setTimeout(()=>{ if(ghost.isConnected) go(); },900);
+};
+function textCards(cards){
+  if(!cards.length) return;
+  const grid = cards[0].parentElement;
+  if(grid) gsap.fromTo(grid,{autoAlpha:.0},{autoAlpha:1,duration:.5,ease:'power1.out',overwrite:true});
+  gsap.fromTo(cards,{y:10},{y:0,duration:.6,stagger:.04,ease:'power2.out',overwrite:true,clearProps:'transform'});
+}
 document.addEventListener('click',e=>{
   const t = e.target; let f = null;
   if(t.closest('.time-tab')) f = ()=>{ imageIn(document.getElementById('homeTimeImage')); textIn(q('.time-scene-copy > *')); };

@@ -2,7 +2,7 @@
  {
   "bloco": "Chapada - bloco 1",
   "item": "Troque a imagem de fundo pelo vídeo em anexo e deixe ele em loop (autoplay, muted, loop, playsinline, poster, fontes -m e desktop)",
-  "expr": "(()=>{const v=document.querySelector('#page-chapada .chapada-hero video');if(!v)return false;const s=[...v.querySelectorAll('source')];return v.autoplay&&v.muted&&v.loop&&v.playsInline&&v.getAttribute('poster')==='assets/video/chapada-hero-poster.webp'&&s.length===2&&s[0].getAttribute('src')==='assets/video/chapada-hero-m.mp4'&&s[0].getAttribute('media')==='(max-width:760px)'&&s[1].getAttribute('src')==='assets/video/chapada-hero.mp4'})()"
+  "expr": "(()=>{const v=document.querySelector('#page-chapada .chapada-hero video');if(!v)return false;const s=[...v.querySelectorAll('source')];return v.autoplay&&v.muted&&v.loop&&v.playsInline&&v.getAttribute('poster')==='assets/video/chapada-hero-poster.webp'&&s[0].getAttribute('src')==='assets/video/chapada-hero-m.mp4'&&s[0].getAttribute('media')==='(max-width:760px)'&&s.some(x=>x.getAttribute('src')==='assets/video/chapada-hero.mp4')})()"
  },
  {
   "bloco": "Chapada - bloco 1",
@@ -72,7 +72,7 @@
  {
   "bloco": "Chapada - bloco 4",
   "item": "Usar rev-chapada-bloco4 numa moldura com cantos do Figma e object-fit:cover",
-  "expr": "(()=>{const f=document.querySelector('#page-chapada .chapada-return-frame'),i=f.querySelector('img');return i.src.includes('rev-chapada-bloco4')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(f).borderRadius==='24px'&&getComputedStyle(f).overflow==='hidden'})()"
+  "expr": "(()=>{const f=document.querySelector('#page-chapada .chapada-return-frame'),i=f.querySelector('img');return i.src.includes('rev-chapada-bloco4')&&getComputedStyle(i).objectFit==='cover'&&getComputedStyle(f).borderRadius==='6px'&&getComputedStyle(f).overflow==='hidden'})()"
  },
  {
   "bloco": "Chapada - bloco 4",

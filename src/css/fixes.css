@@ -88,3 +88,18 @@ body.no-topo-ainda .booking-dock{opacity:0;pointer-events:none;transform:transla
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 #page-chapada .chapada-before .card h3{color:var(--creme)}
 #page-chapada .chapada-before .card p{color:rgba(236,232,221,.86)}
+
+/* ---------- 04/11: tag do topo das páginas não parece mais botão: itálico da Cormorant com um traço fino ---------- */
+#page-home .hero-badge,#page-casa .hero-badge,#page-suites .suites-badge,#page-viver .vv-badge,#page-experiencias .hero-badge,#page-eventos .hero-badge,#page-chapada .chapada-badge,
+#page-viver .vv-badge span{
+  border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;
+  font-family:var(--serif)!important;font-style:italic;font-weight:400!important;font-size:22px!important;line-height:1.2!important;
+  text-transform:none!important;color:var(--creme)!important}
+#page-home .hero-badge,#page-casa .hero-badge,#page-suites .suites-badge,#page-viver .vv-badge,#page-experiencias .hero-badge,#page-eventos .hero-badge,#page-chapada .chapada-badge{gap:14px!important}
+#page-home .hero-badge i,#page-casa .hero-badge i,#page-suites .suites-badge i,#page-viver .vv-badge i,#page-experiencias .hero-badge i,#page-eventos .hero-badge i,#page-chapada .chapada-badge i{
+  display:block;width:36px!important;height:1px!important;border-radius:0!important;background:currentColor!important;opacity:.7;flex:none}
+@media(max-width:760px){
+  #page-home .hero-badge,#page-casa .hero-badge,#page-suites .suites-badge,#page-viver .vv-badge,#page-experiencias .hero-badge,#page-eventos .hero-badge,#page-chapada .chapada-badge,#page-viver .vv-badge span{font-size:19px!important}
+}
+.site-header .mobile-menu-btn{border-radius:4px}
+#page-chapada .chapada-before .card h3{max-width:160px}#page-chapada .chapada-before .card p{letter-spacing:0}

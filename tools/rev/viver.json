@@ -32,7 +32,7 @@
  {
   "bloco": "Viver - bloco 3",
   "item": "descrições dos cartões em Forma DJR (var(--sans)), sem Inter",
-  "expr": "(()=>{const ps=[...document.querySelectorAll('#page-viver .vv-space-copy p')];return ps.length===6&&ps.every(p=>/forma-djr/i.test(getComputedStyle(p).fontFamily)&&!/inter/i.test(getComputedStyle(p).fontFamily))})()"
+  "expr": "(()=>{const ps=[...document.querySelectorAll('#page-viver .vv-space-copy p')];return ps.length===6&&ps.every(p=>/neue-haas-unica|forma-djr/i.test(getComputedStyle(p).fontFamily)&&!/inter/i.test(getComputedStyle(p).fontFamily))})()"
  },
  {
   "bloco": "Viver - geral",

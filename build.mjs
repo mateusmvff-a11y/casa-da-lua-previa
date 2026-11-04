@@ -18,8 +18,7 @@ const MOTION_HEAD = '<script>if(location.search.indexOf("sem-movimento")<0)docum
 const MOTION_LIBS = [
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js',
-  'https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js'
+  'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js'
 ].map(u => `<script src="${u}"></script>\n`).join('');
 
 const html = [
@@ -57,18 +56,37 @@ function mapeiaPesos(css){
       /* negrito de título grande (ex.: hero inteiro em Bold) vira Regular 400; negrito de título pequeno vira Medium 500 */
       const para = (nw === null || nw === 400) ? (grande ? 300 : 400) : (nw >= 600 ? (grande ? 400 : 500) : 500);
       nb = w ? nb.replace(/font-weight:\s*(\d+|bold)/,'font-weight:'+para) : nb+';font-weight:'+para;
+      /* 04/11: a Cormorant ficou "muito espaçada" (e herdava o .02em do corpo): título grande -0,02em, pequeno -0,01em */
+      const ls = grande ? '-.02em' : '-.01em';
+      nb = /letter-spacing/.test(nb) ? nb.replace(/letter-spacing:\s*[^;]+/,'letter-spacing:'+ls) : nb+';letter-spacing:'+ls;
       return sel+'{'+nb+'}';
     }
+    /* texto (Neue Haas Unica desde 04/11, mais larga que a Forma): .02em vira .01em */
+    body = body.replace(/letter-spacing:\s*\.02em/g,'letter-spacing:.01em');
+    all = sel+'{'+body+'}';
     /* <strong> dentro de título: Medium (o negrito da Mortise era pesado demais) */
     if(/font-weight:\s*(700|bold|800)/.test(body) && sel.split(',').every(s=>/\b(strong|b)\s*$/.test(s.trim()) && TITULO_STRONG.test(s)))
       return sel+'{'+body.replace(/font-weight:\s*(700|bold|800)/,'font-weight:500')+'}';
-    /* Forma DJR Text (desde 03/11, kit cgs8xgs: Regular 400, Medium 500, Bold 700): o 400 fica Regular (o cliente pediu texto mais leve);
-       o 600 (antes Medium do kit Display) vira 500 para não cair no Bold */
+    /* Neue Haas Unica (kit nzq4ixg: Regular 400, Medium 500, Bold reportado como 600): o 600 do CSS (antes "Medium")
+       vira 500 para não cair no Bold */
     if(!/font-weight:\s*600/.test(body) || /\bh[1-6]\b/.test(sel)) return all;              /* títulos h1-h6 são serifa */
     return sel+'{'+body.replace(/font-weight:\s*600/,'font-weight:500')+'}';
   });
 }
-const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), rd('src/css/fixes.css'), rd('src/css/hover.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n'));
+/* Bordas (04/11, cliente: botões e imagens arredondados demais): pílula (999px) vira 4px, exceto botão redondo
+   (mesma largura e altura na regra); cartões e fotos de 18-30px viram 6px; 10-16px viram 4px; 50% fica (círculos). */
+function mapeiaRaios(css){
+  return css.replace(/([^{}]+)\{([^{}]*)\}/g,(all,sel,body)=>{
+    if(!/border-radius|--raio/.test(body)) return all;
+    const w = body.match(/(?:^|;)\s*width:\s*(\d+)px/), h = body.match(/(?:^|;)\s*height:\s*(\d+)px/);
+    const redondo = !!(w && h && w[1] === h[1]);
+    const nb = body.replace(/border-radius:\s*([^;]+)/g,(m,v)=>'border-radius:'+v.replace(/(\d+)px/g,(x,n)=>{
+      n = +n; if(n >= 900) return redondo ? x : '4px'; if(n >= 18) return '6px'; if(n >= 10) return '4px'; return x;
+    })).replace(/--raio:\s*24px/,'--raio:6px');
+    return sel+'{'+nb+'}';
+  });
+}
+const css = mapeiaRaios(mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), rd('src/css/fixes.css'), rd('src/css/hover.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n')));
 fs.mkdirSync(path.join(OUT,'css'),{recursive:true});
 fs.writeFileSync(path.join(OUT,'css/site.css'), css);
 

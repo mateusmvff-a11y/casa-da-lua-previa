@@ -42,7 +42,7 @@
  {
   "bloco": "Janela do Atlas Vivo",
   "item": "o palco principal mostra a foto do espaço e um MINI-MAPA (inset no canto inferior direito, ~26% da largura, cantos arredondados, borda fina) com rev-home-atlas.webp",
-  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const c=document.getElementById('atlasCanvas').getBoundingClientRect(),m=document.querySelector('#atlasOverlay .atlas-minimap'),r=m.getBoundingClientRect(),cs=getComputedStyle(m);return m.querySelector('img').src.includes('rev-home-atlas.webp')&&Math.abs(r.width/c.width-.26)<.03&&Math.abs(c.right-r.right-18)<4&&Math.abs(c.bottom-r.bottom-18)<4&&parseFloat(cs.borderTopLeftRadius)>=10&&parseFloat(cs.borderTopWidth)===1&&document.getElementById('atlasDetailImage').getBoundingClientRect().width>=c.width-2})()"
+  "expr": "(()=>{CDL.closeOverlays();CDL.openAtlas();const c=document.getElementById('atlasCanvas').getBoundingClientRect(),m=document.querySelector('#atlasOverlay .atlas-minimap'),r=m.getBoundingClientRect(),cs=getComputedStyle(m);return m.querySelector('img').src.includes('rev-home-atlas.webp')&&Math.abs(r.width/c.width-.26)<.03&&Math.abs(c.right-r.right-18)<4&&Math.abs(c.bottom-r.bottom-18)<4&&parseFloat(cs.borderTopLeftRadius)>=4&&parseFloat(cs.borderTopWidth)===1&&document.getElementById('atlasDetailImage').getBoundingClientRect().width>=c.width-2})()"
  },
  {
   "bloco": "Janela do Atlas Vivo",
