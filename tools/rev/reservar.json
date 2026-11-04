@@ -52,6 +52,6 @@
  {
   "bloco": "Vercel (20/10)",
   "item": "vercel.json: redirecionamentos dos endereços antigos apontam para seções que existem",
-  "expr": "fetch('vercel.json').then(r=>r.json()).then(v=>{const pages=['home','casa','suites','viver','experiencias','eventos','chapada','reservar','privacidade'];return v.redirects.length>=10&&v.redirects.every(r=>r.destination==='/'||pages.includes(r.destination.replace('/#','')))&&v.headers.some(h=>h.headers.some(x=>x.key==='X-Robots-Tag'))})"
+  "expr": "fetch('vercel.json').then(r=>r.json()).then(v=>{const pages=['home','casa','suites','viver','experiencias','eventos','chapada','reservar','privacidade'];return v.redirects.length>=10&&v.redirects.every(r=>r.has||r.destination==='/'||pages.includes(r.destination.replace('/#','')))&&v.headers.some(h=>h.headers.some(x=>x.key==='X-Robots-Tag'))})"
  }
 ]

@@ -1,8 +1,8 @@
 [
  {
   "bloco": "Home - geral",
-  "item": "A barra suspensa (o dia, a propriedade, suítes...) fica TRANSPARENTE no meio de um bloco e só surge ENTRE um bloco e outro",
-  "expr": "(async()=>{const w=ms=>new Promise(r=>setTimeout(r,ms));const bar=document.querySelector('.chapter-bar');const nav=document.querySelector('.home-chapter-nav');const op=()=>+getComputedStyle(bar).opacity;const pe=()=>getComputedStyle(bar).pointerEvents;const sec=document.getElementById('home-explorar');const nxt=document.getElementById('home-ficar');\nconst go=y=>{window.scrollTo({top:y,behavior:'instant'});return w(900)};\nconst top=el=>el.getBoundingClientRect().top+scrollY;\nawait go(top(sec)+450);const meio=op()===0&&pe()==='none';\nawait go(top(nxt)-110);const fronteira=op()>0.95&&pe()!=='none';\nawait go(top(nxt)+180);const volta=op()===0;return meio&&fronteira&&volta})()"
+  "item": "A barra de atalhos (o dia, a propriedade, suítes...) saiu: repetia o menu do topo (pedido 04/11)",
+  "expr": "getComputedStyle(document.querySelector('#page-home .home-chapter-nav')).display==='none'"
  },
  {
   "bloco": "Home - bloco 1",

@@ -77,7 +77,7 @@ function mapeiaPesos(css){
    (mesma largura e altura na regra); cartões e fotos de 18-30px viram 6px; 10-16px viram 4px; 50% fica (círculos). */
 function mapeiaRaios(css){
   return css.replace(/([^{}]+)\{([^{}]*)\}/g,(all,sel,body)=>{
-    if(!/border-radius|--raio/.test(body)) return all;
+    if(!/border-radius|--raio/.test(body) || /--pilula/.test(body)) return all;   /* --pilula:1 na regra = fica redondo (barra de reserva) */
     const w = body.match(/(?:^|;)\s*width:\s*(\d+)px/), h = body.match(/(?:^|;)\s*height:\s*(\d+)px/);
     const redondo = !!(w && h && w[1] === h[1]);
     const nb = body.replace(/border-radius:\s*([^;]+)/g,(m,v)=>'border-radius:'+v.replace(/(\d+)px/g,(x,n)=>{
