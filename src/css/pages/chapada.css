@@ -5,7 +5,7 @@
 
 /* ---------- Hero (1920x1124) ---------- */
 #page-chapada .chapada-hero{
-  position:relative;overflow:hidden;isolation:isolate;background:#f5ead2;
+  position:relative;overflow:hidden;isolation:isolate;background:#efeadf;
   min-height:clamp(640px,58.54vw,1124px);
   padding:clamp(120px,16.15vw,310px) clamp(20px,6vw,115px) clamp(80px,14.8vw,284px);
 }
@@ -21,7 +21,7 @@
 #page-chapada .chapada-hero-lead{margin-top:24px;max-width:640px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
 #page-chapada .chapada-hero .hero-actions{margin-top:36px}
 #page-chapada .chapada-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
-#page-chapada .chapada-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
+#page-chapada .chapada-hero .ghost-btn:hover{background:rgba(236,232,221,.14)}
 
 /* ---------- Curadoria ---------- */
 #page-chapada .section-head{margin-bottom:0}
@@ -30,7 +30,7 @@
 #page-chapada .section-head .eyebrow{margin-bottom:16px}
 #page-chapada .chapada-filter{display:flex;flex-wrap:wrap;gap:8px;padding:20px 0 0;margin-bottom:28px}
 #page-chapada .chapada-filter .suite-filter{padding:10px 14px;line-height:21px;border-color:var(--linha);background:transparent;color:var(--verde-escuro)}
-#page-chapada .chapada-filter .suite-filter:hover{background:rgba(81,132,78,.12);border-color:var(--linha);color:var(--verde-escuro)}
+#page-chapada .chapada-filter .suite-filter:hover{background:rgba(74,97,82,.12);border-color:var(--linha);color:var(--verde-escuro)}
 #page-chapada .chapada-filter .suite-filter.active{background:var(--verde);color:var(--creme);font-weight:700;border-color:var(--linha)}
 #page-chapada .chapada-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 #page-chapada .chapada-card{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);background:var(--branco);border:1px solid var(--linha-suave);border-radius:var(--raio);overflow:hidden;min-width:0}
@@ -41,8 +41,8 @@
 #page-chapada .chapada-copy .eyebrow{margin-bottom:16px}
 #page-chapada .chapada-copy h3{font-family:var(--serif);font-weight:400;font-size:40px;line-height:40px;letter-spacing:0;color:var(--verde-escuro);margin-bottom:14px}
 #page-chapada .chapada-tags{display:flex;flex-wrap:wrap;gap:7px 2px;padding:10px 0 15px}
-#page-chapada .chapada-tags span{display:inline-flex;align-items:center;height:26px;padding:0 8px;border:1px solid var(--linha);border-radius:999px;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:#64756f;white-space:nowrap}
-#page-chapada .chapada-copy p{padding:16px 0;font-size:16px;line-height:24px;letter-spacing:.02em;color:#5e726b}
+#page-chapada .chapada-tags span{display:inline-flex;align-items:center;height:26px;padding:0 8px;border:1px solid var(--linha);border-radius:999px;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:#5f6e65;white-space:nowrap}
+#page-chapada .chapada-copy p{padding:16px 0;font-size:16px;line-height:24px;letter-spacing:.02em;color:#5f6e65}
 #page-chapada .return-note{margin-top:22px;padding-top:17px;border-top:1px solid var(--linha);font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--verde-escuro)}
 #page-chapada .return-note strong{font-weight:700}
 #page-chapada .chapada-copy p,#page-chapada .return-note{margin-right:-10px}
@@ -55,9 +55,9 @@
 #page-chapada .chapada-before .eyebrow{color:#fff}
 #page-chapada .chapada-before .title{color:#fff}
 #page-chapada .chapada-before .grid-4{align-items:stretch}
-#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px}
+#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px 22px}
 #page-chapada .chapada-before .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--verde);margin:0;max-width:190px;text-wrap:balance}
-#page-chapada .chapada-before .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2);text-wrap:balance;min-height:72px}
+#page-chapada .chapada-before .card p{font-size:16px;line-height:24px;color:var(--texto-2);text-wrap:balance;min-height:72px}
 
 /* ---------- A Chapada continua quando você volta ---------- */
 #page-chapada .chapada-return .split{display:flex;align-items:stretch;justify-content:space-between;gap:62px}
@@ -65,9 +65,9 @@
 #page-chapada .chapada-return .eyebrow{margin:0;font-family:var(--inter);font-weight:600}
 #page-chapada .chapada-return .btn{color:var(--creme)}
 #page-chapada .chapada-return .title{font-size:clamp(38px,3.54vw,68px);line-height:1}
-#page-chapada .chapada-return-lead{padding-top:8px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:#65766f}
+#page-chapada .chapada-return-lead{padding-top:8px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:#5f6e65}
 #page-chapada .chapada-return .hero-actions{padding-top:20px}
-#page-chapada .chapada-return-frame{flex:none;align-self:stretch;width:346px;background:#d8ccb7;border-radius:var(--raio);overflow:hidden;position:relative}
+#page-chapada .chapada-return-frame{flex:none;align-self:stretch;width:346px;background:#d9d3c4;border-radius:var(--raio);overflow:hidden;position:relative}
 #page-chapada .chapada-return-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- Responsivo ---------- */

@@ -37,13 +37,32 @@ fs.writeFileSync(path.join(OUT,'index.html'), html);
 /* Mapeamento de pesos da Forma DJR Display: o "Regular" (400) do Figma tem as mesmas larguras e a mesma tinta do Medium (500)
    do kit Adobe (medido contra o PNG de um texto do Figma: tinta 1,08x, largura igual com o espaçamento original).
    Por isso todo peso 400 da Forma vira 500. Mortise (var(--serif)) fica como está. */
+/* Fontes (desde 03/11): títulos em Cormorant (leve, alto padrão); texto na Forma DJR Display.
+   - Forma: o "Regular" (400) do Figma tem as larguras do Medium (500) do kit Adobe; todo peso 400 da Forma vira 500.
+   - Cormorant: título grande (>= 34px ou sem tamanho) em Light 300; título pequeno em Regular 400; o que era negrito (700/800) vira Medium 500.
+   - A Cormorant tem x-height menor que a Mortise: tamanhos e entrelinhas em px da serifa crescem 10% (KS). */
+const KS = 1.1;
+const escala = v => /calc|var\(/.test(v) ? v : v.replace(/(\d*\.?\d+)(px|vw|vh)/g,(m,n,u)=>(Math.round(+n*KS*100)/100)+u);
+const maiorPx = v => { const m = [...v.matchAll(/(\d*\.?\d+)px/g)].map(x=>+x[1]); return m.length ? Math.max(...m) : null; };
+const TITULO_STRONG = /(title|display|subtitle|\bh[1-4]\b|vv-h2|chapada-h1|vv-h1|suites-hero-title|exp-hero|feature-body h3|event-copy h3|program-stage-copy h3)/;
 function mapeiaPesos(css){
   return css.replace(/([^{}]+)\{([^{}]*)\}/g,(all,sel,body)=>{
-    const serif = /var\(--serif\)|font-family:\s*"?mortise/.test(body);
+    const serif = /var\(--serif\)|font-family:\s*"?(mortise|cormorant)/.test(body);
     const inter = /var\(--inter\)|font-family:\s*"?inter/i.test(body);
-    if(inter){ return /font-weight/.test(body) ? all : sel+'{'+body+';font-weight:400}'; }   /* Inter: peso 400 de verdade (o 500 do corpo é só da Forma) */
-    if(serif){ return /font-weight/.test(body) ? all : sel+'{'+body+';font-weight:400}'; }   /* Mortise: nunca herda o 500 do corpo */
-    if(!/font-weight:\s*400/.test(body) || /\bh[1-6]\b/.test(sel)) return all;              /* títulos h1-h6 são Mortise */
+    if(inter){ return /font-weight/.test(body) ? all : sel+'{'+body+';font-weight:400}'; }   /* Inter: peso 400 de verdade */
+    if(serif){
+      const fs_ = body.match(/font-size:\s*([^;]+)/); const px = fs_ ? maiorPx(fs_[1]) : null; const grande = px === null || px >= 34;
+      let nb = body.replace(/(font-size|line-height):\s*([^;]+)/g,(m,p,v)=> /px|vw|vh/.test(v) ? p+':'+escala(v) : m);
+      const w = nb.match(/font-weight:\s*(\d+|bold)/); const nw = w ? (w[1]==='bold' ? 700 : +w[1]) : null;
+      /* negrito de título grande (ex.: hero inteiro em Bold) vira Regular 400; negrito de título pequeno vira Medium 500 */
+      const para = (nw === null || nw === 400) ? (grande ? 300 : 400) : (nw >= 600 ? (grande ? 400 : 500) : 500);
+      nb = w ? nb.replace(/font-weight:\s*(\d+|bold)/,'font-weight:'+para) : nb+';font-weight:'+para;
+      return sel+'{'+nb+'}';
+    }
+    /* <strong> dentro de título: Medium (o negrito da Mortise era pesado demais) */
+    if(/font-weight:\s*(700|bold|800)/.test(body) && sel.split(',').every(s=>/\b(strong|b)\s*$/.test(s.trim()) && TITULO_STRONG.test(s)))
+      return sel+'{'+body.replace(/font-weight:\s*(700|bold|800)/,'font-weight:500')+'}';
+    if(!/font-weight:\s*400/.test(body) || /\bh[1-6]\b/.test(sel)) return all;              /* títulos h1-h6 são serifa */
     return sel+'{'+body.replace(/font-weight:\s*400/,'font-weight:500')+'}';
   });
 }

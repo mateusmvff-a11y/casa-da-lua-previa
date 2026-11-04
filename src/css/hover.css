@@ -13,10 +13,10 @@
     transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out),background-color .3s,border-color .3s,color .3s;
   }
   .card:hover,.suite-card:hover,.chapada-card:hover,.space-card:hover,.story-card:hover,.feature-panel:hover{
-    transform:translateY(-6px);box-shadow:0 26px 56px rgba(18,47,41,.17);
+    transform:translateY(-6px);box-shadow:0 26px 56px rgba(38,51,44,.17);
   }
   .dark .card:hover{box-shadow:0 26px 56px rgba(0,0,0,.35)}
-  .story-main:hover{transform:translateY(-4px);box-shadow:0 26px 56px rgba(18,47,41,.22)}
+  .story-main:hover{transform:translateY(-4px);box-shadow:0 26px 56px rgba(38,51,44,.22)}
   .profile-card:hover{transform:translateY(-3px)}
 
   /* fotos dentro dos cartões: zoom lento (as com parallax ficam de fora, o GSAP já mexe nelas) */
@@ -28,7 +28,7 @@
   .chapada-card:hover img:not([data-parallax]),
   .feature-panel:hover .feature-media img:not([data-parallax]),
   .story-main:hover img:not([data-parallax]),
-  .story-card:hover .thumb img{transform:scale(1.06)}
+  .story-card:hover .thumb img{transform:scale(1.025)}
 
   /* títulos de cartão e itens de lista deslizam um pouco */
   .card h3,.suite-card h3,.chapada-copy h3,.space-card h3,.feature-body h3,.story-card h4{transition:transform .5s var(--ease-out),color .3s}
@@ -50,8 +50,8 @@
 
   /* botões: não se mexem; ganham uma sombra suave */
   .btn,.ghost-btn{transition:background-color .3s,color .3s,border-color .3s,box-shadow .4s var(--ease-out)}
-  .btn:hover{box-shadow:0 12px 26px rgba(13,66,55,.28)}
-  .ghost-btn:hover{box-shadow:0 8px 20px rgba(13,66,55,.14)}
+  .btn:hover{box-shadow:0 12px 26px rgba(47,67,56,.28)}
+  .ghost-btn:hover{box-shadow:0 8px 20px rgba(47,67,56,.14)}
 
   /* menu: o item ativo/hover ganha um sublinhado que cresce do centro */
   .nav-link{position:relative}

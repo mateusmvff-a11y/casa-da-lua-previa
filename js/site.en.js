@@ -1106,7 +1106,7 @@ function build(el){
     const n = m[1].trim().split(/\s+/).map(x=>parseFloat(x)*k);
     if(n.length === 4) v.style.objectViewBox = 'xywh(' + n.map(x=>x.toFixed(1)+'px').join(' ') + ')';
   };
-  v.addEventListener('loadedmetadata',()=>{ if(img.complete) aplicaRecorte(); else img.addEventListener('load',aplicaRecorte,{once:true}); },{once:true});
+  v.addEventListener('loadedmetadata',()=>{ if(!img) return; if(img.complete) aplicaRecorte(); else img.addEventListener('load',aplicaRecorte,{once:true}); },{once:true});
   v.addEventListener('loadeddata',()=>{ el.classList.add('has-video'); const p = v.play(); if(p) p.catch(()=>{}); },{once:true});
   v.src = '../assets/video/sh-' + ref + '.webm';
   el.appendChild(v); el.__sv = v;
@@ -1188,8 +1188,7 @@ function onScroll(){
   if(header){
     header.classList.toggle('is-scrolled', y > 80);
     const d = y - lastY;
-    if(y > 320 && d > 8 && !hidden && !document.body.classList.contains('no-scroll')){ hidden = true; gsap.to(header,{yPercent:-105,duration:.6,ease:'power3.out',overwrite:true}); }
-    else if((d < -8 || y < 200) && hidden){ hidden = false; gsap.to(header,{yPercent:0,duration:.6,ease:'power3.out',overwrite:true}); }
+    /* cabeçalho fixo (rodada 5, 03/11): não recolhe mais ao rolar; só fica mais translúcido (.is-scrolled) */
   }
   lastY = y;
 }
@@ -1232,11 +1231,9 @@ function build(pageEl){
       const bg = heroBgOf(hero);
       if(bg){
         bg.setAttribute('data-hero-bg','');   // o parallax genérico (abaixo) pula este elemento: dois gsap brigando pela mesma foto era a tremulação ao abrir
-        gsap.fromTo(bg,{scale:1.12},{scale:1.02,duration:2.2,delay:D,ease:'power2.out'});
-        if(desktop()) gsap.to(bg,{yPercent:9,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
+        
       }
       const copy = hero.querySelector('.hero-copy');
-      if(copy) gsap.to(copy,{yPercent:-6,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});   // só desliza: a cor/opacidade do texto nunca muda
       /* o texto do hero entra todo junto, depois que as fontes carregam: o título vem primeiro e o resto acompanha.
          (Antes só o título esperava as fontes e chegava depois dos outros textos.) */
       const inner = [...hero.querySelectorAll('[data-anim="title"],[data-anim="reveal"]')];
@@ -1246,7 +1243,7 @@ function build(pageEl){
           let n = 0;
           inner.forEach(el=>{
             if(el.dataset.anim === 'title') titleIn(el,{delay:.1+D,hero:true},sp,ctx);
-            else { gsap.fromTo(el,{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.95,delay:D+(n === 0 ? .05 : .42+(n-1)*.11),clearProps:'transform'}); n++; }
+            else { gsap.fromTo(el,{autoAlpha:0,y:14},{autoAlpha:1,y:0,duration:1.1,delay:D+(n === 0 ? .05 : .42+(n-1)*.11),clearProps:'transform'}); n++; }
           });
         });
       });
@@ -1270,20 +1267,19 @@ function build(pageEl){
       }
       group.forEach(g=>seen.add(g));
       const card = el.matches('.card,.suite-card,.chapada-card,.space-card,.story-card,.feature-panel,.practical-item');
-      gsap.fromTo(group,{autoAlpha:0,y:card?46:32,scale:card?.985:1},{autoAlpha:1,y:0,scale:1,duration:.9,stagger:step,clearProps:'transform',
+      gsap.fromTo(group,{autoAlpha:0,y:14},{autoAlpha:1,y:0,duration:1.1,ease:'power2.out',stagger:step,clearProps:'transform',
         scrollTrigger:{trigger:parent && step ? parent : group[0],start:'top 88%',toggleActions:'play none none none'}});
     });
 
     /* IMAGENS: máscara abre + foto assenta */
     pageEl.querySelectorAll('[data-anim="image"]').forEach(box=>{
       const img = box.querySelector('img');
-      const tl = gsap.timeline({scrollTrigger:{trigger:box,start:'top 88%',toggleActions:'play none none none'}});
-      tl.fromTo(box,{autoAlpha:0,clipPath:'inset(10% 6% 10% 6% round 28px)'},{autoAlpha:1,clipPath:'inset(0% 0% 0% 0% round 0px)',duration:1.6,ease:'expo.inOut',clearProps:'clipPath'});
-      if(img && !img.hasAttribute('data-parallax')) tl.fromTo(img,{scale:1.22},{scale:1,duration:2,ease:'power2.out',clearProps:'transform'},0);
+      /* só um fade (sem máscara que abre nem zoom): rodada 5, 03/11 */
+      gsap.fromTo(box,{autoAlpha:0},{autoAlpha:1,duration:1.2,ease:'power1.out',scrollTrigger:{trigger:box,start:'top 90%',toggleActions:'play none none none'}});
     });
 
     /* PARALLAX (só em tela grande: no celular economiza o aparelho) */
-    if(desktop()){
+    if(false){   // parallax desligado na rodada 5 (menos efeito)
       pageEl.querySelectorAll('[data-parallax],.section-bg').forEach(el=>{
         if(el.hasAttribute('data-hero-bg')) return;
         const isBg = el.classList.contains('section-bg');
@@ -1308,9 +1304,9 @@ function titleIn(el,opts,sp,ctx){
     ctx.add(()=>{
       el.style.visibility = 'visible';
       const trig = opts.hero ? undefined : {trigger:el,start:'top 88%',toggleActions:'play none none none'};
-      if(!hasSplit){ gsap.fromTo(el,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:1.2,delay:opts.delay||0,scrollTrigger:trig}); return; }
+      if(!hasSplit){ gsap.fromTo(el,{autoAlpha:0,y:14},{autoAlpha:1,y:0,duration:1.2,delay:opts.delay||0,scrollTrigger:trig}); return; }
       const s = SplitText.create(el,{type:'lines',linesClass:'split-line',mask:'lines'});
-      gsap.fromTo(s.lines,{yPercent:118,rotate:3,transformOrigin:'0% 100%'},{yPercent:0,rotate:0,duration:1.05,stagger:.07,ease:'power4.out',delay:opts.delay||0,scrollTrigger:trig});
+      gsap.fromTo(s.lines,{autoAlpha:0,y:14},{autoAlpha:1,y:0,duration:1.1,stagger:.08,ease:'power2.out',delay:opts.delay||0,scrollTrigger:trig});
       sp.push(s);
     });
   };
@@ -1327,7 +1323,6 @@ function activate(page){
   const pageEl = document.querySelector(`.page[data-page="${page}"]`);
   if(!pageEl) return;
   /* a foto/vídeo do hero já nasce no zoom inicial, antes do primeiro quadro da página: sem o salto de 1,00 para 1,12 que parecia tremulação */
-  pageEl.querySelectorAll('[data-anim="hero"]').forEach(h=>{ const b = heroBgOf(h); if(b) gsap.set(b,{scale:1.12}); });
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ build(pageEl); ScrollTrigger.refresh(); }));
 }
 document.addEventListener('cdl:page',e=>activate(e.detail.page));
@@ -1376,7 +1371,7 @@ function overlayIn(el){
   tl.fromTo(el,{autoAlpha:0},{autoAlpha:1,duration:.55,ease:'power2.out'},0)
     .fromTo(panel,{y:64,scale:.955,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.85,ease:'expo.out',clearProps:'transform'},.05)
     .fromTo(items,{y:28,autoAlpha:0},{y:0,autoAlpha:1,duration:.8,stagger:.045,ease:'power3.out',clearProps:'transform'},.22);
-  if(imgs.length) tl.fromTo(imgs,{scale:1.16},{scale:1,duration:1.8,ease:'power2.out',clearProps:'transform'},.05);
+  if(imgs.length) tl.fromTo(imgs,{scale:1.04},{scale:1,duration:1.8,ease:'power2.out',clearProps:'transform'},.05);
   const pins = [...el.querySelectorAll('.map-pin')];
   if(pins.length) tl.fromTo(pins,{scale:0,autoAlpha:0},{scale:1,autoAlpha:1,duration:.7,ease:'back.out(2.2)',stagger:.035,clearProps:'transform'},.75);
 }

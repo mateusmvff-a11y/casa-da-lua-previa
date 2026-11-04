@@ -14,7 +14,7 @@
 #page-reservar .reserve-steps{background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:42px;position:sticky;top:calc(var(--header-h) + 24px)}
 #page-reservar .reserve-steps .eyebrow{margin-bottom:18px}
 #page-reservar .reserve-steps h2{font-family:var(--serif);font-weight:700;font-size:40px;line-height:1.18;letter-spacing:0;color:var(--creme);margin:0 0 16px}
-#page-reservar .reserve-steps>p{font-size:16px;line-height:24px;color:rgba(245,234,210,.72);min-height:72px}
+#page-reservar .reserve-steps>p{font-size:16px;line-height:24px;color:rgba(239,234,223,.72);min-height:72px}
 #page-reservar .step-list{display:flex;gap:7px;margin:28px 0}
 #page-reservar .step-dot{flex:1;height:4px;border-radius:10px;background:rgba(255,255,255,.16);transition:background .2s}
 #page-reservar .step-dot.active{background:var(--verde)}
@@ -23,24 +23,24 @@
 #page-reservar .feature-list{list-style:none;margin:0;padding:0}
 #page-reservar .feature-list li{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:24px;color:var(--creme)}
 #page-reservar .feature-list li:last-child{border-bottom:0;padding-bottom:0}
-#page-reservar .feature-list li span:last-child{color:rgba(245,234,210,.65);text-align:right}
+#page-reservar .feature-list li span:last-child{color:rgba(239,234,223,.65);text-align:right}
 
-/* formulário (Figma: Form creme r28, campos #fffdf8 r13) */
+/* formulário (Figma: Form creme r28, campos #fbfaf5 r13) */
 #page-reservar .form-card{background:var(--creme);border:1px solid var(--linha-suave);border-radius:28px;padding:38px;box-shadow:none}
 #page-reservar .reserve-step .eyebrow{margin-bottom:12px}
 #page-reservar .reserve-step .subtitle{font-size:clamp(30px,2.2vw,42px);line-height:1.1}
 #page-reservar .reserve-step .small{margin-top:12px}
 #page-reservar .reserve-step .form-grid{margin-top:28px}
 #page-reservar .rv-p{margin-top:14px;font-size:16px;line-height:24px;color:var(--texto-2)}
-#page-reservar .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
-#page-reservar .field input,#page-reservar .field select{border:1px solid rgba(19,59,51,.18);background-color:var(--branco);border-radius:13px;padding:16px 14px 15px 15px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto);color-scheme:light;min-height:58px}
+#page-reservar .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#5f6e65}
+#page-reservar .field input,#page-reservar .field select{border:1px solid rgba(38,51,44,.18);background-color:var(--branco);border-radius:13px;padding:16px 14px 15px 15px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto);color-scheme:light;min-height:58px}
 #page-reservar .field select{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%23587069' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center}
 #page-reservar .field input:focus,#page-reservar .field select:focus{outline:2px solid var(--verde);outline-offset:1px}
 #page-reservar .field.full .btn{width:100%;padding:12px 20px 13px}
 
 /* prioridades */
 #page-reservar .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
-#page-reservar .choice{display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid rgba(19,59,51,.18);background:var(--branco);border-radius:18px;padding:18px 20px;color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-reservar .choice{display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid rgba(38,51,44,.18);background:var(--branco);border-radius:18px;padding:18px 20px;color:var(--texto);transition:background .2s,color .2s,border-color .2s}
 #page-reservar .choice strong{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.15;color:var(--verde-escuro);transition:color .2s}
 #page-reservar .choice span{font-size:14px;line-height:20px;letter-spacing:.02em;color:var(--texto-2);transition:color .2s}
 #page-reservar .choice:hover{border-color:var(--verde)}
@@ -50,14 +50,14 @@
 
 /* categorias sugeridas */
 #page-reservar .reserve-suggestions{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:22px}
-#page-reservar .suggestion{display:block;width:100%;text-align:left;border:1px solid rgba(19,59,51,.18);border-radius:20px;padding:20px;background:var(--branco);color:var(--texto);transition:background .2s,color .2s,border-color .2s}
+#page-reservar .suggestion{display:block;width:100%;text-align:left;border:1px solid rgba(38,51,44,.18);border-radius:20px;padding:20px;background:var(--branco);color:var(--texto);transition:background .2s,color .2s,border-color .2s}
 #page-reservar .suggestion strong{display:block;font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.1;color:var(--verde);transition:color .2s}
 #page-reservar .suggestion p{margin-top:8px;font-size:14px;line-height:20px;color:var(--texto-2);transition:color .2s}
 #page-reservar .reserve-suite-choice{cursor:pointer}
 #page-reservar .reserve-suite-choice:hover{border-color:var(--verde)}
 #page-reservar .reserve-suite-choice.active{background:var(--verde-escuro);border-color:var(--verde-escuro)}
 #page-reservar .reserve-suite-choice.active strong{color:var(--creme)}
-#page-reservar .reserve-suite-choice.active p{color:rgba(245,234,210,.75)}
+#page-reservar .reserve-suite-choice.active p{color:rgba(239,234,223,.75)}
 
 /* resumo */
 #page-reservar #reserveSummary{margin:24px 0 0;background:var(--branco);border-radius:20px;box-shadow:none;padding:24px 26px}

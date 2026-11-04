@@ -21,7 +21,7 @@
 /* ---------- hero (1920x1124) ---------- */
 #page-viver .vv-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;
   min-height:clamp(640px,58.54vw,1124px);padding:80px var(--pad) 80px clamp(20px,5.99vw,115px);
-  background:#f5ead2;color:var(--creme)}
+  background:#efeadf;color:var(--creme)}
 #page-viver .vv-hero-bg{position:absolute;inset:0;z-index:-2;overflow:hidden}
 #page-viver .vv-hero-bg img{position:absolute;left:0;top:-5%;width:100%;height:110%;object-fit:cover;object-position:center}
 #page-viver .vv-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
@@ -34,7 +34,7 @@
 #page-viver .vv-lead{max-width:640px;margin-top:24px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
 #page-viver .vv-actions{margin-top:36px}
 #page-viver .vv-ghost{color:var(--creme);border-color:var(--creme)}
-#page-viver .vv-ghost:hover{background:rgba(226,220,208,.14);color:var(--branco)}
+#page-viver .vv-ghost:hover{background:rgba(236,232,221,.14);color:var(--branco)}
 
 /* ---------- momentos da casa (1138) ---------- */
 #page-viver .vv-moments{background:var(--verde-escuro)}
@@ -62,16 +62,16 @@
 #page-viver .vv-spaces{background:var(--areia)}
 #page-viver .vv-spaces .vv-head{margin-bottom:48px}
 #page-viver .vv-space-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-#page-viver .vv-space{position:relative;overflow:hidden;border-radius:22px;aspect-ratio:415/346;background:#2c4a43;color:#fff;isolation:isolate}
+#page-viver .vv-space{position:relative;overflow:hidden;border-radius:22px;aspect-ratio:415/346;background:#3a5045;color:#fff;isolation:isolate}
 #page-viver .vv-space img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 #page-viver .vv-space::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(7,31,28,0) 35%,rgba(7,31,28,.82) 100%)}
+  background:linear-gradient(180deg,rgba(27,38,32,0) 35%,rgba(27,38,32,.82) 100%)}
 #page-viver .vv-space-copy{position:absolute;left:22px;right:22px;bottom:23px;display:flex;flex-direction:column;gap:7px}
 #page-viver .vv-space-copy h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,1.615vw,31px);line-height:1.55;color:#fff}
 #page-viver .vv-space-copy p{font-family:var(--sans);font-weight:400;font-size:13px;line-height:20px;letter-spacing:0;color:rgba(255,255,255,.72)}
 
 /* ---------- noite (650) ---------- */
-#page-viver .vv-night{background:#e7d4ae;color:var(--creme)}
+#page-viver .vv-night{background:#e2dccb;color:var(--creme)}
 #page-viver .vv-night .section-bg{background-position:center 12%}
 #page-viver .vv-night::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.78);pointer-events:none}
 #page-viver .vv-night-grid{display:grid;grid-template-columns:minmax(0,579fr) minmax(0,639fr);gap:62px;align-items:center}
@@ -80,7 +80,7 @@
 #page-viver .vv-night-text{max-width:450px;margin-top:17px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--creme)}
 #page-viver .vv-night-chips{margin-top:24px}
 #page-viver .vv-night .chip{font-family:var(--inter);font-weight:normal;letter-spacing:.03em;background:var(--creme);border-color:var(--verde-escuro);color:var(--verde-escuro)}
-#page-viver .vv-night-media{position:relative;overflow:hidden;border-radius:24px;aspect-ratio:639/430;background:#d8ccb7}
+#page-viver .vv-night-media{position:relative;overflow:hidden;border-radius:24px;aspect-ratio:639/430;background:#d9d3c4}
 #page-viver .vv-night-media img{position:absolute;left:0;top:-5%;width:100%;height:110%;object-fit:cover}
 
 /* ---------- informações práticas (233) ---------- */
@@ -88,7 +88,7 @@
 #page-viver .vv-practical-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 #page-viver .vv-practical-item{display:flex;flex-direction:column;gap:4.25px;padding:17.25px 0 1.54px;border-top:1px solid var(--linha)}
 #page-viver .vv-practical-item strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:41px;color:var(--verde)}
-#page-viver .vv-practical-item span{font-size:16px;line-height:24px;letter-spacing:.02em;color:#667a72}
+#page-viver .vv-practical-item span{font-size:16px;line-height:24px;letter-spacing:.02em;color:#5f6e65}
 
 /* ---------- responsivo ---------- */
 @media(max-width:1180px){
@@ -130,16 +130,16 @@
 /* ---------- A manhã começa na mesa (V16 1213-1229) ---------- */
 #page-viver .vv-breakfast{background:var(--branco)}
 #page-viver .vv-split{display:grid;grid-template-columns:minmax(0,639fr) minmax(0,579fr);gap:62px;align-items:center}
-#page-viver .vv-breakfast-media{position:relative;overflow:hidden;border-radius:24px;aspect-ratio:639/430;background:#d8ccb7}
+#page-viver .vv-breakfast-media{position:relative;overflow:hidden;border-radius:24px;aspect-ratio:639/430;background:#d9d3c4}
 #page-viver .vv-breakfast-media img{position:absolute;left:0;top:-5%;width:100%;height:110%;object-fit:cover}
 #page-viver .vv-breakfast-text{max-width:500px;margin-top:17px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
 #page-viver .vv-stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:32px}
 #page-viver .vv-stats .stat{min-width:130px}
 #page-viver .vv-stats strong{display:block;font-family:var(--serif);font-weight:400;font-size:36px;line-height:1;color:var(--verde-escuro)}
-#page-viver .vv-stats span{display:block;margin-top:6px;font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase;color:#65766f}
+#page-viver .vv-stats span{display:block;margin-top:6px;font-size:11px;line-height:17px;letter-spacing:.13em;text-transform:uppercase;color:#5f6e65}
 @media(max-width:1180px){
   #page-viver .vv-split{grid-template-columns:1fr;gap:40px}
   #page-viver .vv-breakfast-text{max-width:560px}
 }
-#page-viver .vv-moment-copy .chip{border-color:rgba(13,66,55,.35);background:rgba(255,255,255,.4);color:var(--verde-escuro)}
+#page-viver .vv-moment-copy .chip{border-color:rgba(47,67,56,.35);background:rgba(255,255,255,.4);color:var(--verde-escuro)}
 #page-viver .chip{font-family:var(--inter);font-weight:normal}

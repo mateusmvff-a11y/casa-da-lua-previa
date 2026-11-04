@@ -8,7 +8,7 @@
   position:relative;isolation:isolate;overflow:hidden;
   min-height:clamp(640px,58.55vw,1124px);
   padding:clamp(130px,16.9vw,324px) var(--pad) 90px clamp(var(--pad),6vw,115px);
-  background:#f5ead2;color:var(--creme)
+  background:#efeadf;color:var(--creme)
 }
 #page-eventos .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
 #page-eventos .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
@@ -32,7 +32,7 @@
 #page-eventos .hero-actions{margin-top:36px;gap:10px}
 #page-eventos .hero .btn{color:var(--creme)}
 #page-eventos .hero .ghost-btn{color:var(--creme);border-color:var(--verde)}
-#page-eventos .hero .ghost-btn:hover{background:rgba(81,132,78,.28)}
+#page-eventos .hero .ghost-btn:hover{background:rgba(74,97,82,.28)}
 #page-eventos .stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
 #page-eventos .stat{display:flex;flex-direction:column;gap:5px}
 #page-eventos .stat strong{font-family:var(--serif);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
@@ -48,11 +48,11 @@
 #page-eventos #eventFormats .section-head{margin-bottom:28px}
 #page-eventos .event-selector{display:flex;gap:8px;flex-wrap:wrap;padding-top:20px;margin-bottom:28px}
 #page-eventos .event-selector button{
-  border:1px solid rgba(19,59,51,.18);background:transparent;color:var(--texto);
+  border:1px solid rgba(38,51,44,.18);background:transparent;color:var(--texto);
   border-radius:999px;padding:11px 15px;font-size:13px;line-height:21px;letter-spacing:.02em;
   transition:background .2s,color .2s,border-color .2s
 }
-#page-eventos .event-selector button:hover{background:rgba(81,132,78,.12)}
+#page-eventos .event-selector button:hover{background:rgba(74,97,82,.12)}
 #page-eventos .event-selector button.active{background:var(--verde);color:var(--creme);font-weight:700}
 /* revisão 20/10: o diagrama da esquerda saiu; o retângulo verde das informações ocupa a largura toda, em duas colunas (texto | lista) */
 #page-eventos .event-config{display:block}
@@ -63,12 +63,12 @@
 #page-eventos .event-copy>.eyebrow,#page-eventos .event-copy>h3,#page-eventos .event-copy>p{grid-column:1}
 #page-eventos .event-copy>.feature-list{grid-column:2;grid-row:1 / span 3;align-self:start;margin-top:0}
 #page-eventos .event-copy>.btn{grid-column:2;grid-row:4;justify-self:start;margin-top:12px}
-#page-eventos .event-copy .eyebrow{margin:0 0 16px;color:var(--verde)}
+#page-eventos .event-copy .eyebrow{margin:0 0 16px;color:#aebdae}
 #page-eventos .event-copy h3{
   font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme);margin:0
 }
 #page-eventos .event-copy h3 strong{font-weight:700}
-#page-eventos .event-copy p{max-width:402px;padding-top:2px;margin-top:16px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72)}
+#page-eventos .event-copy p{max-width:402px;padding-top:2px;margin-top:16px;font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(239,234,223,.72)}
 #page-eventos .feature-list{list-style:none;padding:12px 0;margin:16px 0 0;width:100%}
 #page-eventos .feature-list li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;line-height:25px;letter-spacing:0;color:var(--creme)}
 #page-eventos .feature-list li span:last-child{color:var(--areia);opacity:.65;text-align:right}
@@ -82,7 +82,7 @@
 #page-eventos .grid-4 .card p{font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto-2)}
 
 /* ---------- 4. Se chover: foto de fundo da seção ---------- */
-#page-eventos .rain{background:#0b2725}
+#page-eventos .rain{background:#1c2a24}
 #page-eventos .rain .section-bg{background-position:center 43%}
 #page-eventos .rain .section-bg::after{
   content:"";position:absolute;inset:0;
@@ -102,11 +102,11 @@
 #page-eventos .proposal-form .field:not(.full){min-height:83px}
 #page-eventos .proposal-form .field.full:nth-of-type(5){margin-top:1px}
 #page-eventos .proposal-form .field.full:last-child{margin-top:6px}
-#page-eventos .proposal-form .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#687a73}
+#page-eventos .proposal-form .field label{font-size:11px;line-height:17px;letter-spacing:.1em;color:#5f6e65}
 #page-eventos .proposal-form .field input,
 #page-eventos .proposal-form .field select,
 #page-eventos .proposal-form .field textarea{
-  border:1px solid rgba(19,59,51,.18);background:var(--branco);border-radius:13px;
+  border:1px solid rgba(38,51,44,.18);background:var(--branco);border-radius:13px;
   padding:15px 14px;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)
 }
 #page-eventos .proposal-form .field input::placeholder,

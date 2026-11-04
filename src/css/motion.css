@@ -19,8 +19,8 @@ html.lenis,html.lenis body{height:auto}
 @media(prefers-reduced-motion:reduce){
   .motion-on [data-anim]{opacity:1!important;visibility:visible!important}
 }
-.site-header{transition:box-shadow .3s}
-.site-header.is-scrolled{box-shadow:0 8px 30px rgba(18,47,41,.08)}
+.site-header{transition:box-shadow .3s,background .3s}
+.site-header.is-scrolled{background:rgba(236,232,221,.74);box-shadow:0 6px 24px rgba(38,51,44,.05)}
 
 /* sem a animação de entrada da página inteira (era uma camada enorme; a cortina cuida da troca) */
 .motion-on .page.active{animation:none}
@@ -32,6 +32,5 @@ html.lenis,html.lenis body{height:auto}
 /* sobreposições: o JS controla opacidade e movimento */
 .overlay.closing{pointer-events:none}
 /* o cabeçalho sobe/desce por transform */
-.site-header{will-change:transform}
 /* texturas já pré-calculadas (preto com transparência): sem mistura de cores na rolagem */
 .section-bg.baked{mix-blend-mode:normal!important}

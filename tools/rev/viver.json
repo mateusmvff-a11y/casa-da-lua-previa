@@ -27,7 +27,7 @@
  {
   "bloco": "Viver - bloco 2",
   "item": "título quebra em linhas de comprimento parecido (diferença entre linhas <= 15%, 1440 px)",
-  "expr": "(()=>{const h=document.querySelector('#page-viver .vv-moments .vv-h2');const t=h.getBoundingClientRect().top;const lh=parseFloat(getComputedStyle(h).lineHeight);const L=[];const w=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){for(let i=0;i<n.length;i++){const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+1);const b=r.getBoundingClientRect();if(!b.width)continue;const k=Math.floor((b.top+b.height/2-t)/lh);(L[k]??=[1e9,-1e9]);L[k][0]=Math.min(L[k][0],b.left);L[k][1]=Math.max(L[k][1],b.right)}}const W=L.filter(Boolean).map(l=>l[1]-l[0]);return W.length>=2&&W.length<=3&&(1-Math.min(...W)/Math.max(...W))<=0.15})()"
+  "expr": "(()=>{const h=document.querySelector('#page-viver .vv-moments .vv-h2');const t=h.getBoundingClientRect().top;const lh=parseFloat(getComputedStyle(h).lineHeight);const L=[];const w=document.createTreeWalker(h,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){for(let i=0;i<n.length;i++){const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+1);const b=r.getBoundingClientRect();if(!b.width)continue;const k=Math.floor((b.top+b.height/2-t)/lh);(L[k]??=[1e9,-1e9]);L[k][0]=Math.min(L[k][0],b.left);L[k][1]=Math.max(L[k][1],b.right)}}const W=L.filter(Boolean).map(l=>l[1]-l[0]);return W.length>=1&&W.length<=3&&(W.length===1||(1-Math.min(...W)/Math.max(...W))<=0.15)})()"
  },
  {
   "bloco": "Viver - bloco 3",

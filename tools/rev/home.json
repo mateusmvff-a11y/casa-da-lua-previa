@@ -52,7 +52,7 @@
  {
   "bloco": "Home - bloco 3",
   "item": "ABAIXO da imagem, dentro do mesmo cartão, o bloco verde-escuro com Atlas Vivo, título, texto e botões",
-  "expr": "(()=>{const c=document.querySelector('#page-home .atlas-home-card').getBoundingClientRect(),m=document.querySelector('#page-home .atlas-map').getBoundingClientRect(),t=document.querySelector('#page-home .atlas-home-copy'),r=t.getBoundingClientRect();const ok=r.top>=m.bottom-1&&r.bottom<=c.bottom+1&&r.left>=c.left-1&&r.right<=c.right+1;const txt=t.textContent;return ok&&getComputedStyle(t).backgroundColor==='rgb(13, 66, 55)'&&/Atlas Vivo/.test(txt)&&!!t.querySelector('#homeAtlasTitle')&&!!t.querySelector('#homeAtlasText')&&!!t.querySelector('.atlas-open')&&!!t.querySelector('[data-page-target=casa]')})()"
+  "expr": "(()=>{const c=document.querySelector('#page-home .atlas-home-card').getBoundingClientRect(),m=document.querySelector('#page-home .atlas-map').getBoundingClientRect(),t=document.querySelector('#page-home .atlas-home-copy'),r=t.getBoundingClientRect();const ok=r.top>=m.bottom-1&&r.bottom<=c.bottom+1&&r.left>=c.left-1&&r.right<=c.right+1;const txt=t.textContent;return ok&&getComputedStyle(t).backgroundColor==='rgb(47, 67, 56)'&&/Atlas Vivo/.test(txt)&&!!t.querySelector('#homeAtlasTitle')&&!!t.querySelector('#homeAtlasText')&&!!t.querySelector('.atlas-open')&&!!t.querySelector('[data-page-target=casa]')})()"
  },
  {
   "bloco": "Home - bloco 3",

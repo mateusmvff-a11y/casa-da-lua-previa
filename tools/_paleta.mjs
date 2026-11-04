@@ -17,7 +17,6 @@ let n = 0;
 for(const f of files){
   let t = fs.readFileSync(f,'utf8'); const o = t;
   t = t.replace(/#[0-9a-fA-F]{6}\b/g, m => HEX[m.toLowerCase()] || m);
-  t = t.replace(/rgba?\((\s*)(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/g, (m,sp,a,b,c)=>{ const k = a+','+b+','+c; return RGB[k] ? m.replace(k.split(',').join(',')+'', '') : m; });
   for(const [k,v] of Object.entries(RGB)){
     const [a,b,c] = k.split(','); const re = new RegExp('rgba?\\(\\s*'+a+'\\s*,\\s*'+b+'\\s*,\\s*'+c+'\\b','g');
     t = t.replace(re, m => m.replace(new RegExp(a+'\\s*,\\s*'+b+'\\s*,\\s*'+c), v));

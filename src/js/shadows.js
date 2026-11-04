@@ -43,7 +43,7 @@ function build(el){
     const n = m[1].trim().split(/\s+/).map(x=>parseFloat(x)*k);
     if(n.length === 4) v.style.objectViewBox = 'xywh(' + n.map(x=>x.toFixed(1)+'px').join(' ') + ')';
   };
-  v.addEventListener('loadedmetadata',()=>{ if(img.complete) aplicaRecorte(); else img.addEventListener('load',aplicaRecorte,{once:true}); },{once:true});
+  v.addEventListener('loadedmetadata',()=>{ if(!img) return; if(img.complete) aplicaRecorte(); else img.addEventListener('load',aplicaRecorte,{once:true}); },{once:true});
   v.addEventListener('loadeddata',()=>{ el.classList.add('has-video'); const p = v.play(); if(p) p.catch(()=>{}); },{once:true});
   v.src = 'assets/video/sh-' + ref + '.webm';
   el.appendChild(v); el.__sv = v;

@@ -37,7 +37,7 @@
 #page-home .hero .btn,#page-home .hero .ghost-btn{font-family:var(--inter);font-weight:600;letter-spacing:.01em}
 #page-home .hero .btn{border:1px solid rgba(255,255,255,.38)}
 #page-home .hero .btn:hover{background:var(--verde-escuro)}
-#page-home .hero .ghost-btn{color:#fffdf8;border-color:#fbf7ef}
+#page-home .hero .ghost-btn{color:#fbfaf5;border-color:#f7f5ef}
 #page-home .hero .ghost-btn:hover{background:rgba(255,255,255,.14)}
 
 /* ---------- 2 · A casa muda com o dia ---------- */
@@ -47,19 +47,19 @@
 #page-home .time-tabs{display:flex;flex-direction:column;gap:8px}
 #page-home .time-tab{
   display:flex;flex-direction:column;align-items:flex-start;gap:6.65px;text-align:left;
-  background:transparent;border:0;border-left:2px solid rgba(245,234,210,.18);
-  padding:14.65px 16px 20.8px 16px;color:rgba(245,234,210,.56);transition:color .2s,border-color .2s
+  background:transparent;border:0;border-left:2px solid rgba(239,234,223,.18);
+  padding:14.65px 16px 20.8px 16px;color:rgba(239,234,223,.56);transition:color .2s,border-color .2s
 }
-#page-home .time-tab strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:40px;letter-spacing:0;color:rgba(245,234,210,.56);transition:color .2s}
-#page-home .time-tab span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,234,210,.56);transition:color .2s}
-#page-home .time-tab:hover{border-left-color:rgba(245,234,210,.45)}
+#page-home .time-tab strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:40px;letter-spacing:0;color:rgba(239,234,223,.56);transition:color .2s}
+#page-home .time-tab span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(239,234,223,.56);transition:color .2s}
+#page-home .time-tab:hover{border-left-color:rgba(239,234,223,.45)}
 #page-home .time-tab:hover strong,#page-home .time-tab:hover span{color:var(--creme)}
 #page-home .time-tab.active{border-left-color:var(--verde)}
 #page-home .time-tab.active strong{color:var(--creme)}
 #page-home .time-tab.active span{color:#fff}
-#page-home .time-scene{position:relative;height:558px;margin-top:62px;border-radius:24px;overflow:hidden;background:#061c1a}
+#page-home .time-scene{position:relative;height:558px;margin-top:62px;border-radius:24px;overflow:hidden;background:#1b2620}
 #page-home .time-scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#page-home .time-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,28,26,0) 45%,rgba(6,28,26,.78) 100%)}
+#page-home .time-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,38,32,0) 45%,rgba(27,38,32,.78) 100%)}
 #page-home .time-scene-copy{position:absolute;left:34px;right:34px;bottom:30px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 #page-home .time-scene-copy h3{font-family:var(--serif);font-weight:400;font-size:48px;line-height:48px;letter-spacing:0;color:var(--creme)}
 #page-home .time-scene-copy p{max-width:440px;margin-right:13px;font-size:16px;line-height:23px;text-align:right;color:var(--creme);margin-bottom:-3px}
@@ -68,7 +68,7 @@
 #page-home #home-explorar{padding-bottom:110px}
 #page-home .explore-grid{display:grid;grid-template-columns:452px minmax(0,1fr);gap:24px;min-height:650px}
 #page-home .profile-panel{display:flex;flex-direction:column;background:var(--verde-escuro);color:var(--creme);border-radius:28px;padding:34px}
-#page-home .profile-panel>.eyebrow{margin:0 0 17px}
+#page-home .profile-panel>.eyebrow{margin:0 0 17px;color:#aebdae}
 #page-home .profile-compact-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
 #page-home .profile-card{
   height:104px;display:grid;place-items:center;text-align:center;padding:0 16px;
@@ -81,25 +81,25 @@
 #page-home .profile-result{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding-top:64px;margin-top:1px}
 #page-home .profile-result .kicker{font-size:11px;line-height:17px;font-weight:700;letter-spacing:.22em;color:var(--creme)}
 #page-home .profile-result h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
-#page-home .profile-result p{font-size:16px;line-height:24px;color:rgba(245,234,210,.7);padding:5.5px 0 7.3px}
-#page-home .profile-result .btn{color:var(--creme);background:#072921;border:1px solid rgba(255,255,255,.14)}
+#page-home .profile-result p{font-size:16px;line-height:24px;color:rgba(239,234,223,.7);padding:5.5px 0 7.3px}
+#page-home .profile-result .btn{color:var(--creme);background:#1d2c25;border:1px solid rgba(255,255,255,.14)}
 #page-home .profile-result .btn:hover{background:var(--verde)}
 
 #page-home .atlas-home-card{display:flex;flex-direction:column;overflow:hidden;border-radius:28px;background:var(--verde-escuro)}
-#page-home .atlas-map{position:relative;flex:none;aspect-ratio:2400/1310;background:#0d4237}
+#page-home .atlas-map{position:relative;flex:none;aspect-ratio:2400/1310;background:#2f4338}
 #page-home .atlas-map>img{display:block;width:100%;height:100%;object-fit:cover}
 #page-home .atlas-pins{position:absolute;inset:0}
-#page-home .map-pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;background:var(--creme);color:var(--verde-escuro);border:2px solid var(--verde);box-shadow:0 2px 10px rgba(6,28,26,.35);transition:background .2s,color .2s}
+#page-home .map-pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:12px;font-weight:700;line-height:1;background:var(--creme);color:var(--verde-escuro);border:2px solid var(--verde);box-shadow:0 2px 10px rgba(27,38,32,.35);transition:background .2s,color .2s}
 #page-home .map-pin:hover,#page-home .map-pin.active{background:var(--verde);color:var(--branco)}
 #page-home .atlas-home-copy{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:10px;padding:20px 28px;background:var(--verde-escuro);color:var(--creme)}
 #page-home .atlas-home-copy .eyebrow{margin:0}
 #page-home .atlas-home-copy h3{font-family:var(--serif);font-weight:400;font-size:34px;line-height:36px;letter-spacing:0;color:var(--creme)}
-#page-home .atlas-home-copy p{font-size:18px;line-height:24px;color:rgba(245,234,210,.72)}
+#page-home .atlas-home-copy p{font-size:18px;line-height:24px;color:rgba(239,234,223,.72)}
 #page-home .atlas-home-copy .hero-actions{padding-top:6px}
 #page-home .atlas-home-copy .btn{color:var(--creme)}
 #page-home .atlas-home-copy .btn:hover{background:var(--verde)}
 #page-home .atlas-home-copy .ghost-btn{color:var(--creme);border-color:var(--creme)}
-#page-home .atlas-home-copy .ghost-btn:hover{background:rgba(226,220,208,.14)}
+#page-home .atlas-home-copy .ghost-btn:hover{background:rgba(236,232,221,.14)}
 
 /* ---------- 4 · Escolha pelo estilo da viagem ---------- */
 #page-home .photo .eyebrow{color:var(--creme)}
@@ -142,9 +142,9 @@
 #page-home .story-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:0 var(--g) 0 55px}
 #page-home .story-copy .eyebrow{margin:0}
 #page-home .story-copy .title{margin:0}
-#page-home .story-text{font-size:16px;line-height:24px;color:#264f47;padding-top:8px}
+#page-home .story-text{font-size:16px;line-height:24px;color:#3b5246;padding-top:8px}
 #page-home .story-mini-list{width:100%;display:flex;flex-direction:column}
-#page-home .story-mini-list span{display:block;border-top:1px solid var(--linha);padding:8px 0 7px;font-size:13px;font-weight:500;line-height:24px;color:#526b64}
+#page-home .story-mini-list span{display:block;border-top:1px solid var(--linha);padding:8px 0 7px;font-size:13px;font-weight:500;line-height:24px;color:#55645a}
 #page-home .story-mini-list span:last-child{padding-bottom:16px}
 
 /* ---------- 7 · A volta à casa faz parte da viagem ---------- */
@@ -153,11 +153,11 @@
 #page-home .return-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
 #page-home .return-copy .eyebrow{margin:0}
 #page-home .return-copy .title{margin:0}
-#page-home .return-copy .lead{font-size:20px;line-height:27px;letter-spacing:.02em;color:rgba(245,234,210,.78);padding-top:7px}
+#page-home .return-copy .lead{font-size:20px;line-height:27px;letter-spacing:.02em;color:rgba(239,234,223,.78);padding-top:7px}
 #page-home .return-copy .hero-actions{padding-top:20px}
 #page-home .return-copy .btn{color:var(--creme)}
 #page-home .return-copy .btn:hover{background:var(--verde-escuro)}
-#page-home .return-media{height:430px;overflow:hidden;border-radius:30px 0 0 30px;background:#0d4237}
+#page-home .return-media{height:430px;overflow:hidden;border-radius:30px 0 0 30px;background:#2f4338}
 #page-home .return-media img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- 8 · Informações práticas ---------- */
@@ -266,23 +266,23 @@
 /* ===== Rodada 08/10: elementos do V16 que voltam, no estilo do Figma ===== */
 #page-home .hero .ghost-btn{padding:11px 19px 12px}
 #page-home .hero .ghost-btn[data-page-target="reservar"]{letter-spacing:0;padding:11px 17px 12px}
-#page-home .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:240px;background:linear-gradient(0deg,rgba(6,28,26,.6),rgba(6,28,26,0));z-index:-1;pointer-events:none}
+#page-home .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:240px;background:linear-gradient(0deg,rgba(27,38,32,.6),rgba(27,38,32,0));z-index:-1;pointer-events:none}
 #page-home .hero-foot{position:absolute;left:var(--g);right:var(--g);bottom:44px;display:flex;justify-content:center;align-items:flex-end}
 #page-home .stat-row{display:flex;gap:0}
 #page-home .stat{display:flex;flex-direction:column;gap:2px;padding:0 28px;border-left:1px solid rgba(255,255,255,.34)}
 #page-home .stat:first-child{border-left:0}
 #page-home .stat:last-child{padding-right:0}
-#page-home .stat strong{font-family:var(--serif);font-weight:700;font-size:30px;line-height:34px;color:#fff;text-shadow:0 1px 14px rgba(6,28,26,.5)}
-#page-home .stat span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(6,28,26,.5)}
+#page-home .stat strong{font-family:var(--serif);font-weight:700;font-size:30px;line-height:34px;color:#fff;text-shadow:0 1px 14px rgba(27,38,32,.5)}
+#page-home .stat span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(27,38,32,.5)}
 
 /* atalhos: sticky logo abaixo do hero, sem ocupar altura (cobre o respiro do topo da seção escura) */
 #page-home .home-chapter-nav{position:sticky;top:calc(var(--header-h) + 34px);z-index:40;height:0}
 #page-home .chapter-bar{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease;display:flex;justify-content:center;gap:4px;width:max-content;max-width:calc(100% - 2*var(--pad));margin:0 auto;padding:8px;transform:translateY(-50%);
-  background:rgba(226,220,208,.97);border:1px solid rgba(19,59,51,.15);border-radius:999px;box-shadow:var(--sombra-dock);overflow-x:auto;scrollbar-width:none}
+  background:rgba(236,232,221,.97);border:1px solid rgba(38,51,44,.15);border-radius:999px;box-shadow:var(--sombra-dock);overflow-x:auto;scrollbar-width:none}
 #page-home .chapter-bar::-webkit-scrollbar{display:none}
 #page-home .chapter-bar button{flex:none;border:0;background:transparent;color:var(--verde);padding:10px 14px 11px;border-radius:999px;font-size:13px;line-height:20px;letter-spacing:.02em;transition:background .2s,color .2s}
-#page-home .chapter-bar button:hover{background:rgba(81,132,78,.12)}
-#page-home .chapter-bar button.active{background:rgba(81,132,78,.7);color:var(--creme)}
+#page-home .chapter-bar button:hover{background:rgba(74,97,82,.12)}
+#page-home .chapter-bar button.active{background:rgba(74,97,82,.7);color:var(--creme)}
 #page-home .home-chapter{scroll-margin-top:calc(var(--header-h) + 36px)}
 
 
@@ -294,7 +294,7 @@
 /* Experiência Tidelli: título do dia e momentos (V16) */
 
 /* Atlas: pinos */
-#page-home .map-pin{box-shadow:0 2px 10px rgba(6,28,26,.35)}
+#page-home .map-pin{box-shadow:0 2px 10px rgba(27,38,32,.35)}
 
 @media(max-width:1180px){
   #page-home .hero-foot{bottom:32px}

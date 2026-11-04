@@ -11,7 +11,7 @@
 #page-casa .casa-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- 1. Hero ---------- */
-#page-casa .casa-hero{position:relative;isolation:isolate;overflow:hidden;background:#f5ead2;color:var(--creme);
+#page-casa .casa-hero{position:relative;isolation:isolate;overflow:hidden;background:#efeadf;color:var(--creme);
   min-height:clamp(640px,58.54vw,1124px);display:flex;flex-direction:column;justify-content:center;padding:26px 6vw 0}
 #page-casa .casa-hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden}
 #page-casa .casa-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -24,20 +24,20 @@
 #page-casa .hero-lead{margin-top:24px;max-width:552px;font-size:clamp(17px,1.302vw,25px);line-height:1.2;letter-spacing:.02em;color:var(--creme)}
 #page-casa .casa-hero .hero-actions{margin-top:36px}
 #page-casa .casa-hero .ghost-btn{color:var(--creme);border-color:var(--creme)}
-#page-casa .casa-hero .ghost-btn:hover{background:rgba(226,220,208,.14)}
+#page-casa .casa-hero .ghost-btn:hover{background:rgba(236,232,221,.14)}
 
 /* ---------- 2. Como tudo começou ---------- */
 #page-casa .casa-origem{padding-top:86px;padding-bottom:61px;min-height:560px}
 #page-casa .origin-editorial{display:grid;grid-template-columns:minmax(0,666fr) minmax(0,544fr);column-gap:70px;align-items:center}
 #page-casa .origem-copy .title{max-width:653px}
 #page-casa .origem-copy .lead{margin-top:24px;color:var(--verde-escuro);font-size:clamp(17px,1.302vw,25px);line-height:1.2}
-#page-casa .origem-texto{margin-top:16px;max-width:653px;font-size:16px;line-height:24px;color:#5a7069}
+#page-casa .origem-texto{margin-top:16px;max-width:653px;font-size:16px;line-height:24px;color:#55645a}
 #page-casa .year-stack{display:flex;flex-direction:column;gap:36px;border-left:1px solid var(--linha);padding:4px 0}
 #page-casa .year-stack article{position:relative;padding:0 0 0 32px;display:flex;flex-direction:column;gap:4.2px}
 #page-casa .year-stack article::before{content:"";position:absolute;left:-6px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--verde)}
 #page-casa .year-stack time{font-family:var(--serif);font-weight:400;letter-spacing:0;font-size:36px;line-height:44px;color:var(--texto)}
 #page-casa .year-stack h3{margin:0;padding-top:.85px;font-family:var(--sans);font-weight:700;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto)}
-#page-casa .year-stack p{font-size:16px;line-height:24px;color:#60736d}
+#page-casa .year-stack p{font-size:16px;line-height:24px;color:#5f6e65}
 
 /* ---------- 3. Atlas Vivo ---------- */
 /* revisão 20/10: overlay preto 50% sobre a foto de fundo (era 20%) */
@@ -47,7 +47,7 @@
 #page-casa .casa-atlas .section-head>div:first-child{max-width:none}
 #page-casa .casa-atlas .section-head .eyebrow{color:var(--creme);font-family:var(--inter);font-weight:600}
 #page-casa .casa-atlas .title{white-space:nowrap}
-#page-casa .atlas-teaser{display:grid;grid-template-columns:minmax(0,755fr) minmax(0,525fr);background:#133b33;border-radius:30px;overflow:hidden;color:var(--creme)}
+#page-casa .atlas-teaser{display:grid;grid-template-columns:minmax(0,755fr) minmax(0,525fr);background:#26332c;border-radius:30px;overflow:hidden;color:var(--creme)}
 #page-casa .atlas-map{position:relative;overflow:hidden;aspect-ratio:2400/1310}
 #page-casa .atlas-map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 #page-casa .map-pin{position:absolute;z-index:3;transform:translate(-50%,-50%);width:34px;height:34px;padding:1px 6px;border-radius:50%;border:2px solid #fff;background:var(--verde);color:#fff;
@@ -57,7 +57,7 @@
 #page-casa .atlas-copy{padding:40px 48px;display:flex;flex-direction:column;justify-content:center;min-width:0}
 #page-casa .atlas-place{padding-top:0}
 #page-casa .atlas-place h3{font-family:var(--serif);font-weight:700;font-size:38px;line-height:47px;letter-spacing:0;color:var(--creme);margin:0 0 12px}
-#page-casa .atlas-place p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(245,234,210,.72);margin:0}
+#page-casa .atlas-place p{font-size:16px;line-height:24px;letter-spacing:.02em;color:rgba(239,234,223,.72);margin:0}
 #page-casa .atlas-actions{margin-top:28px}
 #page-casa .atlas-actions .btn.light{background:var(--branco);color:var(--verde-escuro)}
 #page-casa .atlas-actions .btn.light:hover{background:var(--creme)}
@@ -66,7 +66,7 @@
 #page-casa .casa-unica .section-head>div:first-child{max-width:900px}
 #page-casa .house-layers .card{height:auto;align-self:stretch;padding:32px 28px;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao);color:var(--texto-2)}
 #page-casa .house-layers .card h3{font-size:30px;line-height:32px;letter-spacing:0;margin:0 0 14px;color:var(--verde)}
-#page-casa .house-layers .card p{font-size:16px;line-height:24px;color:#587069}
+#page-casa .house-layers .card p{font-size:16px;line-height:24px;color:#55645a}
 
 /* ---------- 5. Histórias da casa ---------- */
 #page-casa .casa-historias .eyebrow{color:#fff}
@@ -76,7 +76,7 @@
 #page-casa .story-grid{display:grid;grid-template-columns:minmax(0,692fr) minmax(0,566fr);gap:22px;align-items:stretch;height:620px}
 #page-casa .story-main{position:relative;overflow:hidden;border-radius:24px;min-height:620px}
 #page-casa .story-main>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#page-casa .story-main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,27,25,0) 48%,rgba(0,0,0,.78) 100%)}
+#page-casa .story-main::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,38,32,0) 48%,rgba(0,0,0,.78) 100%)}
 #page-casa .story-main-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:31px;color:#fff}
 #page-casa .story-main-copy .kicker{font-size:11px;line-height:17px;letter-spacing:.22em;font-weight:700;color:#fff}
 #page-casa .story-main-copy h3{white-space:pre-line;font-family:var(--serif);font-weight:400;font-size:clamp(34px,2.71vw,52px);line-height:1;letter-spacing:0;color:#fff;max-width:624px}
@@ -86,14 +86,14 @@
 #page-casa .story-card .thumb{width:96px;height:96px;border-radius:14px;overflow:hidden}
 #page-casa .story-card .thumb img{width:100%;height:100%;object-fit:cover}
 #page-casa .story-card h4{font-family:var(--serif);font-weight:400;font-size:27px;line-height:42px;letter-spacing:0;color:var(--texto)}
-#page-casa .story-card p{margin-top:6.3px;font-size:16px;line-height:24px;color:#60746e}
+#page-casa .story-card p{margin-top:6.3px;font-size:16px;line-height:24px;color:#5f6e65}
 
 /* ---------- 6. O jeito de receber ---------- */
 #page-casa .casa-equipe .split{grid-template-columns:minmax(0,639fr) minmax(0,579fr)}
 #page-casa .casa-equipe .title{color:var(--texto);letter-spacing:-.038em}
-#page-casa .casa-equipe .lead{margin-top:24px;color:#264f47;font-size:clamp(17px,1.302vw,25px);line-height:1.2}
+#page-casa .casa-equipe .lead{margin-top:24px;color:#3b5246;font-size:clamp(17px,1.302vw,25px);line-height:1.2}
 #page-casa .casa-equipe .hero-actions{margin-top:36px}
-#page-casa .media-frame{position:relative;overflow:hidden;border-radius:24px;background:#d8ccb7;height:680px}
+#page-casa .media-frame{position:relative;overflow:hidden;border-radius:24px;background:#d9d3c4;height:680px}
 #page-casa .media-frame>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* ---------- Responsivo ---------- */
