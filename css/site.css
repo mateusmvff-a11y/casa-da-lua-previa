@@ -1714,8 +1714,13 @@ p,li,.lead,figcaption,[class*="-lead"],[class*="-text"]{text-wrap:balance}
 body.no-topo-ainda .booking-dock{opacity:0;pointer-events:none;transform:translate(-50%,16px)}
 @media(max-width:760px){ body.no-topo-ainda .booking-dock{transform:translateY(16px)} }
 /* Chapada "Antes de sair": folhagem cheia de detalhe atrás do título branco; véu musgo (tom sobre tom) + mais escuro à esquerda */
-#page-chapada .chapada-before-shade{background:linear-gradient(90deg,rgba(20,32,26,.78) 0%,rgba(20,32,26,.6) 50%,rgba(20,32,26,.48) 100%)}
+#page-chapada .chapada-before-shade{background:linear-gradient(90deg,rgba(20,32,26,.8) 0%,rgba(20,32,26,.66) 50%,rgba(20,32,26,.58) 100%)}
 @media(max-width:760px){ #page-chapada .chapada-before-shade{background:rgba(20,32,26,.55)} }
+/* Chapada "Antes de sair": cartões em tom sobre tom (verde translúcido, texto claro); desfoque leve porque o fundo é folhagem */
+#page-chapada .chapada-before .card{background:rgba(74,97,82,.42);border:1px solid rgba(236,232,221,.18);box-shadow:none;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#page-chapada .chapada-before .card h3{color:var(--creme)}
+#page-chapada .chapada-before .card p{color:rgba(236,232,221,.86)}
 
 
 /* =========================================================
