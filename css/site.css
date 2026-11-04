@@ -918,7 +918,7 @@ body{font-variant-numeric:lining-nums}
 
 /* ---------- noite (650) ---------- */
 #page-viver .vv-night{background:#e2dccb;color:var(--creme)}
-#page-viver .vv-night .section-bg{background-position:center 12%}
+#page-viver .vv-night .section-bg{background-position:center 10%}
 #page-viver .vv-night::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.78);pointer-events:none}
 #page-viver .vv-night-grid{display:grid;grid-template-columns:minmax(0,579fr) minmax(0,639fr);gap:62px;align-items:center}
 #page-viver .vv-night-copy .eyebrow{color:var(--creme)}
@@ -1042,7 +1042,7 @@ body{font-variant-numeric:lining-nums}
 
 /* ---------- O que atravessa os 4 dias ---------- */
 #page-experiencias .exp-thread{background:#1c2a24}
-#page-experiencias .exp-thread .section-bg{inset:0;width:100%;height:100%;background-size:cover;background-position:50% 72%}
+#page-experiencias .exp-thread .section-bg{inset:0;width:100%;height:100%;background-size:cover;background-position:50% 50%}
 #page-experiencias .exp-thread .section-head>div:first-child{max-width:800px}
 #page-experiencias .exp-thread .eyebrow{color:#fff;font-family:var(--inter);font-weight:600}
 #page-experiencias .exp-thread .title{color:var(--creme)}
@@ -1314,7 +1314,7 @@ body{font-variant-numeric:lining-nums}
 
 /* ---------- Antes de sair (foto de fundo) ---------- */
 #page-chapada .chapada-before{overflow:hidden;background:var(--branco)}
-#page-chapada .chapada-before .section-bg{inset:-8% 0;background-position:55% 24%}
+#page-chapada .chapada-before .section-bg{inset:-8% 0;background-position:50% 50%}
 #page-chapada .chapada-before-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.22) 31%,rgba(0,0,0,0) 100%)}
 #page-chapada .chapada-before .section-head{margin-bottom:48px}
 #page-chapada .chapada-before .eyebrow{color:#fff}
@@ -1675,24 +1675,6 @@ p,li,.lead,figcaption,[class*="-lead"],[class*="-text"]{text-wrap:balance}
 .section-bg.sh-drift.sh-on{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){ .section-bg.sh-drift{animation:none} }
 
-/* ---------- Rodada 5b (03/11): todos os heros centralizados, como o da Home ---------- */
-#page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
-  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-#page-casa .casa-hero-copy,#page-suites .suites-hero-copy,#page-viver .vv-hero-copy,#page-experiencias .exp-hero-copy,#page-eventos .hero-copy,#page-chapada .chapada-hero-copy{
-  width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center;text-align:center}
-#page-casa .casa-hero-copy>*,#page-suites .suites-hero-copy>*,#page-viver .vv-hero-copy>*,#page-experiencias .exp-hero-copy>*,#page-eventos .hero-copy>*,#page-chapada .chapada-hero-copy>*{margin-left:auto;margin-right:auto}
-#page-casa .casa-hero .hero-actions,#page-suites .suites-hero .hero-actions,#page-viver .vv-actions,#page-experiencias .exp-hero-actions,#page-eventos .hero-actions,#page-chapada .chapada-hero .hero-actions{justify-content:center}
-#page-experiencias .hero-badge{left:50%;transform:translateX(-50%)}
-@media(min-width:761px){
-  #page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
-    padding-left:var(--pad);padding-right:var(--pad)}
-  #page-eventos .hero,#page-chapada .chapada-hero{padding-top:80px;padding-bottom:140px}
-  #page-experiencias .exp-hero{padding-top:0}
-  /* sombra por igual (o texto não fica mais à esquerda) */
-  #page-casa .casa-hero::after{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.44))}
-  #page-viver .vv-hero::after,#page-eventos .hero-media::after,#page-experiencias .exp-hero-shade,#page-chapada .chapada-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.44))}
-  #page-suites .suites-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(40,22,12,.38),rgba(40,22,12,.48))}
-}
 
 /* ---------- Rodada 5b: cartões sobre fundo verde em tom sobre tom (modelo: cartões de Experiências) ---------- */
 #page-casa .house-layers .card,#page-suites .suites-step,#page-viver .vv-moment{
@@ -1711,16 +1693,29 @@ p,li,.lead,figcaption,[class*="-lead"],[class*="-text"]{text-wrap:balance}
   .booking-dock .btn{padding:13px 26px 14px}
 }
 #page-experiencias .exp-next .eyebrow{color:var(--creme)}
-/* hero centralizado: sombra um pouco mais forte no meio, onde agora fica o texto */
-@media(min-width:761px){
-  #page-casa .casa-hero::after,#page-viver .vv-hero::after,#page-eventos .hero-media::after,#page-experiencias .exp-hero-shade,#page-chapada .chapada-hero-shade{
-    background:radial-gradient(ellipse 62% 55% at 50% 50%,rgba(0,0,0,.26),rgba(0,0,0,0) 100%),linear-gradient(180deg,rgba(0,0,0,.36),rgba(0,0,0,.46))}
-}
 .footer-col h3,.footer-col:nth-child(3) h3{color:#aebdae}
 @media(max-width:760px){
   #page-casa .casa-hero::after{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.56))}
   #page-viver .vv-hero::after,#page-experiencias .exp-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.56))}
 }
+
+/* ---------- Rodada 5c (03/11): heros com texto à esquerda, mais para cima ----------
+   Antes a altura era 58,5% da largura (1.100 px numa tela de 1.900 px, mais que a janela): o texto, centralizado
+   nessa altura, caía perto da barra de reserva. Agora o hero tem a altura da janela e o texto sobe um pouco. */
+@media(min-width:761px){
+  #page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    height:auto;min-height:max(600px,calc(100svh - var(--header-h)));max-height:none;
+    padding-top:40px;padding-bottom:clamp(110px,16vh,190px)}
+  #page-casa .casa-hero-copy,#page-suites .suites-hero-copy,#page-viver .vv-hero-copy,#page-experiencias .exp-hero-copy,#page-eventos .hero-copy,#page-chapada .chapada-hero-copy{width:100%}
+}
+/* A barra de reserva só aparece depois do topo (o topo já tem os próprios botões): uma faixa por vez */
+.booking-dock{transition:opacity .35s ease,transform .35s ease}
+body.no-topo-ainda .booking-dock{opacity:0;pointer-events:none;transform:translate(-50%,16px)}
+@media(max-width:760px){ body.no-topo-ainda .booking-dock{transform:translateY(16px)} }
+/* Chapada "Antes de sair": folhagem cheia de detalhe atrás do título branco; véu musgo (tom sobre tom) + mais escuro à esquerda */
+#page-chapada .chapada-before-shade{background:linear-gradient(90deg,rgba(20,32,26,.78) 0%,rgba(20,32,26,.6) 50%,rgba(20,32,26,.48) 100%)}
+@media(max-width:760px){ #page-chapada .chapada-before-shade{background:rgba(20,32,26,.55)} }
 
 
 /* =========================================================

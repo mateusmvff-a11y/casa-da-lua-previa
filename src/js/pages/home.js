@@ -104,6 +104,8 @@ CDL.ready(()=>{
     const barY = nav.getBoundingClientRect().top;          /* centro da barra (ela sobe 50% da altura) */
     let on = false;
     for(const s of heads){ if(Math.abs(s.getBoundingClientRect().top - barY) <= ZONE){ on = true; break; } }
+    /* só quando a barra já está presa no alto (antes ela aparecia colada no fim do hero, junto da barra de reserva) */
+    if(barY > parseFloat(getComputedStyle(nav).top) + 4) on = false;
     nav.classList.toggle('is-on', on);
   }
   function req(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }

@@ -49,7 +49,7 @@
 
 /* ---------- Antes de sair (foto de fundo) ---------- */
 #page-chapada .chapada-before{overflow:hidden;background:var(--branco)}
-#page-chapada .chapada-before .section-bg{inset:-8% 0;background-position:55% 24%}
+#page-chapada .chapada-before .section-bg{inset:-8% 0;background-position:50% 50%}
 #page-chapada .chapada-before-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.22) 31%,rgba(0,0,0,0) 100%)}
 #page-chapada .chapada-before .section-head{margin-bottom:48px}
 #page-chapada .chapada-before .eyebrow{color:#fff}

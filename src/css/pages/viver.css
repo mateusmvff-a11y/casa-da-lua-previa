@@ -72,7 +72,7 @@
 
 /* ---------- noite (650) ---------- */
 #page-viver .vv-night{background:#e2dccb;color:var(--creme)}
-#page-viver .vv-night .section-bg{background-position:center 12%}
+#page-viver .vv-night .section-bg{background-position:center 10%}
 #page-viver .vv-night::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.78);pointer-events:none}
 #page-viver .vv-night-grid{display:grid;grid-template-columns:minmax(0,579fr) minmax(0,639fr);gap:62px;align-items:center}
 #page-viver .vv-night-copy .eyebrow{color:var(--creme)}

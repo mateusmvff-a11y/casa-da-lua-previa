@@ -148,3 +148,27 @@ CDL.ready(()=>{
   });
 });
 })();
+
+/* Barra de reserva só depois do topo (rodada 5c, 03/11): enquanto o hero da página ocupa a tela, a barra some
+   (o hero já tem "Consultar datas"); assim nunca há duas faixas empilhadas no fim da primeira tela. */
+(function(){
+'use strict';
+if(!window.CDL) return;
+let tick = false;
+function topoDaPagina(){
+  const pg = document.querySelector('.page.active'); if(!pg) return null;
+  const s = pg.querySelector(':scope > section'); if(!s) return null;
+  return /hero/.test(s.className) || s.hasAttribute('data-anim') && s.getAttribute('data-anim') === 'hero' ? s : null;
+}
+function update(){
+  tick = false;
+  const h = topoDaPagina();
+  const on = !!h && h.getBoundingClientRect().bottom > window.innerHeight * 0.45;
+  document.body.classList.toggle('no-topo-ainda', on);
+}
+const req = ()=>{ if(!tick){ tick = true; requestAnimationFrame(update); } };
+window.addEventListener('scroll', req, {passive:true});
+window.addEventListener('resize', req);
+window.addEventListener('hashchange', ()=>setTimeout(req,60));
+CDL.ready(()=>{ ['home','casa','suites','viver','experiencias','eventos','chapada','reservar'].forEach(p=>CDL.onPage(p,()=>setTimeout(req,60))); req(); });
+})();

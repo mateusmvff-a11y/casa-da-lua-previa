@@ -503,6 +503,8 @@ CDL.ready(()=>{
     const barY = nav.getBoundingClientRect().top;          /* centro da barra (ela sobe 50% da altura) */
     let on = false;
     for(const s of heads){ if(Math.abs(s.getBoundingClientRect().top - barY) <= ZONE){ on = true; break; } }
+    /* só quando a barra já está presa no alto (antes ela aparecia colada no fim do hero, junto da barra de reserva) */
+    if(barY > parseFloat(getComputedStyle(nav).top) + 4) on = false;
     nav.classList.toggle('is-on', on);
   }
   function req(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
@@ -1058,6 +1060,30 @@ CDL.ready(()=>{
     $$('#mobileNavOverlay [data-page-target]').forEach(b=>b.classList.toggle('active',b.dataset.pageTarget===CDL.currentPage));
   });
 });
+})();
+
+/* Barra de reserva só depois do topo (rodada 5c, 03/11): enquanto o hero da página ocupa a tela, a barra some
+   (o hero já tem "Consultar datas"); assim nunca há duas faixas empilhadas no fim da primeira tela. */
+(function(){
+'use strict';
+if(!window.CDL) return;
+let tick = false;
+function topoDaPagina(){
+  const pg = document.querySelector('.page.active'); if(!pg) return null;
+  const s = pg.querySelector(':scope > section'); if(!s) return null;
+  return /hero/.test(s.className) || s.hasAttribute('data-anim') && s.getAttribute('data-anim') === 'hero' ? s : null;
+}
+function update(){
+  tick = false;
+  const h = topoDaPagina();
+  const on = !!h && h.getBoundingClientRect().bottom > window.innerHeight * 0.45;
+  document.body.classList.toggle('no-topo-ainda', on);
+}
+const req = ()=>{ if(!tick){ tick = true; requestAnimationFrame(update); } };
+window.addEventListener('scroll', req, {passive:true});
+window.addEventListener('resize', req);
+window.addEventListener('hashchange', ()=>setTimeout(req,60));
+CDL.ready(()=>{ ['home','casa','suites','viver','experiencias','eventos','chapada','reservar'].forEach(p=>CDL.onPage(p,()=>setTimeout(req,60))); req(); });
 })();
 
 

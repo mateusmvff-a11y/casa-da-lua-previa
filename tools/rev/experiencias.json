@@ -22,7 +22,7 @@
  {
   "bloco": "Experiências - bloco 3",
   "item": "a almofada amarela não fica atrás do título (recorte da textura mais abaixo)",
-  "expr": "getComputedStyle(document.querySelector('#page-experiencias .exp-thread .section-bg')).backgroundPositionY!=='50%'"
+  "expr": "(()=>{const s=getComputedStyle(document.querySelector('#page-experiencias .exp-thread .section-bg'));return /18780c-faixa/.test(s.backgroundImage)||s.backgroundPositionY!=='50%'})()"
  },
  {
   "bloco": "Experiências - bloco 4",

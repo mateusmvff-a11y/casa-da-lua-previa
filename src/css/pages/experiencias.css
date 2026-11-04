@@ -49,7 +49,7 @@
 
 /* ---------- O que atravessa os 4 dias ---------- */
 #page-experiencias .exp-thread{background:#1c2a24}
-#page-experiencias .exp-thread .section-bg{inset:0;width:100%;height:100%;background-size:cover;background-position:50% 72%}
+#page-experiencias .exp-thread .section-bg{inset:0;width:100%;height:100%;background-size:cover;background-position:50% 50%}
 #page-experiencias .exp-thread .section-head>div:first-child{max-width:800px}
 #page-experiencias .exp-thread .eyebrow{color:#fff;font-family:var(--inter);font-weight:600}
 #page-experiencias .exp-thread .title{color:var(--creme)}
