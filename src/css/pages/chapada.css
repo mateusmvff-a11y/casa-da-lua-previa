@@ -55,7 +55,7 @@
 #page-chapada .chapada-before .eyebrow{color:#fff}
 #page-chapada .chapada-before .title{color:#fff}
 #page-chapada .chapada-before .grid-4{align-items:stretch}
-#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px 22px}
+#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px 18px}
 #page-chapada .chapada-before .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--verde);margin:0;max-width:190px;text-wrap:balance}
 #page-chapada .chapada-before .card p{font-size:16px;line-height:24px;color:var(--texto-2);text-wrap:balance;min-height:72px}
 

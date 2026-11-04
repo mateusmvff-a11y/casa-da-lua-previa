@@ -4,7 +4,7 @@
    tipografia, cabeçalho, rodapé, barra de reserva, botões, chips,
    cartões, formulários, sobreposições e responsivo.
    Fonte: Mortise (títulos) + Forma DJR Display (todo o resto),
-   ambas pelo kit Adobe Fonts awj5ukh (Cormorant nos títulos desde 03/11; Forma no texto).
+   ambas pelo kit Adobe Fonts cgs8xgs (Cormorant nos títulos desde 03/11; Forma no texto).
    Regra: CSS de página fica em src/css/pages/<pagina>.css e usa o
    prefixo #page-<pagina>. Não editar este arquivo a partir das páginas.
    ========================================================= */
@@ -30,7 +30,7 @@
 
   /* tipografia */
   --serif:"cormorant","Cormorant Garamond",Georgia,serif;
-  --sans:"forma-djr-display","Helvetica Neue",Arial,sans-serif;
+  --sans:"forma-djr-text","Helvetica Neue",Arial,sans-serif;
   --inter:"Inter","Helvetica Neue",Arial,sans-serif;   /* o Figma usa Inter em botões, chips, cartões de suíte, barra de reserva etc. */
 
   /* medidas */
@@ -42,7 +42,7 @@
 
 *{box-sizing:border-box}
 html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{overflow-x:clip;margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+body{overflow-x:clip;margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
 body.no-scroll{overflow:hidden}
 button,input,select,textarea{font:inherit;letter-spacing:inherit;color:inherit}
 button{cursor:pointer}

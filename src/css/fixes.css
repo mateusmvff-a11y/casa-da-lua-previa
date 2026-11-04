@@ -41,3 +41,50 @@ p,li,.lead,figcaption,[class*="-lead"],[class*="-text"]{text-wrap:balance}
 .section-bg.sh-drift{animation:shDrift 18s ease-in-out infinite alternate;animation-play-state:paused}
 .section-bg.sh-drift.sh-on{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){ .section-bg.sh-drift{animation:none} }
+
+/* ---------- Rodada 5b (03/11): todos os heros centralizados, como o da Home ---------- */
+#page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+#page-casa .casa-hero-copy,#page-suites .suites-hero-copy,#page-viver .vv-hero-copy,#page-experiencias .exp-hero-copy,#page-eventos .hero-copy,#page-chapada .chapada-hero-copy{
+  width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+#page-casa .casa-hero-copy>*,#page-suites .suites-hero-copy>*,#page-viver .vv-hero-copy>*,#page-experiencias .exp-hero-copy>*,#page-eventos .hero-copy>*,#page-chapada .chapada-hero-copy>*{margin-left:auto;margin-right:auto}
+#page-casa .casa-hero .hero-actions,#page-suites .suites-hero .hero-actions,#page-viver .vv-actions,#page-experiencias .exp-hero-actions,#page-eventos .hero-actions,#page-chapada .chapada-hero .hero-actions{justify-content:center}
+#page-experiencias .hero-badge{left:50%;transform:translateX(-50%)}
+@media(min-width:761px){
+  #page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
+    padding-left:var(--pad);padding-right:var(--pad)}
+  #page-eventos .hero,#page-chapada .chapada-hero{padding-top:80px;padding-bottom:140px}
+  #page-experiencias .exp-hero{padding-top:0}
+  /* sombra por igual (o texto não fica mais à esquerda) */
+  #page-casa .casa-hero::after{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.44))}
+  #page-viver .vv-hero::after,#page-eventos .hero-media::after,#page-experiencias .exp-hero-shade,#page-chapada .chapada-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.44))}
+  #page-suites .suites-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(40,22,12,.38),rgba(40,22,12,.48))}
+}
+
+/* ---------- Rodada 5b: cartões sobre fundo verde em tom sobre tom (modelo: cartões de Experiências) ---------- */
+#page-casa .house-layers .card,#page-suites .suites-step,#page-viver .vv-moment{
+  background:rgba(236,232,221,.08);border:1px solid rgba(236,232,221,.14);box-shadow:none;color:var(--creme)}
+#page-casa .house-layers .card h3,#page-suites .suites-step h3,#page-viver .vv-moment-title,#page-viver .vv-time{color:var(--creme)}
+#page-casa .house-layers .card p,#page-suites .suites-step p,#page-viver .vv-moment-text{color:rgba(236,232,221,.82)}
+#page-suites .suites-step-n,#page-viver .vv-moment-copy .eyebrow{color:#aebdae}
+#page-viver .vv-moment .chip,#page-viver .vv-moment .tag-row>span{border-color:rgba(236,232,221,.22);background:rgba(236,232,221,.06);color:var(--creme)}
+
+/* ---------- Rodada 5b: barra de reserva com mais respiro ---------- */
+@media(min-width:761px){
+  .booking-dock{gap:22px;padding:12px 12px 12px 28px;min-width:min(940px,calc(100vw - 40px))}
+  .dock-copy{gap:2px;min-width:190px}
+  .dock-fields{gap:10px}
+  .dock-field{padding:11px 18px 12px}
+  .booking-dock .btn{padding:13px 26px 14px}
+}
+#page-experiencias .exp-next .eyebrow{color:var(--creme)}
+/* hero centralizado: sombra um pouco mais forte no meio, onde agora fica o texto */
+@media(min-width:761px){
+  #page-casa .casa-hero::after,#page-viver .vv-hero::after,#page-eventos .hero-media::after,#page-experiencias .exp-hero-shade,#page-chapada .chapada-hero-shade{
+    background:radial-gradient(ellipse 62% 55% at 50% 50%,rgba(0,0,0,.26),rgba(0,0,0,0) 100%),linear-gradient(180deg,rgba(0,0,0,.36),rgba(0,0,0,.46))}
+}
+.footer-col h3,.footer-col:nth-child(3) h3{color:#aebdae}
+@media(max-width:760px){
+  #page-casa .casa-hero::after{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.56))}
+  #page-viver .vv-hero::after,#page-experiencias .exp-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.56))}
+}

@@ -4,7 +4,7 @@
    tipografia, cabeçalho, rodapé, barra de reserva, botões, chips,
    cartões, formulários, sobreposições e responsivo.
    Fonte: Mortise (títulos) + Forma DJR Display (todo o resto),
-   ambas pelo kit Adobe Fonts awj5ukh (Cormorant nos títulos desde 03/11; Forma no texto).
+   ambas pelo kit Adobe Fonts cgs8xgs (Cormorant nos títulos desde 03/11; Forma no texto).
    Regra: CSS de página fica em src/css/pages/<pagina>.css e usa o
    prefixo #page-<pagina>. Não editar este arquivo a partir das páginas.
    ========================================================= */
@@ -30,7 +30,7 @@
 
   /* tipografia */
   --serif:"cormorant","Cormorant Garamond",Georgia,serif;
-  --sans:"forma-djr-display","Helvetica Neue",Arial,sans-serif;
+  --sans:"forma-djr-text","Helvetica Neue",Arial,sans-serif;
   --inter:"Inter","Helvetica Neue",Arial,sans-serif;   /* o Figma usa Inter em botões, chips, cartões de suíte, barra de reserva etc. */
 
   /* medidas */
@@ -42,7 +42,7 @@
 
 *{box-sizing:border-box}
 html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{overflow-x:clip;margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+body{overflow-x:clip;margin:0;background:var(--branco);color:var(--texto);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.5;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
 body.no-scroll{overflow:hidden}
 button,input,select,textarea{font:inherit;letter-spacing:inherit;color:inherit}
 button{cursor:pointer}
@@ -202,7 +202,7 @@ main{padding-top:var(--header-h)}
 .footer-extra button{background:transparent;border:0;padding:0;font:inherit;color:var(--creme);font-size:14px;line-height:22px;letter-spacing:.02em;opacity:.86;cursor:pointer}
 @media(max-width:1180px){ .footer-extra{margin-left:0;width:100%} }
 @media(max-width:760px){ .footer-contact,.footer-social{flex-direction:column;gap:4px} }
-.opt{font-weight:500;opacity:.65}
+.opt{font-weight:400;opacity:.65}
 
 /* ---------- Responsivo (padrão do HTML de arquitetura: 1180 e 760) ---------- */
 @media(max-width:1180px){
@@ -781,7 +781,7 @@ body{font-variant-numeric:lining-nums}
 /* ---------- 3. Filtros e cartões ---------- */
 #page-suites .suites-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 38px;padding-top:10px}
 #page-suites .suite-filter{
-  padding:10px 14px;line-height:21px;font-weight:500;letter-spacing:.02em;
+  padding:10px 14px;line-height:21px;font-weight:400;letter-spacing:.02em;
   background:transparent;color:var(--verde-escuro);border-color:var(--linha)
 }
 #page-suites .suite-filter:hover{background:rgba(38,51,44,.06);color:var(--verde-escuro);border-color:var(--linha)}
@@ -887,7 +887,7 @@ body{font-variant-numeric:lining-nums}
 #page-viver .vv-moments .vv-head{margin-bottom:0}
 #page-viver .vv-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:48px 0 24px}
 #page-viver .vv-tabs button{border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--creme);border-radius:999px;
-  padding:10px 15px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;font-weight:500;
+  padding:10px 15px 11px;font-size:13px;line-height:20px;letter-spacing:.02em;font-weight:400;
   transition:background .2s,color .2s,border-color .2s}
 #page-viver .vv-tabs button:hover{background:rgba(255,255,255,.1)}
 #page-viver .vv-tabs button.active{background:var(--creme);border-color:var(--areia);color:var(--verde);font-weight:700}
@@ -914,7 +914,7 @@ body{font-variant-numeric:lining-nums}
   background:linear-gradient(180deg,rgba(27,38,32,0) 35%,rgba(27,38,32,.82) 100%)}
 #page-viver .vv-space-copy{position:absolute;left:22px;right:22px;bottom:23px;display:flex;flex-direction:column;gap:7px}
 #page-viver .vv-space-copy h3{font-family:var(--serif);font-weight:400;font-size:clamp(26.4px,1.78vw,34.1px);line-height:1.55;color:#fff}
-#page-viver .vv-space-copy p{font-family:var(--sans);font-weight:500;font-size:13px;line-height:20px;letter-spacing:0;color:rgba(255,255,255,.72)}
+#page-viver .vv-space-copy p{font-family:var(--sans);font-weight:400;font-size:13px;line-height:20px;letter-spacing:0;color:rgba(255,255,255,.72)}
 
 /* ---------- noite (650) ---------- */
 #page-viver .vv-night{background:#e2dccb;color:var(--creme)}
@@ -1061,7 +1061,7 @@ body{font-variant-numeric:lining-nums}
 
 /* ---------- Próximas edições ---------- */
 #page-experiencias .exp-next{background:#e2dccb}
-#page-experiencias .exp-next .section-bg{background-size:147% auto;background-position:22.5% 51.5%}
+#page-experiencias .exp-next .section-bg{background-size:cover;background-position:50% 50%}
 #page-experiencias .exp-next .title{color:var(--creme)}
 #page-experiencias .exp-form{display:flex;align-items:flex-end;gap:12px;padding:26px;background:var(--creme);border:1px solid var(--linha-suave);border-radius:24px;box-shadow:var(--sombra-cartao)}
 #page-experiencias .exp-form .field{flex:1 1 0;min-width:0}
@@ -1320,7 +1320,7 @@ body{font-variant-numeric:lining-nums}
 #page-chapada .chapada-before .eyebrow{color:#fff}
 #page-chapada .chapada-before .title{color:#fff}
 #page-chapada .chapada-before .grid-4{align-items:stretch}
-#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px 22px}
+#page-chapada .chapada-before .card{display:flex;flex-direction:column;gap:12px;padding:26px 18px}
 #page-chapada .chapada-before .card h3{font-weight:400;font-size:30px;line-height:32px;color:var(--verde);margin:0;max-width:190px;text-wrap:balance}
 #page-chapada .chapada-before .card p{font-size:16px;line-height:24px;color:var(--texto-2);text-wrap:balance;min-height:72px}
 
@@ -1546,7 +1546,7 @@ body{font-variant-numeric:lining-nums}
 .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;margin:28px 0 34px}
 .meta-item{border-top:1px solid var(--linha);padding-top:12px}
 .meta-item small{display:block;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4)}
-.meta-item strong{display:block;margin-top:4px;font-weight:500;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
+.meta-item strong{display:block;margin-top:4px;font-weight:400;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
 .suite-modal-copy .subtitle{font-size:28px;line-height:1.1;margin-bottom:14px}
 .amenity-list{columns:2;column-gap:28px;margin:0;padding:0;list-style:none}
 .amenity-list li{position:relative;break-inside:avoid;padding:9px 0 9px 18px;border-bottom:1px solid var(--linha-suave);font-size:14px;line-height:22px;letter-spacing:.02em;color:var(--texto)}
@@ -1558,8 +1558,8 @@ body{font-variant-numeric:lining-nums}
 .compare-scroll{overflow:auto;margin-top:30px}
 .compare-table{width:100%;min-width:640px;border-collapse:collapse}
 .compare-table th,.compare-table td{padding:16px 16px 17px;border-bottom:1px solid var(--linha-suave);text-align:left;vertical-align:top;font-size:15px;line-height:22px;letter-spacing:.02em;color:var(--texto)}
-.compare-table th[scope=row]{width:150px;font-weight:500;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4);padding-left:0;position:sticky;left:0;background:var(--branco)}
-.compare-table th[scope=col]:first-child{font-family:var(--sans);font-weight:500;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4);padding-left:0;border-bottom:1px solid var(--linha)}
+.compare-table th[scope=row]{width:150px;font-weight:400;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4);padding-left:0;position:sticky;left:0;background:var(--branco)}
+.compare-table th[scope=col]:first-child{font-family:var(--sans);font-weight:400;font-size:11px;line-height:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-4);padding-left:0;border-bottom:1px solid var(--linha)}
 .compare-table th[scope=col]{font-family:var(--serif);font-weight:500;font-size:28.6px;line-height:1.15;color:var(--verde);border-bottom:1px solid var(--linha)}
 .compare-table tr:last-child th,.compare-table tr:last-child td{border-bottom:0}
 
@@ -1573,7 +1573,7 @@ body{font-variant-numeric:lining-nums}
 
 /* Inter, como o Figma usa em botões de chamada das páginas (Consultar datas) */
 #suiteOverlay .btn{font-family:var(--inter);font-weight:600;letter-spacing:.01em}
-#suiteOverlay .meta-item strong{font-weight:500}
+#suiteOverlay .meta-item strong{font-weight:400}
 
 /* ---------- responsivo (V16: 1180 e 760) ---------- */
 @media(max-width:1180px){
@@ -1674,6 +1674,53 @@ p,li,.lead,figcaption,[class*="-lead"],[class*="-text"]{text-wrap:balance}
 .section-bg.sh-drift{animation:shDrift 18s ease-in-out infinite alternate;animation-play-state:paused}
 .section-bg.sh-drift.sh-on{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){ .section-bg.sh-drift{animation:none} }
+
+/* ---------- Rodada 5b (03/11): todos os heros centralizados, como o da Home ---------- */
+#page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+#page-casa .casa-hero-copy,#page-suites .suites-hero-copy,#page-viver .vv-hero-copy,#page-experiencias .exp-hero-copy,#page-eventos .hero-copy,#page-chapada .chapada-hero-copy{
+  width:100%;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+#page-casa .casa-hero-copy>*,#page-suites .suites-hero-copy>*,#page-viver .vv-hero-copy>*,#page-experiencias .exp-hero-copy>*,#page-eventos .hero-copy>*,#page-chapada .chapada-hero-copy>*{margin-left:auto;margin-right:auto}
+#page-casa .casa-hero .hero-actions,#page-suites .suites-hero .hero-actions,#page-viver .vv-actions,#page-experiencias .exp-hero-actions,#page-eventos .hero-actions,#page-chapada .chapada-hero .hero-actions{justify-content:center}
+#page-experiencias .hero-badge{left:50%;transform:translateX(-50%)}
+@media(min-width:761px){
+  #page-casa .casa-hero,#page-suites .suites-hero,#page-viver .vv-hero,#page-experiencias .exp-hero,#page-eventos .hero,#page-chapada .chapada-hero{
+    padding-left:var(--pad);padding-right:var(--pad)}
+  #page-eventos .hero,#page-chapada .chapada-hero{padding-top:80px;padding-bottom:140px}
+  #page-experiencias .exp-hero{padding-top:0}
+  /* sombra por igual (o texto não fica mais à esquerda) */
+  #page-casa .casa-hero::after{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.44))}
+  #page-viver .vv-hero::after,#page-eventos .hero-media::after,#page-experiencias .exp-hero-shade,#page-chapada .chapada-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.44))}
+  #page-suites .suites-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(40,22,12,.38),rgba(40,22,12,.48))}
+}
+
+/* ---------- Rodada 5b: cartões sobre fundo verde em tom sobre tom (modelo: cartões de Experiências) ---------- */
+#page-casa .house-layers .card,#page-suites .suites-step,#page-viver .vv-moment{
+  background:rgba(236,232,221,.08);border:1px solid rgba(236,232,221,.14);box-shadow:none;color:var(--creme)}
+#page-casa .house-layers .card h3,#page-suites .suites-step h3,#page-viver .vv-moment-title,#page-viver .vv-time{color:var(--creme)}
+#page-casa .house-layers .card p,#page-suites .suites-step p,#page-viver .vv-moment-text{color:rgba(236,232,221,.82)}
+#page-suites .suites-step-n,#page-viver .vv-moment-copy .eyebrow{color:#aebdae}
+#page-viver .vv-moment .chip,#page-viver .vv-moment .tag-row>span{border-color:rgba(236,232,221,.22);background:rgba(236,232,221,.06);color:var(--creme)}
+
+/* ---------- Rodada 5b: barra de reserva com mais respiro ---------- */
+@media(min-width:761px){
+  .booking-dock{gap:22px;padding:12px 12px 12px 28px;min-width:min(940px,calc(100vw - 40px))}
+  .dock-copy{gap:2px;min-width:190px}
+  .dock-fields{gap:10px}
+  .dock-field{padding:11px 18px 12px}
+  .booking-dock .btn{padding:13px 26px 14px}
+}
+#page-experiencias .exp-next .eyebrow{color:var(--creme)}
+/* hero centralizado: sombra um pouco mais forte no meio, onde agora fica o texto */
+@media(min-width:761px){
+  #page-casa .casa-hero::after,#page-viver .vv-hero::after,#page-eventos .hero-media::after,#page-experiencias .exp-hero-shade,#page-chapada .chapada-hero-shade{
+    background:radial-gradient(ellipse 62% 55% at 50% 50%,rgba(0,0,0,.26),rgba(0,0,0,0) 100%),linear-gradient(180deg,rgba(0,0,0,.36),rgba(0,0,0,.46))}
+}
+.footer-col h3,.footer-col:nth-child(3) h3{color:#aebdae}
+@media(max-width:760px){
+  #page-casa .casa-hero::after{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.56))}
+  #page-viver .vv-hero::after,#page-experiencias .exp-hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.56))}
+}
 
 
 /* =========================================================

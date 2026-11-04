@@ -47,7 +47,7 @@
  {
   "bloco": "Suítes - bloco 3",
   "item": "fonte do corpo do texto dos cartões é a Forma DJR (descrição, chips, unidades·m², comparar, Ver detalhes); sem Inter",
-  "expr": "(()=>{const els=['.suite-card-top span','p','.tag-row span','.suite-actions label','.suite-detail-btn'];return els.every(q=>[...document.querySelectorAll('#page-suites .suite-card '+q)].every(e=>{const f=getComputedStyle(e).fontFamily.toLowerCase();return f.includes('forma-djr-display')&&!f.includes('inter')}))})()"
+  "expr": "(()=>{const els=['.suite-card-top span','p','.tag-row span','.suite-actions label','.suite-detail-btn'];return els.every(q=>[...document.querySelectorAll('#page-suites .suite-card '+q)].every(e=>{const f=getComputedStyle(e).fontFamily.toLowerCase();return f.includes('forma-djr')&&!f.includes('inter')}))})()"
  },
  {
   "bloco": "Suítes - bloco 3",

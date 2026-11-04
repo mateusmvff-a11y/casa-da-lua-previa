@@ -37,8 +37,8 @@ fs.writeFileSync(path.join(OUT,'index.html'), html);
 /* Mapeamento de pesos da Forma DJR Display: o "Regular" (400) do Figma tem as mesmas larguras e a mesma tinta do Medium (500)
    do kit Adobe (medido contra o PNG de um texto do Figma: tinta 1,08x, largura igual com o espaçamento original).
    Por isso todo peso 400 da Forma vira 500. Mortise (var(--serif)) fica como está. */
-/* Fontes (desde 03/11): títulos em Cormorant (leve, alto padrão); texto na Forma DJR Display.
-   - Forma: o "Regular" (400) do Figma tem as larguras do Medium (500) do kit Adobe; todo peso 400 da Forma vira 500.
+/* Fontes (desde 03/11): títulos em Cormorant (leve, alto padrão); texto na Forma DJR Text.
+   - Forma: desde 03/11 (rodada 5b) é a Forma DJR Text (kit cgs8xgs), mais leve no corpo; 400 = Regular, 600 vira 500 (Medium).
    - Cormorant: título grande (>= 34px ou sem tamanho) em Light 300; título pequeno em Regular 400; o que era negrito (700/800) vira Medium 500.
    - A Cormorant tem x-height menor que a Mortise: tamanhos e entrelinhas em px da serifa crescem 10% (KS). */
 const KS = 1.1;
@@ -62,8 +62,10 @@ function mapeiaPesos(css){
     /* <strong> dentro de título: Medium (o negrito da Mortise era pesado demais) */
     if(/font-weight:\s*(700|bold|800)/.test(body) && sel.split(',').every(s=>/\b(strong|b)\s*$/.test(s.trim()) && TITULO_STRONG.test(s)))
       return sel+'{'+body.replace(/font-weight:\s*(700|bold|800)/,'font-weight:500')+'}';
-    if(!/font-weight:\s*400/.test(body) || /\bh[1-6]\b/.test(sel)) return all;              /* títulos h1-h6 são serifa */
-    return sel+'{'+body.replace(/font-weight:\s*400/,'font-weight:500')+'}';
+    /* Forma DJR Text (desde 03/11, kit cgs8xgs: Regular 400, Medium 500, Bold 700): o 400 fica Regular (o cliente pediu texto mais leve);
+       o 600 (antes Medium do kit Display) vira 500 para não cair no Bold */
+    if(!/font-weight:\s*600/.test(body) || /\bh[1-6]\b/.test(sel)) return all;              /* títulos h1-h6 são serifa */
+    return sel+'{'+body.replace(/font-weight:\s*600/,'font-weight:500')+'}';
   });
 }
 const css = mapeiaPesos([rd('src/css/base.css'), ...PAGES.map(p => rd(`src/css/pages/${p}.css`)), rd('src/css/overlays.css'), rd('src/css/fixes.css'), rd('src/css/hover.css'), MOTION ? rd('src/css/motion.css') : ''].join('\n\n'));
