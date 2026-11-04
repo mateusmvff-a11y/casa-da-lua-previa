@@ -9,3 +9,6 @@ tools/_*.txt
 _rev/
 _site-oficial/
 _cloud/
+
+.vercel
+.env*

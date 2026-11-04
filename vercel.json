@@ -23,6 +23,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.casadalua.com.br"
+        }
+      ],
+      "destination": "https://casadalua.com.br/:path*",
+      "permanent": true
+    },
+    {
       "source": "/a-pousada",
       "destination": "/#casa",
       "permanent": true
