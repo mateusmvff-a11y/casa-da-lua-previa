@@ -50,7 +50,7 @@
   background:transparent;border:0;border-left:2px solid rgba(239,234,223,.18);
   padding:14.65px 16px 20.8px 16px;color:rgba(239,234,223,.56);transition:color .2s,border-color .2s
 }
-#page-home .time-tab strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:40px;letter-spacing:0;color:rgba(239,234,223,.56);transition:color .2s}
+#page-home .time-tab strong{font-family:var(--serif-num);font-weight:400;font-size:26px;line-height:40px;letter-spacing:0;color:rgba(239,234,223,.56);transition:color .2s}
 #page-home .time-tab span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(239,234,223,.56);transition:color .2s}
 #page-home .time-tab:hover{border-left-color:rgba(239,234,223,.45)}
 #page-home .time-tab:hover strong,#page-home .time-tab:hover span{color:var(--creme)}
@@ -167,7 +167,7 @@
   width:calc(1041/1280*100%);margin-left:calc(178/1280*100%)
 }
 #page-home .practical-item{display:flex;flex-direction:column;gap:3.5px;padding:17px 0 2.3px}
-#page-home .practical-item strong{font-family:var(--serif);font-weight:700;font-size:34px;line-height:36px;letter-spacing:0;color:var(--verde-escuro)}
+#page-home .practical-item strong{font-family:var(--serif-num);font-weight:700;font-size:34px;line-height:36px;letter-spacing:0;color:var(--verde-escuro)}
 #page-home .practical-item span{font-size:16px;line-height:24px;color:var(--verde)}
 
 /* ---------- Responsivo ---------- */
@@ -272,7 +272,7 @@
 #page-home .stat{display:flex;flex-direction:column;gap:2px;padding:0 28px;border-left:1px solid rgba(255,255,255,.34)}
 #page-home .stat:first-child{border-left:0}
 #page-home .stat:last-child{padding-right:0}
-#page-home .stat strong{font-family:var(--serif);font-weight:700;font-size:30px;line-height:34px;color:#fff;text-shadow:0 1px 14px rgba(27,38,32,.5)}
+#page-home .stat strong{font-family:var(--serif-num);font-weight:700;font-size:30px;line-height:34px;color:#fff;text-shadow:0 1px 14px rgba(27,38,32,.5)}
 #page-home .stat span{font-size:11px;line-height:17px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.88);text-shadow:0 1px 10px rgba(27,38,32,.5)}
 
 /* atalhos: sticky logo abaixo do hero, sem ocupar altura (cobre o respiro do topo da seção escura) */

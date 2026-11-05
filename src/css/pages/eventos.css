@@ -35,7 +35,7 @@
 #page-eventos .hero .ghost-btn:hover{background:rgba(74,97,82,.28)}
 #page-eventos .stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
 #page-eventos .stat{display:flex;flex-direction:column;gap:5px}
-#page-eventos .stat strong{font-family:var(--serif);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
+#page-eventos .stat strong{font-family:var(--serif-num);font-weight:800;font-size:36px;line-height:36px;letter-spacing:0;color:var(--creme)}
 #page-eventos .stat span{font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--creme)}
 
 /* títulos: o Figma não quebra linha (o texto passa da coluna de 760) */

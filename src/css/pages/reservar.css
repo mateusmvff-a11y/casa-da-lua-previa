@@ -68,7 +68,7 @@
 /* antes de reservar */
 #page-reservar .practical-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 #page-reservar .practical-item{border-top:1px solid var(--linha);padding-top:20px}
-#page-reservar .practical-item strong{display:block;font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.2;color:var(--verde-escuro)}
+#page-reservar .practical-item strong{display:block;font-family:var(--serif-num);font-weight:400;font-size:36px;line-height:1.2;color:var(--verde-escuro)}
 #page-reservar .practical-item span{display:block;margin-top:2px;font-size:13px;line-height:20px;letter-spacing:.02em;color:var(--texto-4)}
 #page-reservar .rv-policies{margin-top:40px}
 #page-reservar .rv-policies .card{background:var(--creme);box-shadow:var(--sombra-cartao)}

@@ -254,7 +254,7 @@ document.addEventListener('cdl:overlay',e=>{ if(e.detail.open){ showHeader(); ov
 
 /* ---------- Troca de conteúdo (abas, perfis, filtros) ---------- */
 const q = (s,r=document) => [...r.querySelectorAll(s)];
-const textIn = els => { if(els.length) gsap.fromTo(els,{autoAlpha:0,y:8},{autoAlpha:1,y:0,duration:.7,stagger:.05,ease:'power2.out',overwrite:true,clearProps:'transform'}); };
+const textIn = els => { if(els.length) gsap.fromTo(els,{autoAlpha:0,y:6},{autoAlpha:1,y:0,duration:.45,stagger:.03,ease:'power2.out',overwrite:true,clearProps:'transform'}); };
 /* transição cruzada (04/11): a foto antiga fica por cima e some devagar enquanto a nova já está embaixo; antes a nova
    entrava do zero e o fundo piscava. O endereço antigo é guardado na fase de captura do clique, antes da troca. */
 const oldSrc = new Map();
@@ -268,9 +268,9 @@ const imageIn = el => {
   ghost.removeAttribute('id'); ghost.src = prev; ghost.removeAttribute('srcset');
   Object.assign(ghost.style,{position:'absolute',left:el.offsetLeft+'px',top:el.offsetTop+'px',width:el.offsetWidth+'px',height:el.offsetHeight+'px',margin:0,pointerEvents:'none',zIndex:1,transform:'none'});
   el.parentNode.insertBefore(ghost, el.nextSibling);
-  const go = ()=>gsap.to(ghost,{autoAlpha:0,duration:.75,ease:'power1.inOut',onComplete:()=>ghost.remove()});
+  const go = ()=>gsap.to(ghost,{autoAlpha:0,duration:.38,ease:'power1.out',onComplete:()=>ghost.remove()});
   (el.decode ? el.decode().catch(()=>{}) : Promise.resolve()).then(go);
-  setTimeout(()=>{ if(ghost.isConnected) go(); },900);
+  setTimeout(()=>{ if(ghost.isConnected) go(); },350);
 };
 function textCards(cards){
   if(!cards.length) return;

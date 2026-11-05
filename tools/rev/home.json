@@ -11,8 +11,8 @@
  },
  {
   "bloco": "Home - bloco 1",
-  "item": "Reduzir o tamanho do texto (sub, parágrafo .lead) em 15%",
-  "expr": "(()=>{const fs=parseFloat(getComputedStyle(document.querySelector('#page-home .hero .lead')).fontSize);const base=Math.min(27,Math.max(17,innerWidth*.014));return Math.abs(fs/base-.85)<.006})()"
+  "item": "Reduzir o tamanho do texto (sub, parágrafo .lead) em 15% (05/11: cliente pediu ainda menor; vale até 85%)",
+  "expr": "(()=>{const fs=parseFloat(getComputedStyle(document.querySelector('#page-home .hero .lead')).fontSize);const base=Math.min(27,Math.max(17,innerWidth*.014));return fs/base<=.856&&fs>=14})()"
  },
  {
   "bloco": "Home - bloco 1",

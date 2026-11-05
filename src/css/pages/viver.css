@@ -53,7 +53,7 @@
 #page-viver .vv-moment-copy{display:flex;flex-direction:column;justify-content:flex-start;padding:160px 54px 54px}
 #page-viver .vv-moment-copy .eyebrow,#page-viver .vv-night-copy .eyebrow{font-family:var(--inter);font-weight:600}
 #page-viver .vv-moment-copy .eyebrow{padding-top:10px;margin-bottom:6px;color:var(--verde)}
-#page-viver .vv-time{font-family:var(--serif);font-weight:700;font-size:clamp(48px,3.65vw,70px);line-height:1;color:var(--verde-escuro)}
+#page-viver .vv-time{font-family:var(--serif-num);font-weight:700;font-size:clamp(48px,3.65vw,70px);line-height:1;color:var(--verde-escuro)}
 #page-viver .vv-moment-title{font-family:var(--serif);font-weight:400;font-size:clamp(26px,1.77vw,34px);line-height:1.06;color:var(--texto);margin:20px 0 0}
 #page-viver .vv-moment-text{max-width:336px;margin:16px 0;font-size:16px;line-height:24px;letter-spacing:.02em;color:var(--texto)}
 #page-viver #viverMomentTags{margin-top:4px}
@@ -87,7 +87,7 @@
 #page-viver .vv-practical{background:var(--creme)}
 #page-viver .vv-practical-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 #page-viver .vv-practical-item{display:flex;flex-direction:column;gap:4.25px;padding:17.25px 0 1.54px;border-top:1px solid var(--linha)}
-#page-viver .vv-practical-item strong{font-family:var(--serif);font-weight:400;font-size:26px;line-height:41px;color:var(--verde)}
+#page-viver .vv-practical-item strong{font-family:var(--serif-num);font-weight:400;font-size:26px;line-height:41px;color:var(--verde)}
 #page-viver .vv-practical-item span{font-size:16px;line-height:24px;letter-spacing:.02em;color:#5f6e65}
 
 /* ---------- responsivo ---------- */

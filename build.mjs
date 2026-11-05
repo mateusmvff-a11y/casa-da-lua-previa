@@ -40,16 +40,20 @@ fs.writeFileSync(path.join(OUT,'index.html'), html);
    - Forma: desde 03/11 (rodada 5b) é a Forma DJR Text (kit cgs8xgs), mais leve no corpo; 400 = Regular, 600 vira 500 (Medium).
    - Cormorant: título grande (>= 34px ou sem tamanho) em Light 300; título pequeno em Regular 400; o que era negrito (700/800) vira Medium 500.
    - A Cormorant tem x-height menor que a Mortise: tamanhos e entrelinhas em px da serifa crescem 10% (KS). */
-const KS = 1.1;
+/* 05/11: títulos na Freight Display (kit nye5dla), números seguem na Cormorant (var(--serif-num)).
+   A Freight tem x-height parecida com a Mortise do Figma: tamanhos originais (1,0); a Cormorant dos números cresce 10%. */
+let KS = 1.1;
 const escala = v => /calc|var\(/.test(v) ? v : v.replace(/(\d*\.?\d+)(px|vw|vh)/g,(m,n,u)=>(Math.round(+n*KS*100)/100)+u);
 const maiorPx = v => { const m = [...v.matchAll(/(\d*\.?\d+)px/g)].map(x=>+x[1]); return m.length ? Math.max(...m) : null; };
 const TITULO_STRONG = /(title|display|subtitle|\bh[1-4]\b|vv-h2|chapada-h1|vv-h1|suites-hero-title|exp-hero|feature-body h3|event-copy h3|program-stage-copy h3)/;
 function mapeiaPesos(css){
   return css.replace(/([^{}]+)\{([^{}]*)\}/g,(all,sel,body)=>{
-    const serif = /var\(--serif\)|font-family:\s*"?(mortise|cormorant)/.test(body);
+    const serif = /var\(--serif(-num)?\)|font-family:\s*"?(mortise|cormorant|freight)/.test(body);
+    const num = /var\(--serif-num\)|font-family:\s*"?cormorant/.test(body);
     const inter = /var\(--inter\)|font-family:\s*"?inter/i.test(body);
     if(inter){ return /font-weight/.test(body) ? all : sel+'{'+body+';font-weight:400}'; }   /* Inter: peso 400 de verdade */
     if(serif){
+      KS = num ? 1.1 : 1.0;
       const fs_ = body.match(/font-size:\s*([^;]+)/); const px = fs_ ? maiorPx(fs_[1]) : null; const grande = px === null || px >= 34;
       let nb = body.replace(/(font-size|line-height):\s*([^;]+)/g,(m,p,v)=> /px|vw|vh/.test(v) ? p+':'+escala(v) : m);
       const w = nb.match(/font-weight:\s*(\d+|bold)/); const nw = w ? (w[1]==='bold' ? 700 : +w[1]) : null;
@@ -57,7 +61,7 @@ function mapeiaPesos(css){
       const para = (nw === null || nw === 400) ? (grande ? 300 : 400) : (nw >= 600 ? (grande ? 400 : 500) : 500);
       nb = w ? nb.replace(/font-weight:\s*(\d+|bold)/,'font-weight:'+para) : nb+';font-weight:'+para;
       /* 04/11: a Cormorant ficou "muito espaçada" (e herdava o .02em do corpo): título grande -0,02em, pequeno -0,01em */
-      const ls = grande ? '-.02em' : '-.01em';
+      const ls = num ? (grande ? '-.02em' : '-.01em') : (grande ? '-.01em' : '0');
       nb = /letter-spacing/.test(nb) ? nb.replace(/letter-spacing:\s*[^;]+/,'letter-spacing:'+ls) : nb+';letter-spacing:'+ls;
       return sel+'{'+nb+'}';
     }

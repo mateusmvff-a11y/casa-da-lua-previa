@@ -29,7 +29,8 @@
   --sombra-dock:0 24px 70px rgba(38,51,44,.14);
 
   /* tipografia */
-  --serif:"cormorant","Cormorant Garamond",Georgia,serif;
+  --serif:"freight-display-pro","cormorant",Georgia,serif;
+  --serif-num:"cormorant","Cormorant Garamond",Georgia,serif;   /* números (15, 7h30, 2009...) seguem na Cormorant (05/11) */
   --sans:"neue-haas-unica","Helvetica Neue",Arial,sans-serif;
   --inter:"Inter","Helvetica Neue",Arial,sans-serif;   /* o Figma usa Inter em botões, chips, cartões de suíte, barra de reserva etc. */
 
