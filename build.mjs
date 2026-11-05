@@ -85,7 +85,7 @@ function mapeiaRaios(css){
     const w = body.match(/(?:^|;)\s*width:\s*(\d+)px/), h = body.match(/(?:^|;)\s*height:\s*(\d+)px/);
     const redondo = !!(w && h && w[1] === h[1]);
     const nb = body.replace(/border-radius:\s*([^;]+)/g,(m,v)=>'border-radius:'+v.replace(/(\d+)px/g,(x,n)=>{
-      n = +n; if(n >= 900) return redondo ? x : '4px'; if(n >= 18) return '6px'; if(n >= 10) return '4px'; return x;
+      n = +n; if(n >= 900) return '10px'; if(n >= 18) return '6px'; if(n >= 10) return '10px'; return x;
     })).replace(/--raio:\s*24px/,'--raio:6px');
     return sel+'{'+nb+'}';
   });
